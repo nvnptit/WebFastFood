@@ -67,7 +67,8 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.htm">Vegefoods</a>
+	      <!-- <a class="navbar-brand" href="index.htm">Vegefoods</a> -->
+		  <a class="navbar-brand" href="index.htm"><img src="../resources/images/logo.png" alt=""></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -91,7 +92,7 @@
 					<a href="javascript:void(0);"
 						class="btn-user dropdown-toggle media align-items-center nav-link"
 						data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
-						<!--  <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar"> -->
+						  <!-- <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar">  -->
 						<div class="media-body">
 							<h5>
 								<span class="badge badge-pill badge-success nav-item">${sessionScope['user'].fullname}</span>
@@ -211,10 +212,11 @@
 					</div>
 				</div>
 			</div>
-			<a href="#loginModal" role="button" class="btn btn-primary btn-lg "
-				data-toggle="modal">Login</a>
-			<a href="#SignupModal" role="button" class="btn btn-primary btn-lg "
-				data-toggle="modal">SignUp</a>
+			<a href="#loginModal" role="button" class="btn btn-primary"
+				data-toggle="modal" style="margin:5px;" ">Login</a> 
+				
+			<a href="#SignupModal" role="button" class="btn btn-primary "
+				data-toggle="modal" >SignUp</a>
 		</c:if>
 	    
 	  </nav>
@@ -365,7 +367,7 @@
     		<c:forEach var="p" items="${products}" begin="0" end="7">
     		<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="${root}/resources/images/products/{p.img}" alt="Image">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="${root}/resources/images/products/${p.img}" alt="Image">
     						<span class="status" id="disc">${p.discount}%</span>
     						<div class="overlay"></div>
     					</a>
