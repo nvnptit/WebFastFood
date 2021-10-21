@@ -6305,7 +6305,7 @@ a.close.disabled {
     outline: 0;
 }
 
-.modal-backdrop {
+/* .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -6321,7 +6321,7 @@ a.close.disabled {
 
 .modal-backdrop.show {
     opacity: 0.5;
-}
+} */
 
 .modal-header {
     display: -webkit-box;

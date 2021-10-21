@@ -122,6 +122,7 @@
         </div>
     </div>
 </div>
+		
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -156,9 +157,9 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Products</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="shop.htm" class="nav-link">Products</a></li>
+	          <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
 	          <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 	        </ul>
 	      </div>

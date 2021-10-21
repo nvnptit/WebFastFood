@@ -40,27 +40,7 @@
 <link rel="stylesheet" href="${root}/resources/css/icomoon.css">
 <link rel="stylesheet" href="${root}/resources/css/style.css">
 <body class="goto-here">
-	<%
-		Cookie[] cks = request.getCookies();
-		if (cks != null) {
-			for (int i = 0; i < cks.length; i++) {
-				String name = cks[i].getName();
-				String value = cks[i].getValue();
-				if (name.equals("auth")) {
-					break; // exit the loop and continue the page
-				}
-				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-				{
-					response.sendRedirect("login.htm");
-					return; // to stop further execution
-				}
-				i++;
-			}
-		} else {
-			response.sendRedirect("login.htm");
-			return; // to stop further execution
-		}
-	%>
+
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -102,21 +82,140 @@
 	        </ul>
 	      </div>
 	    </div>
-	    <div class="collapse navbar-collapse pmd-navbar-sidebar" id="navbarSupportedContent" style="justify-content:flex-end">
-        <div class="dropdown pmd-dropdown pmd-user-info">
-            <a href="javascript:void(0);" class="btn-user dropdown-toggle media align-items-center nav-link" data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
-               <!--  <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar"> -->
-                <div class="media-body">
-                 <h5><span class="badge badge-pill badge-success nav-item">${sessionScope['user'].fullname}</span></h5> 
-                 
-                </div>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                <a class="dropdown-item" href="profile.htm">Change Password</a>
-                <a class="dropdown-item" href="logout.htm">Logout</a>
-            </ul>
-        </div>
-    	</div>
+	  
+		<c:if test="${sessionScope['user'] != null}">
+
+			<div class="collapse navbar-collapse pmd-navbar-sidebar"
+				id="navbarSupportedContent" style="justify-content: flex-end">
+				<div class="dropdown pmd-dropdown pmd-user-info">
+					<a href="javascript:void(0);"
+						class="btn-user dropdown-toggle media align-items-center nav-link"
+						data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
+						<!--  <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar"> -->
+						<div class="media-body">
+							<h5>
+								<span class="badge badge-pill badge-success nav-item">${sessionScope['user'].fullname}</span>
+							</h5>
+
+						</div>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right" role="menu">
+						<a class="dropdown-item" href="profile.htm">Change Password</a>
+						<a class="dropdown-item" href="logout.htm">Logout</a>
+					</ul>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${sessionScope['user'] == null}">
+
+			<div id="loginModal" class="modal fade" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3>Login</h3>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
+						<div class="modal-body">
+							<form class="form needs-validation" role="form"
+								autocomplete="off" id="formLogin" action="index.htm"
+								method="POST">
+								<div class="form-group">
+									<a href="#SignupModal" class="float-right" data-toggle="modal">New
+										user?</a> <label for="uname1">Username</label> <input type="text"
+										class="form-control form-control-lg" name="username_lg"
+										id="uname1" required>
+									<div class="invalid-feedback">Oops, you missed this one.</div>
+								</div>
+								<div class="form-group">
+									<label>Password</label> <input type="password"
+										class="form-control form-control-lg" id="pwd1"
+										name="password_lg" required>
+									<div class="invalid-feedback">Enter your password too!</div>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<label> <a href="forgot.htm">Forgotten Password?</a>
+									</label>
+								</div>
+								<div class="form-group py-4">
+									<button class="btn btn-outline-secondary btn-lg"
+										data-dismiss="modal" aria-hidden="true">Cancel</button>
+									<button type="submit"
+										class="btn btn-success btn-lg float-right" id="btnLogin">Login</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="SignupModal" class="modal fade" tabindex="-1" role="dialog"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h3>SignUp</h3>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">×</button>
+						</div>
+						<div class="modal-body">
+							<form class="form" role="form" autocomplete="off" id="formSignup"
+								action="login.htm" method="POST">
+								<div class="form-group">
+									<label for="uname1">Username</label> <input type="text"
+										class="form-control form-control-lg" name="username"
+										id="username" required="">
+									<div class="invalid-feedback">Oops, you missed this one.</div>
+								</div>
+								<div class="form-group">
+									<label for="uname1">Fullname</label> <input type="text"
+										class="form-control form-control-lg" name="fullname"
+										id="fullname" required="">
+									<div class="invalid-feedback">Oops, you missed this one.</div>
+								</div>
+								<div class="form-group">
+									<label for="uname1">Email</label> <input type="email"
+										class="form-control form-control-lg" name="email" id="email"
+										required="">
+									<div class="invalid-feedback">Oops, you missed this one.</div>
+								</div>
+								<div class="form-group">
+									<label for="uname1">PhoneNumber</label> <input type="number"
+										class="form-control form-control-lg" name="phone" id="phone"
+										required="">
+									<div class="invalid-feedback">Oops, you missed this one.</div>
+								</div>
+								<div class="form-group">
+									<label>Password</label> <input type="password"
+										class="form-control form-control-lg" name="password"
+										required="" autocomplete="new-password">
+									<div class="invalid-feedback">Enter your password too!</div>
+								</div>
+								<div class="form-group">
+									<label>Confirm Password</label> <input type="password"
+										class="form-control form-control-lg" name="confirmPassword"
+										required="" autocomplete="new-password">
+									<div class="invalid-feedback">Enter your password too!</div>
+								</div>
+								<input type="hidden" class="form-control form-control-lg"
+									name="role" value="user">
+								<div class="form-group py-4">
+									<button class="btn btn-outline-secondary btn-lg"
+										data-dismiss="modal" aria-hidden="true">Cancel</button>
+									<button type="submit"
+										class="btn btn-success btn-lg float-right" id="btnSignup">Sign
+										Up</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a href="#loginModal" role="button" class="btn btn-primary btn-lg "
+				data-toggle="modal">Login</a>
+			<a href="#SignupModal" role="button" class="btn btn-primary btn-lg "
+				data-toggle="modal">SignUp</a>
+		</c:if>
 	    
 	  </nav>
     <!-- END nav -->
@@ -266,7 +365,7 @@
     		<c:forEach var="p" items="${products}" begin="0" end="7">
     		<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="${root}/resources/images/${p.img}" alt="Image">
+    					<a href="#" class="img-prod"><img class="img-fluid" src="${root}/resources/images/products/{p.img}" alt="Image">
     						<span class="status" id="disc">${p.discount}%</span>
     						<div class="overlay"></div>
     					</a>
@@ -520,6 +619,33 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="${root}/resources/js/google-map.js"></script>
 	<script src="${root}/resources/js/main.js"></script>
+	<script type="text/javascript">
+		$("#btnLogin").click(function(event) {
+  
+			  //Fetch form to apply custom Bootstrap validation
+			  var form = $("#formLogin")
+  
+			  if (form[0].checkValidity() === false) {
+				event.preventDefault()
+				event.stopPropagation()
+			  }
+			  
+			//   form.addClass('was-validated');
+			});
+		
+		$("#btnSignup").click(function(event) {
+  
+			  //Fetch form to apply custom Bootstrap validation
+			  var form = $("#formSignup")
+  
+			  if (form[0].checkValidity() === false) {
+				event.preventDefault()
+				event.stopPropagation()
+			  }
+			  
+			//   form.addClass('was-validated');
+			});
+	  </script>
 	<script type="text/javascript">
 	  $("#btnLogin").click(function(event) {
 
