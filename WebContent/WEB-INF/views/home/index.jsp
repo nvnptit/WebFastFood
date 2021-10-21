@@ -55,10 +55,10 @@
 											<div class="icon mr-2 d-flex justify-content-center align-items-center">
 												<span class="icon-paper-plane"></span>
 											</div>
-											<span class="text">Group 16 with ♥</span>
+											<span class="text">Nhóm 16 with ♥</span>
 										</div>
 										<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-											<span class="text">3-5 Business days delivery &amp; Free Returns</span>
+											<span class="text">3-5 Giao hàng trong ngày làm việc & Trả hàng miễn phí</span>
 										</div>
 									</div>
 								</div>
@@ -97,7 +97,6 @@
 									<a href="javascript:void(0);"
 										class="btn-user dropdown-toggle media align-items-center nav-link"
 										data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
-										<!-- <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar">  -->
 										<div class="media-body">
 											<h5>
 												<span
@@ -107,8 +106,8 @@
 										</div>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-right" role="menu">
-										<a class="dropdown-item" href="profile.htm">Change Password</a>
-										<a class="dropdown-item" href="logout.htm">Logout</a>
+										<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+										<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 									</ul>
 								</div>
 							</div>
@@ -119,35 +118,34 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h3>Login</h3>
+											<h3>Đăng nhập</h3>
 											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
+												aria-hidden="true">X</button>
 										</div>
 										<div class="modal-body">
 											<form class="form needs-validation" role="form" autocomplete="off"
 												id="formLogin" action="index.htm" method="POST">
 												<div class="form-group">
-													<a href="#SignupModal" class="float-right" data-toggle="modal">New
-														user?</a> <label for="uname1">Username</label> <input
+													<a href="#SignupModal" class="float-right" data-toggle="modal">Bạn là khách hàng mới?</a> <label for="uname1">Tên đăng nhập</label> <input
 														type="text" class="form-control form-control-lg"
 														name="username_lg" id="uname1" required>
-													<div class="invalid-feedback">Oops, you missed this one.</div>
+													<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
 												</div>
 												<div class="form-group">
-													<label>Password</label> <input type="password"
+													<label>Mật khẩu</label> <input type="password"
 														class="form-control form-control-lg" id="pwd1"
 														name="password_lg" required>
-													<div class="invalid-feedback">Enter your password too!</div>
+													<div class="invalid-feedback">Vui lòng nhập tên mật khẩu!</div>
 												</div>
 												<div class="custom-control custom-checkbox">
-													<label> <a href="forgot.htm">Forgotten Password?</a>
+													<label> <a href="forgot.htm">Quên mật khẩu?</a>
 													</label>
 												</div>
-												<div class="form-group py-4">
+												<div class="form-group py-2">
 													<button class="btn btn-outline-secondary btn-lg"
-														data-dismiss="modal" aria-hidden="true">Cancel</button>
+														data-dismiss="modal" aria-hidden="true">Huỷ</button>
 													<button type="submit" class="btn btn-success btn-lg float-right"
-														id="btnLogin">Login</button>
+														id="btnLogin">Đăng nhập</button>
 												</div>
 											</form>
 										</div>
@@ -158,67 +156,65 @@
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h3>SignUp</h3>
+											<h3>Đăng ký</h3>
 											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
+												aria-hidden="true">X</button>
 										</div>
 										<div class="modal-body">
 											<form class="form" role="form" autocomplete="off" id="formSignup"
 												action="login.htm" method="POST">
 												<div class="form-group">
-													<label for="uname1">Username</label> <input type="text"
+													<label for="uname1">Tên đăng nhập</label> <input type="text"
 														class="form-control form-control-lg" name="username"
 														id="username" required="">
-													<div class="invalid-feedback">Oops, you missed this one.</div>
+													<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
 												</div>
 												<div class="form-group">
-													<label for="uname1">Fullname</label> <input type="text"
+													<label for="uname1">Họ và tên</label> <input type="text"
 														class="form-control form-control-lg" name="fullname"
 														id="fullname" required="">
-													<div class="invalid-feedback">Oops, you missed this one.</div>
+													<div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
 												</div>
 												<div class="form-group">
 													<label for="uname1">Email</label> <input type="email"
 														class="form-control form-control-lg" name="email" id="email"
 														required="">
-													<div class="invalid-feedback">Oops, you missed this one.</div>
+													<div class="invalid-feedback">Vui lòng nhập email của bạn!</div>
 												</div>
 												<div class="form-group">
-													<label for="uname1">PhoneNumber</label> <input type="number"
+													<label for="uname1">Số điện thoại</label> <input type="number"
 														class="form-control form-control-lg" name="phone" id="phone"
 														required="">
-													<div class="invalid-feedback">Oops, you missed this one.</div>
+													<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!</div>
 												</div>
 												<div class="form-group">
-													<label>Password</label> <input type="password"
+													<label>Nhập mật khẩu</label> <input type="password"
 														class="form-control form-control-lg" name="password" required=""
 														autocomplete="new-password">
-													<div class="invalid-feedback">Enter your password too!</div>
+													<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 												</div>
 												<div class="form-group">
-													<label>Confirm Password</label> <input type="password"
+													<label>Nhập mật khẩu lần 2</label> <input type="password"
 														class="form-control form-control-lg" name="confirmPassword"
 														required="" autocomplete="new-password">
-													<div class="invalid-feedback">Enter your password too!</div>
+													<div class="invalid-feedback">Mật khẩu lần 2 không hợp lệ!</div>
 												</div>
 												<input type="hidden" class="form-control form-control-lg" name="role"
 													value="user">
 												<div class="form-group py-4">
 													<button class="btn btn-outline-secondary btn-lg"
-														data-dismiss="modal" aria-hidden="true">Cancel</button>
+														data-dismiss="modal" aria-hidden="true">Huỷ</button>
 													<button type="submit" class="btn btn-success btn-lg float-right"
-														id="btnSignup">Sign
-														Up</button>
+														id="btnSignup">Đăng ký</button>
 												</div>
 											</form>
 										</div>
 									</div>
 								</div>
 							</div>
-							<a href="#loginModal" role="button" class="btn btn-primary" data-toggle="modal"
-								style="margin:5px;" ">Login</a> 
-				
-			<a href=" #SignupModal" role="button" class="btn btn-primary " data-toggle="modal">SignUp</a>
+							<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
+								style="margin:5px;" ">Đăng nhập</a> 
+							<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
 						</c:if>
 
 					</nav>
@@ -226,16 +222,16 @@
 
 					<section id="home-section" class="hero">
 						<div class="home-slider owl-carousel">
-							<div class="slider-item" style="background-image: url(${root}/resources/images/bg_1.jpg);">
+							<div class="slider-item" style="background-image: url(${root}/resources/images/slide.jpg);">
 								<div class="overlay"></div>
 								<div class="container">
 									<div class="row slider-text justify-content-center align-items-center"
 										data-scrollax-parent="true">
 
 										<div class="col-md-12 ftco-animate text-center">
-											<h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-											<h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-											<p><a href="#" class="btn btn-primary">View Details</a></p>
+											<h1 class="mb-2">Fast Food -Thế giới đồ ăn nhanh</h1>
+											<h2 class="subheading mb-4">Siêu ngon - Siêu bổ - Siêu rẻ - Siêu nhanh</h2>
+											<p><a href="#" class="btn btn-primary">Xem thêm tại đây</a></p>
 										</div>
 
 									</div>
@@ -249,8 +245,8 @@
 										data-scrollax-parent="true">
 
 										<div class="col-sm-12 ftco-animate text-center">
-											<h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-											<h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+											<h1 class="mb-2">Fast Food - Tiêu chuẩn 4S</h1>
+											<h2 class="subheading mb-4">Siêu ngon - Siêu bổ - Siêu rẻ - Siêu nhanh</h2>
 											<p><a href="#" class="btn btn-primary">View Details</a></p>
 										</div>
 
@@ -270,8 +266,8 @@
 											<span class="flaticon-shipped"></span>
 										</div>
 										<div class="media-body">
-											<h3 class="heading">Free Shipping</h3>
-											<span>On order over $100</span>
+											<h3 class="heading">Miễn phí giao hàng</h3>
+											<span>Hoá đơn trên 100.000 VNĐ</span>
 										</div>
 									</div>
 								</div>
@@ -282,8 +278,8 @@
 											<span class="flaticon-diet"></span>
 										</div>
 										<div class="media-body">
-											<h3 class="heading">Always Fresh</h3>
-											<span>Product well package</span>
+											<h3 class="heading">Nguyên liệu được chọn lọc</h3>
+											<span>Luôn tươi ngon đảm bảo an toàn</span>
 										</div>
 									</div>
 								</div>
@@ -294,8 +290,8 @@
 											<span class="flaticon-award"></span>
 										</div>
 										<div class="media-body">
-											<h3 class="heading">Superior Quality</h3>
-											<span>Quality Products</span>
+											<h3 class="heading">Chất lượng sản phẩm</h3>
+											<span>Siêu chất lượng!</span>
 										</div>
 									</div>
 								</div>
@@ -306,8 +302,8 @@
 											<span class="flaticon-customer-service"></span>
 										</div>
 										<div class="media-body">
-											<h3 class="heading">Support</h3>
-											<span>24/7 Support</span>
+											<h3 class="heading">Hoạt động</h3>
+											<span>24/7</span>
 										</div>
 									</div>
 								</div>
@@ -324,23 +320,23 @@
 											<div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
 												style="background-image: url(${root}/resources/images/category.jpg);">
 												<div class="text text-center">
-													<h2>Vegetables</h2>
-													<p>Protect the health of every home</p>
-													<p><a href="shop.htm" class="btn btn-primary">Shop now</a></p>
+													<h2>FAST FOOD</h2>
+													<p>Đầy đủ các loại thức ăn, thức uống</p>
+													<p><a href="food.htm" class="btn btn-primary">Mua ngay</a></p>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-												style="background-image: url(${root}/resources/images/category-1.jpg);">
+												style="background-image: url(${root}/resources/images/cacLoaiBanh.jpg);">
 												<div class="text px-3 py-1">
-													<h2 class="mb-0"><a href="#">Fruits</a></h2>
+													<h2 class="mb-0"><a href="food.htm">Bánh</a></h2>
 												</div>
 											</div>
 											<div class="category-wrap ftco-animate img d-flex align-items-end"
-												style="background-image: url(${root}/resources/images/category-2.jpg);">
+												style="background-image: url(${root}/resources/images/cacLoaiNuoc.jpg);">
 												<div class="text px-3 py-1">
-													<h2 class="mb-0"><a href="#">Vegetables</a></h2>
+													<h2 class="mb-0"><a href="drink.htm">Nước</a></h2>
 												</div>
 											</div>
 										</div>
@@ -349,15 +345,15 @@
 
 								<div class="col-md-4">
 									<div class="category-wrap ftco-animate img mb-4 d-flex align-items-end"
-										style="background-image: url(${root}/resources/images/category-3.jpg);">
+										style="background-image: url(${root}/resources/images/doAnVat.jpg);">
 										<div class="text px-3 py-1">
-											<h2 class="mb-0"><a href="#">Juices</a></h2>
+											<h2 class="mb-0"><a href="food.htm">Đồ ăn vặt</a></h2>
 										</div>
 									</div>
 									<div class="category-wrap ftco-animate img d-flex align-items-end"
-										style="background-image: url(${root}/resources/images/category-4.jpg);">
+										style="background-image: url(${root}/resources/images/image_6.jpg);">
 										<div class="text px-3 py-1">
-											<h2 class="mb-0"><a href="#">Dried</a></h2>
+											<h2 class="mb-0"><a href="#">Hoa quả</a></h2>
 										</div>
 									</div>
 								</div>
@@ -368,11 +364,8 @@
 					<section class="ftco-section">
 						<div class="container">
 							<div class="row justify-content-center mb-3 pb-3">
-								<div class="col-md-12 heading-section text-center ftco-animate">
-									<span class="subheading">Featured Products</span>
-									<h2 class="mb-4">Our Products</h2>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and
-										Consonantia</p>
+								<div class="col-md-6 heading-section text-center ftco-animate">
+									<h1 class="mb-4" >Sản phẩm nổi bật của chúng tôi</h1>
 								</div>
 							</div>
 						</div>
@@ -412,16 +405,14 @@
 						</div>
 					</section>
 
-					<section class="ftco-section img" style="background-image: url(${root}/resources/images/bg_3.jpg);">
+					<section class="ftco-section img" style="background-image: url(${root}/resources/images/sale1.jpg);">
 						<div class="container">
-							<div class="row justify-content-end">
+							<div class="row justify-content-start">
 								<div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
-									<span class="subheading">Best Price For You</span>
-									<h2 class="mb-4">Deal of the day</h2>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and
-										Consonantia</p>
-									<h3><a href="#">Spinach</a></h3>
-									<span class="price">$10 <a href="#">now $5 only</a></span>
+									<span class="subheading">Ưu đãi cho bạn!!!!</span>
+									<h2 class="mb-4">Giảm giá ngay trong hôm nay!</h2>
+									<h3><a href="#">Khoai tây chiên</a></h3>
+									<span class="price" style="color: red;">Giảm giá 10%</span>
 									<div id="timer" class="d-flex mt-5">
 										<div class="time" id="days"></div>
 										<div class="time pl-3" id="hours"></div>
@@ -436,11 +427,8 @@
 					<section class="ftco-section testimony-section">
 						<div class="container">
 							<div class="row justify-content-center mb-5 pb-3">
-								<div class="col-md-7 heading-section ftco-animate text-center">
-									<span class="subheading">Testimony</span>
-									<h2 class="mb-4">Our satisfied customer says</h2>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and
-										Consonantia, there live the blind texts. Separated they live in</p>
+								<div class="col-md-7 heading-section ftco-animate text-center">	
+									<h2 class="mb-4">Các phản hồi ý kiến từ khách hàng</h2>
 								</div>
 							</div>
 							<div class="row ftco-animate">
@@ -456,9 +444,7 @@
 													</span>
 												</div>
 												<div class="text text-center">
-													<p class="mb-5 pl-4 line">Far far away, behind the word mountains,
-														far from the countries Vokalia and Consonantia, there live the
-														blind texts.</p>
+													<p class="mb-5 pl-4 line">Ngon quá, ngon quá, thực sự quá ngon.</p>
 													<p class="name">Garreth Smith</p>
 													<span class="position">Marketing Manager</span>
 												</div>
@@ -474,11 +460,9 @@
 													</span>
 												</div>
 												<div class="text text-center">
-													<p class="mb-5 pl-4 line">Far far away, behind the word mountains,
-														far from the countries Vokalia and Consonantia, there live the
-														blind texts.</p>
+													<p class="mb-5 pl-4 line">Món nào cũng có... Chỉ thiếu tôi.</p>
 													<p class="name">Garreth Smith</p>
-													<span class="position">Interface Designer</span>
+													<span class="position">Officer</span>
 												</div>
 											</div>
 										</div>
@@ -492,9 +476,7 @@
 													</span>
 												</div>
 												<div class="text text-center">
-													<p class="mb-5 pl-4 line">Far far away, behind the word mountains,
-														far from the countries Vokalia and Consonantia, there live the
-														blind texts.</p>
+													<p class="mb-5 pl-4 line">Không thể chê vào đâu được!.</p>
 													<p class="name">Garreth Smith</p>
 													<span class="position">UI Designer</span>
 												</div>
@@ -510,11 +492,9 @@
 													</span>
 												</div>
 												<div class="text text-center">
-													<p class="mb-5 pl-4 line">Far far away, behind the word mountains,
-														far from the countries Vokalia and Consonantia, there live the
-														blind texts.</p>
+													<p class="mb-5 pl-4 line">Tuyệt vời ông mặt trời.</p>
 													<p class="name">Garreth Smith</p>
-													<span class="position">Web Developer</span>
+													<span class="position">Developer</span>
 												</div>
 											</div>
 										</div>
@@ -528,9 +508,7 @@
 													</span>
 												</div>
 												<div class="text text-center">
-													<p class="mb-5 pl-4 line">Far far away, behind the word mountains,
-														far from the countries Vokalia and Consonantia, there live the
-														blind texts.</p>
+													<p class="mb-5 pl-4 line">Siêu ngon và rẻ.</p>
 													<p class="name">Garreth Smith</p>
 													<span class="position">System Analyst</span>
 												</div>
@@ -548,13 +526,13 @@
 						<div class="container py-4">
 							<div class="row d-flex justify-content-center py-5">
 								<div class="col-md-6">
-									<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-									<span>Get e-mail updates about our latest shops and special offers</span>
+									<h2 style="font-size: 22px;" class="mb-0">Đăng ký nhận thông tin mới nhất</h2>
+									<span>Đăng ký ngay để nhận được nhiều món ngon và ưu đãi!!!</span>
 								</div>
 								<div class="col-md-6 d-flex align-items-center">
 									<form action="#" class="subscribe-form">
 										<div class="form-group d-flex">
-											<input type="text" class="form-control" placeholder="Enter email address">
+											<input type="text" class="form-control" placeholder="Điền email tại đây">
 											<input type="submit" value="Subscribe" class="submit px-3">
 										</div>
 									</form>
@@ -574,9 +552,8 @@
 							<div class="row mb-5">
 								<div class="col-md">
 									<div class="ftco-footer-widget mb-4">
-										<h2 class="ftco-heading-2">Vegefoods</h2>
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and
-											Consonantia.</p>
+										<h2 class="ftco-heading-2">FAST FOOD</h2>
+										<p>Thế giới đồ ăn nhanh</p>
 										<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
 											<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a>
 											</li>
@@ -620,13 +597,13 @@
 										<h2 class="ftco-heading-2">Have a Questions?</h2>
 										<div class="block-23 mb-3">
 											<ul>
-												<li><span class="icon icon-map-marker"></span><span class="text">203
-														Fake St. Mountain View, San Francisco, California, USA</span>
+												<li><span class="icon icon-map-marker"></span>
+													<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP Thủ Đức</span>
 												</li>
 												<li><a href="#"><span class="icon icon-phone"></span><span
-															class="text">+2 392 3929 210</span></a></li>
+															class="text">+84 979 888 999</span></a></li>
 												<li><a href="#"><span class="icon icon-envelope"></span><span
-															class="text">info@yourdomain.com</span></a></li>
+															class="text">fastfood@codevn.tk</span></a></li>
 											</ul>
 										</div>
 									</div>

@@ -113,8 +113,8 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="profile.htm">Change Password</a>
-						<a class="dropdown-item" href="logout.htm">Logout</a>
+						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 					</ul>
 				</div>
 			</div>
@@ -224,7 +224,7 @@
 					</div>
 				</div>
 			</div>
-			<a href="#loginModal" role="button" class="btn btn-primary"
+			<a href="#loginModal" role="button" class="btn btn-primary btn-sm""
 				data-toggle="modal" style="margin:5px;" ">Login</a> 
 				
 			<a href="#SignupModal" role="button" class="btn btn-primary "
@@ -297,7 +297,7 @@
 					<form action="#" class="subscribe-form">
 						<div class="form-group d-flex">
 							<input type="text" class="form-control"
-								placeholder="Enter email address"> <input type="submit"
+								placeholder="Điền email tại đây"> <input type="submit"
 								value="Subscribe" class="submit px-3">
 						</div>
 					</form>

@@ -236,9 +236,9 @@
 											</div>
 										</div>
 									</div>
-									<a href="#loginModal" role="button" class="btn btn-primary" data-toggle="modal"
+									<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
 										style="margin:5px;" ">Login</a> 
-										<a href=" #SignupModal" role="button" class="btn btn-primary " data-toggle="modal">SignUp</a>
+									<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">SignUp</a>
 								</c:if>
 							</nav>
 							<!-- END nav -->
@@ -305,14 +305,14 @@
 								<div class="container py-4">
 									<div class="row d-flex justify-content-center py-5">
 										<div class="col-md-6">
-											<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
-											<span>Get e-mail updates about our latest shops and special offers</span>
+											<h2 style="font-size: 22px;" class="mb-0">Đăng ký nhận thông tin mới nhất</h2>
+											<span>Đăng ký ngay để nhận được nhiều món ngon và ưu đãi!!!</span>
 										</div>
 										<div class="col-md-6 d-flex align-items-center">
 											<form action="#" class="subscribe-form">
 												<div class="form-group d-flex">
 													<input type="text" class="form-control"
-														placeholder="Enter email address">
+														placeholder="Điền email tại đây">
 													<input type="submit" value="Subscribe" class="submit px-3">
 												</div>
 											</form>

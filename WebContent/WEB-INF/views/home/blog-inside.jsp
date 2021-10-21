@@ -215,7 +215,7 @@
 					</div>
 				</div>
 			</div>
-			<a href="#loginModal" role="button" class="btn btn-primary"
+			<a href="#loginModal" role="button" class="btn btn-primary btn-sm""
 				data-toggle="modal" style="margin:5px;" ">Login</a> 
 				
 			<a href="#SignupModal" role="button" class="btn btn-primary "

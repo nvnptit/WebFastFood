@@ -101,8 +101,8 @@
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right" role="menu">
-								<a class="dropdown-item" href="profile.htm">Change Password</a>
-								<a class="dropdown-item" href="logout.htm">Logout</a>
+								<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+								<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 							</ul>
 						</div>
 					</div>
@@ -209,9 +209,9 @@
 							</div>
 						</div>
 					</div>
-					<a href="#loginModal" role="button" class="btn btn-primary" data-toggle="modal" style="margin:5px;" ">Login</a> 
+					<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal" style="margin:5px;" ">Login</a> 
 				
-			<a href=" #SignupModal" role="button" class="btn btn-primary " data-toggle="modal">SignUp</a>
+			<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">SignUp</a>
 				</c:if>
 			</nav>
 			<!-- END nav -->
