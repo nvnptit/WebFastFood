@@ -75,8 +75,8 @@
 							<li class="nav-item"><a href="drink.htm" class="nav-link">Thức uống</a></li>
 							<li class="nav-item"><a href="about.htm" class="nav-link">Thông tin thêm</a></li>
 							<li class="nav-item active"><a href="#" class="nav-link">Blog</a></li>
-							<li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link"><span
-										class="icon-shopping_cart"></span>[
+							<li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link">
+								<span class="icon-shopping_cart">Giỏ hàng</span>[
 									${sessionScope['Orders_list'].size()} ]</a></li>
 
 						</ul>

@@ -69,8 +69,8 @@
 					<div class="login-content">
 						<div class="login-logo">
 							<a href="#"> <img
-								src="${root}/resources/images/icon/logo_banana.png"
-								alt="Banana">
+								src="${root}/resources/images/icon/avt.png"
+								alt="Reset PassWord">
 							</a>
 						</div>
 						<div class="login-form">

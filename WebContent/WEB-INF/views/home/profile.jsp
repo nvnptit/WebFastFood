@@ -90,13 +90,13 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="food.htm" class="nav-link">Food</a></li>
-					<li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
-					<li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
+					<li class="nav-item"><a href="index.htm" class="nav-link">Trang chủ</a></li>
+					<li class="nav-item"><a href="food.htm" class="nav-link">Thức ăn</a></li>
+					<li class="nav-item"><a href="drink.htm" class="nav-link">Thức uống</a></li>
+					<li class="nav-item"><a href="about.htm" class="nav-link">Thông tin thêm</a></li>
 					<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
-					<li class="nav-item cta cta-colored active"><a href="#"
-						class="nav-link"><span class="icon-shopping_cart"></span>[
+					<li class="nav-item cta cta-colored active"><a href="#" class="nav-link">
+						<span class="icon-shopping_cart">Giỏ hàng</span>[
 							${sessionScope['Orders_list'].size()} ]</a></li>
 
 				</ul>

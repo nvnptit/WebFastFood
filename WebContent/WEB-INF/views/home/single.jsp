@@ -84,17 +84,17 @@
 									</button>
 
 									<div class="collapse navbar-collapse" id="ftco-nav">
-										<ul class="navbar-nav ml-auto">
-											<li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Home</a></li>
-											<li class="nav-item active"><a href="${root}/home/shop.htm"
-													class="nav-link">Products</a></li>
-											<li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">About</a>
-											</li>
-											<li class="nav-item"><a href="${root}/home/blog.htm" class="nav-link">Blog</a></li>
-											<li class="nav-item cta cta-colored"><a href="${root}/home/cart.htm"
-													class="nav-link"><span class="icon-shopping_cart"></span>[
-													${sessionScope['Orders_list'].size()} ]</a></li>
-										</ul>
+										<div class="collapse navbar-collapse" id="ftco-nav">
+											<ul class="navbar-nav ml-auto">
+											  <li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Trang chủ</a></li>
+											  <li class="nav-item"><a href="${root}/home/food.htm" class="nav-link">Thức ăn</a></li>
+											  <li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức uống</a></li>
+											  <li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông tin</a></li>
+											  <li class="nav-item"><a href="${root}/home/blog.htm" class="nav-link">Blog</a></li>
+											  <li class="nav-item cta cta-colored active"><a href="${root}/home/cart.htm" class="nav-link">
+												  <span class="icon-shopping_cart">Giỏ hàng</span>[ ${sessionScope['Orders_list'].size()} ]</a></li>
+											</ul>
+										  </div>
 									</div>
 								</div>
 

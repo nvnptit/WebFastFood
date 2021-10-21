@@ -79,7 +79,8 @@
 			  <li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức uống</a></li>
 	          <li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông tin thêm</a></li>
 	          <li class="nav-item active"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item cta cta-colored"><a href="${root}/home/cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="${root}/home/cart.htm" class="nav-link">
+				<span class="icon-shopping_cart">Giỏ hàng</span>[0]</a></li>
 
 	        </ul>
 	      </div>
