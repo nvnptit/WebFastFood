@@ -113,7 +113,7 @@ public class HomeController {
 				String email = currentUser.getEmail();
 				String randomPass = getRandomPassword(10);
 				String mahoa = md5(randomPass);
-				String from = "vnn7298@gmail.com";
+				String from = "codervn77@gmail.com";
 				String to = email;
 				String subject = "YOUR PASSWORD";
 				String body = "Mật khẩu khôi phục của bạn nè : " + randomPass;
@@ -297,7 +297,7 @@ public class HomeController {
 		String[] total = request.getParameterValues("total");
 		String total_amount = request.getParameter("total_amount");
 		 
-		String from = "vnn7298@gmail.com";
+		String from = "codervn77@gmail.com";
 		User user = (User) session.getAttribute("user");
 		String to = user.getEmail();
 		String subject = "ĐƠN ĐẶT HÀNG CỦA BẠN!";

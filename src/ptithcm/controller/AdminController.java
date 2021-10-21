@@ -97,10 +97,10 @@ public class AdminController {
 				String email = currentUser.getEmail();
 				String randomPass = getRandomPassword(10);
 				String mahoa = md5(randomPass);
-				String from = "vnn7298@gmail.com";
+				String from = "codervn77@gmail.com";
 				String to = email;
 				String subject = "YOUR PASSWORD";
-				String body = "Mật khẩu khôi phục của bạn nè : " + randomPass;
+				String body = "Mật khẩu khôi phục của bạn : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
 				
@@ -359,10 +359,10 @@ public class AdminController {
 		try {
 			String randomPass = getRandomPassword(10);
 			String mahoa = md5(randomPass);
-			String from = "vnn7298@gmail.com";
+			String from = "codervn77@gmail.com";
 			String to = user.getEmail();
 			String subject = "YOUR PASSWORD";
-			String body = "Mật khẩu mặc định của bạn nè : " + randomPass;
+			String body = "Mật khẩu mặc định của bạn: " + randomPass;
 			
 			MimeMessage mail = mailer.createMimeMessage();
 			
