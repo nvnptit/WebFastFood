@@ -356,8 +356,8 @@ public class HomeController {
  		session.setAttribute("Orders_list", orders_list);
         session.setAttribute("Orders", orders);
         model.addAttribute("Oders_list", orders_list);
-		model.addAttribute("message", "Đã thêm sản phẩm vào giỏ hàng!");
-		return "redirect:/home/shop.htm";
+		model.addAttribute("message", "BẠN ĐÃ THÊM SẢN PHẨM VÀO GIỎ HÀNG");
+		return "home/shop";
 	}
 	
 	@RequestMapping(value="deleteCart", method = RequestMethod.POST)
