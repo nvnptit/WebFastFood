@@ -159,10 +159,11 @@
           <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="shop.htm" class="nav-link">Products</a></li>
+              <li class="nav-item"><a href="food.htm" class="nav-link">Food</a></li>
+              <li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
               <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
               <li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
-              <li class="nav-item cta cta-colored"><a href="#" class="nav-link"><span
+              <li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link"><span
                     class="icon-shopping_cart"></span>[0]</a></li>
             </ul>
           </div>
@@ -332,7 +333,7 @@
                     <div class="overlay"></div>
                   </a>
                   <div class="text py-3 pb-4 px-3 text-center">
-                    <h3><a href="#">${p.name}</a></h3>
+                    <h3><a href="${root}/home/single/${p.id}.htm">${p.name}</a></h3>
                     <div class="d-flex">
                       <div class="pricing">
                         <p class="price">

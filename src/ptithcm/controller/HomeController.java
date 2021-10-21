@@ -68,6 +68,7 @@ public class HomeController {
 			Session session1 = factory.getCurrentSession();
 			String hql = "FROM User WHERE username = :username";
 			Query query = session1.createQuery(hql).setParameter("username", username);
+			@SuppressWarnings("unchecked")
 			List<User> list = query.list();
 			
 			if (list.size() > 0 ) {
@@ -97,6 +98,7 @@ public class HomeController {
 		return "admin/forgotpassword";
 	}
 	// Forgot
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="forgot", method = RequestMethod.POST)
 	public String forgot_post(HttpServletRequest request, ModelMap model) {
 		String username = request.getParameter("username");
@@ -203,6 +205,8 @@ public class HomeController {
 		model.addAttribute("products", getProducts());
 		return "home/index";
 	}
+
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index", method = RequestMethod.POST)
 	public String index_login(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
@@ -252,8 +256,21 @@ public class HomeController {
 	@RequestMapping(value = "shop", method = RequestMethod.GET)
 	public String shop(ModelMap model) {
 		model.addAttribute("products", getProducts());
-		return "/home/shop";
+		return "home/shop";
 	}
+	//food
+	@RequestMapping(value = "food", method = RequestMethod.GET)
+	public String food(ModelMap model) {
+		model.addAttribute("products", getFoods());
+		return "home/food";
+	}
+	//drink
+	@RequestMapping(value = "drink", method = RequestMethod.GET)
+	public String drink(ModelMap model) {
+		model.addAttribute("products", getDrinks());
+		return "home/drink";
+	}
+	
 	// Single Product
 	@RequestMapping(value = "single", method = RequestMethod.GET)
 	public String single() {
@@ -282,7 +299,7 @@ public class HomeController {
 	@RequestMapping(value = "record", method = RequestMethod.GET)
 	public String record_get(ModelMap model) {
 		model.addAttribute("message", "BẠN CHƯA ĐẶT ĐƠN HÀNG NÀO!");
-		return "/home/record";
+		return "home/record";
 	}
 	
 	@RequestMapping(value = "record", method = RequestMethod.POST)
@@ -341,12 +358,14 @@ public class HomeController {
 		return "/home/record";
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "addCart", method = RequestMethod.POST)
 	public String cart_add(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
 		Session session2 = factory.getCurrentSession();
 		Product p = (Product) session2.get(Product.class, id);
+		
         Map<String,Product> orders = new HashMap<>();
         if (session.getAttribute("Orders") != null) {
             orders = ((Map) session.getAttribute("Orders"));
@@ -357,9 +376,10 @@ public class HomeController {
         session.setAttribute("Orders", orders);
         model.addAttribute("Oders_list", orders_list);
 		model.addAttribute("message", "BẠN ĐÃ THÊM SẢN PHẨM VÀO GIỎ HÀNG");
-		return "home/shop";
+		return "home/cart";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="deleteCart", method = RequestMethod.POST)
 	public String cart_delete(HttpServletRequest request, ModelMap model) {
 		HttpSession session = request.getSession();
@@ -392,6 +412,7 @@ public class HomeController {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@ModelAttribute("products")
 	public List<Product> getProducts() {
 		Session session = factory.getCurrentSession();
@@ -400,8 +421,29 @@ public class HomeController {
 		List<Product> list = query.list();
 		return list;
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
+	@ModelAttribute("foods")
+	public List<Product> getFoods() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product P WHERE P.type= :type ";
+		Query query = session.createQuery(hql);
+		query.setParameter("type", "FOOD");
+		List<Product> list = query.list();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@ModelAttribute("drinks")
+	public List<Product> getDrinks() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product P WHERE P.type= :type ";
+		Query query = session.createQuery(hql);
+		query.setParameter("type", "DRINK");
+		List<Product> list = query.list();
+		return list;
+	}
+
 	@RequestMapping("single/{id}")
 	public String update_product(ModelMap model, @PathVariable("id") String id) {
 		Session session = factory.getCurrentSession();

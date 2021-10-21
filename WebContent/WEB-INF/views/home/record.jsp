@@ -10,7 +10,7 @@
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
-<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+<title>Đơn hàng</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +46,27 @@
 </head>
 
 <body class="goto-here">
-
+	<%
+	Cookie[] cks = request.getCookies();
+	if (cks != null) {
+		for (int i = 0; i < cks.length; i++) {
+			String name = cks[i].getName();
+			String value = cks[i].getValue();
+			if (name.equals("auth")) {
+				break; // exit the loop and continue the page
+			}
+			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
+			{
+				response.sendRedirect("login.htm");
+				return; // to stop further execution
+			}
+			i++;
+		}
+	} else {
+		response.sendRedirect("login.htm");
+		return; // to stop further execution
+	}
+%>
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -81,7 +101,8 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="shop.htm" class="nav-link">Products</a></li>
+			  <li class="nav-item"><a href="food.htm" class="nav-link">Food</a></li>
+			  <li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
 	          <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
 	          <li class="nav-item cta cta-colored active"><a href="#" class="nav-link"><span class="icon-shopping_cart"></span>[ ${sessionScope['Orders_list'].size()} ]</a></li>

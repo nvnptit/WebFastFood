@@ -1,10 +1,11 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
-<title>Blogs</title>
+<title>Thức ăn</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,7 +41,6 @@
 </head>
 
 <body class="goto-here">
-
 		<div class="py-1 bg-primary">
     	<div class="container">
     		<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -48,14 +48,14 @@
 		    		<div class="row d-flex">
 		    			<div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-                <span class="text">(+84) 979 888 999</span>
-              </div>
-              <div class="col-md pr-4 d-flex topper align-items-center">
-                <div
-                  class="icon mr-2 d-flex justify-content-center align-items-center">
-                  <span class="icon-paper-plane"></span>
-                </div>
-                <span class="text">Group 16 with ♥</span>
+							<span class="text">(+84) 979 888 999</span>
+						</div>
+						<div class="col-md pr-4 d-flex topper align-items-center">
+							<div
+								class="icon mr-2 d-flex justify-content-center align-items-center">
+								<span class="icon-paper-plane"></span>
+							</div>
+							<span class="text">Group 16 with ♥</span>
 					    </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
 						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
@@ -67,19 +67,19 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-			<a class="navbar-brand" href="${root}/home/index.htm"><img src="../resources/images/logo.png" alt=""></a>
+			<a class="navbar-brand" href="index.htm"><img src="../resources/images/logo.png" alt=""></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Trang chủ</a></li>
-			  <li class="nav-item"><a href="${root}/home/food.htm" class="nav-link">Thức ăn</a></li>
-			  <li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức uống</a></li>
-	          <li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông tin thêm</a></li>
-	          <li class="nav-item active"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item cta cta-colored"><a href="${root}/home/cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
+			  <li class="nav-item active"><a href="food.htm" class="nav-link">Food</a></li>
+			  <li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
+	          <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
+	          <li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[ ${sessionScope['Orders_list'].size()} ]</a></li>
 
 	        </ul>
 	      </div>
@@ -103,8 +103,8 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="${root}/home/profile.htm">Change Password</a>
-						<a class="dropdown-item" href="${root}/home/logout.htm">Logout</a>
+						<a class="dropdown-item" href="profile.htm">Change Password</a>
+						<a class="dropdown-item" href="logout.htm">Logout</a>
 					</ul>
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 						</div>
 						<div class="modal-body">
 							<form class="form needs-validation" role="form"
-								autocomplete="off" id="formLogin" action="${root}/home/index.htm"
+								autocomplete="off" id="formLogin" action="index.htm"
 								method="POST">
 								<div class="form-group">
 									<a href="#SignupModal" class="float-right" data-toggle="modal">New
@@ -138,7 +138,7 @@
 									<div class="invalid-feedback">Enter your password too!</div>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<label> <a href="${root}/home/forgot.htm">Forgotten Password?</a>
+									<label> <a href="forgot.htm">Forgotten Password?</a>
 									</label>
 								</div>
 								<div class="form-group py-4">
@@ -163,7 +163,7 @@
 						</div>
 						<div class="modal-body">
 							<form class="form" role="form" autocomplete="off" id="formSignup"
-								action="${root}/home/login.htm" method="POST">
+								action="login.htm" method="POST">
 								<div class="form-group">
 									<label for="uname1">Username</label> <input type="text"
 										class="form-control form-control-lg" name="username"
@@ -220,140 +220,91 @@
 			<a href="#SignupModal" role="button" class="btn btn-primary "
 				data-toggle="modal" >SignUp</a>
 		</c:if>
-    
+		
 	  </nav>
+	  <c:if test="${not empty message}">
+		<div class="alert alert-success" role="alert">${message}</div>
+	</c:if>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url('${root}/resources/images/bg_1.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url('${root}/resources/images/products/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="#">Home</a></span> <span>Blog</span></p>
-            <h1 class="mb-0 bread">Blog</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="index.htm">Home</a></span> <span>Wishlist</span></p>
+            <h1 class="mb-0 bread">My Wishlist</h1>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section ftco-degree-bg">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 ftco-animate">
-						<h2 class="mb-3">Organic foods is good for your health</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-            <p>
-              <img src="${root}/resources/images/image_1.jpg" alt="" class="img-fluid">
-            </p>
-            <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-            <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-            <p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-            <p>
-              <img src="${root}/resources/images/image_2.jpg" alt="" class="img-fluid">
-            </p>
-            <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-            <p>Odit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.</p>
-            <p>Adipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!</p>
-            <p>Voluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?</p>
-            <div class="tag-widget post-tag-container mb-5 mt-5">
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">Life</a>
-                <a href="#" class="tag-cloud-link">Sport</a>
-                <a href="#" class="tag-cloud-link">Tech</a>
-                <a href="#" class="tag-cloud-link">Travel</a>
-              </div>
-            </div>
-            
-            <div class="about-author d-flex p-4 bg-light">
-              <div class="bio align-self-md-center mr-4">
-                <img src="${root}/resources/images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
-              </div>
-              <div class="desc align-self-md-center">
-                <h3>Lance Smith</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-              </div>
-            </div>
-          </div> <!-- .col-md-8 -->
-          <div class="col-lg-4 sidebar ftco-animate">
-            <div class="sidebar-box">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon ion-ios-search"></span>
-                  <input type="text" class="form-control" placeholder="Search...">
-                </div>
-              </form>
-            </div>
-            <div class="sidebar-box ftco-animate">
-            	<h3 class="heading">Categories</h3>
-              <ul class="categories">
-                <li><a href="#">Vegetables <span>(12)</span></a></li>
-                <li><a href="#">Fruits <span>(22)</span></a></li>
-                <li><a href="#">Juice <span>(37)</span></a></li>
-                <li><a href="#">Dries <span>(42)</span></a></li>
-              </ul>
-            </div>
+    <section class="ftco-section ftco-cart">
+			<div class="container">
+				<div class="row">
+    			<div class="col-md-12 ftco-animate">
+    				<div class="cart-list">
+    					<input class="form-control" id="myInput" type="text" placeholder="Search..">
+  						<br>
+	    				<table class="table">
+						    <thead class="thead-primary">
+						      <tr class="text-center">
+						        <th>&nbsp;</th>
+						        <th>Product List</th>
+						        <th>&nbsp;</th>
+						        <th>Price</th>
+						        <th>Quantity</th>
+						        <th>Type</th>
+						      </tr>
+						    </thead>
+						    <tbody id="myTable">
+						    <c:forEach var="p" items="${products}">
+						      <tr class="text-center">
+						        <td ><a href="${root}/home/single/${p.id}.htm"><span> See ${p.id}</span></a></td>
+						        
+						        <td class="image-prod"><div class="img" style="background-image:url(${root}/resources/images/products/${p.img});"></div></td>
+						        
+						        <td class="product-name">
+						        	<h3>${p.name}</h3>
+						        	<c:set var = "des" value = "${p.description}" />
+						        	<c:set var = "str" value = "${fn:substring(des, 0, 75)}" />
+						        	<p>${str}...</p>
+						        </td>
+						        
+						        <td class="price">${p.price}</td>
+						        
+						        <td class="price">[${p.quantity}]</td>
+						        <td class="total">${p.type }</td>
+						      </tr><!-- END TR-->
+						      </c:forEach>
+						    </tbody>
+						    
+						  </table>
+						  
+					  </div>
+    			</div>
+    		</div>
+			</div>
+		</section>
 
-            <div class="sidebar-box ftco-animate">
-              <h3 class="heading">Recent Blog</h3>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(${root}/resources/images/image_1.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(${root}/resources/images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(${root}/resources/images/image_3.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading-1"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> April 09, 2019</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3 class="heading">Tag Cloud</h3>
-              <div class="tagcloud">
-                <a href="#" class="tag-cloud-link">fruits</a>
-                <a href="#" class="tag-cloud-link">tomatoe</a>
-                <a href="#" class="tag-cloud-link">mango</a>
-                <a href="#" class="tag-cloud-link">apple</a>
-                <a href="#" class="tag-cloud-link">carrots</a>
-                <a href="#" class="tag-cloud-link">orange</a>
-                <a href="#" class="tag-cloud-link">pepper</a>
-                <a href="#" class="tag-cloud-link">eggplant</a>
-              </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
-              <h3 class="heading">Paragraph</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
-            </div>
+		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+      <div class="container py-4">
+        <div class="row d-flex justify-content-center py-5">
+          <div class="col-md-6">
+          	<h2 style="font-size: 22px;" class="mb-0">Subcribe to our Newsletter</h2>
+          	<span>Get e-mail updates about our latest shops and special offers</span>
           </div>
-
+          <div class="col-md-6 d-flex align-items-center">
+            <form action="#" class="subscribe-form">
+              <div class="form-group d-flex">
+                <input type="text" class="form-control" placeholder="Enter email address">
+                <input type="submit" value="Subscribe" class="submit px-3">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </section> <!-- .section -->
-
-    <footer class="ftco-footer ftco-section bg-light">
+    </section>
+    <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
       		<div class="mouse">
@@ -433,6 +384,43 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
+  <script>
+		$(document).ready(function(){
+
+		var quantitiy=0;
+		   $('.quantity-right-plus').click(function(e){
+		        
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		            
+		            $('#quantity').val(quantity + 1);
+
+		          
+		            // Increment
+		        
+		    });
+
+		     $('.quantity-left-minus').click(function(e){
+		        // Stop acting like a button
+		        e.preventDefault();
+		        // Get the field name
+		        var quantity = parseInt($('#quantity').val());
+		        
+		        // If is not undefined
+		      
+		            // Increment
+		            if(quantity>0){
+		            $('#quantity').val(quantity - 1);
+		            }
+		    });
+		    
+		});
+	</script>
+
 
 	<script src="${root}/resources/js/jquery.min.js"></script>
 	<script src="${root}/resources/js/jquery-migrate-3.0.1.min.js"></script>
@@ -451,7 +439,8 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="${root}/resources/js/google-map.js"></script>
 	<script src="${root}/resources/js/main.js"></script>
-  <script type="text/javascript">
+	
+	<script type="text/javascript">
 		$("#btnLogin").click(function(event) {
   
 			  //Fetch form to apply custom Bootstrap validation
@@ -478,6 +467,20 @@
 			//   form.addClass('was-validated');
 			});
 	  </script>
+
+	<!-- SEARCH -->
+	<script>
+		$(document).ready(function(){
+		  $("#myInput").on("keyup", function() {
+		    var value = $(this).val().toLowerCase();
+		    $("#myTable tr").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		    });
+		  });
+		});
+	</script>
+	
 </body>
 
 </html>
+1

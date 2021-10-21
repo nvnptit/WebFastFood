@@ -10,7 +10,7 @@
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
-<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+<title>Thông tin</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -91,7 +91,8 @@
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="shop.htm" class="nav-link">Products</a></li>
+					<li class="nav-item"><a href="food.htm" class="nav-link">Food</a></li>
+					<li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
 					<li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
 					<li class="nav-item cta cta-colored active"><a href="#"

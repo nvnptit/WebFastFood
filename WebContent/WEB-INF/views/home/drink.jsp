@@ -5,7 +5,7 @@
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
-<title>Shop</title>
+<title>Thức uống</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,7 +75,8 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
-	          <li class="nav-item active"><a href="#" class="nav-link">Products</a></li>
+			  <li class="nav-item active"><a href="food.htm" class="nav-link">Food</a></li>
+			  <li class="nav-item"><a href="drink.htm" class="nav-link">Drink</a></li>
 	          <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[ ${sessionScope['Orders_list'].size()} ]</a></li>
