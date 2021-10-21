@@ -148,15 +148,13 @@ public class HomeController {
 	@RequestMapping(value="logout")
 	public String logout_user(HttpServletResponse response, HttpServletRequest resquest) throws IOException {
 		
-//		Cookie ck=new Cookie("auth","logout");  
-//        ck.setMaxAge(0);
-//        resquest.getSession().removeAttribute("Orders");
-//        resquest.getSession().removeAttribute("Orders_list");
-//        response.addCookie(ck); 
-//        response.sendRedirect("/WebFastFood/home/login.htm");
-		   Cookie cookie = new Cookie("auth", null);
-	        cookie.setMaxAge(0);
-	        response.addCookie(cookie);
+		Cookie ck=new Cookie("auth",null);  //"logout"
+        ck.setMaxAge(0);
+        resquest.getSession().removeAttribute("Orders");
+        resquest.getSession().removeAttribute("Orders_list");
+        resquest.getSession().removeAttribute("user");
+        response.addCookie(ck); 
+        response.sendRedirect("/WebFastFood/home/login.htm");
        return "home/login";
 	}
 	
