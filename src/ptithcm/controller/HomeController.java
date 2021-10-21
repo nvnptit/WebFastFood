@@ -63,7 +63,7 @@ public class HomeController {
 		
 		if(!password.equals(confirmPassword)) {
 			model.addAttribute("message", "Mật khẩu không trùng khớp!");
-			return "/home/login";
+			return "home/login";
 		} else {
 			Session session1 = factory.getCurrentSession();
 			String hql = "FROM User WHERE username = :username";
@@ -72,7 +72,7 @@ public class HomeController {
 			
 			if (list.size() > 0 ) {
 				model.addAttribute("message", "Username đã tồn tại, mời bạn đăng kí tài khoản khác!");
-				return "/home/login";
+				return "home/login";
 			} else {
 				Session session = factory.openSession();
 				Transaction t = session.beginTransaction();
@@ -87,7 +87,7 @@ public class HomeController {
 				} finally {
 					session.close();
 				}
-				return "/home/login";
+				return "home/login";
 			}			
 		}
 	}
@@ -356,6 +356,7 @@ public class HomeController {
  		session.setAttribute("Orders_list", orders_list);
         session.setAttribute("Orders", orders);
         model.addAttribute("Oders_list", orders_list);
+		model.addAttribute("message", "Đã thêm sản phẩm vào giỏ hàng!");
 		return "redirect:/home/shop.htm";
 	}
 	

@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -66,18 +67,18 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-			<a class="navbar-brand" href="index.htm"><img src="../resources/images/logo.png" alt=""></a>
+			<a class="navbar-brand" href="${root}/home/index.htm"><img src="../resources/images/logo.png" alt=""></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.htm" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="shop.htm" class="nav-link">Products</a></li>
-	          <li class="nav-item"><a href="about.htm" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="${root}/home/shop.htm" class="nav-link">Products</a></li>
+	          <li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">About</a></li>
 	          <li class="nav-item active"><a href="#" class="nav-link">Blog</a></li>
-	          <li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	          <li class="nav-item cta cta-colored"><a href="${root}/home/cart.htm" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
 	        </ul>
 	      </div>
@@ -101,8 +102,8 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="profile.htm">Change Password</a>
-						<a class="dropdown-item" href="logout.htm">Logout</a>
+						<a class="dropdown-item" href="${root}/home/profile.htm">Change Password</a>
+						<a class="dropdown-item" href="${root}/home/logout.htm">Logout</a>
 					</ul>
 				</div>
 			</div>
@@ -120,7 +121,7 @@
 						</div>
 						<div class="modal-body">
 							<form class="form needs-validation" role="form"
-								autocomplete="off" id="formLogin" action="index.htm"
+								autocomplete="off" id="formLogin" action="${root}/home/index.htm"
 								method="POST">
 								<div class="form-group">
 									<a href="#SignupModal" class="float-right" data-toggle="modal">New
@@ -136,7 +137,7 @@
 									<div class="invalid-feedback">Enter your password too!</div>
 								</div>
 								<div class="custom-control custom-checkbox">
-									<label> <a href="forgot.htm">Forgotten Password?</a>
+									<label> <a href="${root}/home/forgot.htm">Forgotten Password?</a>
 									</label>
 								</div>
 								<div class="form-group py-4">
@@ -161,7 +162,7 @@
 						</div>
 						<div class="modal-body">
 							<form class="form" role="form" autocomplete="off" id="formSignup"
-								action="login.htm" method="POST">
+								action="${root}/home/login.htm" method="POST">
 								<div class="form-group">
 									<label for="uname1">Username</label> <input type="text"
 										class="form-control form-control-lg" name="username"
@@ -226,7 +227,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="#">Home</a></span> <span>Blog</span></p>
             <h1 class="mb-0 bread">Blog</h1>
           </div>
         </div>

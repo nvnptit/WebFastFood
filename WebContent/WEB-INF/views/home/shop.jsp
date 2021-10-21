@@ -221,7 +221,9 @@
 		</c:if>
 		
 	  </nav>
-	  
+	  <c:if test="${not empty message}">
+		<div class="alert alert-success" role="alert">${message}</div>
+	</c:if>
     <!-- END nav -->
 
     <div class="hero-wrap hero-bread" style="background-image: url('${root}/resources/images/products/bg_1.jpg');">
@@ -256,7 +258,7 @@
 						    <tbody id="myTable">
 						    <c:forEach var="p" items="${products}">
 						      <tr class="text-center">
-						        <td ><a href="${root}/resources/home/single/${p.id}.htm"><span> See ${p.id}</span></a></td>
+						        <td ><a href="${root}/home/single/${p.id}.htm"><span> See ${p.id}</span></a></td>
 						        
 						        <td class="image-prod"><div class="img" style="background-image:url(${root}/resources/images/products/${p.img});"></div></td>
 						        
