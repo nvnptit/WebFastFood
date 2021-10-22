@@ -156,8 +156,8 @@ public class HomeController {
         resquest.getSession().removeAttribute("Orders_list");
         resquest.getSession().removeAttribute("user");
         response.addCookie(ck); 
-        response.sendRedirect("/WebFastFood/home/login.htm");
-       return "home/login";
+        response.sendRedirect("/WebFastFood/home/index.htm");
+       return "home/index";
 	}
 	
 	// Changepass
@@ -250,7 +250,7 @@ public class HomeController {
 		} else {
 			model.addAttribute("message", "Sai thông tin tài khoản. Mời đăng nhập lại");
 		}	
-		return "/home/login";
+		return "/home/index";
 	}
 	// Shop
 	@RequestMapping(value = "shop", method = RequestMethod.GET)
@@ -350,7 +350,7 @@ public class HomeController {
 			session.removeAttribute("Orders_list");
 			t.commit();
 		} catch (Exception e) {
-			model.addAttribute("message", "Something wrong!");
+			model.addAttribute("message", "Có lỗi đã xảy ra!");
 			t.rollback();
 		}finally {
 			session1.close();

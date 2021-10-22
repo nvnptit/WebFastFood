@@ -50,10 +50,10 @@
 									<div class="icon mr-2 d-flex justify-content-center align-items-center">
 										<span class="icon-paper-plane"></span>
 									</div>
-									<span class="text">Group 16 with ♥</span>
+									<span class="text">Nhóm 16 with ♥</span>
 								</div>
 								<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-									<span class="text">3-5 Business days delivery &amp; Free Returns</span>
+									<span class="text">3-5 Giao hàng trong ngày làm việc & Trả hàng miễn phí</span>
 								</div>
 							</div>
 						</div>
@@ -76,7 +76,7 @@
 							<li class="nav-item"><a href="about.htm" class="nav-link">Thông tin thêm</a></li>
 							<li class="nav-item active"><a href="#" class="nav-link">Blog</a></li>
 							<li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link">
-								<span class="icon-shopping_cart">Giỏ hàng</span>[
+									<span class="icon-shopping_cart">Giỏ hàng</span>[
 									${sessionScope['Orders_list'].size()} ]</a></li>
 
 						</ul>
@@ -91,7 +91,6 @@
 							<a href="javascript:void(0);"
 								class="btn-user dropdown-toggle media align-items-center nav-link"
 								data-toggle="dropdown" data-sidebar="true" aria-expanded="false">
-								<!--  <img class="mr-2" src="${root}/resources/images/icon/avt.png" width="40" height="40" alt="avatar"> -->
 								<div class="media-body">
 									<h5>
 										<span
@@ -113,35 +112,35 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3>Login</h3>
+									<h3>Đăng nhập</h3>
 									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">×</button>
+										aria-hidden="true">X</button>
 								</div>
 								<div class="modal-body">
-									<form class="form needs-validation" role="form" autocomplete="off" id="formLogin"
-										action="index.htm" method="POST">
+									<form class="form needs-validation" role="form" autocomplete="off"
+										id="formLogin" action="index.htm" method="POST">
 										<div class="form-group">
-											<a href="#SignupModal" class="float-right" data-toggle="modal">New
-												user?</a> <label for="uname1">Username</label> <input type="text"
-												class="form-control form-control-lg" name="username_lg" id="uname1"
-												required>
-											<div class="invalid-feedback">Oops, you missed this one.</div>
+											<a href="#SignupModal" class="float-right" data-toggle="modal">Bạn
+												là khách hàng mới?</a> <label for="uname1">Tên đăng nhập</label>
+											<input type="text" class="form-control form-control-lg"
+												name="username_lg" id="uname1" required>
+											<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
 										</div>
 										<div class="form-group">
-											<label>Password</label> <input type="password"
+											<label>Mật khẩu</label> <input type="password"
 												class="form-control form-control-lg" id="pwd1" name="password_lg"
 												required>
-											<div class="invalid-feedback">Enter your password too!</div>
+											<div class="invalid-feedback">Vui lòng nhập tên mật khẩu!</div>
 										</div>
 										<div class="custom-control custom-checkbox">
-											<label> <a href="forgot.htm">Forgotten Password?</a>
+											<label> <a href="forgot.htm">Quên mật khẩu?</a>
 											</label>
 										</div>
-										<div class="form-group py-4">
+										<div class="form-group py-2">
 											<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-												aria-hidden="true">Cancel</button>
+												aria-hidden="true">Huỷ</button>
 											<button type="submit" class="btn btn-success btn-lg float-right"
-												id="btnLogin">Login</button>
+												id="btnLogin">Đăng nhập</button>
 										</div>
 									</form>
 								</div>
@@ -152,67 +151,68 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3>SignUp</h3>
+									<h3>Đăng ký</h3>
 									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">×</button>
+										aria-hidden="true">X</button>
 								</div>
 								<div class="modal-body">
-									<form class="form" role="form" autocomplete="off" id="formSignup" action="login.htm"
-										method="POST">
+									<form class="form" role="form" autocomplete="off" id="formSignup"
+										action="login.htm" method="POST">
 										<div class="form-group">
-											<label for="uname1">Username</label> <input type="text"
+											<label for="uname1">Tên đăng nhập</label> <input type="text"
 												class="form-control form-control-lg" name="username" id="username"
 												required="">
-											<div class="invalid-feedback">Oops, you missed this one.</div>
+											<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
 										</div>
 										<div class="form-group">
-											<label for="uname1">Fullname</label> <input type="text"
+											<label for="uname1">Họ và tên</label> <input type="text"
 												class="form-control form-control-lg" name="fullname" id="fullname"
 												required="">
-											<div class="invalid-feedback">Oops, you missed this one.</div>
+											<div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
 										</div>
 										<div class="form-group">
 											<label for="uname1">Email</label> <input type="email"
 												class="form-control form-control-lg" name="email" id="email"
 												required="">
-											<div class="invalid-feedback">Oops, you missed this one.</div>
+											<div class="invalid-feedback">Vui lòng nhập email của bạn!</div>
 										</div>
 										<div class="form-group">
-											<label for="uname1">PhoneNumber</label> <input type="number"
+											<label for="uname1">Số điện thoại</label> <input type="number"
 												class="form-control form-control-lg" name="phone" id="phone"
 												required="">
-											<div class="invalid-feedback">Oops, you missed this one.</div>
+											<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!
+											</div>
 										</div>
 										<div class="form-group">
-											<label>Password</label> <input type="password"
+											<label>Nhập mật khẩu</label> <input type="password"
 												class="form-control form-control-lg" name="password" required=""
 												autocomplete="new-password">
-											<div class="invalid-feedback">Enter your password too!</div>
+											<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 										</div>
 										<div class="form-group">
-											<label>Confirm Password</label> <input type="password"
-												class="form-control form-control-lg" name="confirmPassword" required=""
-												autocomplete="new-password">
-											<div class="invalid-feedback">Enter your password too!</div>
+											<label>Nhập lại mật khẩu</label> <input type="password"
+												class="form-control form-control-lg" name="confirmPassword"
+												required="" autocomplete="new-password">
+											<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
 										</div>
 										<input type="hidden" class="form-control form-control-lg" name="role"
 											value="user">
 										<div class="form-group py-4">
 											<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-												aria-hidden="true">Cancel</button>
+												aria-hidden="true">Huỷ</button>
 											<button type="submit" class="btn btn-success btn-lg float-right"
-												id="btnSignup">Sign
-												Up</button>
+												id="btnSignup">Đăng ký</button>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
-					<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal" style="margin:5px;" ">Login</a> 
-				
-			<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">SignUp</a>
+					<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
+						style="margin:5px;" ">Đăng nhập</a> 
+					<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
 				</c:if>
+
 			</nav>
 			<!-- END nav -->
 
@@ -221,7 +221,8 @@
 					<div class="row no-gutters slider-text align-items-center justify-content-center">
 						<div class="col-md-9 ftco-animate text-center">
 							<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
-								<span>Blog</span></p>
+								<span>Blog</span>
+							</p>
 							<h1 class="mb-0 bread">Blog</h1>
 						</div>
 					</div>

@@ -9,7 +9,7 @@
 						<c:set var="root" value="${pageContext.servletContext.contextPath}" />
 
 						<head>
-							<title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+							<title>Thông tin chi tiết</title>
 							<meta charset="utf-8">
 							<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -60,7 +60,7 @@
 														class="icon mr-2 d-flex justify-content-center align-items-center">
 														<span class="icon-paper-plane"></span>
 													</div>
-													<span class="text">Group 16 with ♥</span>
+													<span class="text">Nhóm 16 with ♥</span>
 												</div>
 												<div
 													class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
@@ -75,8 +75,8 @@
 							<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
 								id="ftco-navbar">
 								<div class="container">
-									<a class="navbar-brand" href="${root}/home/index.htm"><img src="../resources/images/logo.png"
-											alt=""></a>
+									<a class="navbar-brand" href="${root}/home/index.htm"><img
+											src="../resources/images/logo.png" alt=""></a>
 									<button class="navbar-toggler" type="button" data-toggle="collapse"
 										data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false"
 										aria-label="Toggle navigation">
@@ -86,15 +86,22 @@
 									<div class="collapse navbar-collapse" id="ftco-nav">
 										<div class="collapse navbar-collapse" id="ftco-nav">
 											<ul class="navbar-nav ml-auto">
-											  <li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Trang chủ</a></li>
-											  <li class="nav-item"><a href="${root}/home/food.htm" class="nav-link">Thức ăn</a></li>
-											  <li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức uống</a></li>
-											  <li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông tin</a></li>
-											  <li class="nav-item"><a href="${root}/home/blog.htm" class="nav-link">Blog</a></li>
-											  <li class="nav-item cta cta-colored active"><a href="${root}/home/cart.htm" class="nav-link">
-												  <span class="icon-shopping_cart">Giỏ hàng</span>[ ${sessionScope['Orders_list'].size()} ]</a></li>
+												<li class="nav-item"><a href="${root}/home/index.htm"
+														class="nav-link">Trang chủ</a></li>
+												<li class="nav-item"><a href="${root}/home/food.htm"
+														class="nav-link">Thức ăn</a></li>
+												<li class="nav-item"><a href="${root}/home/drink.htm"
+														class="nav-link">Thức uống</a></li>
+												<li class="nav-item"><a href="${root}/home/about.htm"
+														class="nav-link">Thông tin</a></li>
+												<li class="nav-item"><a href="${root}/home/blog.htm"
+														class="nav-link">Blog</a></li>
+												<li class="nav-item cta cta-colored active"><a
+														href="${root}/home/cart.htm" class="nav-link">
+														<span class="icon-shopping_cart">Giỏ hàng</span>[
+														${sessionScope['Orders_list'].size()} ]</a></li>
 											</ul>
-										  </div>
+										</div>
 									</div>
 								</div>
 
@@ -117,8 +124,9 @@
 												</div>
 											</a>
 											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<a class="dropdown-item" href="${root}/home/profile.htm">Change Password</a>
-												<a class="dropdown-item" href="${root}/home/logout.htm">Logout</a>
+												<a class="dropdown-item" href="${root}/home/profile.htm">Change
+													Password</a>
+												<a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a>
 											</ul>
 										</div>
 									</div>
@@ -140,28 +148,29 @@
 														<div class="form-group">
 															<a href="#SignupModal" class="float-right"
 																data-toggle="modal">New
-																user?</a> <label for="uname1">Username</label> <input
-																type="text" class="form-control form-control-lg"
+																user?</a> <label for="uname1">Tên đăng nhập</label>
+															<input type="text" class="form-control form-control-lg"
 																name="username_lg" id="uname1" required>
 															<div class="invalid-feedback">Oops, you missed this one.
 															</div>
 														</div>
 														<div class="form-group">
-															<label>Password</label> <input type="password"
+															<label>Mật khẩu</label> <input type="password"
 																class="form-control form-control-lg" id="pwd1"
 																name="password_lg" required>
-															<div class="invalid-feedback">Enter your password too!</div>
+															<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 														</div>
 														<div class="custom-control custom-checkbox">
-															<label> <a href="${root}/home/forgot.htm">Forgotten Password?</a>
+															<label> <a href="${root}/home/forgot.htm">Forgotten
+																	Password?</a>
 															</label>
 														</div>
 														<div class="form-group py-4">
 															<button class="btn btn-outline-secondary btn-lg"
-																data-dismiss="modal" aria-hidden="true">Cancel</button>
+																data-dismiss="modal" aria-hidden="true">Huỷ</button>
 															<button type="submit"
 																class="btn btn-success btn-lg float-right"
-																id="btnLogin">Login</button>
+																id="btnLogin">Đăng nhập</button>
 														</div>
 													</form>
 												</div>
@@ -173,7 +182,7 @@
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h3>SignUp</h3>
+													<h3>Đăng ký</h3>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-hidden="true">×</button>
 												</div>
@@ -181,14 +190,14 @@
 													<form class="form" role="form" autocomplete="off" id="formSignup"
 														action="login.htm" method="POST">
 														<div class="form-group">
-															<label for="uname1">Username</label> <input type="text"
+															<label for="uname1">Tên đăng nhập</label> <input type="text"
 																class="form-control form-control-lg" name="username"
 																id="username" required="">
 															<div class="invalid-feedback">Oops, you missed this one.
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="uname1">Fullname</label> <input type="text"
+															<label for="uname1">Họ và tên</label> <input type="text"
 																class="form-control form-control-lg" name="fullname"
 																id="fullname" required="">
 															<div class="invalid-feedback">Oops, you missed this one.
@@ -202,43 +211,42 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="uname1">PhoneNumber</label> <input type="number"
+															<label for="uname1">Số điện thoại</label> <input type="number"
 																class="form-control form-control-lg" name="phone"
 																id="phone" required="">
 															<div class="invalid-feedback">Oops, you missed this one.
 															</div>
 														</div>
 														<div class="form-group">
-															<label>Password</label> <input type="password"
+															<label>Mật khẩu</label> <input type="password"
 																class="form-control form-control-lg" name="password"
 																required="" autocomplete="new-password">
-															<div class="invalid-feedback">Enter your password too!</div>
+															<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 														</div>
 														<div class="form-group">
-															<label>Confirm Password</label> <input type="password"
+															<label>Nhập lại mật khẩu</label> <input type="password"
 																class="form-control form-control-lg"
 																name="confirmPassword" required=""
 																autocomplete="new-password">
-															<div class="invalid-feedback">Enter your password too!</div>
+															<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
 														</div>
 														<input type="hidden" class="form-control form-control-lg"
 															name="role" value="user">
 														<div class="form-group py-4">
 															<button class="btn btn-outline-secondary btn-lg"
-																data-dismiss="modal" aria-hidden="true">Cancel</button>
+																data-dismiss="modal" aria-hidden="true">Huỷ</button>
 															<button type="submit"
 																class="btn btn-success btn-lg float-right"
-																id="btnSignup">Sign
-																Up</button>
+																id="btnSignup">Đăng ký</button>
 														</div>
 													</form>
 												</div>
 											</div>
 										</div>
 									</div>
-									<a href="#loginModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
-										style="margin:5px;" ">Login</a> 
-									<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">SignUp</a>
+									<a href="#loginModal" role="button" class="btn btn-primary btn-sm"
+										data-toggle="modal" style="margin:5px;" ">Đăng nhập</a> 
+									<a href=" #SignupModal" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
 								</c:if>
 							</nav>
 							<!-- END nav -->
@@ -247,7 +255,7 @@
 								<div class="container">
 									<div class="row no-gutters slider-text align-items-center justify-content-center">
 										<div class="col-md-9 ftco-animate text-center">
-											<h1 class="price">Chức năng sản phẩm</h1>
+											<h1 class="price">Chi tiết sản phẩm</h1>
 										</div>
 									</div>
 								</div>
@@ -275,11 +283,11 @@
 												</p>
 												<p class="text-left mr-4">
 													<a href="#" class="mr-2" style="color: #000;">100 <span
-															style="color: #bbb;">Rating</span></a>
+															style="color: rgb(175, 104, 104);">đánh giá</span></a>
 												</p>
 												<p class="text-left">
 													<a href="#" class="mr-2" style="color: #000;">500 <span
-															style="color: #bbb;">Sold</span></a>
+															style="color: rgb(163, 61, 61);">đã bán</span></a>
 												</p>
 											</div>
 											<p class="price"><span>${product.price} VNĐ</span></p>
@@ -288,12 +296,12 @@
 
 												<div class="w-100"></div>
 												<div class="col-md-12">
-													<p style="color: #000;">${product.quantity} kg available</p>
+													<p style="color: rgb(90, 56, 243);">Còn lại ${product.quantity} sản phẩm</p>
 												</div>
 											</div>
 											<form method="post" action="${root}/home/addCart.htm">
 												<input type="hidden" value="${product.id}" name="id" />
-												<input type="submit" value="Add to Cart" name="btnOK"
+												<input type="submit" value="Thêm vào giỏ hàng" name="btnOK"
 													class="btn btn-black py-3 px-5" />
 											</form>
 										</div>
@@ -305,7 +313,8 @@
 								<div class="container py-4">
 									<div class="row d-flex justify-content-center py-5">
 										<div class="col-md-6">
-											<h2 style="font-size: 22px;" class="mb-0">Đăng ký nhận thông tin mới nhất</h2>
+											<h2 style="font-size: 22px;" class="mb-0">Đăng ký nhận thông tin mới nhất
+											</h2>
 											<span>Đăng ký ngay để nhận được nhiều món ngon và ưu đãi!!!</span>
 										</div>
 										<div class="col-md-6 d-flex align-items-center">
@@ -332,15 +341,13 @@
 									<div class="row mb-5">
 										<div class="col-md">
 											<div class="ftco-footer-widget mb-4">
-												<h2 class="ftco-heading-2">Vegefoods</h2>
-												<p>Far far away, behind the word mountains, far from the countries
-													Vokalia and Consonantia.</p>
-												<ul
-													class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-													<li class="ftco-animate"><a href="#"><span
-																class="icon-twitter"></span></a></li>
-													<li class="ftco-animate"><a href="#"><span
-																class="icon-facebook"></span></a></li>
+												<h2 class="ftco-heading-2">FAST FOOD</h2>
+												<p>Thế giới đồ ăn nhanh</p>
+												<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+													<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a>
+													</li>
+													<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a>
+													</li>
 													<li class="ftco-animate"><a href="#"><span
 																class="icon-instagram"></span></a></li>
 												</ul>
@@ -362,12 +369,9 @@
 												<h2 class="ftco-heading-2">Help</h2>
 												<div class="d-flex">
 													<ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-														<li><a href="#" class="py-2 d-block">Shipping Information</a>
-														</li>
-														<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a>
-														</li>
-														<li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a>
-														</li>
+														<li><a href="#" class="py-2 d-block">Shipping Information</a></li>
+														<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
+														<li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
 														<li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
 													</ul>
 													<ul class="list-unstyled">
@@ -382,13 +386,14 @@
 												<h2 class="ftco-heading-2">Have a Questions?</h2>
 												<div class="block-23 mb-3">
 													<ul>
-														<li><span class="icon icon-map-marker"></span><span
-																class="text">203 Fake St. Mountain View, San Francisco,
-																California, USA</span></li>
+														<li><span class="icon icon-map-marker"></span>
+															<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP Thủ
+																Đức</span>
+														</li>
 														<li><a href="#"><span class="icon icon-phone"></span><span
-																	class="text">+2 392 3929 210</span></a></li>
+																	class="text">+84 979 888 999</span></a></li>
 														<li><a href="#"><span class="icon icon-envelope"></span><span
-																	class="text">info@yourdomain.com</span></a></li>
+																	class="text">fastfood@codevn.tk</span></a></li>
 													</ul>
 												</div>
 											</div>
@@ -396,15 +401,8 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12 text-center">
-
-											<p>
-												<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-												Copyright &copy;
-												<script>document.write(new Date().getFullYear());</script> All rights
-												reserved | This template is made with <i class="icon-heart color-danger"
-													aria-hidden="true"></i> by <a href="https://colorlib.com"
-													target="_blank">Colorlib</a>
-												<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+											<p> Copyright &copy;
+												<script>document.write(new Date().getFullYear());</script>
 											</p>
 										</div>
 									</div>

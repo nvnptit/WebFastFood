@@ -39,7 +39,7 @@
 					<link rel="stylesheet" href="${root}/resources/css/style.css">
 
 				<body class="goto-here">
-
+			
 					<div class="py-1 bg-primary">
 						<div class="container">
 							<div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
@@ -58,7 +58,8 @@
 											<span class="text">Nhóm 16 with ♥</span>
 										</div>
 										<div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-											<span class="text">3-5 Giao hàng trong ngày làm việc & Trả hàng miễn phí</span>
+											<span class="text">3-5 Giao hàng trong ngày làm việc & Trả hàng miễn
+												phí</span>
 										</div>
 									</div>
 								</div>
@@ -83,7 +84,7 @@
 									<li class="nav-item"><a href="about.htm" class="nav-link">Thông tin thêm</a></li>
 									<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
 									<li class="nav-item cta cta-colored"><a href="cart.htm" class="nav-link">
-										<span class="icon-shopping_cart">Giỏ hàng</span> [
+											<span class="icon-shopping_cart">Giỏ hàng</span> [
 											${sessionScope['Orders_list'].size()} ]</a></li>
 								</ul>
 							</div>
@@ -126,8 +127,9 @@
 											<form class="form needs-validation" role="form" autocomplete="off"
 												id="formLogin" action="index.htm" method="POST">
 												<div class="form-group">
-													<a href="#SignupModal" class="float-right" data-toggle="modal">Bạn là khách hàng mới?</a> <label for="uname1">Tên đăng nhập</label> <input
-														type="text" class="form-control form-control-lg"
+													<a href="#SignupModal" class="float-right" data-toggle="modal">Bạn
+														là khách hàng mới?</a> <label for="uname1">Tên đăng nhập</label>
+													<input type="text" class="form-control form-control-lg"
 														name="username_lg" id="uname1" required>
 													<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
 												</div>
@@ -185,7 +187,8 @@
 													<label for="uname1">Số điện thoại</label> <input type="number"
 														class="form-control form-control-lg" name="phone" id="phone"
 														required="">
-													<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!</div>
+													<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!
+													</div>
 												</div>
 												<div class="form-group">
 													<label>Nhập mật khẩu</label> <input type="password"
@@ -194,10 +197,10 @@
 													<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 												</div>
 												<div class="form-group">
-													<label>Nhập mật khẩu lần 2</label> <input type="password"
+													<label>Nhập lại mật khẩu</label> <input type="password"
 														class="form-control form-control-lg" name="confirmPassword"
 														required="" autocomplete="new-password">
-													<div class="invalid-feedback">Mật khẩu lần 2 không hợp lệ!</div>
+													<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
 												</div>
 												<input type="hidden" class="form-control form-control-lg" name="role"
 													value="user">
@@ -218,6 +221,9 @@
 						</c:if>
 
 					</nav>
+					<c:if test="${not empty message}">
+						<div class="alert alert-success" role="alert">${message}</div>
+					</c:if>
 					<!-- END nav -->
 
 					<section id="home-section" class="hero">
@@ -247,7 +253,7 @@
 										<div class="col-sm-12 ftco-animate text-center">
 											<h1 class="mb-2">Fast Food - Tiêu chuẩn 4S</h1>
 											<h2 class="subheading mb-4">Siêu ngon - Siêu bổ - Siêu rẻ - Siêu nhanh</h2>
-											<p><a href="#" class="btn btn-primary">View Details</a></p>
+											<p><a href="#" class="btn btn-primary">Xem thêm tại đây</a></p>
 										</div>
 
 									</div>
@@ -365,7 +371,7 @@
 						<div class="container">
 							<div class="row justify-content-center mb-3 pb-3">
 								<div class="col-md-6 heading-section text-center ftco-animate">
-									<h1 class="mb-4" >Sản phẩm nổi bật của chúng tôi</h1>
+									<h1 class="mb-4">Sản phẩm nổi bật của chúng tôi</h1>
 								</div>
 							</div>
 						</div>
@@ -384,15 +390,17 @@
 												<div class="d-flex">
 													<div class="pricing">
 														<p class="price">
-															<span class="text text-center"	id="price_org">${p.price} VNĐ</span><br>
-																<span class="price-sale" id="price_dis"></span></p>
+															<span class="text text-center" id="price_org">${p.price}
+																VNĐ</span><br>
+															<span class="price-sale" id="price_dis"></span>
+														</p>
 													</div>
 												</div>
 												<div class="bottom-area d-flex px-2">
 													<div class="m-auto d-flex">
 														<form method="post" action="${root}/home/addCart.htm">
 															<input type="hidden" value="${p.id}" name="id" />
-															<input type="submit" value="Add to Cart" name="btnOK"
+															<input type="submit" value="Thêm vào giỏ hàng" name="btnOK"
 																class="btn btn-black py-1 px-1" />
 														</form>
 													</div>
@@ -405,7 +413,8 @@
 						</div>
 					</section>
 
-					<section class="ftco-section img" style="background-image: url(${root}/resources/images/sale1.jpg);">
+					<section class="ftco-section img"
+						style="background-image: url(${root}/resources/images/sale1.jpg);">
 						<div class="container">
 							<div class="row justify-content-start">
 								<div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
@@ -427,8 +436,8 @@
 					<section class="ftco-section testimony-section">
 						<div class="container">
 							<div class="row justify-content-center mb-5 pb-3">
-								<div class="col-md-7 heading-section ftco-animate text-center">	
-									<h2 class="mb-4">Các phản hồi ý kiến từ khách hàng</h2>
+								<div class="col-md-7 heading-section ftco-animate text-center">
+									<h2 class="mb-4">Ý kiến khách hàng</h2>
 								</div>
 							</div>
 							<div class="row ftco-animate">
@@ -598,7 +607,8 @@
 										<div class="block-23 mb-3">
 											<ul>
 												<li><span class="icon icon-map-marker"></span>
-													<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP Thủ Đức</span>
+													<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP Thủ
+														Đức</span>
 												</li>
 												<li><a href="#"><span class="icon icon-phone"></span><span
 															class="text">+84 979 888 999</span></a></li>
@@ -648,33 +658,7 @@
 						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 					<script src="${root}/resources/js/google-map.js"></script>
 					<script src="${root}/resources/js/main.js"></script>
-					<script type="text/javascript">
-						$("#btnLogin").click(function (event) {
-
-							//Fetch form to apply custom Bootstrap validation
-							var form = $("#formLogin")
-
-							if (form[0].checkValidity() === false) {
-								event.preventDefault()
-								event.stopPropagation()
-							}
-
-							//   form.addClass('was-validated');
-						});
-
-						$("#btnSignup").click(function (event) {
-
-							//Fetch form to apply custom Bootstrap validation
-							var form = $("#formSignup")
-
-							if (form[0].checkValidity() === false) {
-								event.preventDefault()
-								event.stopPropagation()
-							}
-
-							//   form.addClass('was-validated');
-						});
-					</script>
+					
 					<script type="text/javascript">
 						$("#btnLogin").click(function (event) {
 
