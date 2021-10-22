@@ -184,27 +184,38 @@
 												class="form-control form-control-lg" name="phone" id="phone"
 												required="">
 											<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!
-										</div>
-										<div class="form-group">
-											<label>Mật khẩu</label> <input type="password"
-												class="form-control form-control-lg" name="password" required=""
-												autocomplete="new-password">
-											<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
-										</div>
-										<div class="form-group">
-											<label>Nhập lại mật khẩu</label> <input type="password"
-												class="form-control form-control-lg" name="confirmPassword" required=""
-												autocomplete="new-password">
-											<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
-										</div>
-										<input type="hidden" class="form-control form-control-lg" name="role"
-											value="user">
-										<div class="form-group py-4">
-											<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-												aria-hidden="true">Huỷ</button>
-											<button type="submit" class="btn btn-success btn-lg float-right"
-												id="btnSignup">Đăng ký</button>
-										</div>
+											</div>
+											<div class="form-group">
+												<label>Mật khẩu</label> <input type="password"
+													class="form-control form-control-lg" name="password" required=""
+													autocomplete="new-password">
+												<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
+											</div>
+											<div class="form-group">
+												<label>Nhập lại mật khẩu</label>
+												<input type="password" id="confirmPassword"
+													class="form-control form-control-lg" name="confirmPassword"
+													required="" autocomplete="new-password" oninput="check(this)" />
+												<script language='javascript' type='text/javascript'>
+													function check(input) {
+														if (input.value != document.getElementById('password').value) {
+															input.setCustomValidity('Password Must be Matching.');
+														} else {
+															// input is valid -- reset the error message
+															input.setCustomValidity('');
+														}
+													}
+												</script>
+												<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
+											</div>
+											<input type="hidden" class="form-control form-control-lg" name="role"
+												value="user">
+											<div class="form-group py-4">
+												<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
+													aria-hidden="true">Huỷ</button>
+												<button type="submit" class="btn btn-success btn-lg float-right"
+													id="btnSignup">Đăng ký</button>
+											</div>
 									</form>
 								</div>
 							</div>
@@ -511,7 +522,7 @@
 						event.stopPropagation()
 					}
 
-					//   form.addClass('was-validated');
+					form.addClass('was-validated');
 				});
 
 				$("#btnSignup").click(function (event) {
@@ -524,7 +535,7 @@
 						event.stopPropagation()
 					}
 
-					//   form.addClass('was-validated');
+					form.addClass('was-validated');
 				});
 			</script>
 		</body>

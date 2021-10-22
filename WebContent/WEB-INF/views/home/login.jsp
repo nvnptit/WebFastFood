@@ -78,7 +78,7 @@
 
 							<div class="collapse navbar-collapse" id="ftco-nav">
 								<ul class="navbar-nav ml-auto">
-									<li class="nav-item active"><a href="#" class="nav-link">Trang chủ</a></li>
+									<li class="nav-item active"><a href="index.htm" class="nav-link">Trang chủ</a></li>
 									<li class="nav-item"><a href="food.htm" class="nav-link">Thức ăn</a></li>
 									<li class="nav-item"><a href="drink.htm" class="nav-link">Thức uống</a></li>
 									<li class="nav-item"><a href="about.htm" class="nav-link">Thông tin thêm</a></li>
@@ -197,9 +197,20 @@
 													<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 												</div>
 												<div class="form-group">
-													<label>Nhập lại mật khẩu</label> <input type="password"
+													<label>Nhập lại mật khẩu</label>
+													<input type="password" id="confirmPassword"
 														class="form-control form-control-lg" name="confirmPassword"
-														required="" autocomplete="new-password">
+														required="" autocomplete="new-password" oninput="check(this)" />
+													<script language='javascript' type='text/javascript'>
+														function check(input) {
+															if (input.value != document.getElementById('password').value) {
+																input.setCustomValidity('Password Must be Matching.');
+															} else {
+																// input is valid -- reset the error message
+																input.setCustomValidity('');
+															}
+														}
+													</script>
 													<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
 												</div>
 												<input type="hidden" class="form-control form-control-lg" name="role"
@@ -657,33 +668,6 @@
 						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 					<script src="${root}/resources/js/google-map.js"></script>
 					<script src="${root}/resources/js/main.js"></script>
-					<script type="text/javascript">
-						$("#btnLogin").click(function (event) {
-
-							//Fetch form to apply custom Bootstrap validation
-							var form = $("#formLogin")
-
-							if (form[0].checkValidity() === false) {
-								event.preventDefault()
-								event.stopPropagation()
-							}
-
-							//   form.addClass('was-validated');
-						});
-
-						$("#btnSignup").click(function (event) {
-
-							//Fetch form to apply custom Bootstrap validation
-							var form = $("#formSignup")
-
-							if (form[0].checkValidity() === false) {
-								event.preventDefault()
-								event.stopPropagation()
-							}
-
-							//   form.addClass('was-validated');
-						});
-					</script>
 					<script type="text/javascript">
 						$("#btnLogin").click(function (event) {
 

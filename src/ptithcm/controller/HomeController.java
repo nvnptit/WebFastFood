@@ -209,8 +209,11 @@ public class HomeController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index", method = RequestMethod.POST)
 	public String index_login(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 		String username = request.getParameter("username_lg");
+		if (username==null){
+			model.addAttribute("message", "Bạn phải đăng nhập vào trước!!");
+			return "home/index";
+		}
 		username = username.trim();
 		String password = request.getParameter("password_lg");
 		password = password.trim();

@@ -190,9 +190,20 @@
 											<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 										</div>
 										<div class="form-group">
-											<label>Nhập lại mật khẩu</label> <input type="password"
+											<label>Nhập lại mật khẩu</label>
+											<input type="password" id="confirmPassword"
 												class="form-control form-control-lg" name="confirmPassword"
-												required="" autocomplete="new-password">
+												required="" autocomplete="new-password" oninput="check(this)" />
+											<script language='javascript' type='text/javascript'>
+												function check(input) {
+													if (input.value != document.getElementById('password').value) {
+														input.setCustomValidity('Password Must be Matching.');
+													} else {
+														// input is valid -- reset the error message
+														input.setCustomValidity('');
+													}
+												}
+											</script>
 											<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
 										</div>
 										<input type="hidden" class="form-control form-control-lg" name="role"

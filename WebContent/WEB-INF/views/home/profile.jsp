@@ -100,7 +100,7 @@
 															thêm</a></li>
 													<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a>
 													</li>
-													<li class="nav-item cta cta-colored active"><a href="#"
+													<li class="nav-item cta cta-colored active"><a href="cart.htm"
 															class="nav-link">
 															<span class="icon-shopping_cart">Giỏ hàng</span>[
 															${sessionScope['Orders_list'].size()} ]</a></li>
@@ -136,134 +136,7 @@
 												</div>
 											</div>
 										</c:if>
-										<c:if test="${sessionScope['user'] == null}">
 
-											<div id="loginModal" class="modal fade" tabindex="-1" role="dialog"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h3>Đăng nhập</h3>
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">X</button>
-														</div>
-														<div class="modal-body">
-															<form class="form needs-validation" role="form"
-																autocomplete="off" id="formLogin" action="index.htm"
-																method="POST">
-																<div class="form-group">
-																	<a href="#SignupModal" class="float-right"
-																		data-toggle="modal">Bạn là khách hàng mới?</a>
-																	<label for="uname1">Tên đăng nhập</label> <input
-																		type="text" class="form-control form-control-lg"
-																		name="username_lg" id="uname1" required>
-																	<div class="invalid-feedback">Vui lòng nhập tên đăng
-																		nhập!</div>
-																</div>
-																<div class="form-group">
-																	<label>Mật khẩu</label> <input type="password"
-																		class="form-control form-control-lg" id="pwd1"
-																		name="password_lg" required>
-																	<div class="invalid-feedback">Vui lòng nhập tên mật
-																		khẩu!</div>
-																</div>
-																<div class="custom-control custom-checkbox">
-																	<label> <a href="forgot.htm">Quên mật khẩu?</a>
-																	</label>
-																</div>
-																<div class="form-group py-4">
-																	<button class="btn btn-outline-secondary btn-lg"
-																		data-dismiss="modal"
-																		aria-hidden="true">Huỷ</button>
-																	<button type="submit"
-																		class="btn btn-success btn-lg float-right"
-																		id="btnLogin">Đăng nhập</button>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div id="SignupModal" class="modal fade" tabindex="-1" role="dialog"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h3>Đăng ký</h3>
-															<button type="button" class="close" data-dismiss="modal"
-																aria-hidden="true">X</button>
-														</div>
-														<div class="modal-body">
-															<form class="form" role="form" autocomplete="off"
-																id="formSignup" action="login.htm" method="POST">
-																<div class="form-group">
-																	<label for="uname1">Tên đăng nhập</label> <input
-																		type="text" class="form-control form-control-lg"
-																		name="username" id="username" required="">
-																	<div class="invalid-feedback">Oops, you missed this
-																		one.</div>
-																</div>
-																<div class="form-group">
-																	<label for="uname1">Fullname</label> <input
-																		type="text" class="form-control form-control-lg"
-																		name="fullname" id="fullname" required="">
-																	<div class="invalid-feedback">Oops, you missed this
-																		one.</div>
-																</div>
-																<div class="form-group">
-																	<label for="uname1">Email</label> <input
-																		type="email"
-																		class="form-control form-control-lg"
-																		name="email" id="email" required="">
-																	<div class="invalid-feedback">Oops, you missed this
-																		one.</div>
-																</div>
-																<div class="form-group">
-																	<label for="uname1">Số điện thoại</label> <input
-																		type="number"
-																		class="form-control form-control-lg"
-																		name="phone" id="phone" required="">
-																	<div class="invalid-feedback">Oops, you missed this
-																		one.</div>
-																</div>
-																<div class="form-group">
-																	<label>Mật khẩu</label> <input type="password"
-																		class="form-control form-control-lg"
-																		name="password" required=""
-																		autocomplete="new-password">
-																	<div class="invalid-feedback">Enter your password
-																		too!</div>
-																</div>
-																<div class="form-group">
-																	<label>Nhập lại mật khẩu</label> <input
-																		type="password"
-																		class="form-control form-control-lg"
-																		name="confirmPassword" required=""
-																		autocomplete="new-password">
-																	<div class="invalid-feedback">Enter your password
-																		too!</div>
-																</div>
-																<input type="hidden"
-																	class="form-control form-control-lg" name="role"
-																	value="user">
-																<div class="form-group py-4">
-																	<button class="btn btn-outline-secondary btn-lg"
-																		data-dismiss="modal"
-																		aria-hidden="true">Huỷ</button>
-																	<button type="submit"
-																		class="btn btn-success btn-lg float-right"
-																		id="btnSignup">Đăng ký</button>
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
-											</div>
-											<a href="#loginModal" role="button" class="btn btn-primary btn-sm""
-				data-toggle=" modal" style="margin:5px;" ">Đăng nhập</a> 
-				
-			<a href=" #SignupModal" role="button" class="btn btn-primary " data-toggle="modal">Đăng ký</a>
-										</c:if>
 									</nav>
 									<!-- END nav -->
 
@@ -274,10 +147,8 @@
 												class="row no-gutters slider-text align-items-center justify-content-center">
 												<div class="col-md-9 ftco-animate text-center">
 													<p class="breadcrumbs">
-														<span class="mr-2"><a href="index.htm">Home</a></span>
-														<span>Cart</span>
 													</p>
-													<h1 class="mb-0 bread">Profile</h1>
+													<h1 class="mb-0 bread">Thông tin cá nhân</h1>
 												</div>
 											</div>
 										</div>
@@ -295,20 +166,30 @@
 															</div>
 														</c:if>
 														<div class="form-group">
-															<label>Old Password</label> <input class="form-control"
-																type="password" name="oldpass">
+															<label>Mật khẩu cũ</label> <input class="form-control"
+																type="password" name="oldpass" required>
 														</div>
-
 														<div class="form-group">
-															<label>New Password</label> <input class="form-control"
-																type="password" name="newpass">
+															<label>Nhập mật khẩu mới</label>
+															<input class="form-control" id="newpass" type="password"
+																name="newpass" required>
+															<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 														</div>
-
 														<div class="form-group">
-															<label>Confirm New Password</label> <input
-																class="form-control" type="password" name="confirmpass">
+															<label>Nhập lại mật khẩu</label>
+															<input class="form-control" id="confirmpass" type="password"
+																name="confirmpass" oninput="check(this)" required />
+															<script language='javascript' type='text/javascript'>
+																function check(input) {
+																	if (input.value != document.getElementById('newpass').value) {
+																		input.setCustomValidity('Mật khẩu không trùng khớp');
+																	} else {
+																		input.setCustomValidity('');
+																	}
+																}
+															</script>
 														</div>
-														<button class="btn btn-info" type="submit">Submit</button>
+														<button class="btn btn-info" type="submit">Đổi mật khẩu</button>
 													</form>
 													<!-- END -->
 												</div>
@@ -321,17 +202,16 @@
 										<div class="container py-4">
 											<div class="row d-flex justify-content-center py-5">
 												<div class="col-md-6">
-													<h2 style="font-size: 22px;" class="mb-0">Subcribe to our
-														Newsletter</h2>
-													<span>Get e-mail updates about our latest shops and special
-														offers</span>
+													<h2 style="font-size: 22px;" class="mb-0">Đăng ký nhận thông tin mới
+														nhất</h2>
+													<span>Đăng ký ngay để nhận được nhiều món ngon và ưu đãi!!!</span>
 												</div>
 												<div class="col-md-6 d-flex align-items-center">
 													<form action="#" class="subscribe-form">
 														<div class="form-group d-flex">
 															<input type="text" class="form-control"
-																placeholder="Điền email tại đây"> <input type="submit"
-																value="Subscribe" class="submit px-3">
+																placeholder="Điền email tại đây">
+															<input type="submit" value="Subscribe" class="submit px-3">
 														</div>
 													</form>
 												</div>
@@ -343,8 +223,7 @@
 											<div class="row">
 												<div class="mouse">
 													<a href="#" class="mouse-icon">
-														<div class="mouse-wheel">
-															<span class="ion-ios-arrow-up"></span>
+														<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span>
 														</div>
 													</a>
 												</div>
@@ -352,15 +231,16 @@
 											<div class="row mb-5">
 												<div class="col-md">
 													<div class="ftco-footer-widget mb-4">
-														<h2 class="ftco-heading-2">Vegefoods</h2>
-														<p>Far far away, behind the word mountains, far from the
-															countries Vokalia and Consonantia.</p>
+														<h2 class="ftco-heading-2">FAST FOOD</h2>
+														<p>Thế giới đồ ăn nhanh</p>
 														<ul
 															class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
 															<li class="ftco-animate"><a href="#"><span
-																		class="icon-twitter"></span></a></li>
+																		class="icon-twitter"></span></a>
+															</li>
 															<li class="ftco-animate"><a href="#"><span
-																		class="icon-facebook"></span></a></li>
+																		class="icon-facebook"></span></a>
+															</li>
 															<li class="ftco-animate"><a href="#"><span
 																		class="icon-instagram"></span></a></li>
 														</ul>
@@ -403,16 +283,17 @@
 														<h2 class="ftco-heading-2">Have a Questions?</h2>
 														<div class="block-23 mb-3">
 															<ul>
-																<li><span class="icon icon-map-marker"></span><span
-																		class="text">203 Fake St. Mountain View, San
-																		Francisco,
-																		California, USA</span></li>
+																<li><span class="icon icon-map-marker"></span>
+																	<span class="text">97 Man Thiện, Phường Hiệp Phú,
+																		Quận 9, TP Thủ
+																		Đức</span>
+																</li>
 																<li><a href="#"><span
 																			class="icon icon-phone"></span><span
-																			class="text">+2 392 3929 210</span></a></li>
+																			class="text">+84 979 888 999</span></a></li>
 																<li><a href="#"><span
 																			class="icon icon-envelope"></span><span
-																			class="text">info@yourdomain.com</span></a>
+																			class="text">fastfood@codevn.tk</span></a>
 																</li>
 															</ul>
 														</div>
@@ -421,17 +302,8 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12 text-center">
-
-													<p>
-														<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-														Copyright &copy;
-														<script>
-															document.write(new Date().getFullYear());
-														</script>
-														All rights reserved | This template is made with <i
-															class="icon-heart color-danger" aria-hidden="true"></i> by
-														<a href="https://colorlib.com" target="_blank">Colorlib</a>
-														<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+													<p> Copyright &copy;
+														<script>document.write(new Date().getFullYear());</script>
 													</p>
 												</div>
 											</div>
@@ -480,7 +352,7 @@
 												event.stopPropagation()
 											}
 
-											//   form.addClass('was-validated');
+											form.addClass('was-validated');
 										});
 
 										$("#btnSignup").click(function (event) {
@@ -493,7 +365,7 @@
 												event.stopPropagation()
 											}
 
-											//   form.addClass('was-validated');
+											form.addClass('was-validated');
 										});
 									</script>
 								</body>
