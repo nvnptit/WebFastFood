@@ -55,24 +55,24 @@
                         <div class="login-form" >
                             <form class="needs-validation" action="index.htm" method="post">
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="au-input au-input--full form-control" type="text" name="username" placeholder="Username" required>
+                                    <label>Tên đăng nhập</label>
+                                    <input class="au-input au-input--full form-control" type="text" name="username" placeholder="Tên đăng nhập" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="au-input au-input--full form-control" type="password" name="password" placeholder="Password" required>
+                                    <label>Mật khẩu</label>
+                                    <input class="au-input au-input--full form-control" type="password" name="password" placeholder="Mật khẩu" required>
                                 </div>
                                 <div class="login-checkbox">	
                                     <label>
-                                        <a href="${root}/resources/admin/forgot.htm">Forgotten Password?</a>
+                                        <a href="${root}/admin/forgot.htm">Quên mật khẩu?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng nhập</button>
                             </form>
                             <div class="register-link">
                                 <p>
-                                    Don't you have account?
-                                    <a href="signup.htm">Sign Up Here</a>
+                                    Bạn chưa có tài khoản?
+                                    <a href="signup.htm">Đăng ký tại đây</a>
                                 </p>
                             </div>
                         </div>

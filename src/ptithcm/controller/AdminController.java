@@ -61,7 +61,7 @@ public class AdminController {
 		Cookie ck=new Cookie("auth","username");  
         ck.setMaxAge(0);
         response.addCookie(ck); 
-        response.sendRedirect("/FinalProject/admin/login.htm");
+        response.sendRedirect("/WebFastFood/admin/login.htm");
        return "admin/login";
 	}
 	
@@ -100,7 +100,7 @@ public class AdminController {
 				String from = "codervn77@gmail.com";
 				String to = email;
 				String subject = "YOUR PASSWORD";
-				String body = "Mật khẩu khôi phục của bạn : " + randomPass;
+				String body = "Mật khẩu của bạn : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
 				
@@ -115,15 +115,15 @@ public class AdminController {
 				mailer.send(mail);
 				
 				t.commit();
-				model.addAttribute("message", "Mật khẩu mới đã được gửi tới mail đăng kí!");
+				model.addAttribute("message", "Mật khẩu được gửi tới mail của bạn!");
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Gửi mail thất bại, hãy thử lại!");
+				model.addAttribute("message", "Gửi mail thất bại, hãy gửi lại!");
 			} finally {
 				session2.close();
 			}
 		} else {
-			model.addAttribute("message", "Tài khoản của bạn không tồn tại!");
+			model.addAttribute("message", "Tài khoản không tồn tại!");
 		}
 		return "admin/forgotpassword";
 	}
@@ -173,7 +173,7 @@ public class AdminController {
 				model.addAttribute("message", "Nhập sai mật khẩu!");
 			}
 		} else {
-				model.addAttribute("message", "Tài khoản không tồn tại!");
+				model.addAttribute("message", "Tài khoản đã tồn tại!");
 		}
 		return "admin/login";
 	}
@@ -273,10 +273,10 @@ public class AdminController {
 		User user = (User) httpSession.getAttribute("user");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
-			model.addAttribute("message", "Mật khẩu cũ không đúng!");
+			model.addAttribute("message", "Mật khẩu không đúng!");
 		} else {
 			if (!newpass.equals(confirmpass)) {
-				model.addAttribute("message", "Mật khẩu không trùng khớp!");
+				model.addAttribute("message", "Mật khẩu xác nhận không trùng với mật khẩu mới!");
 			} else {
 				Session session2 = factory.openSession();
 				Transaction t = session2.beginTransaction();
@@ -335,10 +335,10 @@ public class AdminController {
 		try {
 			session.update(user);
 			t.commit();
-			model.addAttribute("message", "Cập Nhật Thành Công!");
+			model.addAttribute("message", "Cập nhật thành công!");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cập Nhật Thất Bại!");
+			model.addAttribute("message", "Cập nhật thất bại!");
 		} finally {
 			session.close();
 		}
@@ -362,7 +362,7 @@ public class AdminController {
 			String from = "codervn77@gmail.com";
 			String to = user.getEmail();
 			String subject = "YOUR PASSWORD";
-			String body = "Mật khẩu mặc định của bạn: " + randomPass;
+			String body = "Mật khẩu của bạn : " + randomPass;
 			
 			MimeMessage mail = mailer.createMimeMessage();
 			
@@ -377,10 +377,10 @@ public class AdminController {
 			user.setPassword(mahoa);
 			session.save(user);
 			t.commit();
-			model.addAttribute("message", "Cập Nhật Thành Công! Mật khẩu của bạn đã được gửi tới mail!");
+			model.addAttribute("message", "Cập nhật thành công, mật khẩu của bạn đã gửi đến mail!");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cập Nhật Thất Bại!");
+			model.addAttribute("message", "Cập nhật thất bại!");
 		} finally {
 			session.close();
 		}
@@ -407,10 +407,10 @@ public class AdminController {
 					product.setImg(file.getOriginalFilename());
 					session.save(product);
 					t.commit();
-					model.addAttribute("message", "Cập Nhật Thành Công!");
+					model.addAttribute("message", "Cập nhật thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Cập Nhật Thất Bại!");
+					model.addAttribute("message", "Cập nhật thất bại!");
 				} finally {
 					session.close();
 				}
@@ -432,10 +432,10 @@ public class AdminController {
 					product.setImg(file.getOriginalFilename());
 					session.update(product);
 					t.commit();
-					model.addAttribute("message", "Cập Nhật Thành Công!");
+					model.addAttribute("message", "Cập nhật thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Cập Nhật Thất Bại!");
+					model.addAttribute("message", "Cập nhật thất bại!");
 				} finally {
 					session.close();
 				}

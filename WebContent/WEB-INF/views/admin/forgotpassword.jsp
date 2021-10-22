@@ -77,11 +77,11 @@
 							</c:if>
 							<form action="forgot.htm" method="post">
 								<div class="form-group">
-									<label>Username</label> <input class="au-input au-input--full"
-										type="text" name="username" placeholder="Username" required/>
+									<label>Tên đăng nhập</label> <input class="au-input au-input--full"
+										type="text" name="username" placeholder="Tên đăng nhập" required/>
 								</div>
 								<button class="au-btn au-btn--block au-btn--green m-b-20"
-									type="submit">submit</button>
+									type="submit">Xác nhận</button>
 							</form>
 						</div>
 					</div>

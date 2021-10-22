@@ -6,7 +6,7 @@
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
 <!-- Required meta tags-->
-<base href="${root}/resources/">
+<%-- <base href="${root}/"> --%>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,7 +62,7 @@
 </head>
 
 <body class="animsition">
-	<%
+	<%-- <%
 		Cookie[] cks = request.getCookies();
 		if (cks != null) {
 			for (int i = 0; i < cks.length; i++) {
@@ -82,7 +82,7 @@
 			response.sendRedirect("${root}/resources/login.htm");
 			return; // to stop further execution
 		}
-	%>
+	%> --%>
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar d-none d-lg-block">
@@ -95,17 +95,17 @@
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar">
 					<ul class="list-unstyled navbar__list">
-						<li><a class="js-arrow" href="${root}/resources/admin/index.htm">
-								<i class="fas fa-tachometer-alt"></i>Dashboard
+						<li><a class="js-arrow" href="${root}/admin/index.htm">
+								<i class="fas fa-tachometer-alt"></i>Biểu đồ
 						</a></li>
-						<li><a href="${root}/resources/admin/table.htm"> <i class="fas fa-table"></i>Tables
+						<li><a href="${root}/admin/table.htm"> <i class="fas fa-table"></i>Dữ liệu
 						</a></li>
 						<li class="active has-sub"><a class="js-arrow" href="#">
-								<i class="fas fa-tachometer-alt"></i>Form
+								<i class="fas fa-tachometer-alt"></i>Chức năng
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="form_user.htm">Form User</a></li>
-								<li class="active"><a href="#">Form Product</a></li>
+								<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
+								<li class="active"><a href="#">Sản phẩm</a></li>
 							</ul></li>
 					</ul>
 				</nav>
@@ -122,7 +122,7 @@
 						<div class="header-wrap">
 							<form class="form-header" action="" method="POST">
 								<input class="au-input au-input--xl" type="text" name="search"
-									placeholder="Search for datas &amp; reports..." />
+									placeholder="Tìm kiếm dữ liệu và báo cáo" />
 								<button class="au-btn--submit" type="submit">
 									<i class="zmdi zmdi-search"></i>
 								</button>
@@ -133,7 +133,7 @@
 										<i class="zmdi zmdi-comment-more"></i> <span class="quantity">1</span>
 										<div class="mess-dropdown js-dropdown">
 											<div class="mess__title">
-												<p>You have 2 news message</p>
+												<p>Bạn có 2 thông báo mới</p>
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
@@ -143,8 +143,8 @@
 												</div>
 												<div class="content">
 													<h6>Michelle Moreno</h6>
-													<p>Have sent a photo</p>
-													<span class="time">3 min ago</span>
+													<p>Đã gửi cho bạn một ảnh</p>
+													<span class="time">3 phút trước</span>
 												</div>
 											</div>
 											<div class="mess__item">
@@ -155,12 +155,12 @@
 												</div>
 												<div class="content">
 													<h6>Diane Myers</h6>
-													<p>You are now connected on message</p>
+													<p>Bạn có một tin nhắn</p>
 													<span class="time">Yesterday</span>
 												</div>
 											</div>
 											<div class="mess__footer">
-												<a href="#">View all messages</a>
+												<a href="#">Xem tất cả tin nhắn</a>
 											</div>
 										</div>
 									</div>
@@ -168,7 +168,7 @@
 										<i class="zmdi zmdi-email"></i> <span class="quantity">1</span>
 										<div class="email-dropdown js-dropdown">
 											<div class="email__title">
-												<p>You have 3 New Emails</p>
+												<p>Bạn có 3 Emails mới</p>
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
@@ -177,8 +177,8 @@
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
-													<p>Meeting about new dashboard...</p>
-													<span>Cynthia Harvey, 3 min ago</span>
+													<p>Về đề xuất mới.</p>
+													<span>Cynthia Harvey, 3 phút trước</span>
 												</div>
 											</div>
 											<div class="email__item">
@@ -188,7 +188,7 @@
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
-													<p>Meeting about new dashboard...</p>
+													<p>Về đề xuất mới.</p>
 													<span>Cynthia Harvey, Yesterday</span>
 												</div>
 											</div>
@@ -199,7 +199,7 @@
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
-													<p>Meeting about new dashboard...</p>
+													<p>Về đề xuất mới.</p>
 													<span>Cynthia Harvey, April 12,,2018</span>
 												</div>
 											</div>
@@ -212,15 +212,15 @@
 										<i class="zmdi zmdi-notifications"></i> <span class="quantity">3</span>
 										<div class="notifi-dropdown js-dropdown">
 											<div class="notifi__title">
-												<p>You have 3 Notifications</p>
+												<p>Bạn có 3 thông báo mới</p>
 											</div>
 											<div class="notifi__item">
 												<div class="bg-c1 img-cir img-40">
 													<i class="zmdi zmdi-email-open"></i>
 												</div>
 												<div class="content">
-													<p>You got a email notification</p>
-													<span class="date">April 12, 2018 06:50</span>
+													<p>bạn có thông báo Email</p>
+													<span class="date">October 12, 2021 06:50</span>
 												</div>
 											</div>
 											<div class="notifi__item">
@@ -228,8 +228,8 @@
 													<i class="zmdi zmdi-account-box"></i>
 												</div>
 												<div class="content">
-													<p>Your account has been blocked</p>
-													<span class="date">April 12, 2018 06:50</span>
+													<p>Tài khoản của bạn đã bị khoá</p>
+													<span class="date">October 12, 2021 06:50</span>
 												</div>
 											</div>
 											<div class="notifi__item">
@@ -237,12 +237,12 @@
 													<i class="zmdi zmdi-file-text"></i>
 												</div>
 												<div class="content">
-													<p>You got a new file</p>
-													<span class="date">April 12, 2018 06:50</span>
+													<p>Bạn có dữ liệu mới</p>
+													<span class="date">October 12, 2021 06:50</span>
 												</div>
 											</div>
 											<div class="notifi__footer">
-												<a href="#">All notifications</a>
+												<a href="#">Tất cả thông báo</a>
 											</div>
 										</div>
 									</div>
@@ -276,21 +276,23 @@
 											</div>
 											<div class="account-dropdown__body">
 												<div class="account-dropdown__item">
-													<a href="#"> <i class="zmdi zmdi-account"></i>Account
+													<a href="#">
+													  <i class="zmdi zmdi-account"></i>Tài khoản
 													</a>
-												</div>
-												<div class="account-dropdown__item">
-													<a href="#"> <i class="zmdi zmdi-settings"></i>Setting
+												  </div>
+												  <div class="account-dropdown__item">
+													<a href="#">
+													  <i class="zmdi zmdi-settings"></i>Cài đặt
 													</a>
-												</div>
+												  </div>
 												<div class="account-dropdown__item">
-													<a href="changepassword.htm"> <i class="zmdi zmdi-money-box"></i>Change Password
+													<a href="${root}/admin/changepassword.htm"> <i class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
 													</a>
 												</div>
 											</div>
 											<div class="account-dropdown__footer">
-												<a href="${root}/resources/admin/logout.htm">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+												<a href="${root}/admin/logout.htm">
+                                                    <i class="zmdi zmdi-power"></i>Đăng xuất</a>
 											</div>
 										</div>
 									</div>
@@ -310,7 +312,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Function</strong> Products
+										<strong>Chức năng</strong> Sản phẩm
 									</div>
 									<c:if test="${not empty message}">
 										<div class="alert alert-danger" role="alert">
@@ -318,56 +320,56 @@
 										</div>
 									</c:if>
 									<div class="card-body card-block">
-										<form:form action="${root}/resources/admin/form_product/insert.htm" method="POST" modelAttribute="product" enctype="multipart/form-data">
+										<form:form action="${root}/admin/form_product/insert.htm" method="POST" modelAttribute="product" enctype="multipart/form-data">
 										<div class="form-group">
 												<label class=" form-control-label">Id</label>
 												<form:input path="id" type="text" class="form-control" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Name</label>
-												<form:input path="name" type="text" placeholder="Enter Name" class="form-control" />
+												<label class=" form-control-label">Tên sản phẩm</label>
+												<form:input path="name" type="text" placeholder="Tên sản phẩm" class="form-control" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Type</label>
-												<form:input path="type" type="text" placeholder="Enter Type"
+												<label class=" form-control-label">Thể loại</label>
+												<form:input path="type" type="text" placeholder="Loại sản phẩm"
 													class="form-control" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Price</label>
+												<label class=" form-control-label">Giá trị</label>
 												<form:input path="price" type="text"
-													placeholder="Enter Price" class="form-control" />
+													placeholder="Giá trị" class="form-control" />
 											</div>
 											
 											<div class="form-group">
-												<label class=" form-control-label">Discount</label>
+												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder="Enter Discount" class="form-control" />
+													placeholder=" % Giảm giá" class="form-control" />
 											</div>
 											
 											<div class="form-group">
-												<label class=" form-control-label">Quantity</label>
+												<label class=" form-control-label">Số lượng</label>
 												<form:input path="quantity" type="text"
-													placeholder="Enter Quantity" class="form-control" />
+													placeholder="Số lượng" class="form-control" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Description</label>
-												<form:textarea path="description" rows="5" cols="20" placeholder="Enter Description"
+												<label class=" form-control-label">Thông tin</label>
+												<form:textarea path="description" rows="5" cols="20" placeholder="Thông tin"
 													class="form-control" />
 											</div>
 											
 											<div class="form-group">
-												<label class=" form-control-label">Image</label>
+												<label class=" form-control-label">HÌnh ảnh</label>
 												<input name="file" type="file" class="form-control" />
 											</div>
 											
 											
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
-													<i class="fa fa-dot-circle-o"></i> Insert
+													<i class="fa fa-dot-circle-o"></i> Thêm
 												</button>
 												<button type="button" class="btn btn-danger btn-sm"
-													onclick="location.href='${root}/resources/admin/table.htm'">
-													<i class="fa fa-dot-circle-o"></i> Back
+													onclick="location.href='${root}/admin/table.htm'">
+													<i class="fa fa-dot-circle-o"></i> Quay trở lại
 												</button>
 											</div>
 										</form:form>
@@ -381,7 +383,7 @@
 							<div class="col-md-12">
 								<div class="copyright">
 									<p>
-										Copyright © 2018 Colorlib. All rights reserved. Template by <a
+										Copyright © 2021 Colorlib. All rights reserved. Template by <a
 											href="https://colorlib.com">Colorlib</a>.
 									</p>
 								</div>
