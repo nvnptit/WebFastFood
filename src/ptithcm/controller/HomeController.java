@@ -62,7 +62,7 @@ public class HomeController {
 		String role = request.getParameter("role");
 		
 		if(!password.equals(confirmPassword)) {
-			model.addAttribute("message", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p!");
+			model.addAttribute("message", "Mật khẩu không trùng khớp!");
 			return "home/login";
 		} else {
 			Session session1 = factory.getCurrentSession();
@@ -72,7 +72,7 @@ public class HomeController {
 			List<User> list = query.list();
 			
 			if (list.size() > 0 ) {
-				model.addAttribute("message", "Username Ä‘Ã£ tá»“n táº¡i, má»�i báº¡n Ä‘Äƒng kÃ­ tÃ i khoáº£n khÃ¡c!");
+				model.addAttribute("message", "Username đã tồn tại, mời bạn đăng kí tài khoản khác!");
 				return "home/login";
 			} else {
 				Session session = factory.openSession();
@@ -84,7 +84,7 @@ public class HomeController {
 					t.commit();
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Ä�Äƒng KÃ­ Tháº¥t Báº¡i!");
+					model.addAttribute("message", "Đăng Kí Thất Bại!");
 				} finally {
 					session.close();
 				}
@@ -118,7 +118,7 @@ public class HomeController {
 				String from = "codervn77@gmail.com";
 				String to = email;
 				String subject = "YOUR PASSWORD";
-				String body = "Máº­t kháº©u khÃ´i phá»¥c cá»§a báº¡n nÃ¨ : " + randomPass;
+				String body = "Mật khẩu khôi phục của bạn nè : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
 				
@@ -133,15 +133,15 @@ public class HomeController {
 				mailer.send(mail);
 				
 				t.commit();
-				model.addAttribute("message", "Máº­t kháº©u má»›i Ä‘Ã£ Ä‘Æ°á»£c gá»­i tá»›i mail Ä‘Äƒng kÃ­!");
+				model.addAttribute("message", "Mật khẩu mới đã được gửi tới mail đăng kí!");
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Gá»­i mail tháº¥t báº¡i, hÃ£y thá»­ láº¡i!");
+				model.addAttribute("message", "Gửi mail thất bại, hãy thử lại!");
 			} finally {
 				session2.close();
 			}
 		} else {
-			model.addAttribute("message", "TÃ i khoáº£n cá»§a báº¡n khÃ´ng tá»“n táº¡i!");
+			model.addAttribute("message", "Tài khoản của bạn không tồn tại!");
 		}
 		return "admin/forgotpassword";
 	}
@@ -176,10 +176,10 @@ public class HomeController {
 		User user = (User) httpSession.getAttribute("user");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
-			model.addAttribute("message", "Máº­t kháº©u cÅ© khÃ´ng Ä‘Ãºng!");
+			model.addAttribute("message", "Mật khẩu cũ không đúng!");
 		} else {
 			if (!newpass.equals(confirmpass)) {
-				model.addAttribute("message", "Máº­t kháº©u khÃ´ng trÃ¹ng khá»›p!");
+				model.addAttribute("message", "Mật khẩu không trùng khớp!");
 			} else {
 				Session session2 = factory.openSession();
 				Transaction t = session2.beginTransaction();
@@ -187,10 +187,10 @@ public class HomeController {
 				try {
 					session2.update(user);
 					t.commit();
-					model.addAttribute("message", "Thay máº­t kháº©u thÃ nh cÃ´ng!");
+					model.addAttribute("message", "Thay mật khẩu thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Thay máº­t kháº©u tháº¥t báº¡i!");
+					model.addAttribute("message", "Thay mật khẩu thất bại!");
 				} finally {
 					session2.close();
 				}
@@ -211,7 +211,7 @@ public class HomeController {
 	public String index_login(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String username = request.getParameter("username_lg");
 		if (username==null){
-			model.addAttribute("message", "Báº¡n pháº£i Ä‘Äƒng nháº­p vÃ o trÆ°á»›c!!");
+			model.addAttribute("message", "Bạn phải đăng nhập vào trước!!!");
 			return "home/index";
 		}
 		username = username.trim();
@@ -240,7 +240,7 @@ public class HomeController {
 			if (password.equals(currentUser.getPassword().trim())) {
 				model.addAttribute("username", username);
 				model.addAttribute("user", currentUser);
-				model.addAttribute("message", "Cáº­p nháº­t máº­t kháº©u thÃ nh cÃ´ng!");
+				model.addAttribute("message", "Cập nhật mật khẩu thành công!");
 				session.setAttribute("user", currentUser);
 				Cookie ck=new Cookie("auth", md5(username));
 				
@@ -248,10 +248,10 @@ public class HomeController {
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
-				model.addAttribute("message", "Sai máº­t kháº©u! Má»�i Ä‘Äƒng nháº­p láº¡i!");
+				model.addAttribute("message", "Sai mật khẩu! Mời đăng nhập lại!");
 			}
 		} else {
-			model.addAttribute("message", "Sai thÃ´ng tin tÃ i khoáº£n. Má»�i Ä‘Äƒng nháº­p láº¡i");
+			model.addAttribute("message", "Sai thông tin tài khoản. Mời đăng nhập lại");
 		}	
 		return "/home/index";
 	}
@@ -301,7 +301,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "record", method = RequestMethod.GET)
 	public String record_get(ModelMap model) {
-		model.addAttribute("message", "Báº N CHÆ¯A Ä�áº¶T Ä�Æ N HÃ€NG NÃ€O!");
+		model.addAttribute("message", "BẠN CHƯA ĐẶT ĐƠN HÀNG NÀO!");
 		return "home/record";
 	}
 	
@@ -322,12 +322,12 @@ public class HomeController {
 		String from = "codervn77@gmail.com";
 		User user = (User) session.getAttribute("user");
 		String to = user.getEmail();
-		String subject = "Đơn hàng của bạn!";
+		String subject = "[ ĐƠN ĐẶT HÀNG CỦA BẠN ]";
 		String body = "";
 		User currentUser = (User) session.getAttribute("user");
 		try {
 			for (int i =0; i < name.length;i++) {
-				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá¡: " + price[i].trim() + "VNĐ.\n\t Số lượng: " + quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i] + "VNĐ. \n";
+				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: " + quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i] + "VNĐ. \n";
 				Orders order = new Orders();
 				order.setUsernameid(currentUser);
 				order.setId_product(id[i]);
@@ -338,7 +338,7 @@ public class HomeController {
 				order.setDate(date);
 				session1.save(order);
 			}
-			body += "Địa chỉ: "+ address.trim();
+			body += "Địa chỉ giao hàng: "+ address.trim();
 			body += ".\n===========================\n" + "\nTổng thanh toán của bạn là : " + total_amount;	
 			
 			
@@ -351,7 +351,7 @@ public class HomeController {
 			helper.setSubject(subject);
 			helper.setText(body);
 			mailer.send(mail);
-			model.addAttribute("message", "Đơn hàng của bạn đã chuyển đến MAIL!");
+			model.addAttribute("message", "Đơn hàng của bạn đã thông báo đến email!");
 			session.removeAttribute("Orders");
 			session.removeAttribute("Orders_list");
 			t.commit();
