@@ -125,7 +125,7 @@
 					<li class="nav-item"><a href="about.htm" class="nav-link">Thông
 							tin</a></li>
 					<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a></li>
-					<li class="nav-item cta cta-colored active"><a href="#"
+					<li class="nav-item cta cta-colored active"><a href="cart.htm"
 						class="nav-link"> <span class="icon-shopping_cart">Giỏ
 								hàng</span>[ ${sessionScope['Orders_list'].size()} ]
 					</a></li>

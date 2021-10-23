@@ -106,7 +106,7 @@
 							tin thêm</a></li>
 					<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a>
 					</li>
-					<li class="nav-item cta cta-colored active"><a href="#"
+					<li class="nav-item cta cta-colored active"><a href="cart.htm"
 						class="nav-link"> <span class="icon-shopping_cart">Giỏ
 								hàng</span>[ ${sessionScope['Orders_list'].size()} ]
 					</a></li>
@@ -139,7 +139,6 @@
 			</div>
 		</c:if>
 		<c:if test="${sessionScope['user'] == null}">
-
 			<div id="loginModal" class="modal fade" tabindex="-1" role="dialog"
 				aria-hidden="true">
 				<div class="modal-dialog">
@@ -336,13 +335,11 @@
 
 										<td>
 											<div class="input-group mb-3">
-												<input type="number" name="quantity" id="qty"
+												<input type="number" name="quantity" id="${p.id}"
 													class="form-control input-number quantity" value="1"
 													min="1"
-													oninput="var qty = document.getElementById('qty').value; 
-																					if (${p.quantity}<qty) document.getElementById('
-													qty').value=${p.quantity};"
-																				>
+													oninput="var qty = document.getElementById('${p.id}').value; 
+											if (${p.quantity}<qty) document.getElementById('${p.id}').value= ${p.quantity};">
 											</div>
 										</td>
 										<td>
@@ -368,39 +365,51 @@
 				</div>
 				<div class="col-lg-4 mt-5 cart-wrap ftco-animate  ">
 
-					<form class="form needs-validation" role="form" autocomplete="off"  id="formAddress">
-
+					<form class="form needs-validation" role="form" autocomplete="off"
+						id="formAddress">
+						<h2>Thông tin người nhận</h2>
+						<div class="form-group">
+							<br> <label class="form-control-label">Họ tên</label> <input
+								type="text" class="form-control is-valid" name="receiver" id="receiver"
+								required>
+							<div class="invalid-feedback">Vui lòng nhập họ tên!</div>
+						</div>
 						<div class="form-group">
 							<label for="uname1">Địa chỉ</label> <input type="text"
-								class="form-control form-control-lg" name="address" id="address"
-								required="">
+								class="form-control is-valid" name="address" id="address"
+								required>
 							<div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
 						</div>
-					</form>
-					
-					<div class="cart-total mb-3">
-						<h3>Cart Totals</h3>
+						<div class="form-group">
+							<label for="uname1">Số điện thoại</label> <input type="number"
+								class="form-control is-valid" name="sdt" id="sdt"
+								required>
+							<div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+						</div>
+						</form>
+							<div class="cart-total mb-3">
+								<h3>Tổng tiền của giỏ hàng</h3>
 
-						<p class="d-flex total-price">
-							<span>Total</span> <input type="number" name='total_amount'
-								id="total_amount" placeholder='0.00' class="form-control"
-								readonly />
-						</p>
-					</div>
-					<c:if test="${sessionScope['user'] == null}">
-						<p>
-							<button formaction="index.htm" class="btn btn-primary py-3 px-4"
-								>Thanh Toán</button>
-						</p>
-					</c:if>
-					<c:if test="${sessionScope['user'] != null}">
-						<p>
-							<button formaction="record.htm" class="btn btn-primary py-3 px-4"
-								id="btnCart">Thanh Toán</button>
-						</p>
-					</c:if>
+								<p class="d-flex total-price">
+									<span>Tổng:</span> <input type="number" name='total_amount'
+										id="total_amount" placeholder='0.00' class="form-control"
+										readonly />
+								</p>
+							</div>
+							<c:if test="${sessionScope['user'] == null}">
+								<p>
+									<button formaction="index.htm"
+										class="btn btn-primary py-3 px-4">Thanh Toán</button>
+								</p>
+							</c:if>
+							<c:if test="${sessionScope['user'] != null}">
+								<p>
+									<button formaction="record.htm"
+										class="btn btn-primary py-3 px-4" id="btnCart">Thanh
+										Toán</button>
+								</p>
+							</c:if>
 				</div>
-			</form>
 		</div>
 
 	</section>

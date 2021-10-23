@@ -316,7 +316,11 @@ public class HomeController {
 		String[] quantity = request.getParameterValues("quantity");
 		String[] discount = request.getParameterValues("discount");
 		String[] total = request.getParameterValues("total");
+		
+
+		String receiver = request.getParameter("receiver");
 		String address = request.getParameter("address");
+		String sdt = request.getParameter("sdt");
 		String total_amount = request.getParameter("total_amount");
 		 
 		String from = "codervn77@gmail.com";
@@ -326,6 +330,13 @@ public class HomeController {
 		String body = "";
 		User currentUser = (User) session.getAttribute("user");
 		try {
+			body += "THÔNG TIN NGƯỜI NHẬN\n" ;
+			body += "Họ và tên: "+ receiver.trim()+"\n";
+			body += "Địa chỉ: "+ address.trim()+"\n";
+			body += "Số điện thoại: "+ sdt.trim()+"\n";
+			body += "\n===========================\n";
+			
+			body += "\nTHÔNG TIN HOÁ ĐƠN\n";
 			for (int i =0; i < name.length;i++) {
 				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: " + quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i] + "VNĐ. \n";
 				Orders order = new Orders();
@@ -334,13 +345,14 @@ public class HomeController {
 				order.setAmount(Integer.valueOf(quantity[i]));
 				order.setDiscount(Integer.valueOf(discount[i]));
 				order.setTotal(Integer.valueOf(total[i]));
+				Product p = (Product) session1.get(Product.class, id[i]);
+				p.setQuantity(p.getQuantity() - Integer.valueOf(quantity[i]));
 				Date date = new Date();
 				order.setDate(date);
 				session1.save(order);
 			}
-			body += "Địa chỉ giao hàng: "+ address.trim();
-			body += ".\n===========================\n" + "\nTổng thanh toán của bạn là : " + total_amount;	
 			
+			body += ".\n===========================\n" + "\nTổng thanh toán của bạn là : " + total_amount;	
 			
 			
 			MimeMessage mail = mailer.createMimeMessage();
