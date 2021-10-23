@@ -57,9 +57,9 @@ public class AdminController {
 	
 	@RequestMapping(value="logout")
 	public String logout_user(HttpServletResponse response, HttpServletRequest resquest) throws IOException {
-		
-		Cookie ck=new Cookie("auth","username");  
+		Cookie ck=new Cookie("auth",null);  
         ck.setMaxAge(0);
+		resquest.getSession().removeAttribute("user");
         response.addCookie(ck); 
         response.sendRedirect("/WebFastFood/admin/login.htm");
        return "admin/login";
@@ -173,7 +173,7 @@ public class AdminController {
 				model.addAttribute("message", "Nhập sai mật khẩu!");
 			}
 		} else {
-				model.addAttribute("message", "Tài khoản đã tồn tại!");
+				model.addAttribute("message", "Bạn không có quyền truy cập vào quản trị");
 		}
 		return "admin/login";
 	}
@@ -377,10 +377,10 @@ public class AdminController {
 			user.setPassword(mahoa);
 			session.save(user);
 			t.commit();
-			model.addAttribute("message", "Cập nhật thành công, mật khẩu của bạn đã gửi đến mail!");
+			model.addAttribute("message", "Thêm mới thành công, mật khẩu của bạn đã gửi đến mail!");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cập nhật thất bại!");
+			model.addAttribute("message", "Thêm mới thất bại!");
 		} finally {
 			session.close();
 		}

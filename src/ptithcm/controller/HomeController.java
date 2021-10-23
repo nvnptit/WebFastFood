@@ -271,7 +271,7 @@ public class HomeController {
 	 */
 	
 	@RequestMapping(value = "food", method = RequestMethod.GET)
-	public String doAn(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
+	public String food(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
 		List<Product> products = this.getFoods();
 		@SuppressWarnings("unchecked")
 		PagedListHolder pagedListHolder = new PagedListHolder(products);
@@ -292,7 +292,7 @@ public class HomeController {
 	 */
 	
 	@RequestMapping(value = "drink", method = RequestMethod.GET)
-	public String nuoc(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
+	public String drink(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
 		List<Product> products = this.getDrinks();
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		PagedListHolder pagedListHolder = new PagedListHolder(products);

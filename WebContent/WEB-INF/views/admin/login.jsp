@@ -70,10 +70,7 @@
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng nhập</button>
                             </form>
                             <div class="register-link">
-                                <p>
-                                    Bạn chưa có tài khoản?
-                                    <a href="signup.htm">Đăng ký tại đây</a>
-                                </p>
+                                    <a href="#">Copyright (c) 2021 NVN</a>
                             </div>
                         </div>
                     </div>
