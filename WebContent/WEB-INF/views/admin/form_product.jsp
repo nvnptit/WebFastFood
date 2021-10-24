@@ -358,7 +358,7 @@
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder=" % Giảm giá" class="form-control" min="0"/>
+													placeholder=" % Giảm giá" class="form-control" min="0" required="required"/>
 											</div>
 											
 											<div class="form-group">

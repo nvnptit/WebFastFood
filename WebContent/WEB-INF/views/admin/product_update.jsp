@@ -336,7 +336,7 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên</label>
-												<form:input path="name" type="text" placeholder="Tên" class="form-control" />
+												<form:input path="name" type="text" placeholder="Tên" class="form-control" required="required"/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Loại</label>
@@ -346,29 +346,29 @@
 											<div class="form-group">
 												<label class=" form-control-label">Giá</label>
 												<form:input path="price" type="text"
-													placeholder="Giá" class="form-control" />
+													placeholder="Giá" class="form-control" required="required" />
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder=" % Giảm giá" class="form-control" />
+													placeholder=" % Giảm giá" class="form-control" required="required"/>
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">Số lượng</label>
 												<form:input path="quantity" type="text"
-													placeholder="Số lượng" class="form-control" />
+													placeholder="Số lượng" class="form-control" required="required"/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Thông tin</label>
 												<form:textarea path="description" rows="5" cols="20" placeholder="Thông tin"
-													class="form-control" />
+													class="form-control" required="required"/>
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">Hình ảnh</label>
-												<input name="file" type="file" class="form-control" />
+												<input name="file" type="file" class="form-control" required="required"/>
 											</div>
 											
 											
