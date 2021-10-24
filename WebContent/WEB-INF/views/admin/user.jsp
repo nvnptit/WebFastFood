@@ -88,8 +88,8 @@
                       <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
-                      <li><a href="form_user.htm">Thêm mới người dùng</a></li>
-                      <li><a href="form_product.htm">Thêm mới Sản phẩm</a></li>
+                      <li><a href="form_user.htm">Người dùng</a></li>
+                      <li><a href="form_product.htm">Sản phẩm</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -106,8 +106,8 @@
                 <div class="container-fluid">
                   <div class="header-wrap">
                     <div class="form-header">
-                      <input class="au-input au-input--xl" type="text" name="search"
-                        placeholder="Tìm kiếm dữ liệu và báo cáo" />
+                      <input class="au-input au-input--xl" type="text" id="myInput" name="search"
+                        placeholder="Tìm kiếm người dùng tại đây..." />
                       <button class="au-btn--submit" type="submit">
                         <i class="zmdi zmdi-search"></i>
                       </button>
@@ -305,7 +305,7 @@
                                 <th>Xoá</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                               <c:forEach var="u" items="${users}">
                                 <tr>
                                   <td>${u.username}</td>
@@ -418,6 +418,16 @@
                   window.location.href = "delete/user/" + username + ".htm";
                 });
               }
+            </script>
+            <script>
+              $(document).ready(function(){
+                $("#myInput").on("keyup", function() {
+                  var value = $(this).val().toLowerCase();
+                  $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                  });
+                });
+              });
             </script>
     </body>
 

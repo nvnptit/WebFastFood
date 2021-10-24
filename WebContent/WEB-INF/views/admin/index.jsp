@@ -89,8 +89,8 @@
                       <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
-                      <li><a href="form_user.htm">Thêm mới người dùng</a></li>
-                      <li><a href="form_product.htm">Thêm mới Sản phẩm</a></li>
+                      <li><a href="form_user.htm">Người dùng</a></li>
+                      <li><a href="form_product.htm">Sản phẩm</a></li>
                     </ul>
                   </li>
                 </ul>
