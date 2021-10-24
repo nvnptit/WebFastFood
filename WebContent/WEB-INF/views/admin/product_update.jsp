@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Title Page-->
-<title>Forms</title>
+<title>Trang cập nhật</title>
 
 <!-- Fontfaces CSS-->
 <link href="${root}/resources/css/font-face.css"
@@ -332,7 +332,7 @@
 										<form:form action="${root}/admin/form_product/update.htm" method="POST" modelAttribute="product" enctype="multipart/form-data">
 										<div class="form-group">
 												<label class=" form-control-label">Id</label>
-												<form:input path="id" type="text" class="form-control" />
+												<form:input path="id" type="text" class="form-control" readonly="true"/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên</label>
@@ -341,7 +341,7 @@
 											<div class="form-group">
 												<label class=" form-control-label">Loại</label>
 												<form:input path="type" type="text" placeholder="Loại"
-													class="form-control" />
+													class="form-control" readonly="true" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Giá</label>

@@ -279,12 +279,12 @@
 	</div>
 
 	<div class="hero-wrap hero-bread"
-		style="background-image: url('${root}/resources/images/products/bg_1.jpg');">
+		style="background-image: url('${root}/resources/images/bg_1.jpg');">
 		<div class="container">
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<h1 class="text-center">Danh sách thức ăn</h1>
+					<h1 class="text-center" style="color: whitesmoke;">Danh sách thức ăn</h1>
 				</div>
 			</div>
 		</div>
@@ -474,37 +474,38 @@
 	<script>
 		$(document).ready(function() {
 
-			var quantitiy = 0;
-			$('.quantity-right-plus').click(function(e) {
+var quantitiy = 0;
+$('.quantity-right-plus').click(function(e) {
 
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
+	// Stop acting like a button
+	e.preventDefault();
+	// Get the field name
+	var quantity = parseInt($('#quantity').val());
 
-				// If is not undefined
+	// If is not undefined
 
-				$('#quantity').val(quantity + 1);
+	$('#quantity').val(quantity + 1);
 
-				// Increment
 
-			});
+	// Increment
 
-			$('.quantity-left-minus').click(function(e) {
-				// Stop acting like a button
-				e.preventDefault();
-				// Get the field name
-				var quantity = parseInt($('#quantity').val());
+});
 
-				// If is not undefined
+$('.quantity-left-minus').click(function(e) {
+	// Stop acting like a button
+	e.preventDefault();
+	// Get the field name
+	var quantity = parseInt($('#quantity').val());
 
-				// Increment
-				if (quantity > 0) {
-					$('#quantity').val(quantity - 1);
-				}
-			});
+	// If is not undefined
 
-		});
+	// Increment
+	if (quantity > 0) {
+		$('#quantity').val(quantity - 1);
+	}
+});
+
+});
 	</script>
 
 

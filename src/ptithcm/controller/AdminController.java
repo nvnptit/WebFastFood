@@ -215,10 +215,11 @@ public class AdminController {
 					model.addAttribute("users",	getUsers());
 				} else {
 					this.factory.getCurrentSession().delete(user);
+		// CHưa trả về thông báo xoá thành công
 					return "redirect:/admin/logout.htm";
 				}
 			}
-		return "redirect:/admin/table.htm";
+		return "redirect:/admin/user.htm";
 	}
 	
 	@RequestMapping(value="delete/product/{id}", method = RequestMethod.GET)
@@ -231,7 +232,7 @@ public class AdminController {
 				this.factory.getCurrentSession().delete(product);
 				model.addAttribute("products",	getProducts());
 			}
-		return "redirect:/admin/table.htm";
+		return "redirect:/admin/product.htm";
 	}
 
 	
