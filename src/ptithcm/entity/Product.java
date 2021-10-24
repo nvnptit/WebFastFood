@@ -1,6 +1,7 @@
 package ptithcm.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -8,7 +9,9 @@ import javax.persistence.Table;
 @Table(name="Products")
 public class Product {
 	@Id
+	@GeneratedValue
 	private String id;
+	
 	private String name;
 	private String type;
 	private int price;

@@ -88,7 +88,7 @@
 		<aside class="menu-sidebar d-none d-lg-block">
 			<div class="logo">
 				<a href="#"> <img
-					src="${root}/resources/images/icon/logo.png"
+					src="${root}/resources/images/logo.png"
 					alt="Cool Admin" />
 				</a>
 			</div>
@@ -96,7 +96,7 @@
 				<nav class="navbar-sidebar">
 				  <ul class="list-unstyled navbar__list">
 					<li>
-					  <a class="js-arrow" href="index.htm">
+					  <a class="js-arrow" href="${root}/admin/index.htm">
 						<i class="fas fa-tachometer-alt"></i>Biểu đồ
 					  </a>
 					</li>
@@ -105,8 +105,8 @@
 						<i class="fas fa-table active"></i>Dữ liệu
 					  </a>
 					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="user.htm">Dữ liệu người dùng</a></li>
-						<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+						<li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
+						<li><a href="${root}/admin/product.htm">Dữ liệu sản phẩm</a></li>
 					  </ul>
 					</li>
 					<li class="has-sub">
@@ -114,8 +114,8 @@
 						<i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
 					  </a>
 					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="form_user.htm">Người dùng</a></li>
-						<li><a href="form_product.htm">Sản phẩm</a></li>
+						<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
+						<li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
 					  </ul>
 					</li>
 				  </ul>

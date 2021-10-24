@@ -279,13 +279,17 @@
               </div>
             </header>
             <!-- END HEADER DESKTOP-->
-
             <!-- MAIN CONTENT-->
             <div class="main-content">
               <div class="section__content section__content--p30">
                 <div class="container-fluid">
                   <div class="row">
                     <div class="col-md-15">
+                    <c:if test="${not empty message}">
+                      <div class="alert alert-danger" role="alert">
+                        <h3>${message}</h3>
+                      </div>
+                    </c:if>
                       <!-- USER DATA-->
                       <div class="user-data m-b-30">
                         <h3 class="title-3 m-b-30">

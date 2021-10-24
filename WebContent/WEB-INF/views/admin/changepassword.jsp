@@ -113,7 +113,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         <div class="logo">
           <a href="#">
             <img
-              src="${root}/resources/images/icon/logo.png"
+              src="${root}/resources/images/logo.png"
               alt="Cool Admin"
             />
           </a>

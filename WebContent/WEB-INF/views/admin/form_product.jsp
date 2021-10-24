@@ -96,7 +96,7 @@
 				<nav class="navbar-sidebar">
 				  <ul class="list-unstyled navbar__list">
 					<li>
-					  <a class="js-arrow" href="index.htm">
+					  <a class="js-arrow" href="${root}/admin/index.htm">
 						<i class="fas fa-tachometer-alt"></i>Biểu đồ
 					  </a>
 					</li>
@@ -105,8 +105,8 @@
 						<i class="fas fa-table active"></i>Dữ liệu
 					  </a>
 					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="user.htm">Dữ liệu người dùng</a></li>
-						<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+						<li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
+						<li><a href="${root}/admin/product.htm">Dữ liệu sản phẩm</a></li>
 					  </ul>
 					</li>
 					<li class="has-sub">
@@ -114,8 +114,8 @@
 						<i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
 					  </a>
 					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="form_user.htm">Người dùng</a></li>
-						<li><a href="form_product.htm">Sản phẩm</a></li>
+						<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
+						<li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
 					  </ul>
 					</li>
 				  </ul>
@@ -333,44 +333,48 @@
 									<div class="card-body card-block">
 										<form:form action="${root}/admin/form_product/insert.htm" method="POST" modelAttribute="product" enctype="multipart/form-data">
 										<div class="form-group">
-												<label class=" form-control-label">Id</label>
-												<form:input path="id" type="text" class="form-control" />
+												<form:input path="id" type="hidden" class="form-control"  value=""/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên sản phẩm</label>
-												<form:input path="name" type="text" placeholder="Tên sản phẩm" class="form-control" />
+												<form:input path="name" type="text" placeholder="Tên sản phẩm" class="form-control" required="required"/>
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Thể loại</label>
-												<form:input path="type" type="text" placeholder="Loại sản phẩm"
-													class="form-control" />
-											</div>
+												<label class="form-control-label">Loại sản phẩm</label>
+												<form:select
+												  path="type"
+												  type="text"
+												  class="form-control"
+												  items="${typeProducts}"
+												  required="required"
+												/>
+											  </div>
 											<div class="form-group">
 												<label class=" form-control-label">Giá trị</label>
-												<form:input path="price" type="text"
-													placeholder="Giá trị" class="form-control" />
+												<form:input path="price" type="number"
+													placeholder="Giá trị" class="form-control" required="required" min="0"/>
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder=" % Giảm giá" class="form-control" />
+													placeholder=" % Giảm giá" class="form-control" min="0"/>
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">Số lượng</label>
-												<form:input path="quantity" type="text"
-													placeholder="Số lượng" class="form-control" />
+												<form:input path="quantity" type="number"
+													placeholder="Số lượng" class="form-control" min="0" required="required"/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Thông tin</label>
 												<form:textarea path="description" rows="5" cols="20" placeholder="Thông tin"
-													class="form-control" />
+													class="form-control" required="required" />
 											</div>
 											
 											<div class="form-group">
 												<label class=" form-control-label">HÌnh ảnh</label>
-												<input name="file" type="file" class="form-control" />
+												<input name="file" type="file" class="form-control"  required="required"/>
 											</div>
 											
 											
@@ -379,7 +383,7 @@
 													<i class="fa fa-dot-circle-o"></i> Thêm
 												</button>
 												<button type="button" class="btn btn-danger btn-sm"
-													onclick="location.href='${root}/admin/table.htm'">
+													onclick="location.href='${root}/admin/product.htm'">
 													<i class="fa fa-dot-circle-o"></i> Quay trở lại
 												</button>
 											</div>

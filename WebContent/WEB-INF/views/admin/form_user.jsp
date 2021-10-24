@@ -122,7 +122,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
               <li>
-                <a class="js-arrow" href="index.htm">
+                <a class="js-arrow" href="${root}/admin/index.htm">
                   <i class="fas fa-tachometer-alt"></i>Biểu đồ
                 </a>
               </li>
@@ -131,8 +131,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                   <i class="fas fa-table active"></i>Dữ liệu
                 </a>
                 <ul class="list-unstyled navbar__sub-list js-sub-list">
-                  <li><a href="user.htm">Dữ liệu người dùng</a></li>
-                  <li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+                  <li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
+                  <li><a href="${root}/admin/product.htm">Dữ liệu sản phẩm</a></li>
                 </ul>
               </li>
               <li class="has-sub">
@@ -140,8 +140,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                   <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
                 </a>
                 <ul class="list-unstyled navbar__sub-list js-sub-list">
-                  <li><a href="form_user.htm">Người dùng</a></li>
-                  <li><a href="form_product.htm">Sản phẩm</a></li>
+                  <li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
+                  <li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
                 </ul>
               </li>
             </ul>
@@ -389,6 +389,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                             type="text"
                             placeholder="Tên đăng nhập"
                             class="form-control"
+                            required="required"
                           />
                         </div>
 
@@ -397,6 +398,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                           type="hidden"
                           placeholder="Mật khẩu"
                           class="form-control"
+                          required="required"
                         />
 
                         <div class="form-group">
@@ -406,6 +408,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                             type="text"
                             placeholder="Họ và tên"
                             class="form-control"
+                            required="required"
                           />
                         </div>
                         <div class="form-group">
@@ -415,6 +418,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                             type="email"
                             placeholder=" Email"
                             class="form-control"
+                            required="required"
                           />
                         </div>
                         <div class="form-group">
@@ -426,6 +430,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                             type="number"
                             placeholder="Số điện thoại"
                             class="form-control"
+                            required="required"
                           />
                         </div>
                         <div class="form-group">
@@ -434,6 +439,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                             path="role"
                             class="form-control"
                             items="${roles}"
+                            required="required"
                           />
                         </div>
                       </div>
@@ -455,7 +461,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                         <button
                           type="button"
                           class="btn btn-danger btn-sm"
-                          onclick="location.href='${root}/admin/table.htm'"
+                          onclick="location.href='${root}/admin/user.htm'"
                         >
                           <i class="fa fa-dot-circle-o"></i> Quay trở lại
                         </button>

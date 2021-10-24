@@ -215,7 +215,6 @@ public class AdminController {
 					model.addAttribute("users",	getUsers());
 				} else {
 					this.factory.getCurrentSession().delete(user);
-		// CHưa trả về thông báo xoá thành công
 					return "redirect:/admin/logout.htm";
 				}
 			}
@@ -259,8 +258,15 @@ public class AdminController {
 	@ModelAttribute("roles")
 	public Map<String,String> getRoles(){
 		Map<String,String> mj = new HashMap<>();
-		mj.put("admin","Admin");
-		mj.put("user","User");
+		mj.put("user","Người dùng");
+		mj.put("admin","Quản trị");
+		return mj;
+	}
+	@ModelAttribute("typeProducts")
+	public Map<String,String> getTypeProducts(){
+		Map<String,String> mj = new HashMap<>();
+		mj.put("Food","Thức ăn");
+		mj.put("Drink","Thức uống");
 		return mj;
 	}
 	
@@ -386,25 +392,27 @@ public class AdminController {
 		}
 		return "admin/form_user";
 	}
-	
+
 	@RequestMapping(value = "form_product/insert", method = RequestMethod.POST)
-	public String insert_product(ModelMap model, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file) {
+	public String insert_product(ModelMap model,
+	 @ModelAttribute("product") Product product, 
+	 @RequestParam("file") MultipartFile file) {
+		
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
-				
 				try {
-					String photoPath = context.getRealPath("./images/" + file.getOriginalFilename());
+					String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\" + file.getOriginalFilename();
 					file.transferTo(new File(photoPath));
 					product.setImg(file.getOriginalFilename());
 					session.save(product);
 					t.commit();
-					model.addAttribute("message", "Cập nhật thành công!");
+					model.addAttribute("message", "Thêm mới thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Cập nhật thất bại!");
+					model.addAttribute("message", "Thêm mới thất bại!");
 				} finally {
 					session.close();
 				}
