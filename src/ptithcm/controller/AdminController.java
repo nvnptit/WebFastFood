@@ -24,10 +24,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -185,9 +187,23 @@ public class AdminController {
 		return "admin/user";
 	}
 
+	/*
+	 * @RequestMapping(value = "product", method = RequestMethod.GET) public String
+	 * table_product(ModelMap model) { model.addAttribute("products",
+	 * getProducts()); return "admin/product"; }
+	 */
+	
 	@RequestMapping(value = "product", method = RequestMethod.GET)
-	public String table_product(ModelMap model) {
-		model.addAttribute("products", getProducts());
+	public String food(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
+		List<Product> products = this.getProducts();
+		@SuppressWarnings("unchecked")
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(20);
+		pagedListHolder.setPageSize(5);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+
 		return "admin/product";
 	}
 	

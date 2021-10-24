@@ -616,8 +616,8 @@ pre code {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
+   flex-wrap: wrap;
+   margin-right: -15px;
     margin-left: -15px;
 }
 
@@ -12083,7 +12083,6 @@ h5,
 .table tbody tr td {
     text-align: center !important;
     vertical-align: middle;
-    padding: 40px 10px;
     border: 1px solid transparent !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
@@ -12108,9 +12107,10 @@ h5,
 }
 
 .table tbody tr td.image-prod .img {
-    display: block;
-    width: 100px;
-    height: 100px;
+     display: block;
+   	max-width:100%;
+	max-height:100%;
+	object-fit: contain;
     margin: 0 auto;
 }
 

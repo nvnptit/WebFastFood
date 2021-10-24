@@ -34,6 +34,7 @@
 
       <!-- Main CSS-->
       <link href="${root}/resources/css/theme.css" rel="stylesheet" media="all" />
+         <link rel="stylesheet" href="${root}/resources/css/style.css">
     </head>
 
     <body class="animsition">
@@ -288,12 +289,16 @@
                     <div class="col-md-15">
                       <!-- USER DATA-->
                       <div class="user-data m-b-30">
+                     
                         <h3 class="title-3 m-b-30">
                           <i class="zmdi zmdi-account-calendar"></i>
                           Dữ liệu người dùng
                         </h3>
+                     
+										
                         <div class="table table-borderless table-data3">
                           <table class="table">
+                            
                             <thead>
                               <tr>
                                 <th>Tên đăng nhập</th>
@@ -419,16 +424,18 @@
                 });
               }
             </script>
-            <script>
-              $(document).ready(function(){
-                $("#myInput").on("keyup", function() {
-                  var value = $(this).val().toLowerCase();
-                  $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                  });
-                });
-              });
-            </script>
+             <!-- SEARCH -->
+    <script>
+      $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          });
+        });
+      });
+    </script>
+           
     </body>
 
     </html>
