@@ -1,7 +1,5 @@
-<%@ page pageEncoding="utf-8" %>
+<%@ page pageEncoding="utf-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%-- <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
-			<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> --%>
 				<!DOCTYPE html>
 				<html lang="en">
 				<c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -666,9 +664,9 @@
 					<script src="${root}/resources/js/jquery.animateNumber.min.js"></script>
 					<script src="${root}/resources/js/bootstrap-datepicker.js"></script>
 					<script src="${root}/resources/js/scrollax.min.js"></script>
-					<script
-						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-					<script src="${root}/resources/js/google-map.js"></script>
+					<!-- <script
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+					<!-- <!-- <script src="${root}/resources/js/google-map.js"></script> --> -->
 					<script src="${root}/resources/js/main.js"></script>
 
 					<script type="text/javascript">

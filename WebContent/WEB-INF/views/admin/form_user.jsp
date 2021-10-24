@@ -13,7 +13,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     />
 
     <!-- Title Page-->
-    <title>Forms</title>
+    <title>Thêm người dùng mới</title>
 
     <!-- Fontfaces CSS-->
     <link
@@ -86,22 +86,34 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   </head>
 
   <body class="animsition">
-    <%-- <% Cookie[] cks = request.getCookies(); if (cks != null) { for (int i =
-    0; i < cks.length; i++) { String name = cks[i].getName(); String value =
-    cks[i].getValue(); if (name.equals("auth")) { break; // exit the loop and
-    continue the page } if (i == (cks.length - 1)) // if all cookie are not
-    valid redirect to error page {
-    response.sendRedirect("${root}/resources/login.htm"); return; // to stop
-    further execution } i++; } } else {
-    response.sendRedirect("${root}/resources/login.htm"); return; // to stop
-    further execution } %> --%>
+    <%
+		Cookie[] cks = request.getCookies();
+		if (cks != null) {
+			for (int i = 0; i < cks.length; i++) {
+				String name = cks[i].getName();
+				String value = cks[i].getValue();
+				if (name.equals("auth")) {
+					break; // exit the loop and continue the page
+				}
+				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
+				{
+					response.sendRedirect("login.htm");
+					return; // to stop further execution
+				}
+				i++;
+			}
+		} else {
+			response.sendRedirect("login.htm");
+			return; // to stop further execution
+		}
+	%>
     <div class="page-wrapper">
       <!-- MENU SIDEBAR-->
       <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
           <a href="#">
             <img
-              src="${root}/resources/images/icon/logo.png"
+              src="${root}/resources/images/logo.png"
               alt="Cool Admin"
             />
           </a>
@@ -110,22 +122,26 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
           <nav class="navbar-sidebar">
             <ul class="list-unstyled navbar__list">
               <li>
-                <a class="js-arrow" href="${root}/admin/index.htm">
+                <a class="js-arrow" href="index.htm">
                   <i class="fas fa-tachometer-alt"></i>Biểu đồ
                 </a>
               </li>
-              <li>
-                <a href="${root}/admin/table.htm">
-                  <i class="fas fa-table"></i>Dữ liệu
-                </a>
-              </li>
-              <li class="active has-sub">
+              <li class="has-sub">
                 <a class="js-arrow" href="#">
-                  <i class="fas fa-tachometer-alt"></i>Chức năng
+                  <i class="fas fa-table active"></i>Dữ liệu
                 </a>
                 <ul class="list-unstyled navbar__sub-list js-sub-list">
-                  <li class="active"><a href="#">Người dùng</a></li>
-                  <li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
+                  <li><a href="user.htm">Dữ liệu người dùng</a></li>
+                  <li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+                </ul>
+              </li>
+              <li class="has-sub">
+                <a class="js-arrow" href="#">
+                  <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
+                </a>
+                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                  <li><a href="form_user.htm">Thêm mới người dùng</a></li>
+                  <li><a href="form_product.htm">Thêm mới Sản phẩm</a></li>
                 </ul>
               </li>
             </ul>

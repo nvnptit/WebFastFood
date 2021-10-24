@@ -43,7 +43,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="${root}/resources/images/icon/logo_banana.png" alt="CoolAdmin">
+                                <img src="${root}/resources/images/icon/admin.png" alt="CoolAdmin">
                             </a>
                         </div>
                         <c:if test="${not empty message}">
@@ -70,7 +70,7 @@
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng nhập</button>
                             </form>
                             <div class="register-link">
-                                    <a href="#">Copyright (c) 2021 NVN</a>
+                                    <a href="#">Copyright &copy; 2021 NVN</a>
                             </div>
                         </div>
                     </div>

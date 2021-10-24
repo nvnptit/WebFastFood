@@ -64,26 +64,33 @@
           <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
               <a href="#">
-                <img src="${root}/resources/images/icon/logo.png" alt="Cool Admin" />
+                <img src="${root}/resources/images/logo.png" alt="Cool Admin" />
               </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
               <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
-                  <li class="active has-sub">
-                    <a class="js-arrow" href="#">
+                  <li>
+                    <a class="js-arrow" href="index.htm">
                       <i class="fas fa-tachometer-alt"></i>Biểu đồ
                     </a>
                   </li>
-                  <li>
-                    <a href="table.htm"> <i class="fas fa-table"></i>Dữ liệu </a>
+                  <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                      <i class="fas fa-table active"></i>Dữ liệu
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                      <li><a href="user.htm">Dữ liệu người dùng</a></li>
+                      <li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+                    </ul>
                   </li>
                   <li class="has-sub">
                     <a class="js-arrow" href="#">
-                      <i class="fas fa-tachometer-alt"></i>Chức năng</a>
+                      <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
+                    </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
-                      <li><a href="form_user.htm">Người dùng</a></li>
-                      <li><a href="form_product.htm">Sản phẩm</a></li>
+                      <li><a href="form_user.htm">Thêm mới người dùng</a></li>
+                      <li><a href="form_product.htm">Thêm mới Sản phẩm</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -99,13 +106,13 @@
               <div class="section__content section__content--p30">
                 <div class="container-fluid">
                   <div class="header-wrap">
-                    <form class="form-header" action="" method="POST">
+                    <div class="form-header">
                       <input class="au-input au-input--xl" type="text" name="search"
                         placeholder="Tìm kiếm dữ liệu và báo cáo" />
                       <button class="au-btn--submit" type="submit">
                         <i class="zmdi zmdi-search"></i>
                       </button>
-                    </form>
+                    </div>
                     <div class="header-button">
                       <div class="noti-wrap">
                         <div class="noti__item js-item-menu">

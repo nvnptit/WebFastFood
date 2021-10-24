@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Title Page-->
-<title>Forms</title>
+<title>Thêm sản phẩm mới</title>
 
 <!-- Fontfaces CSS-->
 <link href="${root}/resources/css/font-face.css"
@@ -62,7 +62,7 @@
 </head>
 
 <body class="animsition">
-	<%-- <%
+	<%
 		Cookie[] cks = request.getCookies();
 		if (cks != null) {
 			for (int i = 0; i < cks.length; i++) {
@@ -73,43 +73,54 @@
 				}
 				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
 				{
-					response.sendRedirect("${root}/resources/login.htm");
+					response.sendRedirect("login.htm");
 					return; // to stop further execution
 				}
 				i++;
 			}
 		} else {
-			response.sendRedirect("${root}/resources/login.htm");
+			response.sendRedirect("login.htm");
 			return; // to stop further execution
 		}
-	%> --%>
+	%>
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar d-none d-lg-block">
 			<div class="logo">
 				<a href="#"> <img
-					src="${root}/resources/images/icon/logo.png"
+					src="${root}/resources/images/logo.png"
 					alt="Cool Admin" />
 				</a>
 			</div>
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar">
-					<ul class="list-unstyled navbar__list">
-						<li><a class="js-arrow" href="${root}/admin/index.htm">
-								<i class="fas fa-tachometer-alt"></i>Biểu đồ
-						</a></li>
-						<li><a href="${root}/admin/table.htm"> <i class="fas fa-table"></i>Dữ liệu
-						</a></li>
-						<li class="active has-sub"><a class="js-arrow" href="#">
-								<i class="fas fa-tachometer-alt"></i>Chức năng
-						</a>
-							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
-								<li class="active"><a href="#">Sản phẩm</a></li>
-							</ul></li>
-					</ul>
+				  <ul class="list-unstyled navbar__list">
+					<li>
+					  <a class="js-arrow" href="index.htm">
+						<i class="fas fa-tachometer-alt"></i>Biểu đồ
+					  </a>
+					</li>
+					<li class="has-sub">
+					  <a class="js-arrow" href="#">
+						<i class="fas fa-table active"></i>Dữ liệu
+					  </a>
+					  <ul class="list-unstyled navbar__sub-list js-sub-list">
+						<li><a href="user.htm">Dữ liệu người dùng</a></li>
+						<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
+					  </ul>
+					</li>
+					<li class="has-sub">
+					  <a class="js-arrow" href="#">
+						<i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
+					  </a>
+					  <ul class="list-unstyled navbar__sub-list js-sub-list">
+						<li><a href="form_user.htm">Thêm mới người dùng</a></li>
+						<li><a href="form_product.htm">Thêm mới Sản phẩm</a></li>
+					  </ul>
+					</li>
+				  </ul>
 				</nav>
-			</div>
+			  </div>
 		</aside>
 		<!-- END MENU SIDEBAR-->
 

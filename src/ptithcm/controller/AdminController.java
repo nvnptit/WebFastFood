@@ -170,7 +170,7 @@ public class AdminController {
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
-				model.addAttribute("message", "Nhập sai mật khẩu!");
+				model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
 			}
 		} else {
 				model.addAttribute("message", "Bạn không có quyền truy cập vào quản trị");
@@ -178,14 +178,17 @@ public class AdminController {
 		return "admin/login";
 	}
 	
-	@RequestMapping(value = "table", method = RequestMethod.GET)
-	public String table_admin(ModelMap model) {
-		Session session = factory.getCurrentSession();
-		String hql = "FROM User";
-		Query query = session.createQuery(hql);
-		List<User> list = query.list();
-		model.addAttribute("users", list);
-		return "admin/table";
+
+	@RequestMapping(value = "user", method = RequestMethod.GET)
+	public String table_user(ModelMap model) {
+		model.addAttribute("users", getUsers());
+		return "admin/user";
+	}
+
+	@RequestMapping(value = "product", method = RequestMethod.GET)
+	public String table_product(ModelMap model) {
+		model.addAttribute("products", getProducts());
+		return "admin/product";
 	}
 	
 	@RequestMapping(value="delete/user/{username}", method = RequestMethod.GET)
@@ -221,8 +224,10 @@ public class AdminController {
 		return "redirect:/admin/table.htm";
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	@ModelAttribute("users")
-	public List<User> getStaffs() {
+	public List<User> getUsers() {
 		Session session = factory.getCurrentSession();
 		String hql = "FROM User";
 		Query query = session.createQuery(hql);
@@ -230,7 +235,7 @@ public class AdminController {
 		return list;
 	}
 
-	
+	@SuppressWarnings("unchecked")
 	@ModelAttribute("products")
 	public List<Product> getProducts() {
 		Session session = factory.getCurrentSession();
@@ -246,15 +251,6 @@ public class AdminController {
 		mj.put("admin","Admin");
 		mj.put("user","User");
 		return mj;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<User> getUsers() {
-		Session session = factory.getCurrentSession();
-		String hql = "FROM User";
-		Query query = session.createQuery(hql);
-		List<User> list = query.list();
-		return list;
 	}
 	
 	@RequestMapping(value="changepassword", method = RequestMethod.GET)
@@ -273,7 +269,7 @@ public class AdminController {
 		User user = (User) httpSession.getAttribute("user");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
-			model.addAttribute("message", "Mật khẩu không đúng!");
+			model.addAttribute("message", "Mật khẩu cũ không đúng!");
 		} else {
 			if (!newpass.equals(confirmpass)) {
 				model.addAttribute("message", "Mật khẩu xác nhận không trùng với mật khẩu mới!");
@@ -344,13 +340,6 @@ public class AdminController {
 		}
 		return "admin/form_user";
 	}
-	@RequestMapping(value="form_user/insert" , method = RequestMethod.GET)
-	public String insert_user(ModelMap model) {
-		User user = new User();
-		user.setPassword("123456");
-		model.addAttribute("user", user);
-		return "admin/form_user";
-	}
 	
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
 	public String insert_admin(ModelMap model, @ModelAttribute("user") User user) {
@@ -385,12 +374,6 @@ public class AdminController {
 			session.close();
 		}
 		return "admin/form_user";
-	}
-	
-	@RequestMapping(value="form_product/insert" , method = RequestMethod.GET)
-	public String insert_product(ModelMap model) {
-		model.addAttribute("product", new Product());
-		return "admin/product";
 	}
 	
 	@RequestMapping(value = "form_product/insert", method = RequestMethod.POST)

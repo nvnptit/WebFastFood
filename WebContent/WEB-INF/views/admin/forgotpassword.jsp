@@ -67,8 +67,8 @@
 					<div class="login-content">
 						<div class="login-logo">
 							<a href="#"> <img
-								src="${root}/resources/images/icon/logo_banana.png"
-								alt="Banana">
+								src="${root}/resources/images/icon/admin.png"
+								alt="Admin">
 							</a>
 						</div>
 						<div class="login-form">
