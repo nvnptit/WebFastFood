@@ -24,10 +24,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,9 +59,9 @@ public class AdminController {
 	
 	@RequestMapping(value="logout")
 	public String logout_user(HttpServletResponse response, HttpServletRequest resquest) throws IOException {
-		Cookie ck=new Cookie("auth",null);  
+		Cookie ck=new Cookie("authadmin",null);  
         ck.setMaxAge(0);
-		resquest.getSession().removeAttribute("user");
+		resquest.getSession().removeAttribute("user1");
         response.addCookie(ck); 
         response.sendRedirect("/WebFastFood/admin/login.htm");
        return "admin/login";
@@ -140,7 +142,7 @@ public class AdminController {
 		
 		password = md5(password);
 		String value = md5(username);
-		Cookie ck=new Cookie("auth", value);
+		Cookie ck=new Cookie("authadmin", value);
 		ck.setMaxAge(600);
 	
 		HttpSession session = request.getSession();
@@ -166,7 +168,8 @@ public class AdminController {
 			if (password.equals(currentUser.getPassword().trim())) {
 				model.addAttribute("message", "OK");
 				model.addAttribute("username", username);
-				session.setAttribute("user", currentUser);
+				session.setAttribute("user1", currentUser);
+				session.setAttribute("role", currentUser.getRole());
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
@@ -186,8 +189,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "product", method = RequestMethod.GET)
-	public String table_product(ModelMap model) {
-		model.addAttribute("products", getProducts());
+	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
+		List<Product> products = this.getProducts();
+		@SuppressWarnings("unchecked")
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(50);
+		pagedListHolder.setPageSize(5);
+		model.addAttribute("pagedListHolder", pagedListHolder);
 		return "admin/product";
 	}
 	

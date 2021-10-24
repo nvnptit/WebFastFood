@@ -244,6 +244,7 @@ public class HomeController {
 				model.addAttribute("user", currentUser);
 				model.addAttribute("message", "Cập nhật mật khẩu thành công!");
 				session.setAttribute("user", currentUser);
+				session.setAttribute("role", currentUser.getRole());
 				Cookie ck=new Cookie("auth", md5(username));
 				
 				ck.setMaxAge(600);

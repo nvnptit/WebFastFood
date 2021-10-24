@@ -68,7 +68,7 @@
 			for (int i = 0; i < cks.length; i++) {
 				String name = cks[i].getName();
 				String value = cks[i].getValue();
-				if (name.equals("auth")) {
+				if (name.equals("authadmin")) {
 					break; // exit the loop and continue the page
 				}
 				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
@@ -268,7 +268,7 @@
 										
 										<div class="content">
 											<a class="js-acc-btn" href="#">
-												${sessionScope['user'].fullname} </a>
+												${sessionScope['user1'].fullname} </a>
 										</div>
 										<div class="account-dropdown js-dropdown">
 											<div class="info clearfix">
@@ -282,7 +282,7 @@
 													<h5 class="name">
 														<a href="#">${username}</a>
 													</h5>
-													<span class="email">${sessionScope['user'].email}</span>
+													<span class="email">${sessionScope['user1'].email}</span>
 												</div>
 											</div>
 											<div class="account-dropdown__body">

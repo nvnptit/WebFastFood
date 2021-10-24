@@ -1,63 +1,85 @@
-<%@ page pageEncoding="utf-8" %>
-  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html lang="en">
-    <c:set var="root" value="${pageContext.servletContext.contextPath}" />
+<%@ page pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
+<!DOCTYPE html>
+<html lang="en">
+<c:set var="root" value="${pageContext.servletContext.contextPath}" />
 
-    <head>
-      <!-- Required meta tags-->
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<head>
+<!-- Required meta tags-->
+<meta charset="UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-      <!-- Title Page-->
-      <title>Dữ liệu sản phẩm</title>
+<!-- Title Page-->
+<title>Dữ liệu sản phẩm</title>
 
-      <!-- Fontfaces CSS-->
-      <link href="${root}/resources/css/font-face.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet"
-        media="all" />
+<!-- Fontfaces CSS-->
+<link href="${root}/resources/css/font-face.css" rel="stylesheet"
+	media="all" />
+<link
+	href="${root}/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"
+	rel="stylesheet" media="all" />
+<link
+	href="${root}/resources/vendor/font-awesome-5/css/fontawesome-all.min.css"
+	rel="stylesheet" media="all" />
+<link
+	href="${root}/resources/vendor/mdi-font/css/material-design-iconic-font.min.css"
+	rel="stylesheet" media="all" />
 
-      <!-- Bootstrap CSS-->
-      <link href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all" />
+<!-- Bootstrap CSS-->
+<link href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
+	rel="stylesheet" media="all" />
 
-      <!-- Vendor CSS-->
-      <link href="${root}/resources/vendor/animsition/animsition.min.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet"
-        media="all" />
-      <link href="${root}/resources/vendor/wow/animate.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/slick/slick.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/select2/select2.min.css" rel="stylesheet" media="all" />
-      <link href="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all" />
+<!-- Vendor CSS-->
+<link href="${root}/resources/vendor/animsition/animsition.min.css"
+	rel="stylesheet" media="all" />
+<link
+	href="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
+	rel="stylesheet" media="all" />
+<link href="${root}/resources/vendor/wow/animate.css" rel="stylesheet"
+	media="all" />
+<link href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
+	rel="stylesheet" media="all" />
+<link href="${root}/resources/vendor/slick/slick.css" rel="stylesheet"
+	media="all" />
+<link href="${root}/resources/vendor/select2/select2.min.css"
+	rel="stylesheet" media="all" />
+<link
+	href="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css"
+	rel="stylesheet" media="all" />
 
-      <!-- Main CSS-->
-      <link href="${root}/resources/css/theme.css" rel="stylesheet" media="all" />
-    </head>
+<!-- Main CSS-->
+<link href="${root}/resources/css/theme.css" rel="stylesheet"
+	media="all" />
+<link rel="stylesheet" href="${root}/resources/css/style.css">
+</head>
 
-    <body class="animsition">
-      <%
-      Cookie[] cks = request.getCookies();
-      if (cks != null) {
-        for (int i = 0; i < cks.length; i++) {
-          String name = cks[i].getName();
-          String value = cks[i].getValue();
-          if (name.equals("auth")) {
-            break; // exit the loop and continue the page
-          }
-          if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-          {
-            response.sendRedirect("login.htm");
-            return; // to stop further execution
-          }
-          i++;
-        }
-      } else {
-        response.sendRedirect("login.htm");
-        return; // to stop further execution
-      }
-    %>
+<body class="animsition">
+	<%
+	Cookie[] cks = request.getCookies();
+	if (cks != null) {
+		for (int i = 0; i < cks.length; i++) {
+			String name = cks[i].getName();
+			String value = cks[i].getValue();
+			if (name.equals("authadmin")) {
+		break; // exit the loop and continue the page
+			}
+			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
+			{
+		response.sendRedirect("login.htm");
+		return; // to stop further execution
+			}
+			i++;
+		}
+	} else {
+		response.sendRedirect("login.htm");
+		return; // to stop further execution
+	}
+	%>
         <div class="page-wrapper">
           <!-- MENU SIDEBAR-->
           <aside class="menu-sidebar d-none d-lg-block">
@@ -231,7 +253,7 @@
                             <img src="${root}/resources/images/icon/avt.png" alt="John Doe" />
                           </div>
                           <div class="content">
-                            <a class="js-acc-btn" href="#">${sessionScope['user'].fullname}</a>
+                            <a class="js-acc-btn" href="#">${sessionScope['user1'].fullname}</a>
                           </div>
                           <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -242,9 +264,9 @@
                               </div>
                               <div class="content">
                                 <h5 class="name">
-                                  <a href="#">${sessionScope['user'].username}</a>
+                                  <a href="#">${sessionScope['user1'].username}</a>
                                 </h5>
-                                <span class="email">${sessionScope['user'].email}</span>
+                                <span class="email">${sessionScope['user1'].email}</span>
                               </div>
                             </div>
                             <div class="account-dropdown__body">
@@ -279,6 +301,15 @@
               </div>
             </header>
             <!-- END HEADER DESKTOP-->
+            
+            <!-- Phân trang -->
+            <div class="bg-light p-5 rounded">
+              <jsp:useBean id="pagedListHolder" scope="request"
+                type="org.springframework.beans.support.PagedListHolder" />
+              <c:url value="product.htm" var="pagedLink">
+                <c:param name="p" value="~" />
+              </c:url>
+            </div>
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -289,9 +320,10 @@
                       <div class="col-md-12">
                         <!-- DATA TABLE-->
                         <h3 class="title-3 m-b-30">
+                          
                           <i class="zmdi zmdi-account-calendar"></i>Dữ liệu sản phẩm
                         </h3>
-                        <div class="table-responsive m-b-40">
+                        <div class="table-responsive m-b-15">
                           <table class="table table-borderless table-data3">
                             <thead>
                               <tr>
@@ -308,17 +340,16 @@
                               </tr>
                             </thead>
                             <tbody id="myTable">
-                              <c:forEach var="p" items="${products}">
+                               <c:forEach var="p" items="${pagedListHolder.pageList}">
                                 <tr>
                                   <td>${p.name}</td>
                                   <td>${p.type}</td>
                                   <td>${p.quantity}</td>
                                   <td>${p.price}</td>
                                   <td>${p.description}</td>
-                                  <td class="image-prod" >
-                                    <div class="img"
-                                      style="background-image:url(../resources/images/products/${p.img})">
-                                    </div>
+                                  <td>
+                                    <img
+                                      src="../resources/images/products/${p.img}"  border="3" height="150" width="150">
                                   </td>
                                   <td>
                                     <div>
@@ -336,9 +367,16 @@
                                     </div>
                                   </td>
                                 </tr>
-                              </c:forEach>
+                            </c:forEach>
+                            
                             </tbody>
                           </table>
+                          <!-- Phân trang -->
+                          <div>
+                            <tg:paging pagedListHolder="${pagedListHolder}"
+                              pagedLink="${pagedLink}" />
+                          </div>
+
                           <div class="user-data__footer">
                             <button onclick="location.href='${root}/admin/form_product.htm'"
                               class="au-btn au-btn-load">Thêm mới sản phẩm

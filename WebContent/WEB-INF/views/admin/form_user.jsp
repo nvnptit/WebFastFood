@@ -92,7 +92,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 			for (int i = 0; i < cks.length; i++) {
 				String name = cks[i].getName();
 				String value = cks[i].getValue();
-				if (name.equals("auth")) {
+				if (name.equals("authadmin")) {
 					break; // exit the loop and continue the page
 				}
 				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
@@ -307,7 +307,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
                       <div class="content">
                         <a class="js-acc-btn" href="#">
-                          ${sessionScope['user'].fullname}
+                          ${sessionScope['user1'].fullname}
                         </a>
                       </div>
                       <div class="account-dropdown js-dropdown">
@@ -325,7 +325,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                               <a href="#">${username}</a>
                             </h5>
                             <span class="email"
-                              >${sessionScope['user'].email}</span
+                              >${sessionScope['user1'].email}</span
                             >
                           </div>
                         </div>
