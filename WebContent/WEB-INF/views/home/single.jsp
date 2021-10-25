@@ -160,18 +160,29 @@
 																name="password_lg" required>
 															<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
 														</div>
-														<div class="custom-control custom-checkbox">
-															<label> <a href="${root}/home/forgot.htm">Forgotten
-																	Password?</a>
-															</label>
-														</div>
-														<div class="form-group py-4">
-															<button class="btn btn-outline-secondary btn-lg"
-																data-dismiss="modal" aria-hidden="true">Huỷ</button>
-															<button type="submit"
-																class="btn btn-success btn-lg float-right"
-																id="btnLogin">Đăng nhập</button>
-														</div>
+														<<!-- Captcha -->
+															<div class="form-group">
+																<img src="${root}/captcha/">
+																<input class="form-control form-control-lg"
+																	name="captcha" type="text" id="captcha" required />
+																<div class="invalid-feedback">Vui lòng nhập captcha!
+																</div>
+																<label class="mb-1">
+																	<h6 class="mb-0 text-sm">${recaptcha}</h6>
+																</label>
+															</div>
+															<div class="custom-control custom-checkbox">
+																<label> <a href="${root}/home/forgot.htm">Quên mật
+																		khẩu?</a>
+																</label>
+															</div>
+															<div class="form-group py-4">
+																<button class="btn btn-outline-secondary btn-lg"
+																	data-dismiss="modal" aria-hidden="true">Huỷ</button>
+																<button type="submit"
+																	class="btn btn-success btn-lg float-right"
+																	id="btnLogin">Đăng nhập</button>
+															</div>
 													</form>
 												</div>
 											</div>
@@ -211,9 +222,9 @@
 															</div>
 														</div>
 														<div class="form-group">
-															<label for="uname1">Số điện thoại</label> <input type="number"
-																class="form-control form-control-lg" name="phone"
-																id="phone" required="">
+															<label for="uname1">Số điện thoại</label> <input
+																type="number" class="form-control form-control-lg"
+																name="phone" id="phone" required="">
 															<div class="invalid-feedback">Oops, you missed this one.
 															</div>
 														</div>
@@ -226,8 +237,9 @@
 														<div class="form-group">
 															<label>Nhập lại mật khẩu</label>
 															<input type="password" id="confirmPassword"
-																class="form-control form-control-lg" name="confirmPassword"
-																required="" autocomplete="new-password" oninput="check(this)" />
+																class="form-control form-control-lg"
+																name="confirmPassword" required=""
+																autocomplete="new-password" oninput="check(this)" />
 															<script language='javascript' type='text/javascript'>
 																function check(input) {
 																	if (input.value != document.getElementById('password').value) {
@@ -238,7 +250,8 @@
 																	}
 																}
 															</script>
-															<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
+															<div class="invalid-feedback">Mật khẩu không trùng khớp!
+															</div>
 														</div>
 														<input type="hidden" class="form-control form-control-lg"
 															name="role" value="user">
@@ -306,7 +319,8 @@
 
 												<div class="w-100"></div>
 												<div class="col-md-12">
-													<p style="color: rgb(90, 56, 243);">Còn lại ${product.quantity} sản phẩm</p>
+													<p style="color: rgb(90, 56, 243);">Còn lại ${product.quantity} sản
+														phẩm</p>
 												</div>
 											</div>
 											<form method="post" action="${root}/home/addCart.htm">
@@ -353,10 +367,13 @@
 											<div class="ftco-footer-widget mb-4">
 												<h2 class="ftco-heading-2">FAST FOOD</h2>
 												<p>Thế giới đồ ăn nhanh</p>
-												<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-													<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a>
+												<ul
+													class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+													<li class="ftco-animate"><a href="#"><span
+																class="icon-twitter"></span></a>
 													</li>
-													<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a>
+													<li class="ftco-animate"><a href="#"><span
+																class="icon-facebook"></span></a>
 													</li>
 													<li class="ftco-animate"><a href="#"><span
 																class="icon-instagram"></span></a></li>
@@ -379,9 +396,12 @@
 												<h2 class="ftco-heading-2">Help</h2>
 												<div class="d-flex">
 													<ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-														<li><a href="#" class="py-2 d-block">Shipping Information</a></li>
-														<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a></li>
-														<li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a></li>
+														<li><a href="#" class="py-2 d-block">Shipping Information</a>
+														</li>
+														<li><a href="#" class="py-2 d-block">Returns &amp; Exchange</a>
+														</li>
+														<li><a href="#" class="py-2 d-block">Terms &amp; Conditions</a>
+														</li>
 														<li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
 													</ul>
 													<ul class="list-unstyled">
@@ -397,7 +417,8 @@
 												<div class="block-23 mb-3">
 													<ul>
 														<li><span class="icon icon-map-marker"></span>
-															<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP Thủ
+															<span class="text">97 Man Thiện, Phường Hiệp Phú, Quận 9, TP
+																Thủ
 																Đức</span>
 														</li>
 														<li><a href="#"><span class="icon icon-phone"></span><span
@@ -496,7 +517,7 @@
 										event.stopPropagation()
 									}
 
-									   form.addClass('was-validated');
+									form.addClass('was-validated');
 								});
 
 								$("#btnSignup").click(function (event) {
@@ -509,7 +530,7 @@
 										event.stopPropagation()
 									}
 
-									   form.addClass('was-validated');
+									form.addClass('was-validated');
 								});
 							</script>
 						</body>

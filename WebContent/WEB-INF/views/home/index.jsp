@@ -137,6 +137,15 @@
 														name="password_lg" required>
 													<div class="invalid-feedback">Vui lòng nhập tên mật khẩu!</div>
 												</div>
+												<!-- Captcha -->
+												<div  class="form-group">
+													<img src="${root}/captcha/">
+													<input class="form-control form-control-lg" name="captcha" type="text" id="captcha" required />
+												<div class="invalid-feedback">Vui lòng nhập captcha!</div>
+													<label class="mb-1">
+														<h6 class="mb-0 text-sm">${recaptcha}</h6>
+													</label>
+												</div>
 												<div class="custom-control custom-checkbox">
 													<label> <a href="forgot.htm">Quên mật khẩu?</a>
 													</label>

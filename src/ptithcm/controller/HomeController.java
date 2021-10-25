@@ -226,6 +226,17 @@ public class HomeController {
 		String hql = "FROM User";
 		Query query = session1.createQuery(hql);
 		List<User> list = query.list();
+
+		// Kiểm tra captcha
+		String captcha = session.getAttribute("captcha_security").toString();
+		String verifyC = request.getParameter("captcha");
+
+		if (!captcha.equals(verifyC)){
+			model.addAttribute("recaptcha","Vui lòng nhập đúng captcha");
+			model.addAttribute("message", "Vui lòng nhập đúng captcha");
+			return "home/login";
+		}
+
 		boolean check = false;
 		User currentUser = null;
 		for (int i = 0; i < list.size(); i++) {

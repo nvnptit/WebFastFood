@@ -139,7 +139,7 @@ public class AdminController {
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
+
 		password = md5(password);
 		String value = md5(username);
 		Cookie ck=new Cookie("authadmin", value);
@@ -151,6 +151,15 @@ public class AdminController {
 		Query query = session1.createQuery(hql).setParameter("admin", "admin");
 		List<User> list = query.list();
 		
+		// Kiểm tra captcha
+		String captcha = session.getAttribute("captcha_security").toString();
+		String verifyC = request.getParameter("captcha");
+
+		if (!captcha.equals(verifyC)){
+			model.addAttribute("recaptcha","Vui lòng nhập đúng captcha");
+			return "admin/login";
+		}
+
 		boolean check = false;
 		User currentUser = null;
 		
