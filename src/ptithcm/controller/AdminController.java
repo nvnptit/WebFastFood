@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -37,8 +38,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import ptithcm.entity.Product;
 import ptithcm.entity.User;
+import ptithcm.entity.Product;
+import ptithcm.entity.Order;
 
 @Transactional
 @Controller
@@ -131,9 +133,22 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index_amdin() {
+	public String index_amdin(ModelMap model) {
+		List<Order> list = this.getOrders();
+		int sUsers = this.getUsers().size();
+		int sProducts = this.getProducts().size();
+		int sOrders = this.getOrders().size();
+		model.addAttribute("sUsers", sUsers);
+		model.addAttribute("sProducts", sProducts);
+		model.addAttribute("sOrders", sOrders);
+		double money= 0.0;
+		for (Order o : list) {
+			money+=o.getTotal();
+		}
+		model.addAttribute("money", money);
 		return "admin/index";
 	}
+	
 	@RequestMapping(value = "index", method = RequestMethod.POST)
 	public String login_admin(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws IOException {
 		
@@ -149,6 +164,7 @@ public class AdminController {
 		Session session1 = factory.getCurrentSession();
 		String hql = "FROM User WHERE role = :admin ";
 		Query query = session1.createQuery(hql).setParameter("admin", "admin");
+		@SuppressWarnings("unchecked")
 		List<User> list = query.list();
 		
 		// Kiểm tra captcha
@@ -197,6 +213,7 @@ public class AdminController {
 		return "admin/user";
 	}
 
+	
 	@RequestMapping(value = "product", method = RequestMethod.GET)
 	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
 		List<Product> products = this.getProducts();
@@ -263,7 +280,17 @@ public class AdminController {
 		List<Product> list = query.list();
 		return list;
 	}
+	@SuppressWarnings("unchecked")
 	
+	@ModelAttribute("orders")
+	public List<Order> getOrders() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Order";
+		Query query = session.createQuery(hql);
+		List<Order> list = query.list();
+		return list;
+	}
+
 	@ModelAttribute("roles")
 	public Map<String,String> getRoles(){
 		Map<String,String> mj = new HashMap<>();

@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ptithcm.entity.Orders;
+import ptithcm.entity.Order;
 import ptithcm.entity.Product;
 import ptithcm.entity.User;
 
@@ -382,7 +382,7 @@ public class HomeController {
 			body += "\nTHÔNG TIN HOÁ ĐƠN\n";
 			for (int i =0; i < name.length;i++) {
 				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: " + quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i] + "VNĐ. \n";
-				Orders order = new Orders();
+				Order order = new Order();
 				order.setUsernameid(currentUser);
 				order.setId_product(id[i]);
 				order.setAmount(Integer.valueOf(quantity[i]));

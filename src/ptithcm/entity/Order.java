@@ -15,8 +15,8 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="Records")
-public class Orders {
+@Table(name="Orders")
+public class Order {
 	
 	@Id
 	@GeneratedValue
@@ -37,11 +37,11 @@ public class Orders {
 	private int discount;
 	@Column(name = "total")
 	private int total;
-	public Orders() {
+	public Order() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Orders(int id, User usernameid, String id_product, Date date, int amount, int discount, int total) {
+	public Order(int id, User usernameid, String id_product, Date date, int amount, int discount, int total) {
 		super();
 		this.id = id;
 		this.usernameid = usernameid;
@@ -94,7 +94,5 @@ public class Orders {
 		this.total = total;
 	}
 	
-	
-
 	
 }

@@ -20,7 +20,7 @@ public class User {
 	private String email;
 	private String phone;
 	@OneToMany(mappedBy = "usernameid", fetch = FetchType.EAGER)
-	private Collection<Orders> orders;
+	private Collection<Order> orders;
 	
 	
 	public User() {
