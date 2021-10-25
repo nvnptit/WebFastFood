@@ -48,24 +48,34 @@ public class HomeController {
 	
 	/* Login-SignUp-Forgot-Logout */
 	//Login
+	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login_user() {
 		return "/home/login";
 	}
+	@RequestMapping(value = "signup", method = RequestMethod.GET)
+	public String signup_user() {
+		return "/home/signup";
+	}
+
 	//Signup
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login_post(HttpServletRequest request, ModelMap model) {
-		String username = request.getParameter("username");
-		String fullname = request.getParameter("fullname");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
-		String password = request.getParameter("password");
-		String confirmPassword = request.getParameter("confirmPassword");
+	@RequestMapping(value = "signup", method = RequestMethod.POST)
+	public String signup_post(HttpServletRequest request, ModelMap model) {
+		String username = request.getParameter("username").trim();
+		String fullname = request.getParameter("fullname").trim();
+		String email = request.getParameter("email").trim();
+		String phone = request.getParameter("phone").trim();
+		String password = request.getParameter("password").trim();
+		String confirmPassword = request.getParameter("confirmPassword").trim();
 		String role = request.getParameter("role");
-		
+
+		if(!phone.matches("\\d{10}")) {
+			model.addAttribute("message", "Số điện thoại phải gồm 10 số");
+			return "home/signup";
+		}
 		if(!password.equals(confirmPassword)) {
 			model.addAttribute("message", "Mật khẩu không trùng khớp!");
-			return "home/login";
+			return "home/signup";
 		} else {
 			Session session1 = factory.getCurrentSession();
 			String hql = "FROM User WHERE username = :username";
@@ -75,25 +85,27 @@ public class HomeController {
 			
 			if (list.size() > 0 ) {
 				model.addAttribute("message", "Username đã tồn tại, mời bạn đăng kí tài khoản khác!");
-				return "home/login";
+				return "home/signup";
 			} else {
 				Session session = factory.openSession();
 				Transaction t = session.beginTransaction();
 				try {
-					
 					User user = new User(username,md5(password),role,fullname,email,phone);
 					session.save(user);
 					t.commit();
+					model.addAttribute("message","Đăng ký thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Đăng Kí Thất Bại!");
+					model.addAttribute("message", "Đăng Ký Thất Bại!");
 				} finally {
 					session.close();
 				}
-				return "home/login";
+				return "home/signup";
 			}			
 		}
 	}
+
+
 	// Forgot
 	@RequestMapping(value="forgot", method = RequestMethod.GET)
 	public String forgot_user() {
@@ -211,12 +223,11 @@ public class HomeController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index", method = RequestMethod.POST)
 	public String index_login(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String username = request.getParameter("username_lg");
+		String username = request.getParameter("username_lg").trim();
 		if (username==null){
 			model.addAttribute("message", "Bạn phải đăng nhập vào trước!!!");
 			return "home/index";
 		}
-		username = username.trim();
 		String password = request.getParameter("password_lg");
 		password = password.trim();
 		password = md5(password).trim();
@@ -232,7 +243,6 @@ public class HomeController {
 		String verifyC = request.getParameter("captcha");
 
 		if (!captcha.equals(verifyC)){
-			model.addAttribute("recaptcha","Vui lòng nhập đúng captcha");
 			model.addAttribute("message", "Vui lòng nhập đúng captcha");
 			return "home/login";
 		}
@@ -245,15 +255,12 @@ public class HomeController {
 			 currentUser = list.get(i);
 			 check = true;
 			 break;
-		 } else {
-			 continue;
-		 }
+		 } 
 		}
 		if (check) {
 			if (password.equals(currentUser.getPassword().trim())) {
 				model.addAttribute("username", username);
 				model.addAttribute("user", currentUser);
-				model.addAttribute("message", "Cập nhật mật khẩu thành công!");
 				session.setAttribute("user", currentUser);
 				session.setAttribute("role", currentUser.getRole());
 				Cookie ck=new Cookie("auth", md5(username));
@@ -262,10 +269,12 @@ public class HomeController {
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
-				model.addAttribute("message", "Sai mật khẩu! Mời đăng nhập lại!");
+				model.addAttribute("message", "Tài khoản hoặc mật khẩu không đúng!");
+				return "home/login";
 			}
 		} else {
-			model.addAttribute("message", "Sai thông tin tài khoản. Mời đăng nhập lại");
+			model.addAttribute("message", "Tài khoản hoặc mật khẩu không đúng!");
+			return "home/login";
 		}	
 		return "/home/index";
 	}
@@ -353,6 +362,10 @@ public class HomeController {
 		Session session1 = factory.openSession();
 		Transaction t = session1.beginTransaction();
 		String[] id = request.getParameterValues("id");
+		if (id == null){
+			model.addAttribute("message","Bạn chưa có sản phẩm nào trong giỏ hàng!");
+			return "home/cart";
+		}
 		String[] name = request.getParameterValues("name");
 		
 		String[] price = request.getParameterValues("price");

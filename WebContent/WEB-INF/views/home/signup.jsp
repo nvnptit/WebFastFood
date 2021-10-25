@@ -11,7 +11,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
             <!-- Title Page-->
-            <title>Đăng nhập</title>
+            <title>Đăng ký</title>
 
             <!-- Fontfaces CSS-->
             <link href="${root}/resources/css/font-face.css" rel="stylesheet" media="all">
@@ -39,20 +39,10 @@
             <link href="${root}/resources/css/theme.css" rel="stylesheet" media="all">
 
         </head>
-       
+
         <body class="animsition">
-            <%
-            Cookie[] cks = request.getCookies();
-            if (cks != null) {
-                    String name = cks[0].getName(); 
-                    if (name.equals("auth")) {
-                        response.sendRedirect("index.htm");
-                        return;
-                    }
-            }
-            %>
                 <div class="page-content--bge5">
-                    <div class="container">
+                    <div style="background-color: lightgray;">
                         <div class="login-wrap">
                             <div class="login-content">
                                 <div class="login-logo">
@@ -67,29 +57,50 @@
                                 </c:if>
 
                                 <div class="login-form">
-                                    <form class="needs-validation" action="index.htm" method="post">
+                                    <form class="needs-validation" action="signup.htm" method="post">
                                         <div class="form-group">
                                             <label>Tên đăng nhập</label>
                                             <input class="au-input au-input--full form-control" type="text"
-                                                name="username_lg" placeholder="Tên đăng nhập" required>
+                                                name="username" placeholder="Tên đăng nhập" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Họ và tên</label>
+                                            <input class="au-input au-input--full form-control" type="text"
+                                                name="fullname" placeholder="Họ và tên" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input class="au-input au-input--full form-control" type="email"
+                                                name="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số điện thoại</label>
+                                            <input class="au-input au-input--full form-control" type="text"
+                                                name="phone" placeholder="Số điện thoại" maxlength="10" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input class="au-input au-input--full form-control" type="password"
-                                                name="password_lg" placeholder="Mật khẩu" required>
+                                            <input class="au-input au-input--full form-control" type="text"
+                                                name="password" placeholder="Mật khẩu" required>
                                         </div>
-                                        <div><img src="${root}/captcha/">
+                                        <div class="form-group">
+                                            <label>Nhập lại mật khẩu</label>
+                                            <input class="au-input au-input--full form-control" type="text"
+                                                name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                                        </div>
+                                        <input type="hidden" class="form-control form-control-lg" name="role"
+                                            value="user">
+                                        <!-- <div><img src="${root}/captcha/">
                                             <input style="width: 200px; height: 40px;    border: 2px solid #231fe7;
                                             border-radius: 7px;" name="captcha" type="text" id="captcha" required />
                                             <label class="mb-1">
                                                 <h6 class="mb-0 text-sm">${recaptcha}</h6>
                                             </label>
-                                        </div><br>
-                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng
-                                            nhập</button>
+                                        </div><br> -->
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng ký</button>
                                         <div class="login-checkbox">
                                             <label>
-                                                <a href="${root}/home/forgot.htm">Quên mật khẩu?</a>
+                                                <a href="${root}/home/login.htm">Bạn đã có tài khoản?</a>
                                             </label>
                                         </div>
                                     </form>
@@ -97,8 +108,8 @@
                                         <a href="#">Copyright &copy; 2021 NVN</a>
                                     </div>
                                 </div>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
             </div>

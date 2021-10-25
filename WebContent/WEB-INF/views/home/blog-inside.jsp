@@ -109,133 +109,13 @@
 						</div>
 					</div>
 				</c:if>
-				<c:if test="${sessionScope['user'] == null}">
-
-					<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3>Đăng nhập</h3>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">X</button>
-								</div>
-								<div class="modal-body">
-									<form class="form needs-validation" role="form" autocomplete="off" id="formLogin"
-										action="${root}/home/index.htm" method="POST">
-										<div class="form-group">
-											<a href="#SignupModal" class="float-right" data-toggle="modal">Bạn là khách
-												hàng mới?</a> <label for="uname1">Tên đăng nhập</label> <input
-												type="text" class="form-control form-control-lg" name="username_lg"
-												id="uname1" required>
-											<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
-										</div>
-										<div class="form-group">
-											<label>Mật khẩu</label> <input type="password"
-												class="form-control form-control-lg" id="pwd1" name="password_lg"
-												required>
-											<div class="invalid-feedback">Vui lòng nhập tên mật khẩu!</div>
-										</div>
-										<!-- Captcha -->
-										<div  class="form-group">
-											<img src="${root}/captcha/">
-											<input class="form-control form-control-lg" name="captcha" type="text" id="captcha" required />
-										<div class="invalid-feedback">Vui lòng nhập captcha!</div>
-											<label class="mb-1">
-												<h6 class="mb-0 text-sm">${recaptcha}</h6>
-											</label>
-										</div>
-										<div class="custom-control custom-checkbox">
-											<label> <a href="${root}/home/forgot.htm">Quên mật khẩu?</a>
-											</label>
-										</div>
-										<div class="form-group py-4">
-											<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-												aria-hidden="true">Huỷ</button>
-											<button type="submit" class="btn btn-success btn-lg float-right"
-												id="btnLogin">Đăng nhập</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="SignupModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3>Đăng ký</h3>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-hidden="true">X</button>
-								</div>
-								<div class="modal-body">
-									<form class="form" role="form" autocomplete="off" id="formSignup"
-										action="${root}/home/login.htm" method="POST">
-										<div class="form-group">
-											<label for="uname1">Tên đăng nhập</label> <input type="text"
-												class="form-control form-control-lg" name="username" id="username"
-												required="">
-											<div class="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
-										</div>
-										<div class="form-group">
-											<label for="uname1">Họ và tên</label> <input type="text"
-												class="form-control form-control-lg" name="fullname" id="fullname"
-												required="">
-											<div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
-										</div>
-										<div class="form-group">
-											<label for="uname1">Email</label> <input type="email"
-												class="form-control form-control-lg" name="email" id="email"
-												required="">
-											<div class="invalid-feedback">Vui lòng nhập email của bạn!</div>
-										</div>
-										<div class="form-group">
-											<label for="uname1">Số điện thoại</label> <input type="number"
-												class="form-control form-control-lg" name="phone" id="phone"
-												required="">
-											<div class="invalid-feedback">Vui lòng nhập số điện thoại của bạn!
-											</div>
-											<div class="form-group">
-												<label>Mật khẩu</label> <input type="password"
-													class="form-control form-control-lg" name="password" required=""
-													autocomplete="new-password">
-												<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
-											</div>
-											<div class="form-group">
-												<label>Nhập lại mật khẩu</label>
-												<input type="password" id="confirmPassword"
-													class="form-control form-control-lg" name="confirmPassword"
-													required="" autocomplete="new-password" oninput="check(this)" />
-												<script language='javascript' type='text/javascript'>
-													function check(input) {
-														if (input.value != document.getElementById('password').value) {
-															input.setCustomValidity('Password Must be Matching.');
-														} else {
-															// input is valid -- reset the error message
-															input.setCustomValidity('');
-														}
-													}
-												</script>
-												<div class="invalid-feedback">Mật khẩu không trùng khớp!</div>
-											</div>
-											<input type="hidden" class="form-control form-control-lg" name="role"
-												value="user">
-											<div class="form-group py-4">
-												<button class="btn btn-outline-secondary btn-lg" data-dismiss="modal"
-													aria-hidden="true">Huỷ</button>
-												<button type="submit" class="btn btn-success btn-lg float-right"
-													id="btnSignup">Đăng ký</button>
-											</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a href="#loginModal" role="button" class="btn btn-primary btn-sm""
-				data-toggle=" modal" style="margin:5px;" ">Đăng nhập</a> 
 				
-			<a href=" #SignupModal" role="button" class="btn btn-primary " data-toggle="modal">Đăng ký</a>
+				<c:if test="${sessionScope['user'] == null}">
+				<!-- Login  & Signup -->
+				<a href="${root}/home/login.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
+					style="margin:5px;" ">Đăng nhập</a> 
+				<a href=" ${root}/home/signup.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
 				</c:if>
-
 			</nav>
 			<!-- END nav -->
 
@@ -520,33 +400,7 @@
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 			<!-- <script src="${root}/resources/js/google-map.js"></script> -->
 			<script src="${root}/resources/js/main.js"></script>
-			<script type="text/javascript">
-				$("#btnLogin").click(function (event) {
-
-					//Fetch form to apply custom Bootstrap validation
-					var form = $("#formLogin")
-
-					if (form[0].checkValidity() === false) {
-						event.preventDefault()
-						event.stopPropagation()
-					}
-
-					form.addClass('was-validated');
-				});
-
-				$("#btnSignup").click(function (event) {
-
-					//Fetch form to apply custom Bootstrap validation
-					var form = $("#formSignup")
-
-					if (form[0].checkValidity() === false) {
-						event.preventDefault()
-						event.stopPropagation()
-					}
-
-					form.addClass('was-validated');
-				});
-			</script>
+		
 		</body>
 
 		</html>

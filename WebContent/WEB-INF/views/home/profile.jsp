@@ -136,7 +136,12 @@
 												</div>
 											</div>
 										</c:if>
-
+										<c:if test="${sessionScope['user'] == null}">
+											<!-- Login  & Signup -->
+											<a href="${root}/home/login.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
+												style="margin:5px;" ">Đăng nhập</a> 
+											<a href=" ${root}/home/signup.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
+											</c:if>
 									</nav>
 									<!-- END nav -->
 
@@ -341,33 +346,7 @@
 										src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
 									<!-- <script src="${root}/resources/js/google-map.js"></script> -->
 									<script src="${root}/resources/js/main.js"></script>
-									<script type="text/javascript">
-										$("#btnLogin").click(function (event) {
-
-											//Fetch form to apply custom Bootstrap validation
-											var form = $("#formLogin")
-
-											if (form[0].checkValidity() === false) {
-												event.preventDefault()
-												event.stopPropagation()
-											}
-
-											form.addClass('was-validated');
-										});
-
-										$("#btnSignup").click(function (event) {
-
-											//Fetch form to apply custom Bootstrap validation
-											var form = $("#formSignup")
-
-											if (form[0].checkValidity() === false) {
-												event.preventDefault()
-												event.stopPropagation()
-											}
-
-											form.addClass('was-validated');
-										});
-									</script>
+									
 								</body>
 
 								</html>
