@@ -214,15 +214,15 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping(value = "changeInfo/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "changeinfo/{username}", method = RequestMethod.GET)
 	public String changeInfo(ModelMap model, @PathVariable("username") String username) {
 		Session session = factory.getCurrentSession();
 		User user = (User) session.get(User.class, username);
 		model.addAttribute("user", user);
-		return "home/changeInfo";
+		return "home/changeinfo";
 	}
 
-	@RequestMapping(value = "changeInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "changeinfo", method = RequestMethod.POST)
 	public String changeInfo(ModelMap model, HttpServletRequest request) {
 		String username = request.getParameter("username");
 		String fullname = request.getParameter("fullname");
@@ -234,7 +234,7 @@ public class HomeController {
 
 		User user = (User) session.get(User.class, username);
 		try {
-			user.setFullname(fullname);
+			user.setFullname(chuanHoa(fullname));
 			user.setEmail(email);
 			user.setPhone(phone);
 			session.update(user);
@@ -251,7 +251,7 @@ public class HomeController {
 			session.close();
 		}
 
-		return "home/changeInfo";
+		return "home/changeinfo";
 	}
 
 	
@@ -416,11 +416,26 @@ public class HomeController {
 		String[] total = request.getParameterValues("total");
 		
 
-		String receiver = request.getParameter("receiver");
-		String address = request.getParameter("address");
-		String sdt = request.getParameter("sdt");
+		String receiver = request.getParameter("receiver").trim();
+		String address = request.getParameter("address").trim();
+		String sdt = request.getParameter("sdt").trim();
 		String total_amount = request.getParameter("total_amount");
-		 
+
+		if (receiver.isEmpty()) {
+			model.addAttribute("message", "Bạn cần nhập tên người nhận!");
+			return "home/cart";
+		}
+		
+		if (address.isEmpty()) {
+			model.addAttribute("message", "Bạn cần địa chỉ nhận hàng!");
+			return "home/cart";
+		}
+		
+		if (!sdt.matches("\\d+") || (sdt.length()<10)) {
+			model.addAttribute("message", "Số điện thoại không hợp lệ gồm 10 số!");
+			return "home/cart";
+		}
+		
 		String from = "codervn77@gmail.com";
 		User user = (User) session.getAttribute("user");
 		String to = user.getEmail();
@@ -585,4 +600,18 @@ public class HomeController {
         } 
         return sb.toString(); 
     }
+	   public String chuanHoa(String s) {
+	        s = s.trim();
+	        s = s.replaceAll("\\s+", " ");
+
+	        String a[] = s.split(" ");
+	        String kq = "";
+	        for (String x : a) {
+	            kq = kq + x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase();
+	            kq += " ";
+	        }
+	        kq = kq.trim();
+	        return kq;
+	    }
+
 }

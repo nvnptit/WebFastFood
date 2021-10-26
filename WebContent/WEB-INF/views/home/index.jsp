@@ -124,7 +124,7 @@
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
 						<a class="dropdown-item"
-							href="changeInfo/${sessionScope['user'].username}.htm">Thay
+							href="changeinfo/${sessionScope['user'].username}.htm">Thay
 							đổi thông tin cá nhân</a>
 						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 					</ul>

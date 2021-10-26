@@ -4435,15 +4435,15 @@ section {
     text-transform: capitalize;
 }
 
-.role.admin {
+.role.ADMIN {
     background: #fa4251;
 }
 
-.role.user {
+.role.USER {
     background: #00b5e9;
 }
 
-.role.member {
+.role.MEMBER {
     background: #57b846;
 }
 

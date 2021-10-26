@@ -294,8 +294,8 @@ public class AdminController {
 	@ModelAttribute("roles")
 	public Map<String, String> getRoles() {
 		Map<String, String> mj = new HashMap<>();
-		mj.put("user", "Người dùng");
-		mj.put("admin", "Quản trị");
+		mj.put("USER", "Người dùng");
+		mj.put("ADMIN", "Quản trị");
 		return mj;
 	}
 
@@ -364,8 +364,7 @@ public class AdminController {
 		Session session = factory.getCurrentSession();
 		User user = (User) session.get(User.class, username);
 		model.addAttribute("user", user);
-		model.addAttribute("users", getUsers());
-		return "admin/form_user";
+		return "admin/user_update";
 	}
 
 	@RequestMapping("product_update/{id}")
@@ -373,31 +372,46 @@ public class AdminController {
 		Session session = factory.getCurrentSession();
 		Product product = (Product) session.get(Product.class, id);
 		model.addAttribute("product", product);
-		model.addAttribute("products", getProducts());
 		return "admin/product_update";
 	}
 
 	@RequestMapping(value = "form_user/update", method = RequestMethod.POST)
-	public String update(ModelMap model, @ModelAttribute("user") User user) {
+	public String update(ModelMap model,HttpServletRequest request)
+			 {
+		String username =request.getParameter("username") ;
+		String fullname =request.getParameter("fullname") ;
+		String email =request.getParameter("email") ;
+		String phone =request.getParameter("phone") ;
+		String role =request.getParameter("role") ;
+		
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
+		User user = (User) session.get(User.class, username);
+		user.setFullname(chuanHoa(fullname));
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setRole(role);
+		
 		try {
 			session.update(user);
 			t.commit();
 			model.addAttribute("message", "Cập nhật thành công!");
+			HttpSession ss= request.getSession();
+			ss.setAttribute("user1", user);
 		} catch (Exception e) {
 			t.rollback();
 			model.addAttribute("message", "Cập nhật thất bại!");
 		} finally {
 			session.close();
 		}
-		return "admin/form_user";
+		return "admin/user_update";
 	}
 
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
 	public String insert_admin(ModelMap model, @ModelAttribute("user") User user) {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
+		user.setFullname(chuanHoa(user.getFullname()));
 		try {
 			String randomPass = getRandomPassword(10);
 			String mahoa = md5(randomPass);
@@ -435,6 +449,7 @@ public class AdminController {
 
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
+		product.setName(chuanHoa(product.getName()));
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
@@ -459,8 +474,10 @@ public class AdminController {
 	@RequestMapping(value = "form_product/update", method = RequestMethod.POST)
 	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
 			@RequestParam("file") MultipartFile file) {
+		
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
+		product.setName(chuanHoa(product.getName()));
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
@@ -517,5 +534,18 @@ public class AdminController {
 
 		return sb.toString();
 	}
+	public String chuanHoa(String s) {
+        s = s.trim();
+        s = s.replaceAll("\\s+", " ");
+
+        String a[] = s.split(" ");
+        String kq = "";
+        for (String x : a) {
+            kq = kq + x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase();
+            kq += " ";
+        }
+        kq = kq.trim();
+        return kq;
+    }
 
 }

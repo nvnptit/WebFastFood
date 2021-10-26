@@ -56,16 +56,6 @@
 </head>
 
 <body class="animsition">
-	<%
-	Cookie[] cks = request.getCookies();
-	if (cks != null) {
-		String name = cks[0].getName();
-		if (name.equals("auth")) {
-			response.sendRedirect("index.htm");
-			return;
-		}
-	}
-	%>
 	<div class="page-content--bge5">
 		<div class="container">
 			<div class="login-wrap">

@@ -378,7 +378,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                       </div>
                     </c:if>
 
-                    <form:form action="" method="post" modelAttribute="user">
+                    <form:form action="${root}/admin/form_user/insert.htm" method="post" modelAttribute="user">
                       <div class="card-body card-block">
                         <div class="form-group">
                           <label class="form-control-label"
@@ -447,14 +447,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
                         <button
                           type="submit"
                           class="btn btn-primary btn-sm"
-                          formaction="${root}/admin/form_user/update.htm"
-                        >
-                          <i class="fa fa-dot-circle-o"></i> Cập nhật
-                        </button>
-                        <button
-                          type="submit"
-                          class="btn btn-primary btn-sm"
-                          formaction="${root}/admin/form_user/insert.htm"
                         >
                           <i class="fa fa-dot-circle-o"></i> Thêm mới
                         </button>

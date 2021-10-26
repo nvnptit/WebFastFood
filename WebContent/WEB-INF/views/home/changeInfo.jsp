@@ -135,6 +135,9 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<a class="dropdown-item" href="${root}/home/profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item"
+						href="changeinfo/${sessionScope['user'].username}.htm">Thay
+						đổi thông tin cá nhân</a>
 						<a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a>
 					</ul>
 				</div>
@@ -171,7 +174,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
-					<form class="needs-validation" action="${root}/home/changeInfo.htm"
+					<form class="needs-validation" action="${root}/home/changeinfo.htm"
 						method="post" modelAttribute="user">
 						<div class="form-group">
 							<label>Tên đăng nhập</label> <input

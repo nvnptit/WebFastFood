@@ -133,6 +133,9 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item"
+							href="changeinfo/${sessionScope['user'].username}.htm">Thay
+							đổi thông tin cá nhân</a>
 						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 					</ul>
 				</div>
@@ -249,19 +252,16 @@
 					<div class="form-group">
 						<br> <label class="form-control-label">Họ tên</label> <input
 							type="text" class="form-control is-valid" name="receiver"
-							id="receiver" required="">
-						<div class="invalid-feedback">Vui lòng nhập họ tên!</div>
+							id="receiver">
 					</div>
 					<div class="form-group">
 						<label for="uname1">Địa chỉ</label> <input type="text"
 							class="form-control is-valid" name="address" id="address"
-							required>
-						<div class="invalid-feedback">Vui lòng nhập địa chỉ!</div>
+							>
 					</div>
 					<div class="form-group">
-						<label for="uname1">Số điện thoại</label> <input type="number"
-							class="form-control is-valid" name="sdt" id="sdt" required>
-						<div class="invalid-feedback">Vui lòng nhập số điện thoại!</div>
+						<label for="uname1">Số điện thoại</label> <input type="text"
+							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" >
 					</div>
 				</form>
 					

@@ -72,6 +72,9 @@
 			return; // to stop further execution
 		}
 	%>
+	<c:if test="${sessionScope['user'] == null}">
+		<c:redirect url="login.htm"></c:redirect>
+	</c:if>
 	<div class="py-1 bg-primary">
 		<div class="container">
 			<div
@@ -152,6 +155,9 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
 						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item"
+							href="changeinfo/${sessionScope['user'].username}.htm">Thay
+							đổi thông tin cá nhân</a>
 						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
 					</ul>
 				</div>
