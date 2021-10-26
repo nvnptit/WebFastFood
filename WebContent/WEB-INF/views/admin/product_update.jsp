@@ -329,14 +329,18 @@
 										</div>
 									</c:if>
 									<div class="card-body card-block">
-										<form:form action="${root}/admin/form_product/update.htm" method="POST" modelAttribute="product" enctype="multipart/form-data">
-										<div class="form-group">
+										<form:form action="${root}/admin/form_product/update.htm"
+											method="POST" modelAttribute="product"
+											enctype="multipart/form-data">
+											<div class="form-group">
 												<label class=" form-control-label">Id</label>
-												<form:input path="id" type="text" class="form-control" readonly="true"/>
+												<form:input path="id" type="text" class="form-control"
+													readonly="true" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên</label>
-												<form:input path="name" type="text" placeholder="Tên" class="form-control" required="required"/>
+												<form:input path="name" type="text" placeholder="Tên"
+													class="form-control" required="required" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Loại</label>
@@ -345,33 +349,37 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Giá</label>
-												<form:input path="price" type="text"
-													placeholder="Giá" class="form-control" required="required" />
+												<form:input path="price" type="text" placeholder="Giá"
+													class="form-control" required="required" />
 											</div>
-											
+
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder=" % Giảm giá" class="form-control" required="required"/>
+													placeholder=" % Giảm giá" class="form-control"
+													required="required" />
 											</div>
-											
+
 											<div class="form-group">
 												<label class=" form-control-label">Số lượng</label>
 												<form:input path="quantity" type="text"
-													placeholder="Số lượng" class="form-control" required="required"/>
+													placeholder="Số lượng" class="form-control"
+													required="required" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Thông tin</label>
-												<form:textarea path="description" rows="5" cols="20" placeholder="Thông tin"
-													class="form-control" required="required"/>
+												<form:textarea path="description" rows="5" cols="20"
+													placeholder="Thông tin" class="form-control"
+													required="required" />
 											</div>
-											
+
 											<div class="form-group">
-												<label class=" form-control-label">Hình ảnh</label>
-												<input name="file" type="file" class="form-control" required="required"/>
+												<label class=" form-control-label">Hình ảnh</label> <input
+													name="file" type="file" class="form-control"
+													required="required" />
 											</div>
-											
-											
+
+
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
 													<i class="fa fa-dot-circle-o"></i> CậP nhật

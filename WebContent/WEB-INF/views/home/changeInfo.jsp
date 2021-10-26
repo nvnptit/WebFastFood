@@ -5,6 +5,7 @@
 <%@page import="ptithcm.entity.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,15 +97,15 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="index.htm" class="nav-link">Trang
+					<li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Trang
 							chủ</a></li>
-					<li class="nav-item"><a href="food.htm" class="nav-link">Thức
+					<li class="nav-item"><a href="${root}/home/food.htm" class="nav-link">Thức
 							ăn</a></li>
-					<li class="nav-item"><a href="drink.htm" class="nav-link">Thức
+					<li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức
 							uống</a></li>
-					<li class="nav-item"><a href="about.htm" class="nav-link">Thông
+					<li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông
 							tin thêm</a></li>
-					<li class="nav-item"><a href="blog.htm" class="nav-link">Blog</a>
+					<li class="nav-item"><a href="${root}/home/blog.htm" class="nav-link">Blog</a>
 					</li>
 					<li class="nav-item cta cta-colored active"><a href="cart.htm"
 						class="nav-link"> <span class="icon-shopping_cart">Giỏ
@@ -133,8 +134,8 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
-						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
+						<a class="dropdown-item" href="${root}/home/profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a>
 					</ul>
 				</div>
 			</div>
@@ -150,6 +151,9 @@
 	</nav>
 	<!-- END nav -->
 
+	<c:if test="${not empty message}">
+		<div class="alert alert-success" role="alert">${message}</div>
+	</c:if>
 	<div class="hero-wrap hero-bread"
 		style="background-image: url('${root}/resources/images/bg_1.jpg');">
 		<div class="container">
@@ -167,38 +171,38 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
-					<form action="profile.htm" method="POST" class="billing-form">
-						<h3 class="mb-4 billing-heading">Thay đổi mật khẩu</h3>
-						<c:if test="${not empty message}">
-							<div class="alert alert-danger" role="alert">${message}</div>
-						</c:if>
+					<form class="needs-validation" action="${root}/home/changeInfo.htm"
+						method="post" modelAttribute="user">
 						<div class="form-group">
-							<label>Mật khẩu cũ</label> <input class="form-control"
-								type="password" name="oldpass" required>
+							<label>Tên đăng nhập</label> <input
+								class="au-input au-input--full form-control" type="text"
+								name="username" placeholder="Tên đăng nhập"
+								value="${user.username }" readonly>
 						</div>
 						<div class="form-group">
-							<label>Nhập mật khẩu mới</label> <input class="form-control"
-								id="newpass" type="password" name="newpass" required>
-							<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
+							<label>Họ và tên</label> <input
+								class="au-input au-input--full form-control" type="text"
+								name="fullname" placeholder="Họ và tên"
+								value="${user.fullname }" required>
 						</div>
 						<div class="form-group">
-							<label>Nhập lại mật khẩu</label> <input class="form-control"
-								id="confirmpass" type="password" name="confirmpass"
-								oninput="check(this)" required />
-							<script language='javascript' type='text/javascript'>
-								function check(input) {
-									if (input.value != document
-											.getElementById('newpass').value) {
-										input
-												.setCustomValidity('Mật khẩu không trùng khớp');
-									} else {
-										input.setCustomValidity('');
-									}
-								}
-							</script>
+							<label>Email</label> <input
+								class="au-input au-input--full form-control" type="email"
+								name="email" placeholder="Email" value="${user.email }" required>
 						</div>
-						<button class="btn btn-info" type="submit">Đổi mật khẩu</button>
+						<div class="form-group">
+							<label>Số điện thoại</label> <input
+								class="au-input au-input--full form-control" type="text"
+								name="phone" placeholder="Số điện thoại" maxlength="10"
+								value="${user.phone }" required>
+						</div>
+
+						<button class="btn btn-primary btn-sm" type="submit">Thay
+							đổi</button>
+
 					</form>
+
+
 					<!-- END -->
 				</div>
 			</div>

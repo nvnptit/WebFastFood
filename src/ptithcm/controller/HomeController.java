@@ -213,6 +213,48 @@ public class HomeController {
 		return "/home/profile";
 	}
 	
+
+	@RequestMapping(value = "changeInfo/{username}", method = RequestMethod.GET)
+	public String changeInfo(ModelMap model, @PathVariable("username") String username) {
+		Session session = factory.getCurrentSession();
+		User user = (User) session.get(User.class, username);
+		model.addAttribute("user", user);
+		return "home/changeInfo";
+	}
+
+	@RequestMapping(value = "changeInfo", method = RequestMethod.POST)
+	public String changeInfo(ModelMap model, HttpServletRequest request) {
+		String username = request.getParameter("username");
+		String fullname = request.getParameter("fullname");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+
+		User user = (User) session.get(User.class, username);
+		try {
+			user.setFullname(fullname);
+			user.setEmail(email);
+			user.setPhone(phone);
+			session.update(user);
+			t.commit();
+			model.addAttribute("message", "Cập nhật thành công!");
+
+			HttpSession session1 = request.getSession();
+			session1.setAttribute("user", user);
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Cập nhật thất bại!");
+		} finally {
+			
+			session.close();
+		}
+
+		return "home/changeInfo";
+	}
+
+	
 	// Index
 	@RequestMapping(value="index", method= RequestMethod.GET)
 	public String index_user(ModelMap model) {
