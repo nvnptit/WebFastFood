@@ -86,7 +86,7 @@
                   </li>
                   <li class="has-sub">
                     <a class="js-arrow" href="#">
-                      <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
+                      <i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
                     </a>
                     <ul class="list-unstyled navbar__sub-list js-sub-list">
                       <li><a href="form_user.htm">Người dùng</a></li>

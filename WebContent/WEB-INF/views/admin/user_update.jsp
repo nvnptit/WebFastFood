@@ -98,7 +98,7 @@
 										phẩm</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fa fa-cog fa-spin fa-sm fa-fw"></i>Chức năng
+								class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 								<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
@@ -303,7 +303,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Chức năng</strong> Người dùng
+										<strong>Mở rộng</strong> Người dùng
 									</div>
 									<c:if test="${not empty message}">
 										<div class="alert alert-danger" role="alert">

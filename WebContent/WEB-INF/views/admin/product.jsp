@@ -102,7 +102,7 @@
 								<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fa-tachometer-alt"></i>Chức năng
+								class="fas fa-tachometer-alt"></i>Mở rộng
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 								<li><a href="form_user.htm">Người dùng</a></li>
@@ -138,7 +138,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+													<img src="${root }/resources/images/icon/avatar-06.jpg" alt="Michelle Moreno" />
 												</div>
 												<div class="content">
 													<h6>Michelle Moreno</h6>
@@ -148,7 +148,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+													<img src="${root }/resources/images/icon/avatar-04.jpg" alt="Diane Myers" />
 												</div>
 												<div class="content">
 													<h6>Diane Myers</h6>
@@ -169,7 +169,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+													<img src="${root }/resources/images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
 													<p>Về đề xuất mới.</p>
@@ -178,7 +178,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+													<img src="${root }/resources/images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
 													<p>Về đề xuất mới.</p>
@@ -187,7 +187,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+													<img src="${root }/resources/images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
 													<p>Về đề xuất mới.</p>
@@ -325,7 +325,7 @@
 													<th>Giá</th>
 													<th>Thông tin</th>
 													<th>Hình ảnh</th>
-													<th>Chức năng</th>
+													<th>Mở rộng</th>
 													<th></th>
 												</tr>
 											</thead>
