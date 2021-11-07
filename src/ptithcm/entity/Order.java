@@ -22,11 +22,15 @@ public class Order {
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name = "usernameid")
 	private User usernameid;
-	@Column(name = "id_product")
-	private String id_product;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_product")
+	private Product id_product;
+
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	@Column(name = "date")
@@ -37,20 +41,6 @@ public class Order {
 	private int discount;
 	@Column(name = "total")
 	private int total;
-	public Order() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Order(int id, User usernameid, String id_product, Date date, int amount, int discount, int total) {
-		super();
-		this.id = id;
-		this.usernameid = usernameid;
-		this.id_product = id_product;
-		this.date = date;
-		this.amount = amount;
-		this.discount = discount;
-		this.total = total;
-	}
 	public int getId() {
 		return id;
 	}
@@ -63,10 +53,10 @@ public class Order {
 	public void setUsernameid(User usernameid) {
 		this.usernameid = usernameid;
 	}
-	public String getId_product() {
+	public Product getId_product() {
 		return id_product;
 	}
-	public void setId_product(String id_product) {
+	public void setId_product(Product id_product) {
 		this.id_product = id_product;
 	}
 	public Date getDate() {
@@ -93,6 +83,4 @@ public class Order {
 	public void setTotal(int total) {
 		this.total = total;
 	}
-	
-	
 }

@@ -454,11 +454,11 @@ public class HomeController {
 				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: " + quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i] + "VNĐ. \n";
 				Order order = new Order();
 				order.setUsernameid(currentUser);
-				order.setId_product(id[i]);
 				order.setAmount(Integer.valueOf(quantity[i]));
 				order.setDiscount(Integer.valueOf(discount[i]));
 				order.setTotal(Integer.valueOf(total[i]));
 				Product p = (Product) session1.get(Product.class, id[i]);
+				order.setId_product(p);
 				p.setQuantity(p.getQuantity() - Integer.valueOf(quantity[i]));
 				Date date = new Date();
 				order.setDate(date);

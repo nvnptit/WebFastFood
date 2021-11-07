@@ -436,14 +436,17 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-14">
                       <h2 class="title-1 m-b-25">Thu nhập theo mặt hàng</h2>
                       <div class="table-responsive table--no-card m-b-40">
                         <table class="table table-borderless table-striped table-earning">
                           <thead>
                             <tr>
                               <th>Ngày tháng</th>
-                              <th>Hoá đơn ID</th>
+                              <th>ID hoá đơn</th>
+                              <th>Người mua</th>
+                              <th>Tên sản phẩm</th>
+                              <th>Số lượng</th>
                               <th class="text-right">Tổng tiền</th>
                             </tr>
                           </thead>
@@ -452,6 +455,9 @@
                             <tr>
                               <td>${o.date}</td>
                               <td>${o.id}</td>
+                              <td>${o.usernameid.fullname}</td>
+                              <td>${o.id_product.name}</td>
+                              <td>${o.amount}</td>
                               <td class="text-right">${o.total}</td>
                             </tr>
                             </c:forEach>
