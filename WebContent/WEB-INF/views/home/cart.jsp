@@ -220,8 +220,7 @@
 													class="form-control input-number quantity" value="1"
 													min="1"
 													oninput="var qty = document.getElementById('${p.id}').value; 
-											if (${p.quantity}<qty) document.getElementById('
-													${p.id}').value=${p.quantity};">
+											if (${p.quantity}<qty) document.getElementById('${p.id}').value=${p.quantity};">
 											</div>
 										</td>
 										<td>

@@ -403,6 +403,7 @@ public class HomeController {
 	public String record(HttpServletRequest request, ModelMap model, HttpSession session) {
 		Session session1 = factory.openSession();
 		Transaction t = session1.beginTransaction();
+		
 		String[] id = request.getParameterValues("id");
 		if (id == null){
 			model.addAttribute("message","Bạn chưa có sản phẩm nào trong giỏ hàng!");
@@ -494,6 +495,7 @@ public class HomeController {
 	public String cart_add(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
+
 		Session session2 = factory.getCurrentSession();
 		Product p = (Product) session2.get(Product.class, id);
 		
@@ -501,8 +503,10 @@ public class HomeController {
         if (session.getAttribute("Orders") != null) {
             orders = ((Map) session.getAttribute("Orders"));
         }
+
         orders.put(p.getId(),p);
         ArrayList<Product> orders_list = new ArrayList<Product>(orders.values());
+		
  		session.setAttribute("Orders_list", orders_list);
         session.setAttribute("Orders", orders);
         model.addAttribute("Oders_list", orders_list);
