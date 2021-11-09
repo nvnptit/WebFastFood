@@ -46,9 +46,7 @@ public class HomeController {
 	@Autowired
 	JavaMailSender mailer;
 	
-	/* Login-SignUp-Forgot-Logout */
 	//Login
-	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login_user() {
 		return "/home/login";
@@ -77,7 +75,7 @@ public class HomeController {
 			model.addAttribute("message", "Mật khẩu không trùng khớp!");
 			return "home/signup";
 		} else {
-			Session session1 = factory.getCurrentSession();
+			Session session1 = factory.getCurrentSession(); // Get session hiện tại
 			String hql = "FROM User WHERE username = :username";
 			Query query = session1.createQuery(hql).setParameter("username", username);
 			@SuppressWarnings("unchecked")
@@ -100,7 +98,7 @@ public class HomeController {
 				} finally {
 					session.close();
 				}
-				return "home/signup";
+				return "home/index";
 			}			
 		}
 	}
