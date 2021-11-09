@@ -123,13 +123,12 @@ public class HomeController {
 		if(list.size()>0) {
 			User currentUser = list.get(0);
 			try {
-				
 				String email = currentUser.getEmail();
 				String randomPass = getRandomPassword(10);
 				String mahoa = md5(randomPass);
 				String from = "codervn77@gmail.com";
 				String to = email;
-				String subject = "YOUR PASSWORD";
+				String subject = "[KHÔI PHỤC MẬT KHẨU FASTFOOD]";
 				String body = "Mật khẩu khôi phục của bạn nè : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
