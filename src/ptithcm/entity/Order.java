@@ -26,7 +26,7 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name = "usernameid")
 	private User usernameid;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_product")
 	private Product id_product;
@@ -41,6 +41,7 @@ public class Order {
 	private int discount;
 	@Column(name = "total")
 	private int total;
+	
 	public int getId() {
 		return id;
 	}

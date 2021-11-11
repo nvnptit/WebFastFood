@@ -17,13 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -53,12 +50,13 @@ public class AdminController {
 	@Autowired
 	JavaMailSender mailer;
 
-	// MARK: -DANG NHAP - DANG KI - QUEN MAT KHAU
+	// Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login_admin(ModelMap model) {
 		return "admin/login";
 	}
 
+	// Logout
 	@RequestMapping(value = "logout")
 	public String logout_user(HttpServletResponse response, HttpServletRequest resquest) throws IOException {
 		Cookie ck = new Cookie("authadmin", null);
@@ -66,6 +64,72 @@ public class AdminController {
 		resquest.getSession().removeAttribute("user1");
 		response.addCookie(ck);
 		response.sendRedirect("/WebFastFood/admin/login.htm");
+		return "admin/login";
+	}
+
+	// Index_GET
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index_amdin(ModelMap model) {
+		int sUsers = this.getUsers().size();
+		int sProducts = this.getProducts().size();
+		int sOrders = this.getOrders().size();
+		model.addAttribute("sUsers", sUsers);
+		model.addAttribute("sProducts", sProducts);
+		model.addAttribute("sOrders", sOrders);
+
+		double money = 0.0;
+		List<Order> list = this.getOrders();
+		for (Order o : list) {
+			money += o.getTotal();
+		}
+		model.addAttribute("money", money);
+		return "admin/index";
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "index", method = RequestMethod.POST)
+	public String login_admin(HttpServletRequest request, HttpServletResponse response, ModelMap model)
+			throws IOException {
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		password = md5(password);
+
+		HttpSession session = request.getSession();
+		// Kiểm tra captcha
+		String captcha = session.getAttribute("captcha_security").toString();
+		String verifyC = request.getParameter("captcha");
+
+		if (!captcha.equals(verifyC)) {
+			model.addAttribute("recaptcha", "Vui lòng nhập đúng captcha");
+			return "admin/login";
+		}
+
+		Session session1 = factory.getCurrentSession();
+		String hql = "FROM User WHERE role = :admin AND username= :username";
+		Query query = session1.createQuery(hql);
+		query.setParameter("admin", "admin");
+		query.setParameter("username", username);
+		List<User> list = query.list();
+
+		if (list.size() > 0) {
+			User currentUser = list.get(0);
+			if (password.equals(currentUser.getPassword().trim())) {
+				session.setAttribute("user1", currentUser);
+				session.setAttribute("role1", currentUser.getRole());
+
+				Cookie ck = new Cookie("authadmin", md5(username));
+				ck.setMaxAge(600);
+				response.addCookie(ck);
+				response.sendRedirect("index.htm");
+			} else {
+				model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
+				return "admin/login";
+			}
+		} else {
+			model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
+			return "admin/login";
+		}
 		return "admin/login";
 	}
 
@@ -77,33 +141,24 @@ public class AdminController {
 	@RequestMapping(value = "forgot", method = RequestMethod.POST)
 	public String forgot_post(HttpServletRequest request, ModelMap model) {
 		String username = request.getParameter("username");
+
 		Session session2 = factory.openSession();
 		Transaction t = session2.beginTransaction();
-		String hql = "FROM User WHERE role = :admin ";
-		Query query = session2.createQuery(hql).setParameter("admin", "admin");
+		String hql = "FROM User WHERE role = :admin AND username= :username";
+		Query query = session2.createQuery(hql);
+		query.setParameter("admin", "admin");
+		query.setParameter("username", username);
 		List<User> list = query.list();
 
-		boolean check = false;
-		User currentUser = null;
-
-		for (int i = 0; i < list.size(); i++) {
-			String str = list.get(i).getUsername().trim();
-			if (username.equals(str)) {
-				currentUser = list.get(i);
-				check = true;
-				break;
-			} else {
-				continue;
-			}
-		}
-		if (check) {
+		if (list.size() > 0) {
+			User currentUser = list.get(0);
 			try {
 				String email = currentUser.getEmail();
 				String randomPass = getRandomPassword(10);
 				String mahoa = md5(randomPass);
 				String from = "codervn77@gmail.com";
 				String to = email;
-				String subject = "YOUR PASSWORD";
+				String subject = "[KHÔI PHỤC MẬT KHẨU FASTFOOD]";
 				String body = "Mật khẩu của bạn : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
@@ -132,91 +187,16 @@ public class AdminController {
 		return "admin/forgotpassword";
 	}
 
-	@RequestMapping(value = "index", method = RequestMethod.GET)
-	public String index_amdin(ModelMap model) {
-		List<Order> list = this.getOrders();
-		int sUsers = this.getUsers().size();
-		int sProducts = this.getProducts().size();
-		int sOrders = this.getOrders().size();
-		model.addAttribute("sUsers", sUsers);
-		model.addAttribute("sProducts", sProducts);
-		model.addAttribute("sOrders", sOrders);
-		double money = 0.0;
-		for (Order o : list) {
-			money += o.getTotal();
-		}
-		model.addAttribute("money", money);
-		return "admin/index";
-	}
-
-	@RequestMapping(value = "index", method = RequestMethod.POST)
-	public String login_admin(HttpServletRequest request, HttpServletResponse response, ModelMap model)
-			throws IOException {
-
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-
-		password = md5(password);
-		String value = md5(username);
-		Cookie ck = new Cookie("authadmin", value);
-		ck.setMaxAge(600);
-
-		HttpSession session = request.getSession();
-		Session session1 = factory.getCurrentSession();
-		String hql = "FROM User WHERE role = :admin ";
-		Query query = session1.createQuery(hql).setParameter("admin", "admin");
-		@SuppressWarnings("unchecked")
-		List<User> list = query.list();
-
-		// Kiểm tra captcha
-		String captcha = session.getAttribute("captcha_security").toString();
-		String verifyC = request.getParameter("captcha");
-
-		if (!captcha.equals(verifyC)) {
-			model.addAttribute("recaptcha", "Vui lòng nhập đúng captcha");
-			return "admin/login";
-		}
-
-		boolean check = false;
-		User currentUser = null;
-
-		for (int i = 0; i < list.size(); i++) {
-			String str = list.get(i).getUsername().trim();
-			if (username.equals(str)) {
-				currentUser = list.get(i);
-				check = true;
-				break;
-			} else {
-				continue;
-			}
-		}
-		if (check) {
-			if (password.equals(currentUser.getPassword().trim())) {
-				model.addAttribute("message", "OK");
-				model.addAttribute("username", username);
-				session.setAttribute("user1", currentUser);
-				session.setAttribute("role", currentUser.getRole());
-				response.addCookie(ck);
-				response.sendRedirect("index.htm");
-			} else {
-				model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
-			}
-		} else {
-			model.addAttribute("message", "Bạn không có quyền truy cập vào quản trị");
-		}
-		return "admin/login";
-	}
-
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public String table_user(ModelMap model) {
 		model.addAttribute("users", getUsers());
 		return "admin/user";
 	}
 
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "product", method = RequestMethod.GET)
 	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
 		List<Product> products = this.getProducts();
-		@SuppressWarnings("unchecked")
 		PagedListHolder pagedListHolder = new PagedListHolder(products);
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
@@ -229,33 +209,73 @@ public class AdminController {
 	@RequestMapping(value = "delete/user/{username}", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@PathVariable("username") String username) throws IOException {
-		Session session = factory.getCurrentSession();
-		Criteria crit = session.createCriteria(User.class);
-		crit.add(Restrictions.eq("username", username));
-		User user = (User) crit.uniqueResult();
-		Cookie[] cks = request.getCookies();
-		String cksusername = cks[0].getValue();
-		if (user != null) {
-			if (!user.getUsername().equals(cksusername)) {
-				this.factory.getCurrentSession().delete(user);
-				model.addAttribute("users", getUsers());
-			} else {
-				this.factory.getCurrentSession().delete(user);
-				return "redirect:/admin/logout.htm";
+		HttpSession httpSession = request.getSession();
+		User user1 = (User) httpSession.getAttribute("user1");
+
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		User user = (User) session.get(User.class, username);
+		
+		Session session1 = factory.getCurrentSession();
+		String hql = "FROM Order od WHERE od.usernameid.username = :username";
+		Query query = session1.createQuery(hql);
+		query.setParameter("username", username);
+		List<User> list = query.list();
+		try {
+			if (user1.getUsername().equals(user.getUsername())) {
+				model.addAttribute("message", "Bạn không thể tự xoá chính mình");
+				return "redirect:/admin/user.htm";
 			}
+			else if (list.size() > 0) {
+				user.setStatus(false);
+				session.update(user);
+				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
+				return "redirect:/admin/user.htm";
+			}
+			else {
+				session.delete(user);
+				t.commit();
+				model.addAttribute("message", "Xoá thành công");
+			}
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Xoá thất bại");
+		} finally {
+			model.addAttribute("users", getUsers());
+			session.close();
 		}
 		return "redirect:/admin/user.htm";
 	}
 
 	@RequestMapping(value = "delete/product/{id}", method = RequestMethod.GET)
-	public String delete_product(ModelMap model, @PathVariable("id") String id) {
-		Session session = factory.getCurrentSession();
-		Criteria crit = session.createCriteria(Product.class);
-		crit.add(Restrictions.eq("id", id));
-		Product product = (Product) crit.uniqueResult();
-		if (product != null) {
-			this.factory.getCurrentSession().delete(product);
+	public String delete_product(ModelMap model, @PathVariable("id") int id) {
+
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+
+		Product product = (Product) session.get(Product.class, String.valueOf(id));
+		Session session1 = factory.getCurrentSession(); 
+		String hql = "FROM Order od WHERE od.id_product.id = :id";
+		Query query = session1.createQuery(hql);
+		query.setParameter("id", String.valueOf(id));
+		List<Product> list = query.list();
+
+		try {
+			if (list.size() > 0) {
+				product.setStatus(false);
+				session.update(product);
+				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
+			} else {
+				session.delete(product);
+				model.addAttribute("message", "Xoá sản phẩm thành công! ");
+			}
+			t.commit();
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Xoá sản phẩm thất bại! ");
+		} finally {
 			model.addAttribute("products", getProducts());
+			session.close();
 		}
 		return "redirect:/admin/product.htm";
 	}
@@ -320,7 +340,7 @@ public class AdminController {
 
 		HttpSession httpSession = request.getSession();
 
-		User user = (User) httpSession.getAttribute("user");
+		User user = (User) httpSession.getAttribute("user1");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
 			model.addAttribute("message", "Mật khẩu cũ không đúng!");
@@ -368,7 +388,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("product_update/{id}")
-	public String update_product(ModelMap model, @PathVariable("id") String id) {
+	public String update_product(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.getCurrentSession();
 		Product product = (Product) session.get(Product.class, id);
 		model.addAttribute("product", product);
@@ -376,14 +396,14 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "form_user/update", method = RequestMethod.POST)
-	public String update(ModelMap model,HttpServletRequest request)
-			 {
-		String username =request.getParameter("username") ;
-		String fullname =request.getParameter("fullname") ;
-		String email =request.getParameter("email") ;
-		String phone =request.getParameter("phone") ;
-		String role =request.getParameter("role") ;
-		
+	public String update(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String fullname = request.getParameter("fullname");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String role = request.getParameter("role");
+		boolean status = Boolean.valueOf(request.getParameter("status"));
+
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		User user = (User) session.get(User.class, username);
@@ -391,20 +411,23 @@ public class AdminController {
 		user.setEmail(email);
 		user.setPhone(phone);
 		user.setRole(role);
-		
+		user.setStatus(status);
 		try {
 			session.update(user);
 			t.commit();
-			model.addAttribute("message", "Cập nhật thành công!");
-			HttpSession ss= request.getSession();
-			ss.setAttribute("user1", user);
+			HttpSession ss = request.getSession();
+			User current = (User) ss.getAttribute("user1");
+			if (user.getUsername().equals(current.getUsername())) {
+				ss.setAttribute("user1", user);
+			}
+			model.addAttribute("message", "Cập nhật người dùng thành công");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cập nhật thất bại!");
+			model.addAttribute("message", "Cập nhật người dùng thất bại");
 		} finally {
 			session.close();
 		}
-		return "admin/user_update";
+		return "admin/user";
 	}
 
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
@@ -474,7 +497,7 @@ public class AdminController {
 	@RequestMapping(value = "form_product/update", method = RequestMethod.POST)
 	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
 			@RequestParam("file") MultipartFile file) {
-		
+
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		product.setName(chuanHoa(product.getName()));
@@ -483,9 +506,10 @@ public class AdminController {
 		} else {
 
 			try {
-				String photoPath = context.getRealPath("./images/" + file.getOriginalFilename());
+				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
+						+ System.currentTimeMillis()+"-" +file.getOriginalFilename();
 				file.transferTo(new File(photoPath));
-				product.setImg(file.getOriginalFilename());
+				product.setImg(System.currentTimeMillis()+"-"+file.getOriginalFilename());
 				session.update(product);
 				t.commit();
 				model.addAttribute("message", "Cập nhật thành công!");
@@ -534,18 +558,19 @@ public class AdminController {
 
 		return sb.toString();
 	}
-	public String chuanHoa(String s) {
-        s = s.trim();
-        s = s.replaceAll("\\s+", " ");
 
-        String a[] = s.split(" ");
-        String kq = "";
-        for (String x : a) {
-            kq = kq + x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase();
-            kq += " ";
-        }
-        kq = kq.trim();
-        return kq;
-    }
+	public String chuanHoa(String s) {
+		s = s.trim();
+		s = s.replaceAll("\\s+", " ");
+
+		String a[] = s.split(" ");
+		String kq = "";
+		for (String x : a) {
+			kq = kq + x.substring(0, 1).toUpperCase() + x.substring(1).toLowerCase();
+			kq += " ";
+		}
+		kq = kq.trim();
+		return kq;
+	}
 
 }

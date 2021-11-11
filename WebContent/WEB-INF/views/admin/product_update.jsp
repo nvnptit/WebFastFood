@@ -15,8 +15,8 @@
 <title>Trang cập nhật</title>
 
 <!-- Fontfaces CSS-->
-<link href="${root}/resources/css/font-face.css"
-	rel="stylesheet" media="all">
+<link href="${root}/resources/css/font-face.css" rel="stylesheet"
+	media="all">
 <link
 	href="${root}/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
@@ -28,99 +28,87 @@
 	rel="stylesheet" media="all">
 
 <!-- Bootstrap CSS-->
-<link
-	href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
+<link href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
 	rel="stylesheet" media="all">
 
 <!-- Vendor CSS-->
-<link
-	href="${root}/resources/vendor/animsition/animsition.min.css"
+<link href="${root}/resources/vendor/animsition/animsition.min.css"
 	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
 	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/wow/animate.css"
+<link href="${root}/resources/vendor/wow/animate.css" rel="stylesheet"
+	media="all">
+<link href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
 	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/slick/slick.css"
-	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/select2/select2.min.css"
+<link href="${root}/resources/vendor/slick/slick.css" rel="stylesheet"
+	media="all">
+<link href="${root}/resources/vendor/select2/select2.min.css"
 	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css"
 	rel="stylesheet" media="all">
 
 <!-- Main CSS-->
-<link href="${root}/resources/css/theme.css"
-	rel="stylesheet" media="all">
+<link href="${root}/resources/css/theme.css" rel="stylesheet"
+	media="all">
 
 </head>
 
 <body class="animsition">
 	<%
-		Cookie[] cks = request.getCookies();
-		if (cks != null) {
-			for (int i = 0; i < cks.length; i++) {
-				String name = cks[i].getName();
-				String value = cks[i].getValue();
-				if (name.equals("authadmin")) {
-					break; // exit the loop and continue the page
-				}
-				if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-				{
-					response.sendRedirect("../login.htm");
-					return; // to stop further execution
-				}
-				i++;
+	Cookie[] cks = request.getCookies();
+	if (cks != null) {
+		for (int i = 0; i < cks.length; i++) {
+			String name = cks[i].getName();
+			String value = cks[i].getValue();
+			if (name.equals("authadmin")) {
+		break; // exit the loop and continue the page
 			}
-		} else {
-			response.sendRedirect("../login.htm");
-			return; // to stop further execution
+			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
+			{
+		response.sendRedirect("../login.htm");
+		return; // to stop further execution
+			}
+			i++;
 		}
+	} else {
+		response.sendRedirect("../login.htm");
+		return; // to stop further execution
+	}
 	%>
 	<div class="page-wrapper">
 		<!-- MENU SIDEBAR-->
 		<aside class="menu-sidebar d-none d-lg-block">
 			<div class="logo">
-				<a href="#"> <img
-					src="${root}/resources/images/logo.png"
+				<a href="#"> <img src="${root}/resources/images/logo.png"
 					alt="Cool Admin" />
 				</a>
 			</div>
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar">
-				  <ul class="list-unstyled navbar__list">
-					<li>
-					  <a class="js-arrow" href="${root}/admin/index.htm">
-						<i class="fas fa-tachometer-alt"></i>Biểu đồ
-					  </a>
-					</li>
-					<li class="has-sub">
-					  <a class="js-arrow" href="#">
-						<i class="fas fa-table active"></i>Dữ liệu
-					  </a>
-					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
-						<li><a href="${root}/admin/product.htm">Dữ liệu sản phẩm</a></li>
-					  </ul>
-					</li>
-					<li class="has-sub">
-					  <a class="js-arrow" href="#">
-						<i class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
-					  </a>
-					  <ul class="list-unstyled navbar__sub-list js-sub-list">
-						<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
-						<li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
-					  </ul>
-					</li>
-				  </ul>
+					<ul class="list-unstyled navbar__list">
+						<li><a class="js-arrow" href="${root}/admin/index.htm"> <i
+								class="fas fa-tachometer-alt"></i>Biểu đồ
+						</a></li>
+						<li class="has-sub"><a class="js-arrow" href="#"> <i
+								class="fas fa-table active"></i>Dữ liệu
+						</a>
+							<ul class="list-unstyled navbar__sub-list js-sub-list">
+								<li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
+								<li><a href="${root}/admin/product.htm">Dữ liệu sản
+										phẩm</a></li>
+							</ul></li>
+						<li class="has-sub"><a class="js-arrow" href="#"> <i
+								class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
+						</a>
+							<ul class="list-unstyled navbar__sub-list js-sub-list">
+								<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
+								<li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
+							</ul></li>
+					</ul>
 				</nav>
-			  </div>
+			</div>
 		</aside>
 		<!-- END MENU SIDEBAR-->
 
@@ -148,8 +136,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img
-														src="${root}/resources/images/icon/avatar-06.jpg"
+													<img src="${root}/resources/images/icon/avatar-06.jpg"
 														alt="Michelle Moreno" />
 												</div>
 												<div class="content">
@@ -160,8 +147,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img
-														src="${root}/resources/images/icon/avatar-04.jpg"
+													<img src="${root}/resources/images/icon/avatar-04.jpg"
 														alt="Diane Myers" />
 												</div>
 												<div class="content">
@@ -183,8 +169,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img
-														src="${root}/resources/images/icon/avatar-06.jpg"
+													<img src="${root}/resources/images/icon/avatar-06.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -194,8 +179,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img
-														src="${root}/resources/images/icon/avatar-05.jpg"
+													<img src="${root}/resources/images/icon/avatar-05.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -205,8 +189,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img
-														src="${root}/resources/images/icon/avatar-04.jpg"
+													<img src="${root}/resources/images/icon/avatar-04.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -261,11 +244,10 @@
 								<div class="account-wrap">
 									<div class="account-item clearfix js-item-menu">
 										<div class="image">
-											<img
-												src="${root}/resources/images/icon/avt.png"
+											<img src="${root}/resources/images/icon/avt.png"
 												alt="${username}" />
 										</div>
-										
+
 										<div class="content">
 											<a class="js-acc-btn" href="#">
 												${sessionScope['user1'].fullname} </a>
@@ -295,13 +277,15 @@
 													</a>
 												</div>
 												<div class="account-dropdown__item">
-													<a href="changepassword.htm"> <i class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
+													<a href="changepassword.htm"> <i
+														class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
 													</a>
 												</div>
 											</div>
 											<div class="account-dropdown__footer">
-												<a href="${root}/resources/admin/logout.htm">
-                                                    <i class="zmdi zmdi-power"></i>Đăng xuất</a>
+												<a href="${root}/resources/admin/logout.htm"> <i
+													class="zmdi zmdi-power"></i>Đăng xuất
+												</a>
 											</div>
 										</div>
 									</div>
@@ -374,24 +358,37 @@
 											</div>
 
 											<div class="form-group">
-												<label class=" form-control-label">Hình ảnh</label> <input
-													name="file" type="file" class="form-control"
-													required="required" />
+												<label class=" form-control-label">Hình ảnh</label> 
+												<input
+													id="file" name="file" value="${product.img}"
+													type="file" class="form-control"
+													 />
 											</div>
-
+											<div class="form-group">
+												<label>Trạng thái</label><br> <select id="status"
+													name="status"">
+													<option value="${product.status}" selected hidden>${product.status}</option>
+													<option value="1"
+														class="au-input au-input--full form-control">Hoạt
+														động</option>
+													<option value="0"
+														class="au-input au-input--full form-control">Ngừng
+														hoạt động</option>
+												</select>
+											</div>
 
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
-													<i class="fa fa-dot-circle-o"></i> CậP nhật
+													<i class="fa fa-dot-circle-o"></i> Cập nhật
 												</button>
 												<button type="button" class="btn btn-danger btn-sm"
-													onclick="location.href='${root}/admin/table.htm'">
+													onclick="location.href='${root}/admin/product.htm'">
 													<i class="fa fa-dot-circle-o"></i> Quay trở lại
 												</button>
 											</div>
 										</form:form>
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
@@ -414,22 +411,16 @@
 	</div>
 
 	<!-- Jquery JS-->
-	<script
-		src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
+	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
 	<!-- Bootstrap JS-->
-	<script
-		src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
-	<script
-		src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<script src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 	<!-- Vendor JS       -->
-	<script
-		src="${root}/resources/vendor/slick/slick.min.js">
+	<script src="${root}/resources/vendor/slick/slick.min.js">
 		
 	</script>
-	<script
-		src="${root}/resources/vendor/wow/wow.min.js"></script>
-	<script
-		src="${root}/resources/vendor/animsition/animsition.min.js"></script>
+	<script src="${root}/resources/vendor/wow/wow.min.js"></script>
+	<script src="${root}/resources/vendor/animsition/animsition.min.js"></script>
 	<script
 		src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
 		
@@ -444,16 +435,13 @@
 		src="${root}/resources/vendor/circle-progress/circle-progress.min.js"></script>
 	<script
 		src="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-	<script
-		src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
-	<script
-		src="${root}/resources/vendor/select2/select2.min.js">
+	<script src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="${root}/resources/vendor/select2/select2.min.js">
 		
 	</script>
 
 	<!-- Main JS-->
-	<script
-		src="${root}/resources/js/main_admin.js"></script>
+	<script src="${root}/resources/js/main_admin.js"></script>
 
 </body>
 

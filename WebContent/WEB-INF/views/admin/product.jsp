@@ -95,14 +95,14 @@
 								class="fas fa-tachometer-alt"></i>Biểu đồ
 						</a></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fa-tachometer-alt active"></i>Dữ liệu
+								class="fas fa-table active"></i>Dữ liệu
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 								<li><a href="user.htm">Dữ liệu người dùng</a></li>
 								<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
-								class="fas fa-tachometer-alt"></i>Mở rộng
+								class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
 								<li><a href="form_user.htm">Người dùng</a></li>
@@ -306,7 +306,6 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="row m-t-30">
 								<div class="col-md-12">
 									<!-- DATA TABLE-->
 									<h3 class="title-3 m-b-30">

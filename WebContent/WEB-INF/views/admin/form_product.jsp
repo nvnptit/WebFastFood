@@ -317,8 +317,7 @@
 											method="POST" modelAttribute="product"
 											enctype="multipart/form-data">
 											<div class="form-group">
-												<form:input path="id" type="hidden" class="form-control"
-													value="" />
+												<form:input path="id" type="hidden" class="form-control"/>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên sản phẩm</label>
@@ -358,12 +357,12 @@
 											</div>
 
 											<div class="form-group">
-												<label class=" form-control-label">HÌnh ảnh</label> <input
+												<label class=" form-control-label">Hình ảnh</label> <input
 													name="file" type="file" class="form-control"
 													required="required" />
+
 											</div>
-
-
+								
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
 													<i class="fa fa-dot-circle-o"></i> Thêm

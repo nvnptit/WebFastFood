@@ -341,9 +341,17 @@
 										</div>
 										<div class="form-group">
 											<label>Vai trò</label><br>
-										<select id="role" name="role">
+										<select id="role" name="role"">
+											<option  value="${user.role}" selected hidden>Choose here</option>
 											<option value="ADMIN" class="au-input au-input--full form-control">Quản trị</option>
 											<option value="USER" class="au-input au-input--full form-control">Người dùng</option>
+										</select>
+										<br>
+											<label>Trạng thái</label><br>
+										<select id="status" name="status">
+											<option  value="${user.status}" selected hidden>${user.status}</option>
+											<option value="1" class="au-input au-input--full form-control">Hoạt động</option>
+											<option value="0" class="au-input au-input--full form-control">Ngừng hoạt động</option>
 										</select>
 										</div>
 										<button class="btn btn-primary btn-sm" type="submit">Thay

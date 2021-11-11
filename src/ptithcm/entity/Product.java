@@ -1,8 +1,12 @@
 package ptithcm.entity;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,7 +14,7 @@ import javax.persistence.Table;
 public class Product {
 	@Id
 	@GeneratedValue
-	private String id;
+	private int id;
 	
 	private String name;
 	private String type;
@@ -19,12 +23,17 @@ public class Product {
 	private String description;
 	private int discount;
 	private String img;
+	private boolean status;
+	
+
+	@OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
+	private Collection<Order> orders;
+	
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Product(String id, String name, String type, int price, int quantity, String description, int discount,
-			String img) {
+	public Product(int id, String name, String type, int price, int quantity, String description, int discount,
+			String img, boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,11 +43,12 @@ public class Product {
 		this.description = description;
 		this.discount = discount;
 		this.img = img;
+		this.status = status;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -83,6 +93,10 @@ public class Product {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
-	
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 }
