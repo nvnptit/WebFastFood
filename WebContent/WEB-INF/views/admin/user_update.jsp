@@ -275,7 +275,7 @@
 													</a>
 												</div>
 												<div class="account-dropdown__item">
-													<a href="changepassword.htm"> <i
+													<a href="${root}/admin/changepassword.htm"> <i
 														class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
 													</a>
 												</div>
@@ -350,8 +350,8 @@
 											<label>Trạng thái</label><br>
 										<select id="status" name="status">
 											<option  value="${user.status}" selected hidden>${user.status}</option>
-											<option value="1" class="au-input au-input--full form-control">Hoạt động</option>
-											<option value="0" class="au-input au-input--full form-control">Ngừng hoạt động</option>
+											<option value="true" class="au-input au-input--full form-control">Hoạt động</option>
+											<option value="false" class="au-input au-input--full form-control">Ngừng hoạt động</option>
 										</select>
 										</div>
 										<button class="btn btn-primary btn-sm" type="submit">Thay

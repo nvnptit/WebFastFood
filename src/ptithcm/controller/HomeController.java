@@ -287,6 +287,11 @@ public class HomeController {
 		if (list.size() > 0) {
 			User currentUser = list.get(0);
 			if (password.equals(currentUser.getPassword().trim())) {
+				if (!currentUser.isStatus()) {
+					model.addAttribute("message", "Tài khoản của bạn đã bị vô hiệu hoá!");
+					return "home/login";
+				}
+				
 				model.addAttribute("user", currentUser);
 				session.setAttribute("user", currentUser);
 				session.setAttribute("role", currentUser.getRole());

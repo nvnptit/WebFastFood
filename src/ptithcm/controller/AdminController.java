@@ -116,6 +116,11 @@ public class AdminController {
 		if (list.size() > 0) {
 			User currentUser = list.get(0);
 			if (password.equals(currentUser.getPassword().trim())) {
+				if (!currentUser.isStatus()) {
+					model.addAttribute("message", "Tài khoản của bạn đã bị vô hiệu hoá!");
+					return "admin/login";
+				}
+				
 				session.setAttribute("user1", currentUser);
 				session.setAttribute("role1", currentUser.getRole());
 
@@ -404,7 +409,6 @@ public class AdminController {
 		String phone = request.getParameter("phone");
 		String role = request.getParameter("role");
 		boolean status = Boolean.valueOf(request.getParameter("status"));
-
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		User user = (User) session.get(User.class, username);
@@ -414,13 +418,18 @@ public class AdminController {
 		user.setRole(role);
 		user.setStatus(status);
 		try {
-			session.update(user);
-			t.commit();
+
 			HttpSession ss = request.getSession();
 			User current = (User) ss.getAttribute("user1");
 			if (user.getUsername().equals(current.getUsername())) {
+				if (!user.isStatus()) {
+					model.addAttribute("message", "Không thể tự khoá tài khoản");
+					return "admin/user";
+				}
 				ss.setAttribute("user1", user);
 			}
+			session.update(user);
+			t.commit();
 			model.addAttribute("message", "Cập nhật người dùng thành công");
 		} catch (Exception e) {
 			t.rollback();

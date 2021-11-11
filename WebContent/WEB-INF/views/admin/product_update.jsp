@@ -277,13 +277,13 @@
 													</a>
 												</div>
 												<div class="account-dropdown__item">
-													<a href="changepassword.htm"> <i
+													<a href="${root}/admin/changepassword.htm"> <i
 														class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
 													</a>
 												</div>
 											</div>
 											<div class="account-dropdown__footer">
-												<a href="${root}/resources/admin/logout.htm"> <i
+												<a href="${root}/admin/logout.htm"> <i
 													class="zmdi zmdi-power"></i>Đăng xuất
 												</a>
 											</div>
@@ -368,10 +368,10 @@
 												<label>Trạng thái</label><br> <select id="status"
 													name="status"">
 													<option value="${product.status}" selected hidden>${product.status}</option>
-													<option value="1"
+													<option value="true"
 														class="au-input au-input--full form-control">Hoạt
 														động</option>
-													<option value="0"
+													<option value="false"
 														class="au-input au-input--full form-control">Ngừng
 														hoạt động</option>
 												</select>
