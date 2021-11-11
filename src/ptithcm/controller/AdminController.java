@@ -426,6 +426,7 @@ public class AdminController {
 			t.rollback();
 			model.addAttribute("message", "Cập nhật người dùng thất bại");
 		} finally {
+			model.addAttribute("users", getUsers());
 			session.close();
 		}
 		return "admin/user";
@@ -517,14 +518,15 @@ public class AdminController {
 				}
 				session.update(product);
 				t.commit();
-				model.addAttribute("message", "Cập nhật thành công!");
+				model.addAttribute("message", "Cập nhật sản phẩm thành công!");
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Cập nhật thất bại!");
+				model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
 			} finally {
+				model.addAttribute("products", getProducts());
 				session.close();
 			}
-		return "admin/product_update";
+		return "admin/product";
 	}
 
 	private String md5(String str) {
