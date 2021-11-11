@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import ptithcm.entity.User;
 import ptithcm.entity.Product;
 import ptithcm.entity.Order;
@@ -477,10 +478,11 @@ public class AdminController {
 			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
 			try {
+				String name= System.currentTimeMillis()+"-" +file.getOriginalFilename();
 				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
-						+ file.getOriginalFilename();
+						+ name;
 				file.transferTo(new File(photoPath));
-				product.setImg(file.getOriginalFilename());
+				product.setImg(name);
 				session.save(product);
 				t.commit();
 				model.addAttribute("message", "Thêm mới thành công!");
@@ -494,22 +496,25 @@ public class AdminController {
 		return "admin/product_update";
 	}
 
-	@RequestMapping(value = "form_product/update", method = RequestMethod.POST)
+	@RequestMapping(value = "product_update/{id}", method = RequestMethod.POST)
 	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
-			@RequestParam("file") MultipartFile file) {
-
+			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
+		Session session1 = factory.getCurrentSession();
+		Product product1 = (Product) session1.get(Product.class, id);
+		
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		product.setName(chuanHoa(product.getName()));
-		if (file.isEmpty()) {
-			model.addAttribute("message", "Vui lòng chọn file!");
-		} else {
-
 			try {
-				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
-						+ System.currentTimeMillis()+"-" +file.getOriginalFilename();
-				file.transferTo(new File(photoPath));
-				product.setImg(System.currentTimeMillis()+"-"+file.getOriginalFilename());
+				if (!file.isEmpty()) {
+					String name= System.currentTimeMillis()+"-" +file.getOriginalFilename();
+					String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
+							+ name;
+					file.transferTo(new File(photoPath));
+					product.setImg(name);
+				} else {
+					product.setImg(product1.getImg());
+				}
 				session.update(product);
 				t.commit();
 				model.addAttribute("message", "Cập nhật thành công!");
@@ -519,7 +524,6 @@ public class AdminController {
 			} finally {
 				session.close();
 			}
-		}
 		return "admin/product_update";
 	}
 

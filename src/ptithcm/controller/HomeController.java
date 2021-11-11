@@ -336,7 +336,7 @@ public class HomeController {
 
 	// Single Product
 	@RequestMapping("single/{id}")
-	public String update_product(ModelMap model, @PathVariable("id") String id) {
+	public String update_product(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.getCurrentSession();
 		Product product = (Product) session.get(Product.class, id);
 		model.addAttribute("product", product);
@@ -433,7 +433,7 @@ public class HomeController {
 				order.setAmount(Integer.valueOf(quantity[i]));
 				order.setDiscount(Integer.valueOf(discount[i]));
 				order.setTotal(Integer.valueOf(total[i]));
-				Product p = (Product) session1.get(Product.class, id[i]);
+				Product p = (Product) session1.get(Product.class, Integer.valueOf(id[i]));
 				order.setId_product(p);
 				p.setQuantity(p.getQuantity() - Integer.valueOf(quantity[i]));
 				order.setDate(date);
@@ -467,16 +467,16 @@ public class HomeController {
 	@RequestMapping(value = "addCart", method = RequestMethod.POST)
 	public String cart_add(ModelMap model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String id = request.getParameter("id");
+		int id = Integer.valueOf(request.getParameter("id"));
 
 		Session session2 = factory.getCurrentSession();
 		Product p = (Product) session2.get(Product.class, id);
 
-		Map<String, Product> orders = new HashMap<>();
+		Map<Integer, Product> orders = new HashMap<>();
 		if (session.getAttribute("Orders") != null) {
 			orders = ((Map) session.getAttribute("Orders"));
 		}
-		orders.put(String.valueOf(p.getId()), p);
+		orders.put(p.getId(), p);
 
 		ArrayList<Product> orders_list = new ArrayList<Product>(orders.values());
 		session.setAttribute("Orders_list", orders_list);
@@ -490,11 +490,11 @@ public class HomeController {
 	@RequestMapping(value = "deleteCart", method = RequestMethod.POST)
 	public String cart_delete(HttpServletRequest request, ModelMap model) {
 		HttpSession session = request.getSession();
-		Map<String, Product> orders = new HashMap<>();
+		Map<Integer, Product> orders = new HashMap<>();
 		if (session.getAttribute("Orders") != null) {
-			orders = (Map<String, Product>) session.getAttribute("Orders");
+			orders = (Map<Integer, Product>) session.getAttribute("Orders");
 		}
-		String id = request.getParameter("deleteItem");
+		int id = Integer.valueOf(request.getParameter("deleteItem"));
 		orders.remove(id);
 
 		session.setAttribute("Orders", orders);

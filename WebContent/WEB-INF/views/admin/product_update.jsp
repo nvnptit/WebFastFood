@@ -313,7 +313,7 @@
 										</div>
 									</c:if>
 									<div class="card-body card-block">
-										<form:form action="${root}/admin/form_product/update.htm"
+										<form:form action="${root}/admin/product_update/${product.id}.htm"
 											method="POST" modelAttribute="product"
 											enctype="multipart/form-data">
 											<div class="form-group">
@@ -360,7 +360,7 @@
 											<div class="form-group">
 												<label class=" form-control-label">Hình ảnh</label> 
 												<input
-													id="file" name="file" value="${product.img}"
+													id="file" name="file" value="${root}/resources/images/products/${product.img}"
 													type="file" class="form-control"
 													 />
 											</div>
