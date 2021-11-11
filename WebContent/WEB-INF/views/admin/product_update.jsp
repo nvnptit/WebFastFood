@@ -245,7 +245,7 @@
 									<div class="account-item clearfix js-item-menu">
 										<div class="image">
 											<img src="${root}/resources/images/icon/avt.png"
-												alt="${username}" />
+												alt="${sessionScope['user1'].username}" />
 										</div>
 
 										<div class="content">
@@ -257,12 +257,12 @@
 												<div class="image">
 													<a href="#"> <img
 														src="${root}/resources/images/icon/avt.png"
-														alt="${username}" />
+														alt="${sessionScope['user1'].username}" />
 													</a>
 												</div>
 												<div class="content">
 													<h5 class="name">
-														<a href="#">${username}</a>
+														<a href="#">${sessionScope['user1'].username}</a>
 													</h5>
 													<span class="email">${sessionScope['user1'].email}</span>
 												</div>

@@ -215,8 +215,6 @@ public class AdminController {
 	@RequestMapping(value = "delete/user/{username}", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@PathVariable("username") String username) throws IOException {
-		HttpSession httpSession = request.getSession();
-		User user1 = (User) httpSession.getAttribute("user1");
 
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
@@ -228,15 +226,19 @@ public class AdminController {
 		query.setParameter("username", username);
 		List<User> list = query.list();
 		try {
+			HttpSession httpSession = request.getSession();
+			User user1 = (User) httpSession.getAttribute("user1");
 			if (user1.getUsername().equals(user.getUsername())) {
 				model.addAttribute("message", "Bạn không thể tự xoá chính mình");
-				return "redirect:/admin/user.htm";
+				return "admin/user";
 			}
 			else if (list.size() > 0) {
 				user.setStatus(false);
+				System.out.println(user.getFullname()+" | "+ user.isStatus());
 				session.update(user);
 				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
-				return "redirect:/admin/user.htm";
+				t.commit();
+				return "admin/user";
 			}
 			else {
 				session.delete(user);
@@ -247,10 +249,10 @@ public class AdminController {
 			t.rollback();
 			model.addAttribute("message", "Xoá thất bại");
 		} finally {
-			model.addAttribute("users", getUsers());
+			model.addAttribute("users",getUsers());
 			session.close();
 		}
-		return "redirect:/admin/user.htm";
+		return "admin/user";
 	}
 
 	@RequestMapping(value = "delete/product/{id}", method = RequestMethod.GET)
@@ -259,11 +261,11 @@ public class AdminController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 
-		Product product = (Product) session.get(Product.class, String.valueOf(id));
+		Product product = (Product) session.get(Product.class, id);
 		Session session1 = factory.getCurrentSession(); 
 		String hql = "FROM Order od WHERE od.id_product.id = :id";
 		Query query = session1.createQuery(hql);
-		query.setParameter("id", String.valueOf(id));
+		query.setParameter("id", id);
 		List<Product> list = query.list();
 
 		try {
@@ -271,6 +273,9 @@ public class AdminController {
 				product.setStatus(false);
 				session.update(product);
 				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
+				t.commit();
+				//return "admin/product";
+				return "redirect:/admin/product.htm";
 			} else {
 				session.delete(product);
 				model.addAttribute("message", "Xoá sản phẩm thành công! ");
@@ -280,6 +285,7 @@ public class AdminController {
 			t.rollback();
 			model.addAttribute("message", "Xoá sản phẩm thất bại! ");
 		} finally {
+
 			model.addAttribute("products", getProducts());
 			session.close();
 		}
@@ -393,7 +399,7 @@ public class AdminController {
 		return "admin/user_update";
 	}
 
-	@RequestMapping("product_update/{id}")
+	@RequestMapping(value="product_update/{id}",method = RequestMethod.GET)
 	public String update_product(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.getCurrentSession();
 		Product product = (Product) session.get(Product.class, id);
@@ -532,10 +538,9 @@ public class AdminController {
 				t.rollback();
 				model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
 			} finally {
-				model.addAttribute("products", getProducts());
 				session.close();
 			}
-		return "admin/product";
+		return "admin/product_update";
 	}
 
 	private String md5(String str) {
