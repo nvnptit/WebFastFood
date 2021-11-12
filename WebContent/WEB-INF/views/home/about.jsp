@@ -100,11 +100,11 @@
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-menu-right" role="menu">
-								<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
+								<a class="dropdown-item" href="${root}/home/profile.htm">Thay đổi mật khẩu</a>
 								<a class="dropdown-item"
-							href="changeinfo/${sessionScope['user'].username}.htm">Thay
+							href="${root}/home/changeinfo/${sessionScope['user'].username}.htm">Thay
 							đổi thông tin cá nhân</a>
-								<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
+								<a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a>
 							</ul>
 						</div>
 					</div>

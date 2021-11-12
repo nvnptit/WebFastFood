@@ -132,11 +132,11 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<li><a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a></li>
+						<li><a class="dropdown-item" href="${root}/home/profile.htm">Thay đổi mật khẩu</a></li>
 						<li><a class="dropdown-item"
-							href="changeinfo/${sessionScope['user'].username}.htm">Thay
+							href="${root}/home/changeinfo/${sessionScope['user'].username}.htm">Thay
 							đổi thông tin cá nhân</a></li>
-						<li><a class="dropdown-item" href="logout.htm">Đăng xuất</a></li>
+						<li><a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a></li>
 					</ul>
 				</div>
 			</div>
