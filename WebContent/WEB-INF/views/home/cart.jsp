@@ -250,16 +250,23 @@
 					<div class="form-group">
 						<br> <label class="form-control-label">Họ tên</label> <input
 							type="text" class="form-control is-valid" name="receiver"
-							id="receiver" required>
+							id="receiver"  oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+ 							oninput="setCustomValidity('')" required>
 					</div>
 					<div class="form-group">
 						<label for="uname1">Địa chỉ</label> <input type="text"
-							class="form-control is-valid" name="address" id="address" required
+							class="form-control is-valid" name="address" id="address" 
+							 oninvalid="this.setCustomValidity('Hãy nhập địa chỉ')"
+ 							oninput="setCustomValidity('')"
+							required
 							>
 					</div>
 					<div class="form-group">
 						<label for="uname1">Số điện thoại</label> <input type="text"
-							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" required >
+							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" 
+							 oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+ 							oninput="setCustomValidity('')"
+							required >
 					</div>
 				</form>
 					

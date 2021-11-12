@@ -315,52 +315,63 @@
 										action="${root}/admin/form_user/update.htm" method="post"
 										modelAttribute="user">
 										<div class="card-body card-block">
-										<div class="form-group">
-											<label>Tên đăng nhập</label> <input
-												class="au-input au-input--full form-control" type="text"
-												name="username" placeholder="Tên đăng nhập"
-												value="${user.username }" readonly>
-										</div>
-										<div class="form-group">
-											<label>Họ và tên</label> <input
-												class="au-input au-input--full form-control" type="text"
-												name="fullname" placeholder="Họ và tên"
-												value="${user.fullname }" required>
-										</div>
-										<div class="form-group">
-											<label>Email</label> <input
-												class="au-input au-input--full form-control" type="email"
-												name="email" placeholder="Email" value="${user.email }"
-												required>
-										</div>
-										<div class="form-group">
-											<label>Số điện thoại</label> <input
-												class="au-input au-input--full form-control" type="text"
-												name="phone" placeholder="Số điện thoại" maxlength="10"
-												value="${user.phone }" required>
-										</div>
-										<div class="form-group">
-											<label>Vai trò</label><br>
-										<select id="role" name="role"">
-											<option  value="${user.role}" selected hidden>Choose here</option>
-											<option value="ADMIN" class="au-input au-input--full form-control">Quản trị</option>
-											<option value="USER" class="au-input au-input--full form-control">Người dùng</option>
-										</select>
-										<br>
-											<label>Trạng thái</label><br>
-										<select id="status" name="status">
-											<option  value="${user.status}" selected hidden>${user.status}</option>
-											<option value="true" class="au-input au-input--full form-control">Hoạt động</option>
-											<option value="false" class="au-input au-input--full form-control">Ngừng hoạt động</option>
-										</select>
-										</div>
-										<button class="btn btn-primary btn-sm" type="submit">Thay
-											đổi</button>
+											<div class="form-group">
+												<label>Tên đăng nhập</label> <input
+													class="au-input au-input--full form-control" type="text"
+													name="username" placeholder="Tên đăng nhập"
+													value="${user.username }" readonly>
+											</div>
+											<div class="form-group">
+												<label>Họ và tên</label> <input
+													class="au-input au-input--full form-control" type="text"
+													name="fullname" placeholder="Họ và tên"
+													value="${user.fullname }"
+													oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+													oninput="setCustomValidity('')" required>
+											</div>
+											<div class="form-group">
+												<label>Email</label> <input
+													class="au-input au-input--full form-control" type="email"
+													name="email" placeholder="Email" value="${user.email }"
+													oninvalid="this.setCustomValidity('Hãy nhập Email')"
+													oninput="setCustomValidity('')" required>
+											</div>
+											<div class="form-group">
+												<label>Số điện thoại</label> <input
+													class="au-input au-input--full form-control" type="text"
+													name="phone" placeholder="Số điện thoại" maxlength="10"
+													value="${user.phone }"
+													oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+													oninput="setCustomValidity('')" required>
+											</div>
+											<div class="form-group">
+												<label>Vai trò</label><br> <select id="role"
+													name="role"">
+													<option value="${user.role}" selected hidden>${user.role}</option>
+													<option value="ADMIN"
+														class="au-input au-input--full form-control">Quản
+														trị</option>
+													<option value="USER"
+														class="au-input au-input--full form-control">Người
+														dùng</option>
+												</select> <br> <label>Trạng thái</label><br> <select
+													id="status" name="status">
+													<option value="${user.status}" selected hidden>${user.status}</option>
+													<option value="true"
+														class="au-input au-input--full form-control">Hoạt
+														động</option>
+													<option value="false"
+														class="au-input au-input--full form-control">Ngừng
+														hoạt động</option>
+												</select>
+											</div>
+											<button class="btn btn-primary btn-sm" type="submit">Thay
+												đổi</button>
 
-										<button type="button" class="btn btn-danger btn-sm"
-											onclick="location.href='${root}/admin/user.htm'">
-											<i class="fa fa-dot-circle-o"></i> Quay trở lại
-										</button>
+											<button type="button" class="btn btn-danger btn-sm"
+												onclick="location.href='${root}/admin/user.htm'">
+												<i class="fa fa-dot-circle-o"></i> Quay trở lại
+											</button>
 									</form>
 								</div>
 							</div>

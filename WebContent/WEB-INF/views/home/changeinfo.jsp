@@ -188,18 +188,24 @@
 							<label>Họ và tên</label> <input
 								class="au-input au-input--full form-control" type="text"
 								name="fullname" placeholder="Họ và tên"
-								value="${user.fullname }" required>
+								value="${user.fullname }"
+								oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
 							<label>Email</label> <input
 								class="au-input au-input--full form-control" type="email"
-								name="email" placeholder="Email" value="${user.email }" required>
+								name="email" placeholder="Email" value="${user.email }"
+								oninvalid="this.setCustomValidity('Hãy nhập Email')"
+								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
 							<label>Số điện thoại</label> <input
 								class="au-input au-input--full form-control" type="text"
 								name="phone" placeholder="Số điện thoại" maxlength="10"
-								value="${user.phone }" required>
+								value="${user.phone }"
+								oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+								oninput="setCustomValidity('')" required>
 						</div>
 
 						<button class="btn btn-primary btn-sm" type="submit">Thay

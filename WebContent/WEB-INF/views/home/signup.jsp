@@ -74,33 +74,44 @@
 							<div class="form-group">
 								<label>Tên đăng nhập</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="username" placeholder="Tên đăng nhập" required>
+									name="username" placeholder="Tên đăng nhập"
+									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Họ và tên</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="fullname" placeholder="Họ và tên" required>
+									name="fullname" placeholder="Họ và tên"
+									oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Email</label> <input
 									class="au-input au-input--full form-control" type="email"
-									name="email" placeholder="Email" required>
+									name="email" placeholder="Email"
+									oninvalid="this.setCustomValidity('Hãy nhập Email')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Số điện thoại</label> <input
 									class="au-input au-input--full form-control" type="text"
 									name="phone" placeholder="Số điện thoại" maxlength="10"
-									required>
+									oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Mật khẩu</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="password" placeholder="Mật khẩu" required>
+									name="password" placeholder="Mật khẩu"
+									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Nhập lại mật khẩu</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+									name="confirmPassword" placeholder="Nhập lại mật khẩu"
+									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<input type="hidden" class="form-control form-control-lg"
 								name="role" value="user">

@@ -74,17 +74,25 @@
 							<div class="form-group">
 								<label>Tên đăng nhập</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="username_lg" placeholder="Tên đăng nhập" required>
+									name="username_lg" placeholder="Tên đăng nhập"
+									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Mật khẩu</label> <input
 									class="au-input au-input--full form-control" type="password"
-									name="password_lg" placeholder="Mật khẩu" required>
+									name="password_lg" placeholder="Mật khẩu"
+									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									oninput="setCustomValidity('')" required>
 							</div>
 							<div>
 								<img src="${root}/captcha/"> <input
 									style="width: 200px; height: 40px; border: 2px solid #231fe7; border-radius: 7px;"
-									name="captcha" type="text" id="captcha" required /> <label
+									name="captcha" type="text" id="captcha" 
+									
+								 oninvalid="this.setCustomValidity('Hãy nhập captcha')"
+ 							oninput="setCustomValidity('')"
+									required /> <label
 									class="mb-1">
 									<h6 class="mb-0 text-sm">${recaptcha}</h6>
 								</label>

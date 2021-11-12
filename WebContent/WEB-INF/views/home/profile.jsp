@@ -177,17 +177,23 @@
 						</c:if>
 						<div class="form-group">
 							<label>Mật khẩu cũ</label> <input class="form-control"
-								type="password" name="oldpass" required>
+								type="password" name="oldpass"
+								oninvalid="this.setCustomValidity('Hãy nhập mật khẩu cũ')"
+								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
 							<label>Nhập mật khẩu mới</label> <input class="form-control"
-								id="newpass" type="password" name="newpass" required>
-							<div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
+								id="newpass" type="password" name="newpass" 
+								 oninvalid="this.setCustomValidity('Hãy nhập mật khẩu mới')"
+ 							oninput="setCustomValidity('')"
+								required>
 						</div>
 						<div class="form-group">
 							<label>Nhập lại mật khẩu</label> <input class="form-control"
 								id="confirmpass" type="password" name="confirmpass"
-								oninput="check(this)" required />
+								oninput="check(this)"
+								oninvalid="this.setCustomValidity('Hãy nhập mật khẩu mới')"
+								oninput="setCustomValidity('')" required />
 							<script language='javascript' type='text/javascript'>
 								function check(input) {
 									if (input.value != document

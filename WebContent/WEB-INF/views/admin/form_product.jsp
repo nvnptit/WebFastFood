@@ -317,52 +317,61 @@
 											method="POST" modelAttribute="product"
 											enctype="multipart/form-data">
 											<div class="form-group">
-												<form:input path="id" type="hidden" class="form-control"/>
+												<form:input path="id" type="hidden" class="form-control" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tên sản phẩm</label>
 												<form:input path="name" type="text"
 													placeholder="Tên sản phẩm" class="form-control"
-													required="required" />
+													oninvalid="this.setCustomValidity('Hãy nhập tên sản phẩm')"
+													oninput="setCustomValidity('')" required="required" />
 											</div>
 											<div class="form-group">
 												<label class="form-control-label">Loại sản phẩm</label>
 												<form:select path="type" type="text" class="form-control"
-													items="${typeProducts}" required="required" />
+													items="${typeProducts}"
+													oninvalid="this.setCustomValidity('Hãy chọn loại sản phẩm')"
+													oninput="setCustomValidity('')" required="required" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Giá trị</label>
 												<form:input path="price" type="number" placeholder="Giá trị"
-													class="form-control" required="required" min="0" />
+													class="form-control"
+													oninvalid="this.setCustomValidity('Hãy nhập giá')"
+													oninput="setCustomValidity('')" required="required" min="0" />
 											</div>
 
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
 													placeholder=" % Giảm giá" class="form-control" min="0"
-													required="required" />
+													oninvalid="this.setCustomValidity('Hãy nhập % giảm giá')"
+													oninput="setCustomValidity('')" required="required" />
 											</div>
 
 											<div class="form-group">
 												<label class=" form-control-label">Số lượng</label>
 												<form:input path="quantity" type="number"
 													placeholder="Số lượng" class="form-control" min="0"
-													required="required" />
+													oninvalid="this.setCustomValidity('Hãy nhập số lượng')"
+													oninput="setCustomValidity('')" required="required" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Thông tin</label>
 												<form:textarea path="description" rows="5" cols="20"
 													placeholder="Thông tin" class="form-control"
-													required="required" />
+													oninvalid="this.setCustomValidity('Hãy nhập thông tin')"
+													oninput="setCustomValidity('')" required="required" />
 											</div>
 
 											<div class="form-group">
 												<label class=" form-control-label">Hình ảnh</label> <input
 													name="file" type="file" class="form-control"
-													required="required" />
+													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
+													oninput="setCustomValidity('')" required="required" />
 
 											</div>
-								
+
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
 													<i class="fa fa-dot-circle-o"></i> Thêm

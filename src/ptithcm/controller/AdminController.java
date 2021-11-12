@@ -120,7 +120,7 @@ public class AdminController {
 					model.addAttribute("message", "Tài khoản của bạn đã bị vô hiệu hoá!");
 					return "admin/login";
 				}
-				
+
 				session.setAttribute("user1", currentUser);
 				session.setAttribute("role1", currentUser.getRole());
 
@@ -219,7 +219,7 @@ public class AdminController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		User user = (User) session.get(User.class, username);
-		
+
 		Session session1 = factory.getCurrentSession();
 		String hql = "FROM Order od WHERE od.usernameid.username = :username";
 		Query query = session1.createQuery(hql);
@@ -231,16 +231,14 @@ public class AdminController {
 			if (user1.getUsername().equals(user.getUsername())) {
 				model.addAttribute("message", "Bạn không thể tự xoá chính mình");
 				return "admin/user";
-			}
-			else if (list.size() > 0) {
+			} else if (list.size() > 0) {
 				user.setStatus(false);
-				System.out.println(user.getFullname()+" | "+ user.isStatus());
+				System.out.println(user.getFullname() + " | " + user.isStatus());
 				session.update(user);
 				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
 				t.commit();
 				return "admin/user";
-			}
-			else {
+			} else {
 				session.delete(user);
 				t.commit();
 				model.addAttribute("message", "Xoá thành công");
@@ -249,7 +247,7 @@ public class AdminController {
 			t.rollback();
 			model.addAttribute("message", "Xoá thất bại");
 		} finally {
-			model.addAttribute("users",getUsers());
+			model.addAttribute("users", getUsers());
 			session.close();
 		}
 		return "admin/user";
@@ -262,7 +260,7 @@ public class AdminController {
 		Transaction t = session.beginTransaction();
 
 		Product product = (Product) session.get(Product.class, id);
-		Session session1 = factory.getCurrentSession(); 
+		Session session1 = factory.getCurrentSession();
 		String hql = "FROM Order od WHERE od.id_product.id = :id";
 		Query query = session1.createQuery(hql);
 		query.setParameter("id", id);
@@ -274,7 +272,7 @@ public class AdminController {
 				session.update(product);
 				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
 				t.commit();
-				//return "admin/product";
+				// return "admin/product";
 				return "redirect:/admin/product.htm";
 			} else {
 				session.delete(product);
@@ -399,7 +397,7 @@ public class AdminController {
 		return "admin/user_update";
 	}
 
-	@RequestMapping(value="product_update/{id}",method = RequestMethod.GET)
+	@RequestMapping(value = "product_update/{id}", method = RequestMethod.GET)
 	public String update_product(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.getCurrentSession();
 		Product product = (Product) session.get(Product.class, id);
@@ -420,7 +418,13 @@ public class AdminController {
 		User user = (User) session.get(User.class, username);
 		user.setFullname(chuanHoa(fullname));
 		user.setEmail(email);
-		user.setPhone(phone);
+		if (!phone.matches("\\d{10}")) {
+			model.addAttribute("user",user);
+			model.addAttribute("message", "Số điện thoại phải gồm 10 số");
+			return "admin/user_update";
+		} else {
+			user.setPhone(phone);
+		}
 		user.setRole(role);
 		user.setStatus(status);
 		try {
@@ -449,6 +453,21 @@ public class AdminController {
 
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
 	public String insert_admin(ModelMap model, @ModelAttribute("user") User user) {
+
+		Session session1 = factory.getCurrentSession(); // Get session hiện tại
+		String hql = "FROM User WHERE username = :username";
+		Query query = session1.createQuery(hql).setParameter("username", user.getUsername());
+		@SuppressWarnings("unchecked")
+		List<User> list = query.list();
+
+		if (list.size() > 0) {
+			model.addAttribute("message", "Username đã tồn tại, mời bạn đăng kí tài khoản khác!");
+			return "admin/form_user";
+		}
+		if (!user.getPhone().matches("\\d{10}")) {
+			model.addAttribute("message", "Số điện thoại phải gồm 10 số");
+			return "admin/form_user";
+		}
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		user.setFullname(chuanHoa(user.getFullname()));
@@ -490,13 +509,27 @@ public class AdminController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		product.setName(chuanHoa(product.getName()));
+
+		Session session1 = factory.getCurrentSession();
+		String hql = "FROM Product WHERE name = :name AND type = :type";
+		Query query = session1.createQuery(hql);
+		query.setParameter("name", product.getName());
+		query.setParameter("type", product.getType());
+		List<Product> list = query.list();
+
+		if (list.size() > 0) {
+			Product pro = (Product) list.get(0);
+			model.addAttribute("product", pro);
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm này trong hệ thống!");
+			return "admin/product_update";
+		}
+
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
 			try {
-				String name= System.currentTimeMillis()+"-" +file.getOriginalFilename();
-				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
-						+ name;
+				String name = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\" + name;
 				file.transferTo(new File(photoPath));
 				product.setImg(name);
 				session.save(product);
@@ -517,29 +550,42 @@ public class AdminController {
 			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
 		Session session1 = factory.getCurrentSession();
 		Product product1 = (Product) session1.get(Product.class, id);
-		
+		// lấy ra để trả về hình ảnh cũ nếu không thay đổi
+
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
-		product.setName(chuanHoa(product.getName()));
-			try {
-				if (!file.isEmpty()) {
-					String name= System.currentTimeMillis()+"-" +file.getOriginalFilename();
-					String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\"
-							+ name;
-					file.transferTo(new File(photoPath));
-					product.setImg(name);
-				} else {
-					product.setImg(product1.getImg());
-				}
-				session.update(product);
-				t.commit();
-				model.addAttribute("message", "Cập nhật sản phẩm thành công!");
-			} catch (Exception e) {
-				t.rollback();
-				model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
-			} finally {
-				session.close();
+
+		String hql = "FROM Product WHERE name = :name AND type = :type";
+		Query query = session1.createQuery(hql);
+		query.setParameter("name", product.getName());
+		query.setParameter("type", product.getType());
+		List<Product> list = query.list();
+
+		if (list.size() > 0) {
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() + " này trong hệ thống!");
+			model.addAttribute("product", product1);
+			return "admin/product_update";
+		}
+
+		try {
+			product.setName(chuanHoa(product.getName()));
+			if (!file.isEmpty()) {
+				String name = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\" + name;
+				file.transferTo(new File(photoPath));
+				product.setImg(name);
+			} else {
+				product.setImg(product1.getImg());
 			}
+			session.update(product);
+			t.commit();
+			model.addAttribute("message", "Cập nhật sản phẩm thành công!");
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
+		} finally {
+			session.close();
+		}
 		return "admin/product_update";
 	}
 

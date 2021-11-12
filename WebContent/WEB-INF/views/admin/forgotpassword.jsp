@@ -13,8 +13,8 @@
 <title>Forget Password</title>
 
 <!-- Fontfaces CSS-->
-<link href="${root}/resources/css/font-face.css"
-	rel="stylesheet" media="all">
+<link href="${root}/resources/css/font-face.css" rel="stylesheet"
+	media="all">
 <link
 	href="${root}/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"
 	rel="stylesheet" media="all">
@@ -26,36 +26,30 @@
 	rel="stylesheet" media="all">
 
 <!-- Bootstrap CSS-->
-<link
-	href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
+<link href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
 	rel="stylesheet" media="all">
 
 <!-- Vendor CSS-->
-<link
-	href="${root}/resources/vendor/animsition/animsition.min.css"
+<link href="${root}/resources/vendor/animsition/animsition.min.css"
 	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
 	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/wow/animate.css"
+<link href="${root}/resources/vendor/wow/animate.css" rel="stylesheet"
+	media="all">
+<link href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
 	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
-	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/slick/slick.css"
-	rel="stylesheet" media="all">
-<link
-	href="${root}/resources/vendor/select2/select2.min.css"
+<link href="${root}/resources/vendor/slick/slick.css" rel="stylesheet"
+	media="all">
+<link href="${root}/resources/vendor/select2/select2.min.css"
 	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css"
 	rel="stylesheet" media="all">
 
 <!-- Main CSS-->
-<link href="${root}/resources/css/theme.css"
-	rel="stylesheet" media="all">
+<link href="${root}/resources/css/theme.css" rel="stylesheet"
+	media="all">
 
 </head>
 
@@ -67,8 +61,7 @@
 					<div class="login-content">
 						<div class="login-logo">
 							<a href="#"> <img
-								src="${root}/resources/images/icon/admin.png"
-								alt="Admin">
+								src="${root}/resources/images/icon/admin.png" alt="Admin">
 							</a>
 						</div>
 						<div class="login-form">
@@ -77,8 +70,11 @@
 							</c:if>
 							<form action="forgot.htm" method="post">
 								<div class="form-group">
-									<label>Tên đăng nhập</label> <input class="au-input au-input--full"
-										type="text" name="username" placeholder="Tên đăng nhập" required/>
+									<label>Tên đăng nhập</label> <input
+										class="au-input au-input--full" type="text" name="username"
+										placeholder="Tên đăng nhập"
+										oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+										oninput="setCustomValidity('')" required />
 								</div>
 								<button class="au-btn au-btn--block au-btn--green m-b-20"
 									type="submit">Xác nhận</button>
@@ -92,22 +88,16 @@
 	</div>
 
 	<!-- Jquery JS-->
-	<script
-		src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
+	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
 	<!-- Bootstrap JS-->
-	<script
-		src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
-	<script
-		src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<script src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 	<!-- Vendor JS       -->
-	<script
-		src="${root}/resources/vendor/slick/slick.min.js">
+	<script src="${root}/resources/vendor/slick/slick.min.js">
 		
 	</script>
-	<script
-		src="${root}/resources/vendor/wow/wow.min.js"></script>
-	<script
-		src="${root}/resources/vendor/animsition/animsition.min.js"></script>
+	<script src="${root}/resources/vendor/wow/wow.min.js"></script>
+	<script src="${root}/resources/vendor/animsition/animsition.min.js"></script>
 	<script
 		src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
 		
@@ -122,16 +112,13 @@
 		src="${root}/resources/vendor/circle-progress/circle-progress.min.js"></script>
 	<script
 		src="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-	<script
-		src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
-	<script
-		src="${root}/resources/vendor/select2/select2.min.js">
+	<script src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="${root}/resources/vendor/select2/select2.min.js">
 		
 	</script>
 
 	<!-- Main JS-->
-	<script
-		src="${root}/resources/js/main_admin.js"></script>
+	<script src="${root}/resources/js/main_admin.js"></script>
 
 </body>
 

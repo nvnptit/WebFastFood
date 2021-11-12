@@ -528,7 +528,7 @@ public class HomeController {
 	@ModelAttribute("products")
 	public List<Product> getProducts() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product";
+		String hql = "FROM Product WHERE status = 1";
 		Query query = session.createQuery(hql);
 		List<Product> list = query.list();
 		return list;
