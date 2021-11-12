@@ -427,12 +427,11 @@ public class HomeController {
 			body += "\n===========================\n";
 
 			body += "\nTHÔNG TIN HOÁ ĐƠN\n";
+			Date date = new Date();
 			for (int i = 0; i < name.length; i++) {
-				Date date = new Date();
 				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: "
 						+ quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i]
 						+ "VNĐ. \n";
-				body += "Ngày xuất hoá đơn: " + date+"\n";
 				Order order = new Order();
 				order.setUsernameid(currentUser);
 				order.setAmount(Integer.valueOf(quantity[i]));
@@ -444,7 +443,8 @@ public class HomeController {
 				order.setDate(date);
 				session1.save(order);
 			}
-
+			
+			body += "Ngày xuất hoá đơn: " + date+"\n";
 			body += ".\n===========================\n" + "\nTổng thanh toán của bạn là : " + total_amount;
 
 			MimeMessage mail = mailer.createMimeMessage();
