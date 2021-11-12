@@ -97,16 +97,16 @@
 
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="${root}/home/index.htm" class="nav-link">Trang
-							chủ</a></li>
-					<li class="nav-item"><a href="${root}/home/food.htm" class="nav-link">Thức
-							ăn</a></li>
-					<li class="nav-item"><a href="${root}/home/drink.htm" class="nav-link">Thức
-							uống</a></li>
-					<li class="nav-item"><a href="${root}/home/about.htm" class="nav-link">Thông
-							tin thêm</a></li>
-					<li class="nav-item"><a href="${root}/home/blog.htm" class="nav-link">Blog</a>
-					</li>
+					<li class="nav-item"><a href="${root}/home/index.htm"
+						class="nav-link">Trang chủ</a></li>
+					<li class="nav-item"><a href="${root}/home/food.htm"
+						class="nav-link">Thức ăn</a></li>
+					<li class="nav-item"><a href="${root}/home/drink.htm"
+						class="nav-link">Thức uống</a></li>
+					<li class="nav-item"><a href="${root}/home/about.htm"
+						class="nav-link">Thông tin thêm</a></li>
+					<li class="nav-item"><a href="${root}/home/blog.htm"
+						class="nav-link">Blog</a></li>
 					<li class="nav-item cta cta-colored active"><a href="cart.htm"
 						class="nav-link"> <span class="icon-shopping_cart">Giỏ
 								hàng</span>[ ${sessionScope['Orders_list'].size()} ]
@@ -134,11 +134,13 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="${root}/home/profile.htm">Thay đổi mật khẩu</a>
+						<a class="dropdown-item" href="${root}/home/profile.htm">Thay
+							đổi mật khẩu</a>
 						<a class="dropdown-item"
-						href="changeinfo/${sessionScope['user'].username}.htm">Thay
-						đổi thông tin cá nhân</a>
-						<a class="dropdown-item" href="${root}/home/logout.htm">Đăng xuất</a>
+							href="changeinfo/${sessionScope['user'].username}.htm">Thay
+							đổi thông tin cá nhân</a>
+						<a class="dropdown-item" href="${root}/home/logout.htm">Đăng
+							xuất</a>
 					</ul>
 				</div>
 			</div>
