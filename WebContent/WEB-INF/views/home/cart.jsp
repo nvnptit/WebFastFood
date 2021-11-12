@@ -132,19 +132,18 @@
 						</div>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right" role="menu">
-						<a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a>
-						<a class="dropdown-item"
+						<li><a class="dropdown-item" href="profile.htm">Thay đổi mật khẩu</a></li>
+						<li><a class="dropdown-item"
 							href="changeinfo/${sessionScope['user'].username}.htm">Thay
-							đổi thông tin cá nhân</a>
-						<a class="dropdown-item" href="logout.htm">Đăng xuất</a>
+							đổi thông tin cá nhân</a></li>
+						<li><a class="dropdown-item" href="logout.htm">Đăng xuất</a></li>
 					</ul>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${sessionScope['user'] == null}">
 			<!-- Login  & Signup -->
-			<a href="${root}/home/login.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal"
-				style="margin:5px;" ">Đăng nhập</a> 
+			<a href="${root}/home/login.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal" style="margin:5px">Đăng nhập</a> 
 			<a href=" ${root}/home/signup.htm" role="button" class="btn btn-primary btn-sm" data-toggle="modal">Đăng ký</a>
 			</c:if>
 	</nav>
@@ -251,16 +250,16 @@
 					<div class="form-group">
 						<br> <label class="form-control-label">Họ tên</label> <input
 							type="text" class="form-control is-valid" name="receiver"
-							id="receiver">
+							id="receiver" required>
 					</div>
 					<div class="form-group">
 						<label for="uname1">Địa chỉ</label> <input type="text"
-							class="form-control is-valid" name="address" id="address"
+							class="form-control is-valid" name="address" id="address" required
 							>
 					</div>
 					<div class="form-group">
 						<label for="uname1">Số điện thoại</label> <input type="text"
-							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" >
+							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" required >
 					</div>
 				</form>
 					
