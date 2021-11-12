@@ -432,7 +432,7 @@ public class HomeController {
 				body += "Sản phẩm: " + name[i].trim() + ".\n\t Giá: " + price[i].trim() + "VNĐ.\n\t Số lượng: "
 						+ quantity[i].trim() + ".\n\t Khuyến mãi: " + discount[i] + "%.\n\t Thành tiền: " + total[i]
 						+ "VNĐ. \n";
-				body += "Ngày xuất hoá đơn: " + date;
+				body += "Ngày xuất hoá đơn: " + date+"\n";
 				Order order = new Order();
 				order.setUsernameid(currentUser);
 				order.setAmount(Integer.valueOf(quantity[i]));
