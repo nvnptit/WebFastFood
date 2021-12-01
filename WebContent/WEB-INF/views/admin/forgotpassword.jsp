@@ -79,6 +79,8 @@
 								<button class="au-btn au-btn--block au-btn--green m-b-20"
 									type="submit">Xác nhận</button>
 							</form>
+							<label> <a href="${root}/admin/login.htm">Đăng nhập ngay!</a>
+								</label>
 						</div>
 					</div>
 				</div>

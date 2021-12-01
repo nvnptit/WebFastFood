@@ -74,44 +74,45 @@
 							<div class="form-group">
 								<label>Tên đăng nhập</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="username" placeholder="Tên đăng nhập"
+									name="username"
 									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Họ và tên</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="fullname" placeholder="Họ và tên"
+									name="fullname"
 									oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Email</label> <input
 									class="au-input au-input--full form-control" type="email"
-									name="email" placeholder="Email"
+									name="email"
 									oninvalid="this.setCustomValidity('Hãy nhập Email')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Số điện thoại</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="phone" placeholder="Số điện thoại" maxlength="10"
+									name="phone" maxlength="10"
 									oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Mật khẩu</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="password" placeholder="Mật khẩu"
+									class="au-input au-input--full form-control" type="password"
+									name="password"
 									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
 								<label>Nhập lại mật khẩu</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="confirmPassword" placeholder="Nhập lại mật khẩu"
+									class="au-input au-input--full form-control" type="password"
+									name="confirmPassword"
 									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
-									oninput="setCustomValidity('')" required>
+									oninput="setCustomValidity('')" required> <span
+									class="show-btn"><i class="fas fa-eye"></i></span>
 							</div>
 							<input type="hidden" class="form-control form-control-lg"
 								name="role" value="user">
@@ -173,6 +174,29 @@
 	<!-- Main JS-->
 	<script src="${root}/resources/js/main_admin.js"></script>
 
+	<script>
+ $('.show-btn').click(function(e) {
+
+	const passField1 = document.querySelector("body > div.page-content--bge5 > div > div > div > div.login-form > form > div:nth-child(5) > input");
+	const passField2 = document.querySelector("body > div.page-content--bge5 > div > div > div > div.login-form > form > div:nth-child(6) > input");
+	const showBtn = document.querySelector("span i");
+	showBtn.onclick = (()=>{
+	  if(passField1.type === "password"){
+	   passField1.type = "text";
+	    passField2.type = "text"; 
+	    showBtn.classList.remove("fa-eye"); 
+	    showBtn.classList.add("fa-eye-slash");  
+	  }else{
+		    passField1.type = "password";
+		    passField2.type = "password";
+	    showBtn.classList.remove("fa-eye-slash"); 
+	    showBtn.classList.add("fa-eye");  
+	  }
+	});
+
+}); 
+
+</script>
 </body>
 
 </html>

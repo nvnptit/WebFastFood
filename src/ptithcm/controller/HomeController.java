@@ -99,7 +99,7 @@ public class HomeController {
 				} finally {
 					session.close();
 				}
-				return "home/index";
+				return "home/login";
 			}
 		}
 	}
@@ -107,7 +107,7 @@ public class HomeController {
 	// Forgot
 	@RequestMapping(value = "forgot", method = RequestMethod.GET)
 	public String forgot_user() {
-		return "admin/forgotpassword";
+		return "home/forgot";
 	}
 
 	// Forgot
