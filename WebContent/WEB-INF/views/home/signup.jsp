@@ -1,4 +1,5 @@
 <%@ page pageEncoding="utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,42 +71,46 @@
 					</c:if>
 
 					<div class="login-form">
-						<form class="needs-validation" action="signup.htm" method="post">
+						<form:form action="signup.htm" method="post"
+							modelAttribute="userz">
 							<div class="form-group">
-								<label>Tên đăng nhập</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="username"
+								<label class="form-control-label">Tên đăng nhập</label>
+								<form:input path="username" type="text"
+									placeholder="Tên đăng nhập" class="form-control"
 									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
-									oninput="setCustomValidity('')" required>
+									oninput="setCustomValidity('')" required="required" />
 							</div>
+
 							<div class="form-group">
-								<label>Họ và tên</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="fullname"
+								<label class="form-control-label">Họ và tên</label>
+								<form:input path="fullname" type="text" placeholder="Họ và tên"
+									class="form-control"
 									oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
-									oninput="setCustomValidity('')" required>
+									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
-								<label>Email</label> <input
-									class="au-input au-input--full form-control" type="email"
-									name="email"
-									oninvalid="this.setCustomValidity('Hãy nhập Email')"
-									oninput="setCustomValidity('')" required>
+								<label class="form-control-label">Email</label>
+								<form:input path="email" type="email" placeholder=" Email"
+									class="form-control"
+									oninvalid="this.setCustomValidity('Hãy nhập Email hợp lệ')"
+									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
-								<label>Số điện thoại</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="phone" maxlength="10"
+								<label class="form-control-label">Số điện thoại</label>
+								<form:input path="phone" type="text" maxlength="10"
+									placeholder="Số điện thoại" class="form-control"
 									oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
-									oninput="setCustomValidity('')" required>
+									oninput="setCustomValidity('')" required="required" />
 							</div>
+
 							<div class="form-group">
-								<label>Mật khẩu</label> <input
-									class="au-input au-input--full form-control" type="password"
-									name="password"
+								<label>Mật khẩu</label>
+								<form:input path="password" placeholder="Mật khẩu" type="password"
+									class="form-control"
 									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
-									oninput="setCustomValidity('')" required>
+									oninput="setCustomValidity('')" required="required" />
 							</div>
+
 							<div class="form-group">
 								<label>Nhập lại mật khẩu</label> <input
 									class="au-input au-input--full form-control" type="password"
@@ -114,8 +119,14 @@
 									oninput="setCustomValidity('')" required> <span
 									class="show-btn"><i class="fas fa-eye"></i></span>
 							</div>
-							<input type="hidden" class="form-control form-control-lg"
-								name="role" value="user">
+							
+							<div>
+								<form:input path="role" type="hidden" value="user"
+									required="required" />
+							</div>
+							<div class="form-group">
+								<form:input path="status" type="hidden" value="1" />
+							</div>
 							<!-- <div><img src="${root}/captcha/">
                                             <input style="width: 200px; height: 40px;    border: 2px solid #231fe7;
                                             border-radius: 7px;" name="captcha" type="text" id="captcha" required />
@@ -123,6 +134,8 @@
                                                 <h6 class="mb-0 text-sm">${recaptcha}</h6>
                                             </label>
                                         </div><br> -->
+
+
 							<button class="au-btn au-btn--block au-btn--green m-b-20"
 								type="submit">Đăng ký</button>
 							<div class="login-checkbox">
@@ -130,7 +143,7 @@
 										tài khoản?</a>
 								</label>
 							</div>
-						</form>
+						</form:form>
 						<div class="register-link">
 							<a href="#">Copyright &copy; 2021 NVN</a>
 						</div>

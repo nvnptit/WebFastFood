@@ -189,21 +189,17 @@
 								required>
 						</div>
 						<div class="form-group">
-							<label>Nhập lại mật khẩu</label> <input class="form-control"
-								id="confirmpass" type="password" name="confirmpass"
-								oninput="check(this)"
-								oninvalid="this.setCustomValidity('Hãy nhập mật khẩu mới')"
-								oninput="setCustomValidity('')" required />
+						<label>Nhập lại mật khẩu</label>
+							<input class="form-control" id="confirmpass" type="password"
+							name="confirmpass" oninput="check(this)" required />
 							<script language='javascript' type='text/javascript'>
-								function check(input) {
-									if (input.value != document
-											.getElementById('newpass').value) {
-										input
-												.setCustomValidity('Mật khẩu không trùng khớp');
-									} else {
-										input.setCustomValidity('');
+							function check(input) {
+							if (input.value != document.getElementById('newpass').value) {
+							input.setCustomValidity('Mật khẩu không trùng khớp');
+							} else {
+								input.setCustomValidity('');
 									}
-								}
+							}
 							</script>
 						</div>
 						<button class="btn btn-info" type="submit">Đổi mật khẩu</button>

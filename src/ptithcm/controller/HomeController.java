@@ -53,13 +53,14 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "signup", method = RequestMethod.GET)
-	public String signup_user() {
+	public String signup_user(ModelMap model) {
+		model.addAttribute("userz", new User());
 		return "/home/signup";
 	}
 
 	// Signup
 	@RequestMapping(value = "signup", method = RequestMethod.POST)
-	public String signup_post(HttpServletRequest request, ModelMap model) {
+	public String signup_post(HttpServletRequest request, ModelMap model, @ModelAttribute("userz") User userz) {
 		String username = request.getParameter("username").trim();
 		String fullname = request.getParameter("fullname").trim();
 		String email = request.getParameter("email").trim();
@@ -89,7 +90,7 @@ public class HomeController {
 				Session session = factory.openSession(); // Mở phiên mới
 				Transaction t = session.beginTransaction(); // Dùng để thay đổi các tiến trình làm thay đổi CSDL
 				try {
-					User user = new User(username, md5(password), role, fullname, email, phone,true);
+					User user = new User(username, md5(password), role, fullname, email, phone, true);
 					session.save(user);
 					t.commit();
 					model.addAttribute("message", "Đăng ký thành công!");
@@ -291,7 +292,7 @@ public class HomeController {
 					model.addAttribute("message", "Tài khoản của bạn đã bị vô hiệu hoá!");
 					return "home/login";
 				}
-				
+
 				model.addAttribute("user", currentUser);
 				session.setAttribute("user", currentUser);
 				session.setAttribute("role", currentUser.getRole());
@@ -443,8 +444,8 @@ public class HomeController {
 				order.setDate(date);
 				session1.save(order);
 			}
-			
-			body += "Ngày xuất hoá đơn: " + date+"\n";
+
+			body += "Ngày xuất hoá đơn: " + date + "\n";
 			body += ".\n===========================\n" + "\nTổng thanh toán của bạn là : " + total_amount;
 
 			MimeMessage mail = mailer.createMimeMessage();
