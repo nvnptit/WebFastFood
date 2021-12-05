@@ -321,7 +321,7 @@ public class HomeController {
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(20);
-		pagedListHolder.setPageSize(5);
+		pagedListHolder.setPageSize(10);
 		model.addAttribute("pagedListHolder", pagedListHolder);
 		return "home/food";
 	}
@@ -335,7 +335,7 @@ public class HomeController {
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(20);
-		pagedListHolder.setPageSize(5);
+		pagedListHolder.setPageSize(10);
 		model.addAttribute("pagedListHolder", pagedListHolder);
 		return "home/drink";
 	}
@@ -487,7 +487,7 @@ public class HomeController {
 		ArrayList<Product> orders_list = new ArrayList<Product>(orders.values());
 		session.setAttribute("Orders_list", orders_list);
 		session.setAttribute("Orders", orders);
-		model.addAttribute("Oders_list", orders_list);
+		model.addAttribute("Orders_list", orders_list);
 		model.addAttribute("message", "Bạn đã thêm sản phẩm vào giỏ hàng");
 		return "home/cart";
 	}
