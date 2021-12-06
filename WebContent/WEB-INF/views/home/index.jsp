@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -66,7 +67,7 @@
 						<h2 class="subheading mb-4">Siêu ngon - Siêu bổ - Siêu rẻ -
 							Siêu nhanh</h2>
 						<p>
-							<a href="#" class="btn btn-primary">Xem thêm tại đây</a>
+							<a href="#" class="btn btn-primary"><s:message code="home.SeeMoreHere"/></a>
 						</p>
 					</div>
 
@@ -87,7 +88,7 @@
 						<h2 class="subheading mb-4">Siêu ngon - Siêu bổ - Siêu rẻ -
 							Siêu nhanh</h2>
 						<p>
-							<a href="#" class="btn btn-primary">Xem thêm tại đây</a>
+							<a href="#" class="btn btn-primary"><s:message code="home.SeeMoreHere"/></a>
 						</p>
 					</div>
 
@@ -97,64 +98,7 @@
 	</div>
 </section>
 
-<section class="ftco-section">
-	<div class="container">
-		<div class="row no-gutters ftco-services">
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-shipped"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Miễn phí giao hàng</h3>
-						<span>Hoá đơn trên 100.000 VNĐ</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-diet"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Nguyên liệu được chọn lọc</h3>
-						<span>Luôn tươi ngon đảm bảo an toàn</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-award"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Chất lượng sản phẩm</h3>
-						<span>Siêu chất lượng!</span>
-					</div>
-				</div>
-			</div>
-			<div
-				class="col-md-3 text-center d-flex align-self-stretch ftco-animate">
-				<div class="media block-6 services mb-md-0 mb-4">
-					<div
-						class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
-						<span class="flaticon-customer-service"></span>
-					</div>
-					<div class="media-body">
-						<h3 class="heading">Hoạt động</h3>
-						<span>24/7</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<%@include file="/WEB-INF/views/include/service.jsp"%>
 
 <section class="ftco-section ftco-category ftco-no-pt">
 	<div class="container">
@@ -166,10 +110,10 @@
 							class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
 							style="background-image: url(${root}/resources/images/category.jpg);">
 							<div class="text text-center">
-								<h2>FAST FOOD</h2>
-								<p>Đầy đủ các loại thức ăn, thức uống</p>
+								<h2><s:message code="home.Head5"/></h2>
+								<p><s:message code="home.Body5"/></p>
 								<p>
-									<a href="food.htm" class="btn btn-primary">Mua ngay</a>
+									<a href="food.htm" class="btn btn-primary"><s:message code="home.BuyNow"/></a>
 								</p>
 							</div>
 						</div>
@@ -180,7 +124,7 @@
 							style="background-image: url(${root}/resources/images/cacLoaiBanh.jpg);">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0">
-									<a href="food.htm">Bánh</a>
+									<a href="food.htm"><s:message code="home.Cake"/></a>
 								</h2>
 							</div>
 						</div>
@@ -188,7 +132,7 @@
 							style="background-image: url(${root}/resources/images/cacLoaiNuoc.jpg);">
 							<div class="text px-3 py-1">
 								<h2 class="mb-0">
-									<a href="drink.htm">Nước</a>
+									<a href="drink.htm"><s:message code="home.Drink"/></a>
 								</h2>
 							</div>
 						</div>
@@ -202,7 +146,7 @@
 					style="background-image: url(${root}/resources/images/doAnVat.jpg);">
 					<div class="text px-3 py-1">
 						<h2 class="mb-0">
-							<a href="food.htm">Đồ ăn vặt</a>
+							<a href="food.htm"><s:message code="home.Snacks"/></a>
 						</h2>
 					</div>
 				</div>
@@ -210,7 +154,7 @@
 					style="background-image: url(${root}/resources/images/image_6.jpg);">
 					<div class="text px-3 py-1">
 						<h2 class="mb-0">
-							<a href="#">Hoa quả</a>
+							<a href="#"><s:message code="home.Fruit"/></a>
 						</h2>
 					</div>
 				</div>
@@ -223,7 +167,7 @@
 	<div class="container">
 		<div class="row justify-content-center mb-3 pb-3">
 			<div class="col-md-6 heading-section text-center ftco-animate">
-				<h1 class="mb-4">Sản phẩm nổi bật của chúng tôi</h1>
+				<h1 class="mb-4"><s:message code="home.Featured"/></h1>
 			</div>
 		</div>
 	</div>
@@ -251,8 +195,9 @@
 							<div class="bottom-area d-flex px-2">
 								<div class="m-auto d-flex">
 									<form method="post" action="${root}/home/addCart.htm">
+										<s:message code="general.AddToCart" var="addToCart"/>
 										<input type="hidden" value="${p.id}" name="id" /> <input
-											type="submit" value="Thêm vào giỏ hàng" name="btnOK"
+											type="submit" value="${addToCart}" name="btnOK"
 											class="btn btn-black py-1 px-1" />
 									</form>
 								</div>
@@ -288,102 +233,7 @@
 	</div>
 </section>
 
-<section class="ftco-section testimony-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section ftco-animate text-center">
-				<h2 class="mb-4">Ý kiến khách hàng</h2>
-			</div>
-		</div>
-		<div class="row ftco-animate">
-			<div class="col-md-12">
-				<div class="carousel-testimony owl-carousel">
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(${root}/resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Ngon quá, ngon quá, thực sự quá
-									ngon.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Marketing Manager</span>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(${root}/resources/images/person_2.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Món nào cũng có... Chỉ thiếu tôi.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Officer</span>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(${root}/resources/images/person_3.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Không thể chê vào đâu được!.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">UI Designer</span>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(${root}/resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Tuyệt vời ông mặt trời.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">Developer</span>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="testimony-wrap p-4 pb-5">
-							<div class="user-img mb-5"
-								style="background-image: url(${root}/resources/images/person_1.jpg)">
-								<span
-									class="quote d-flex align-items-center justify-content-center">
-									<i class="icon-quote-left"></i>
-								</span>
-							</div>
-							<div class="text text-center">
-								<p class="mb-5 pl-4 line">Siêu ngon và rẻ.</p>
-								<p class="name">Garreth Smith</p>
-								<span class="position">System Analyst</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+<%@include file="/WEB-INF/views/include/feedback.jsp"%>
 
 <hr>
 

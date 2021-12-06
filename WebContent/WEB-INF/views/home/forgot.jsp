@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -59,7 +60,8 @@
 			<div class="container">
 				<div class="login-wrap">
 					<div class="login-content">
-						<div class="login-logo">
+						<%@include file="/WEB-INF/views/include/language.jsp"%>
+						<div class="login-logo mt-3">
 							<a href="#"> <img
 								src="${root}/resources/images/icon/admin.png" alt="Admin">
 							</a>
@@ -70,17 +72,18 @@
 							</c:if>
 							<form action="forgot.htm" method="post">
 								<div class="form-group">
-									<label>Tên đăng nhập</label> <input
+									<s:message code="general.Username" var="username"/>
+									<s:message code="info.Username" var="i_username"/>
+									<label>${username}</label> <input
 										class="au-input au-input--full" type="text" name="username"
-										placeholder="Tên đăng nhập"
-										oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+										placeholder="${username}"
+										oninvalid="this.setCustomValidity('${i_username}')"
 										oninput="setCustomValidity('')" required />
 								</div>
 								<button class="au-btn au-btn--block au-btn--green m-b-20"
-									type="submit">Xác nhận</button>
+									type="submit"><s:message code="general.Confirm" /></button>
 							</form>
-							<label> <a href="${root}/home/index.htm">Quay về
-									trang chủ</a>
+							<label> <a href="${root}/home/index.htm"><s:message code="general.BackToHomePage" /></a>
 							</label>
 						</div>
 					</div>

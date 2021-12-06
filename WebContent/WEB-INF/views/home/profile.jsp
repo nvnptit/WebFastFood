@@ -5,6 +5,7 @@
 <%@page import="ptithcm.entity.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ page pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,7 @@
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
 					<p class="breadcrumbs"></p>
-					<h1 class="mb-0 bread">Thông tin cá nhân</h1>
+					<h1 class="mb-0 bread"><s:message code="profile.Header"/></h1>
 				</div>
 			</div>
 		</div>
@@ -73,25 +74,30 @@
 			<div class="row justify-content-center">
 				<div class="col-xl-7 ftco-animate">
 					<form action="profile.htm" method="POST" class="billing-form">
-						<h3 class="mb-4 billing-heading">Thay đổi mật khẩu</h3>
+						<h3 class="mb-4 billing-heading"><s:message code="profile.ChangePassword"/></h3>
 						<c:if test="${not empty message}">
 							<div class="alert alert-danger" role="alert">${message}</div>
 						</c:if>
 						<div class="form-group">
-							<label>Mật khẩu cũ</label> <input class="form-control"
+							<label><s:message code="profile.OldPass"/></label>
+							<s:message code="profile.OldPass.Check" var="checkOldPass"/>
+							<input class="form-control"
 								type="password" name="oldpass"
-								oninvalid="this.setCustomValidity('Hãy nhập mật khẩu cũ')"
+								oninvalid="this.setCustomValidity('${checkOldPass }')"
 								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
-							<label>Nhập mật khẩu mới</label> <input class="form-control"
+							<label><s:message code="profile.NewPass"/></label> 
+							<s:message code="profile.NewPass.Check" var="checkNewPass"/>
+							<input class="form-control"
 								id="newpass" type="password" name="newpass" 
-								 oninvalid="this.setCustomValidity('Hãy nhập mật khẩu mới')"
+								 oninvalid="this.setCustomValidity('${checkNewPass }')"
  							oninput="setCustomValidity('')"
 								required>
 						</div>
 						<div class="form-group">
-						<label>Nhập lại mật khẩu</label>
+						<label><s:message code="profile.ConfirmNewPass"/></label>
+							<s:message code="profile.ConfirmNewPass.Check" var="checkConfirmNewPass"/>
 							<input class="form-control" id="confirmpass" type="password"
 							name="confirmpass" oninput="check(this)" required />
 							<script language='javascript' type='text/javascript'>
@@ -104,7 +110,7 @@
 							}
 							</script>
 						</div>
-						<button class="btn btn-info" type="submit">Đổi mật khẩu</button>
+						<button class="btn btn-info" type="submit"><s:message code="profile.ChangePassword"/></button>
 					</form>
 					<!-- END -->
 				</div>

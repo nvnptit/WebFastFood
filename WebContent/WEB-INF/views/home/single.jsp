@@ -4,6 +4,7 @@
 			<%@ page pageEncoding="utf-8" %>
 				<%@page import="java.util.ArrayList" %>
 					<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+					<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 						<!DOCTYPE html>
 						<html lang="en">
 						<c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -50,7 +51,7 @@
 								<div class="container">
 									<div class="row no-gutters slider-text align-items-center justify-content-center">
 										<div class="col-md-9 ftco-animate text-center">
-											<h1 class="mb-0 bread">Chi tiết sản phẩm</h1>
+											<h1 class="mb-0 bread"><s:message code="single.Header"/></h1>
 										</div>
 									</div>
 								</div>
@@ -78,11 +79,11 @@
 												</p>
 												<p class="text-left mr-4">
 													<a href="#" class="mr-2" style="color: #000;">100 <span
-															style="color: rgb(175, 104, 104);">đánh giá</span></a>
+															style="color: rgb(175, 104, 104);"><s:message code="single.Rate"/></span></a>
 												</p>
 												<p class="text-left">
 													<a href="#" class="mr-2" style="color: #000;">500 <span
-															style="color: rgb(163, 61, 61);">đã bán</span></a>
+															style="color: rgb(163, 61, 61);"><s:message code="single.Sold"/></span></a>
 												</p>
 											</div>
 											<p class="price"><span>${product.price} VNĐ</span></p>
@@ -91,13 +92,13 @@
 
 												<div class="w-100"></div>
 												<div class="col-md-12">
-													<p style="color: rgb(90, 56, 243);">Còn lại ${product.quantity} sản
-														phẩm</p>
+													<p style="color: rgb(90, 56, 243);"><s:message code="single.Remain"/> ${product.quantity} <s:message code="single.Product"/></p>
 												</div>
 											</div>
 											<form method="post" action="${root}/home/addCart.htm">
+												<s:message code="general.AddToCart" var="addToCart"/>
 												<input type="hidden" value="${product.id}" name="id" />
-												<input type="submit" value="Thêm vào giỏ hàng" name="btnOK"
+												<input type="submit" value="${addToCart}" name="btnOK"
 													class="btn btn-black py-3 px-5" />
 											</form>
 										</div>

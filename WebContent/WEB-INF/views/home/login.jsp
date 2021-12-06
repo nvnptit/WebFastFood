@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -60,7 +61,8 @@
 		<div class="container">
 			<div class="login-wrap">
 				<div class="login-content">
-					<div class="login-logo">
+					<%@include file="/WEB-INF/views/include/language.jsp"%>
+					<div class="login-logo mt-3">
 						<a href="#"> <img
 							src="${root}/resources/images/icon/admin.png" alt="CoolAdmin">
 						</a>
@@ -68,29 +70,34 @@
 					<c:if test="${not empty message}">
 						<div class="alert alert-danger" role="alert">${message}</div>
 					</c:if>
-
+					
 					<div class="login-form">
 						<form class="needs-validation" action="index.htm" method="post">
 							<div class="form-group">
-								<label>Tên đăng nhập</label> <input
+								<s:message code="general.Username" var="username"/>
+								<s:message code="info.Username" var="i_username"/>
+								<label>${username}</label> <input
 									class="au-input au-input--full form-control" type="text"
-									name="username_lg" placeholder="Tên đăng nhập"
-									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+									name="username_lg" placeholder="${username}"
+									oninvalid="this.setCustomValidity('${i_username}')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div class="form-group">
-								<label>Mật khẩu</label> <input
+								<s:message code="general.Password" var="password"/>
+								<s:message code="info.Password" var="i_password"/>
+								<label>${password}</label> <input
 									class="au-input au-input--full form-control" type="password"
-									name="password_lg" placeholder="Mật khẩu"
-									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									name="password_lg" placeholder="${password}"
+									oninvalid="this.setCustomValidity('${i_password}')"
 									oninput="setCustomValidity('')" required>
 							</div>
 							<div>
+								<s:message code="info.Captcha" var="i_captcha"/>
 								<img src="${root}/captcha/"> <input
 									style="width: 200px; height: 40px; border: 2px solid #231fe7; border-radius: 7px;"
 									name="captcha" type="text" id="captcha" 
 									
-								 oninvalid="this.setCustomValidity('Hãy nhập captcha')"
+								 oninvalid="this.setCustomValidity('${i_captcha}')"
  							oninput="setCustomValidity('')"
 									required /> <label
 									class="mb-1">
@@ -99,10 +106,9 @@
 							</div>
 							<br>
 							<button class="au-btn au-btn--block au-btn--green m-b-20"
-								type="submit">Đăng nhập</button>
+								type="submit"><s:message code="general.SignIn"/></button>
 							<div class="login-checkbox">
-								<label> <a href="${root}/home/forgot.htm">Quên mật
-										khẩu?</a>
+								<label> <a href="${root}/home/forgot.htm"><s:message code="general.Forgot"/></a>
 								</label>
 							</div>
 						</form>

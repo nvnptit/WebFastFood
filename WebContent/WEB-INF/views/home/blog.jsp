@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -94,8 +95,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>
@@ -125,8 +125,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>
@@ -156,8 +155,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>
@@ -187,8 +185,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>
@@ -218,8 +215,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>
@@ -249,8 +245,7 @@
 									<p>Far far away, behind the word mountains, far from the
 										countries Vokalia and Consonantia, there live the blind texts.</p>
 									<p>
-										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3">Read
-											more</a>
+										<a href="blog-inside.htm" class="btn btn-primary py-2 px-3"><s:message code="blog.ReadMore"/></a>
 									</p>
 								</div>
 							</div>

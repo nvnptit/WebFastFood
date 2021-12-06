@@ -5,6 +5,7 @@
 <%@page import="ptithcm.entity.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
 					<p class="breadcrumbs"></p>
-					<h1 class="mb-0 bread">Thông tin cá nhân</h1>
+					<h1 class="mb-0 bread"><s:message code="changeinfo.Header"/></h1>
 				</div>
 			</div>
 		</div>
@@ -79,37 +80,43 @@
 					<form class="needs-validation" action="${root}/home/changeinfo.htm"
 						method="post" modelAttribute="user">
 						<div class="form-group">
-							<label>Tên đăng nhập</label> <input
+							<s:message code="general.Username" var="username"/>
+							<label>${username }</label> <input
 								class="au-input au-input--full form-control" type="text"
-								name="username" placeholder="Tên đăng nhập"
+								name="username" placeholder="${username }"
 								value="${user.username }" readonly>
 						</div>
 						<div class="form-group">
-							<label>Họ và tên</label> <input
+							<s:message code="general.FullName" var="fullName"/>
+							<s:message code="info.FullName" var="i_fullName"/>
+							<label>${fullName }</label> <input
 								class="au-input au-input--full form-control" type="text"
-								name="fullname" placeholder="Họ và tên"
+								name="fullname" placeholder="${fullName }"
 								value="${user.fullname }"
-								oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+								oninvalid="this.setCustomValidity('${i_fullName }')"
 								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
-							<label>Email</label> <input
+							<label>Email</label>
+							<s:message code="general.Email.Check" var="checkEmail"/> 
+							<input
 								class="au-input au-input--full form-control" type="email"
 								name="email" placeholder="Email" value="${user.email }"
-								oninvalid="this.setCustomValidity('Hãy nhập Email')"
+								oninvalid="this.setCustomValidity('${checkEmail }')"
 								oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
-							<label>Số điện thoại</label> <input
+							<s:message code="general.Phone" var="phone"/>
+							<s:message code="info.Phone" var="i_phone"/>
+							<label>${phone }</label> <input
 								class="au-input au-input--full form-control" type="text"
-								name="phone" placeholder="Số điện thoại" maxlength="10"
+								name="phone" placeholder="${phone }" maxlength="10"
 								value="${user.phone }"
-								oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+								oninvalid="this.setCustomValidity('${i_phone }')"
 								oninput="setCustomValidity('')" required>
 						</div>
 
-						<button class="btn btn-primary btn-sm" type="submit">Thay
-							đổi</button>
+						<button class="btn btn-primary btn-sm" type="submit"><s:message code="changeinfo.Change"/></button>
 
 					</form>
 

@@ -491,6 +491,12 @@ public class HomeController {
 		model.addAttribute("message", "Bạn đã thêm sản phẩm vào giỏ hàng");
 		return "home/cart";
 	}
+	
+	// Thêm method này để không bị lỗi khi chuyển ngôn ngữ sau khi vừa thêm hàng
+	@RequestMapping(value = "addCart", method = RequestMethod.GET)
+	public String addCart_get() {
+		return "home/cart";
+	}
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "deleteCart", method = RequestMethod.POST)

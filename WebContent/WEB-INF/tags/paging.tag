@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ tag import="org.springframework.util.StringUtils"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ attribute name="pagedListHolder" required="true"
 	type="org.springframework.beans.support.PagedListHolder"%>
 <%@ attribute name="pagedLink" required="true" type="java.lang.String"%>
@@ -14,7 +15,7 @@
 	<ul class="pagination justify-content-end">
 		<c:if test="${!pagedListHolder.firstPage}">
 			<li class="page-item"><a class="page-link"
-				href="<%=StringUtils.replace(pagedLink, "~", String.valueOf(pagedListHolder.getPage() - 1))%>">Previous</a></li>
+				href="<%=StringUtils.replace(pagedLink, "~", String.valueOf(pagedListHolder.getPage() - 1))%>"><s:message code="paging.Previous"/></a></li>
 		</c:if>
 		<c:if test="${pagedListHolder.firstLinkedPage > 0}">
 			<li class="page-item"><a class="page-link" href="<%=StringUtils.replace(pagedLink, "~", "0")%>">1</a></li>
@@ -47,7 +48,7 @@
 		</c:if>
 		<c:if test="${!pagedListHolder.lastPage}">
 			<li class="page-item"><a class="page-link"
-				href="<%=StringUtils.replace(pagedLink, "~", String.valueOf(pagedListHolder.getPage() + 1))%>">Next</a></li>
+				href="<%=StringUtils.replace(pagedLink, "~", String.valueOf(pagedListHolder.getPage() + 1))%>"><s:message code="paging.Next"/></a></li>
 		</c:if>
 	</ul>
 </c:if>

@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
@@ -72,8 +73,7 @@
 		<div
 			class="row no-gutters slider-text align-items-center justify-content-center">
 			<div class="col-md-9 ftco-animate text-center">
-				<h1 class="text-center" style="color: whitesmoke;">Danh sách
-					thức uống</h1>
+				<h1 class="text-center" style="color: whitesmoke;"><s:message code="drink.List"/></h1>
 			</div>
 		</div>
 	</div>
@@ -84,17 +84,18 @@
 		<div class="row">
 			<div class="col-md-12 ftco-animate">
 				<div class="cart-list">
+					<s:message code="general.SearchHere" var="searchHere"/>
 					<input class="form-control" id="myInput" type="text"
-						placeholder="Tìm kiếm tại đây..."> <br>
+						placeholder="${searchHere}"> <br>
 					<table class="table">
 						<thead class="thead-primary">
 							<tr class="text-center">
-								<th>Tên sản phẩm</th>
-								<th>Hình ảnh</th>
-								<th>Thông tin chi tiết</th>
-								<th>Giá</th>
-								<th>Số lượng tồn kho</th>
-								<th>Loại</th>
+								<th><s:message code="general.ProductName"/></th>
+								<th><s:message code="general.Image"/></th>
+								<th><s:message code="general.Details"/></th>
+								<th><s:message code="general.Price"/></th>
+								<th><s:message code="general.Inventory"/></th>
+								<th><s:message code="general.Category"/></th>
 							</tr>
 						</thead>
 						<tbody id="myTable">
@@ -113,7 +114,7 @@
 
 
 									<td><a href="${root}/home/single/${p.id}.htm"> <span>
-												Xem thêm ${p.name}</span></a> <c:set var="des" value="${p.description}" />
+												<s:message code="general.SeeMore"/> ${p.name}</span></a> <c:set var="des" value="${p.description}" />
 										<c:set var="str" value="${fn:substring(des, 0, 75)}" />
 										<p>${str}...</p></td>
 

@@ -5,6 +5,7 @@
 <%@page import="ptithcm.entity.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ page pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +62,7 @@
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<h1 class="mb-0 bread">Thông tin giỏ hàng</h1>
+					<h1 class="mb-0 bread"><s:message code="cart.Header"/></h1>
 				</div>
 			</div>
 		</div>
@@ -79,12 +80,12 @@
 							<thead class="thead-primary">
 								<tr class="text-center">
 									<th>&nbsp;</th>
-									<th>Tên sản phẩm</th>
-									<th>Hình ảnh</th>
-									<th>Giá</th>
-									<th>Số lượng</th>
-									<th>Giảm giá (%)</th>
-									<th>Tổng tiền</th>
+									<th><s:message code="general.ProductName"/></th>
+									<th><s:message code="general.Image"/></th>
+									<th><s:message code="general.Price"/></th>
+									<th><s:message code="general.Quantity"/></th>
+									<th><s:message code="general.Discount"/> (%)</th>
+									<th><s:message code="general.Total"/></th>
 								</tr>
 
 							</thead>
@@ -148,15 +149,15 @@
 				<div class="col-lg-4 mt-5 cart-wrap ftco-animate  ">
 					<form class="form needs-validation" role="form" autocomplete="off"
 					id="formAddress">
-					<h2>Thông tin người nhận</h2>
+					<h2><s:message code="cart.Receiver"/></h2>
 					<div class="form-group">
-						<br> <label class="form-control-label">Họ tên</label> <input
+						<br> <label class="form-control-label"><s:message code="general.FullName"/></label> <input
 							type="text" class="form-control is-valid" name="receiver"
 							id="receiver"  oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
  							oninput="setCustomValidity('')" required>
 					</div>
 					<div class="form-group">
-						<label for="uname1">Địa chỉ</label> <input type="text"
+						<label for="uname1"><s:message code="general.Address"/></label> <input type="text"
 							class="form-control is-valid" name="address" id="address" 
 							 oninvalid="this.setCustomValidity('Hãy nhập địa chỉ')"
  							oninput="setCustomValidity('')"
@@ -164,7 +165,7 @@
 							>
 					</div>
 					<div class="form-group">
-						<label for="uname1">Số điện thoại</label> <input type="text"
+						<label for="uname1"><s:message code="general.Phone"/></label> <input type="text"
 							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" 
 							 oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
  							oninput="setCustomValidity('')"
@@ -173,23 +174,22 @@
 				</form>
 					
 					<div class="cart-total mb-3">
-						<h3>Tổng tiền của giỏ hàng</h3>
+						<h3><s:message code="cart.Head"/></h3>
 
 						<p class="d-flex total-price">
-							<span>Tổng:</span> <input type="number" name='total_amount'
+							<span><s:message code="cart.Body"/></span> <input type="number" name='total_amount'
 								id="total_amount" placeholder='0.00' class="form-control"
 								readonly />
 						</p>
 					</div>
 					<c:if test="${sessionScope['user'] == null}">
 						<p>
-						<a href="${root }/home/login.htm" role="button" class="btn btn-primary py-3 px-4">Thanh
-									Toán</a>
+						<a href="${root }/home/login.htm" role="button" class="btn btn-primary py-3 px-4"><s:message code="cart.Pay"/></a>
 					</c:if>
 					<c:if test="${sessionScope['user'] != null}">
 						<p>
 							<button formaction="record.htm" class="btn btn-primary py-3 px-4"
-								id="btnCart">Thanh Toán</button>
+								id="btnCart"><s:message code="cart.Pay"/></button>
 						</p>
 					</c:if>
 					

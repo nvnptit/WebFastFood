@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -56,12 +57,14 @@
 
 </head>
 
+
 <body class="animsition">
 	<div class="page-content--bge5">
 		<div style="background-color: lightgray;">
 			<div class="login-wrap">
 				<div class="login-content">
-					<div class="login-logo">
+					<%@include file="/WEB-INF/views/include/language.jsp"%>
+					<div class="login-logo mt-3">
 						<a href="#"> <img
 							src="${root}/resources/images/icon/admin.png" alt="CoolAdmin">
 						</a>
@@ -74,48 +77,59 @@
 						<form:form action="signup.htm" method="post"
 							modelAttribute="userz">
 							<div class="form-group">
-								<label class="form-control-label">Tên đăng nhập</label>
+								<s:message code="general.Username" var="username"/>
+								<s:message code="info.Username" var="i_username"/>
+								<label class="form-control-label">${username}</label>
 								<form:input path="username" type="text"
-									placeholder="Tên đăng nhập" class="form-control"
-									oninvalid="this.setCustomValidity('Hãy nhập tên đăng nhập')"
+									placeholder="${username}" class="form-control"
+									oninvalid="this.setCustomValidity('${i_username}')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 
 							<div class="form-group">
-								<label class="form-control-label">Họ và tên</label>
-								<form:input path="fullname" type="text" placeholder="Họ và tên"
+								<s:message code="general.FullName" var="fullName"/>
+								<s:message code="info.FullName" var="i_fullName"/>
+								<label class="form-control-label">${fullName }</label>
+								<form:input path="fullname" type="text" placeholder="${fullName }"
 									class="form-control"
-									oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
+									oninvalid="this.setCustomValidity('${i_fullName }')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
 								<label class="form-control-label">Email</label>
-								<form:input path="email" type="email" placeholder=" Email"
+								<s:message code="general.Email.Check" var="checkEmail"/> 
+								<form:input path="email" type="email" placeholder="Email"
 									class="form-control"
-									oninvalid="this.setCustomValidity('Hãy nhập Email hợp lệ')"
+									oninvalid="this.setCustomValidity('${checkEmail }')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
-								<label class="form-control-label">Số điện thoại</label>
+								<s:message code="general.Phone" var="phone"/>
+								<s:message code="info.Phone" var="i_phone"/>
+								<label class="form-control-label">${phone }</label>
 								<form:input path="phone" type="text" maxlength="10"
-									placeholder="Số điện thoại" class="form-control"
-									oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
+									placeholder="${phone }" class="form-control"
+									oninvalid="this.setCustomValidity('${i_phone }')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 
 							<div class="form-group">
-								<label>Mật khẩu</label>
-								<form:input path="password" placeholder="Mật khẩu" type="password"
+								<s:message code="general.Password" var="password"/>
+								<s:message code="info.Password" var="i_password"/>
+								<label>${password}</label>
+								<form:input path="password" placeholder="${password}" type="password"
 									class="form-control"
-									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									oninvalid="this.setCustomValidity('${i_password}')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 
 							<div class="form-group">
-								<label>Nhập lại mật khẩu</label> <input
+								<s:message code="general.ConfirmPassword" var="cpassword"/>
+								<s:message code="info.ConfirmPassword" var="i_cpassword"/>
+								<label>${cpassword }</label> <input
 									class="au-input au-input--full form-control" type="password"
 									name="confirmPassword"
-									oninvalid="this.setCustomValidity('Hãy nhập mật khẩu')"
+									oninvalid="this.setCustomValidity('${i_cpassword }')"
 									oninput="setCustomValidity('')" required> <span
 									class="show-btn"><i class="fas fa-eye"></i></span>
 							</div>
@@ -137,10 +151,9 @@
 
 
 							<button class="au-btn au-btn--block au-btn--green m-b-20"
-								type="submit">Đăng ký</button>
+								type="submit"><s:message code="general.SignUp" /></button>
 							<div class="login-checkbox">
-								<label> <a href="${root}/home/login.htm">Bạn đã có
-										tài khoản?</a>
+								<label> <a href="${root}/home/login.htm"><s:message code="general.Already" /></a>
 								</label>
 							</div>
 						</form:form>
