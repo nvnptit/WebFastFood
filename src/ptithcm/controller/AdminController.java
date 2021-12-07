@@ -3,11 +3,21 @@ package ptithcm.controller;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.WatchEvent.Kind;
+import java.nio.file.WatchEvent.Modifier;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -748,25 +758,31 @@ public class AdminController {
 	public String delete_slide(ModelMap model, @PathVariable("id") int id) {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
-
 		Slide slide = (Slide) session.get(Slide.class, id);
-		Session session1 = factory.getCurrentSession();
-		String hql = "FROM Slide WHERE id = :id";
-		Query query = session1.createQuery(hql);
-		query.setParameter("id", id);
-		List<Slide> list = query.list();
-
+		
+		boolean isSuccess;
 		try {
 			session.delete(slide);
-			model.addAttribute("message", "Xóa trình chiếu thành công!");
 			t.commit();
+			model.addAttribute("message", "Xóa trình chiếu thành công!");
+			isSuccess = true;
 		} catch (Exception e) {
 			t.rollback();
 			model.addAttribute("message", "Xóa trình chiếu thất bại!");
+			isSuccess = false;
 		} finally {
 			model.addAttribute("slides", getSlides());
 			session.close();
 		}
+		
+		if (isSuccess) {
+			try {
+				String photoPath = baseUploadFile.getBasePath() + slide.getImg();
+				new File(photoPath).delete();
+			} catch (Exception e) {
+			}
+		}
+		
 		return "redirect:/admin/slide.htm";
 	}
 
