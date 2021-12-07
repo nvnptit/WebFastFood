@@ -1,9 +1,13 @@
 <%@ page pageEncoding="utf-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
+
 <head>
 <!-- Required meta tags-->
 <meta charset="UTF-8" />
@@ -11,7 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 <!-- Title Page-->
-<title>Cập nhật người dùng</title>
+<title>Trình chiếu</title>
 
 <!-- Fontfaces CSS-->
 <link href="${root}/resources/css/font-face.css" rel="stylesheet"
@@ -51,11 +55,12 @@
 <!-- Main CSS-->
 <link href="${root}/resources/css/theme.css" rel="stylesheet"
 	media="all" />
+<link rel="stylesheet" href="${root}/resources/css/style.css">
 </head>
 
 <body class="animsition">
 	<%
-	Cookie[] cks = request.getCookies();
+		Cookie[] cks = request.getCookies();
 	if (cks != null) {
 		for (int i = 0; i < cks.length; i++) {
 			String name = cks[i].getName();
@@ -85,23 +90,22 @@
 			<div class="menu-sidebar__content js-scrollbar1">
 				<nav class="navbar-sidebar">
 					<ul class="list-unstyled navbar__list">
-						<li><a class="js-arrow" href="${root}/admin/index.htm"> <i
+						<li><a class="js-arrow" href="index.htm"> <i
 								class="fas fa-tachometer-alt"></i>Biểu đồ
 						</a></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
 								class="fas fa-table active"></i>Dữ liệu
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="${root}/admin/user.htm">Dữ liệu người dùng</a></li>
-								<li><a href="${root}/admin/product.htm">Dữ liệu sản
-										phẩm</a></li>
+								<li><a href="user.htm">Dữ liệu người dùng</a></li>
+								<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
 							</ul></li>
 						<li class="has-sub"><a class="js-arrow" href="#"> <i
 								class="fa fa-cog fa-spin fa-sm fa-fw"></i>Mở rộng
 						</a>
 							<ul class="list-unstyled navbar__sub-list js-sub-list">
-								<li><a href="${root}/admin/form_user.htm">Người dùng</a></li>
-								<li><a href="${root}/admin/form_product.htm">Sản phẩm</a></li>
+								<li><a href="form_user.htm">Người dùng</a></li>
+								<li><a href="form_product.htm">Sản phẩm</a></li>
 							</ul></li>
 					</ul>
 				</nav>
@@ -116,13 +120,13 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap">
-							<form class="form-header" action="" method="POST">
-								<input class="au-input au-input--xl" type="text" name="search"
-									placeholder="Tìm kiếm dữ liệu và báo cáo" />
+							<div class="form-header">
+								<input class="au-input au-input--xl" type="text" id="myInput"
+									name="search" placeholder="Tìm kiếm sản phẩm..." />
 								<button class="au-btn--submit" type="submit">
 									<i class="zmdi zmdi-search"></i>
 								</button>
-							</form>
+							</div>
 							<div class="header-button">
 								<div class="noti-wrap">
 									<div class="noti__item js-item-menu">
@@ -133,7 +137,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img src="${root}/resources/images/icon/avatar-06.jpg"
+													<img src="${root }/resources/images/icon/avatar-06.jpg"
 														alt="Michelle Moreno" />
 												</div>
 												<div class="content">
@@ -144,7 +148,7 @@
 											</div>
 											<div class="mess__item">
 												<div class="image img-cir img-40">
-													<img src="${root}/resources/images/icon/avatar-04.jpg"
+													<img src="${root }/resources/images/icon/avatar-04.jpg"
 														alt="Diane Myers" />
 												</div>
 												<div class="content">
@@ -166,7 +170,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="${root}/resources/images/icon/avatar-06.jpg"
+													<img src="${root }/resources/images/icon/avatar-06.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -176,7 +180,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="${root}/resources/images/icon/avatar-05.jpg"
+													<img src="${root }/resources/images/icon/avatar-05.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -186,7 +190,7 @@
 											</div>
 											<div class="email__item">
 												<div class="image img-cir img-40">
-													<img src="${root}/resources/images/icon/avatar-04.jpg"
+													<img src="${root }/resources/images/icon/avatar-04.jpg"
 														alt="Cynthia Harvey" />
 												</div>
 												<div class="content">
@@ -242,19 +246,17 @@
 									<div class="account-item clearfix js-item-menu">
 										<div class="image">
 											<img src="${root}/resources/images/icon/avt.png"
-												alt="${sessionScope['user1'].username}" />
+												alt="John Doe" />
 										</div>
-
 										<div class="content">
-											<a class="js-acc-btn" href="#">
-												${sessionScope['user1'].fullname} </a>
+											<a class="js-acc-btn" href="#">${sessionScope['user1'].fullname}</a>
 										</div>
 										<div class="account-dropdown js-dropdown">
 											<div class="info clearfix">
 												<div class="image">
 													<a href="#"> <img
 														src="${root}/resources/images/icon/avt.png"
-														alt="${sessionScope['user1'].username}" />
+														alt="${username}" />
 													</a>
 												</div>
 												<div class="content">
@@ -274,14 +276,14 @@
 													</a>
 												</div>
 												<div class="account-dropdown__item">
-													<a href="${root}/admin/changepassword.htm"> <i
+													<a href="changepassword.htm"> <i
 														class="zmdi zmdi-money-box"></i>Thay đổi mật khẩu
 													</a>
 												</div>
 											</div>
 											<div class="account-dropdown__footer">
-												<a href="${root}/admin/logout.htm"> <i
-													class="zmdi zmdi-power"></i>Đăng xuất
+												<a href="logout.htm"> <i class="zmdi zmdi-power"></i>Đăng
+													xuất
 												</a>
 											</div>
 										</div>
@@ -292,7 +294,16 @@
 					</div>
 				</div>
 			</header>
-			<!-- HEADER DESKTOP-->
+			<!-- END HEADER DESKTOP-->
+
+			<!-- Phân trang -->
+			<div class="bg-light p-5 rounded">
+				<jsp:useBean id="pagedListHolder" scope="request"
+					type="org.springframework.beans.support.PagedListHolder" />
+				<c:url value="slide.htm" var="pagedLink">
+					<c:param name="p" value="~" />
+				</c:url>
+			</div>
 
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
@@ -300,97 +311,108 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<strong>Mở rộng</strong> Người dùng
+								<!-- DATA TABLE-->
+								<h3 class="title-3 m-b-30">
+
+									<i class="zmdi zmdi-account-calendar"></i>Danh sách trình chiếu
+								</h3>
+								<div class="table-responsive m-b-15">
+									<table class="table table-borderless table-data3">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Hình ảnh</th>
+												<th>Tiêu đề</th>
+												<th>Nội dung</th>
+												<th>Trạng thái</th>
+												<th/>
+												<th/>
+											</tr>
+										</thead>
+										<tbody id="myTable">
+											<c:forEach var="p" items="${pagedListHolder.pageList}">
+												<tr>
+													<td>${p.id}</td>
+													<td><img src="../resources/images/slides/${p.img}"
+														border="3" height="150" width="150"></td>
+													<td>${p.caption}</td>
+													<td>${p.content}</td>
+													<td>${p.active}</td>
+													<td>
+														<div>
+															<button class="btn btn-primary"
+																onclick="javascript: window.location.href='${root}/admin/slide_update/${p.id}.htm'">
+																Cập nhật</button>
+														</div>
+													</td>
+													<td>
+														<div>
+															<button onclick="openModalForSlide('${p.id}')"
+																class="btn btn-danger">Xoá</button>
+														</div>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- Phân trang -->
+									<div>
+										<tg:paging pagedListHolder="${pagedListHolder}"
+											pagedLink="${pagedLink}" />
 									</div>
-									<c:if test="${not empty message}">
-										<div class="alert alert-danger" role="alert">
-											<h3>${message}</h3>
-										</div>
-									</c:if>
 
-									<form class="needs-validation"
-										action="${root}/admin/form_user/update.htm" method="post"
-										modelAttribute="user">
-										<div class="card-body card-block">
-											<div class="form-group">
-												<label>Tên đăng nhập</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="username" placeholder="Tên đăng nhập"
-													value="${user.username }" readonly>
-											</div>
-											<div class="form-group">
-												<label>Họ và tên</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="fullname" placeholder="Họ và tên"
-													value="${user.fullname }"
-													oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Email</label> <input
-													class="au-input au-input--full form-control" type="email"
-													name="email" placeholder="Email" value="${user.email }"
-													oninvalid="this.setCustomValidity('Hãy nhập Email')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Số điện thoại</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="phone" placeholder="Số điện thoại" maxlength="10"
-													value="${user.phone }"
-													oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Vai trò</label><br> <select id="role"
-													name="role"">
-													<option value="${user.role}" selected hidden>${user.role}</option>
-													<option value="ADMIN"
-														class="au-input au-input--full form-control">Quản
-														trị</option>
-													<option value="USER"
-														class="au-input au-input--full form-control">Người
-														dùng</option>
-												</select> <br> <label>Trạng thái</label><br> <select
-													id="status" name="status">
-													<option value="${user.status}" selected hidden>${user.status}</option>
-													<option value="true"
-														class="au-input au-input--full form-control">Hoạt
-														động</option>
-													<option value="false"
-														class="au-input au-input--full form-control">Ngừng
-														hoạt động</option>
-												</select>
-											</div>
-											<button class="btn btn-primary btn-sm" type="submit">Thay
-												đổi</button>
-
-											<button type="button" class="btn btn-danger btn-sm"
-												onclick="location.href='${root}/admin/user.htm'">
-												<i class="fa fa-dot-circle-o"></i> Quay trở lại
-											</button>
-									</form>
+									<div class="user-data__footer">
+										<button
+											onclick="location.href='${root}/admin/form_slide.htm'"
+											class="au-btn au-btn-load">Thêm trình chiếu</button>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="copyright">
-									<p>
-										Copyright © 2021 Colorlib. All rights reserved. Template by <a
-											href="https://colorlib.com">Colorlib</a>.
-									</p>
-								</div>
-							</div>
-						</div>
+					</div>
+
+					<!-- END DATA TABLE-->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="copyright">
+						<p>
+							Copyright © 2021 Colorlib. All rights reserved. Template by <a
+								href="https://colorlib.com">Colorlib</a>.
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 
+	<!-- modal XOÁ PRODUCT -->
+	<div class="modal fade" id="staticModal2" tabindex="-1" role="dialog"
+		aria-labelledby="staticModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Confirm</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Bạn có chắc chắn muốn xoá trình chiếu này không?.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Thoát</button>
+					<button id="buttonDeleteConfirm2" type="button"
+						class="btn btn-primary">Xác nhận</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end modal static -->
 	<!-- Jquery JS-->
 	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
 	<!-- Bootstrap JS-->
@@ -415,6 +437,41 @@
 
 	<!-- Main JS-->
 	<script src="${root}/resources/js/main_admin.js"></script>
+
+	<script type="text/javascript">
+		function openModalForSlide(slide) {
+			$("#staticModal2").modal("show");
+			$("#buttonDeleteConfirm2").click(function() {
+				window.location.href = "delete/slide/" + slide + ".htm";
+			});
+		}
+	</script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myTable tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+	</script>
 </body>
+
 </html>
 <!-- end document-->

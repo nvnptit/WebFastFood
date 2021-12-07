@@ -70,7 +70,6 @@
 		response.sendRedirect("login.htm");
 		return; // to stop further execution
 			}
-			i++;
 		}
 	} else {
 		response.sendRedirect("login.htm");

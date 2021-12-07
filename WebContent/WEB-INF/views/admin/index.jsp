@@ -51,7 +51,6 @@
 					response.sendRedirect("login.htm");
 					return; // to stop further execution
 				}
-				i++;
 			}
 		} else {
 			response.sendRedirect("login.htm");
@@ -92,6 +91,11 @@
                       <li><a href="form_user.htm">Người dùng</a></li>
                       <li><a href="form_product.htm">Sản phẩm</a></li>
                     </ul>
+                  </li>
+                  <li>
+                    <a class="js-arrow" href="${root}/admin/slide.htm">
+                      <i class="fa fa-television" aria-hidden="true"></i>Trình chiếu
+                    </a>
                   </li>
                 </ul>
               </nav>

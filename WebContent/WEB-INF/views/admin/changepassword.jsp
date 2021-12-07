@@ -55,7 +55,7 @@
 
 <body class="animsition">
 	<%
-	Cookie[] cks = request.getCookies();
+		Cookie[] cks = request.getCookies();
 	if (cks != null) {
 		for (int i = 0; i < cks.length; i++) {
 			String name = cks[i].getName();
@@ -68,7 +68,6 @@
 		response.sendRedirect("../login.htm");
 		return; // to stop further execution
 			}
-			i++;
 		}
 	} else {
 		response.sendRedirect("../login.htm");

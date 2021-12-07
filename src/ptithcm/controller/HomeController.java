@@ -35,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ptithcm.entity.Order;
 import ptithcm.entity.Product;
+import ptithcm.entity.Slide;
 import ptithcm.entity.User;
 
 @Transactional
@@ -256,6 +257,7 @@ public class HomeController {
 	// Index
 	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String index_user(ModelMap model) {
+		model.addAttribute("slides", getSlides());
 		model.addAttribute("products", getProducts());
 		return "home/index";
 	}
@@ -529,6 +531,16 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@ModelAttribute("slides")
+	public List<Slide> getSlides() {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Slide WHERE active = 1";
+		Query query = session.createQuery(hql);
+		List<Slide> list = query.list();
+		return list;
 	}
 
 	@SuppressWarnings("unchecked")

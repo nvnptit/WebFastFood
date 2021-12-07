@@ -6,51 +6,53 @@
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
 <head>
 <!-- Required meta tags-->
-<meta charset="UTF-8" />
+<%-- <base href="${root}/resources/"> --%>
+<meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Title Page-->
-<title>Cập nhật người dùng</title>
+<title>Cập nhật trình chiếu</title>
 
 <!-- Fontfaces CSS-->
 <link href="${root}/resources/css/font-face.css" rel="stylesheet"
-	media="all" />
+	media="all">
 <link
 	href="${root}/resources/vendor/font-awesome-4.7/css/font-awesome.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/font-awesome-5/css/fontawesome-all.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/mdi-font/css/material-design-iconic-font.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 
 <!-- Bootstrap CSS-->
 <link href="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 
 <!-- Vendor CSS-->
 <link href="${root}/resources/vendor/animsition/animsition.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link href="${root}/resources/vendor/wow/animate.css" rel="stylesheet"
-	media="all" />
+	media="all">
 <link href="${root}/resources/vendor/css-hamburgers/hamburgers.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link href="${root}/resources/vendor/slick/slick.css" rel="stylesheet"
-	media="all" />
+	media="all">
 <link href="${root}/resources/vendor/select2/select2.min.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 <link
 	href="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css"
-	rel="stylesheet" media="all" />
+	rel="stylesheet" media="all">
 
 <!-- Main CSS-->
 <link href="${root}/resources/css/theme.css" rel="stylesheet"
-	media="all" />
+	media="all">
+
 </head>
 
 <body class="animsition">
@@ -65,12 +67,12 @@
 			}
 			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
 			{
-		response.sendRedirect("login.htm");
+		response.sendRedirect("../login.htm");
 		return; // to stop further execution
 			}
 		}
 	} else {
-		response.sendRedirect("login.htm");
+		response.sendRedirect("../login.htm");
 		return; // to stop further execution
 	}
 	%>
@@ -298,83 +300,68 @@
 			<div class="main-content">
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
-						<div class="row">
+						<div class="row" id="PRODUCT">
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Mở rộng</strong> Người dùng
+										<strong>Thông tin</strong> trình chiếu
 									</div>
 									<c:if test="${not empty message}">
 										<div class="alert alert-danger" role="alert">
 											<h3>${message}</h3>
 										</div>
 									</c:if>
+									<div class="card-body card-block">
+										<form:form
+											action="${root}/admin/slide_update/${slide.id}.htm"
+											method="POST" modelAttribute="slide"
+											enctype="multipart/form-data">
+											<div class="form-group">
+												<label class=" form-control-label">ID</label>
+												<form:input path="id" type="text" class="form-control"
+													readonly="true" />
+											</div>
+											<div class="form-group">
+												<label class=" form-control-label">Hình ảnh</label> <input
+													name="file" type="file" class="form-control"
+													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
+													oninput="setCustomValidity('')" required="required" />
+											</div>
+											<div class="form-group">
+												<label class=" form-control-label">Tiêu đề</label>
+												<form:input path="caption" type="text" class="form-control"
+													oninvalid="this.setCustomValidity('Hãy nhập tiêu đề')"
+													oninput="setCustomValidity('')" required="required" />
+											</div>
+											<div class="form-group">
+												<label class=" form-control-label">Nội dung</label>
+												<form:textarea path="content" rows="5" cols="20" class="form-control"
+													oninvalid="this.setCustomValidity('Hãy nhập nội dung')"
+													oninput="setCustomValidity('')" required="required" />
+											</div>
+											<div class="form-group">
+												<label class="form-control-label">Trạng thái</label>
+												<form:select path="active" class="form-control" required="required" >
+													<form:option value="true" label="Hiển thị"/>
+													<form:option value="false" label="Tạm ẩn"/>
+												</form:select>
+											</div>
+											<div class="card-footer">
+												<button type="submit" class="btn btn-primary btn-sm">
+													<i class="fa fa-dot-circle-o"></i> Cập nhật
+												</button>
+												<button type="button" class="btn btn-danger btn-sm"
+													onclick="location.href='${root}/admin/product.htm'">
+													<i class="fa fa-dot-circle-o"></i> Quay trở lại
+												</button>
+											</div>
+										</form:form>
+									</div>
 
-									<form class="needs-validation"
-										action="${root}/admin/form_user/update.htm" method="post"
-										modelAttribute="user">
-										<div class="card-body card-block">
-											<div class="form-group">
-												<label>Tên đăng nhập</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="username" placeholder="Tên đăng nhập"
-													value="${user.username }" readonly>
-											</div>
-											<div class="form-group">
-												<label>Họ và tên</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="fullname" placeholder="Họ và tên"
-													value="${user.fullname }"
-													oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Email</label> <input
-													class="au-input au-input--full form-control" type="email"
-													name="email" placeholder="Email" value="${user.email }"
-													oninvalid="this.setCustomValidity('Hãy nhập Email')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Số điện thoại</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="phone" placeholder="Số điện thoại" maxlength="10"
-													value="${user.phone }"
-													oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Vai trò</label><br> <select id="role"
-													name="role"">
-													<option value="${user.role}" selected hidden>${user.role}</option>
-													<option value="ADMIN"
-														class="au-input au-input--full form-control">Quản
-														trị</option>
-													<option value="USER"
-														class="au-input au-input--full form-control">Người
-														dùng</option>
-												</select> <br> <label>Trạng thái</label><br> <select
-													id="status" name="status">
-													<option value="${user.status}" selected hidden>${user.status}</option>
-													<option value="true"
-														class="au-input au-input--full form-control">Hoạt
-														động</option>
-													<option value="false"
-														class="au-input au-input--full form-control">Ngừng
-														hoạt động</option>
-												</select>
-											</div>
-											<button class="btn btn-primary btn-sm" type="submit">Thay
-												đổi</button>
-
-											<button type="button" class="btn btn-danger btn-sm"
-												onclick="location.href='${root}/admin/user.htm'">
-												<i class="fa fa-dot-circle-o"></i> Quay trở lại
-											</button>
-									</form>
 								</div>
 							</div>
 						</div>
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="copyright">
@@ -389,6 +376,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<!-- Jquery JS-->
@@ -397,24 +385,34 @@
 	<script src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
 	<script src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
 	<!-- Vendor JS       -->
-	<script src="${root}/resources/vendor/slick/slick.min.js"></script>
+	<script src="${root}/resources/vendor/slick/slick.min.js">
+		
+	</script>
 	<script src="${root}/resources/vendor/wow/wow.min.js"></script>
 	<script src="${root}/resources/vendor/animsition/animsition.min.js"></script>
 	<script
-		src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+		
+	</script>
 	<script
 		src="${root}/resources/vendor/counter-up/jquery.waypoints.min.js"></script>
 	<script
-		src="${root}/resources/vendor/counter-up/jquery.counterup.min.js"></script>
+		src="${root}/resources/vendor/counter-up/jquery.counterup.min.js">
+		
+	</script>
 	<script
 		src="${root}/resources/vendor/circle-progress/circle-progress.min.js"></script>
 	<script
 		src="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
 	<script src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
-	<script src="${root}/resources/vendor/select2/select2.min.js"></script>
+	<script src="${root}/resources/vendor/select2/select2.min.js">
+		
+	</script>
 
 	<!-- Main JS-->
 	<script src="${root}/resources/js/main_admin.js"></script>
+
 </body>
+
 </html>
 <!-- end document-->
