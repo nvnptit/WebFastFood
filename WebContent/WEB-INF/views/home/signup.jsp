@@ -77,8 +77,8 @@
 						<form:form action="signup.htm" method="post"
 							modelAttribute="userz">
 							<div class="form-group">
-								<s:message code="general.Username" var="username"/>
-								<s:message code="info.Username" var="i_username"/>
+								<s:message code="general.Username" var="username" />
+								<s:message code="info.Username" var="i_username" />
 								<label class="form-control-label">${username}</label>
 								<form:input path="username" type="text"
 									placeholder="${username}" class="form-control"
@@ -87,25 +87,25 @@
 							</div>
 
 							<div class="form-group">
-								<s:message code="general.FullName" var="fullName"/>
-								<s:message code="info.FullName" var="i_fullName"/>
+								<s:message code="general.FullName" var="fullName" />
+								<s:message code="info.FullName" var="i_fullName" />
 								<label class="form-control-label">${fullName }</label>
-								<form:input path="fullname" type="text" placeholder="${fullName }"
-									class="form-control"
+								<form:input path="fullname" type="text"
+									placeholder="${fullName }" class="form-control"
 									oninvalid="this.setCustomValidity('${i_fullName }')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
 								<label class="form-control-label">Email</label>
-								<s:message code="general.Email.Check" var="checkEmail"/> 
+								<s:message code="general.Email.Check" var="checkEmail" />
 								<form:input path="email" type="email" placeholder="Email"
 									class="form-control"
 									oninvalid="this.setCustomValidity('${checkEmail }')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 							<div class="form-group">
-								<s:message code="general.Phone" var="phone"/>
-								<s:message code="info.Phone" var="i_phone"/>
+								<s:message code="general.Phone" var="phone" />
+								<s:message code="info.Phone" var="i_phone" />
 								<label class="form-control-label">${phone }</label>
 								<form:input path="phone" type="text" maxlength="10"
 									placeholder="${phone }" class="form-control"
@@ -114,26 +114,29 @@
 							</div>
 
 							<div class="form-group">
-								<s:message code="general.Password" var="password"/>
-								<s:message code="info.Password" var="i_password"/>
+								<s:message code="general.Password" var="password" />
+								<s:message code="info.Password" var="i_password" />
 								<label>${password}</label>
-								<form:input path="password" placeholder="${password}" type="password"
-									class="form-control"
+								<form:input path="password" placeholder="${password}"
+									type="password" class="form-control"
 									oninvalid="this.setCustomValidity('${i_password}')"
 									oninput="setCustomValidity('')" required="required" />
 							</div>
 
 							<div class="form-group">
-								<s:message code="general.ConfirmPassword" var="cpassword"/>
-								<s:message code="info.ConfirmPassword" var="i_cpassword"/>
+								<s:message code="general.ConfirmPassword" var="cpassword" />
+								<s:message code="info.ConfirmPassword" var="i_cpassword" />
 								<label>${cpassword }</label> <input
 									class="au-input au-input--full form-control" type="password"
 									name="confirmPassword"
 									oninvalid="this.setCustomValidity('${i_cpassword }')"
-									oninput="setCustomValidity('')" required> <span
-									class="show-btn"><i class="fas fa-eye"></i> Hiển thị mật khẩu</span>
+									oninput="setCustomValidity('')" required>
 							</div>
-							
+							<div>
+								 <span
+									class="show-btn"><i class="fas fa-eye"></i> <s:message code="general.ShowPassword" /></span>
+							</div>
+
 							<div>
 								<form:input path="role" type="hidden" value="user"
 									required="required" />
@@ -148,19 +151,30 @@
                                                 <h6 class="mb-0 text-sm">${recaptcha}</h6>
                                             </label>
                                         </div><br> -->
-
-
 							<button class="au-btn au-btn--block au-btn--green m-b-20"
-								type="submit"><s:message code="general.SignUp" /></button>
-							<div class="login-checkbox">
-								<label> <a href="${root}/home/login.htm"><s:message code="general.Already" /></a>
-								</label>
-								<label> <a href="${root}/home/index.htm" style="color: blue;"><s:message code="general.BackToHomePage"/></a>
-								</label>
-							</div>
+								type="submit">
+								<s:message code="general.SignUp" />
+							</button>
 						</form:form>
+						<div>
+							<button class="au-btn au-btn--block au-btn--blue m-b-20"
+								onclick="location.href='${root}/home/login.htm';">
+								<s:message code="general.SignIn" />
+							</button>
+						</div>
+						<div align="center">
+							<button class="btn btn-danger"
+								onclick="location.href='${root}/home/index.htm';">
+								<i class="zmdi zmdi-home"></i>
+								<s:message code="general.BackToHomePage" />
+							</button>
+						</div>
+						<%-- 					<div class="login-checkbox">
+							<label> <a href="${root}/home/login.htm"><s:message
+										code="general.Already" /></a>
+						</div> --%>
 						<div class="register-link">
-							<a href="#">Copyright &copy; 2021 NVN</a>
+							<a href="#">Copyright &copy; Nhóm 16 Dịu - Nhất - Phúc</a>
 						</div>
 					</div>
 				</div>

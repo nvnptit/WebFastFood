@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<button class="au-btn au-btn-icon au-btn--blue" onclick="location.href='${root}/home/index.htm';">
+	<i class="zmdi zmdi-home"></i>Đi đến trang người dùng
+</button>
 <div class="header-button">
+
 	<div class="noti-wrap">
 		<div class="noti__item js-item-menu">
 			<i class="zmdi zmdi-comment-more"></i> <span class="quantity">1</span>
+
 			<div class="mess-dropdown js-dropdown">
 				<div class="mess__title">
 					<p>Bạn có 2 thông báo mới</p>
@@ -154,7 +159,8 @@
 					</div>
 				</div>
 				<div class="account-dropdown__footer">
-					<a href="logout.htm"> <i class="zmdi zmdi-power"></i>Đăng xuất
+					<a href="${root}/admin/logout.htm"> <i class="zmdi zmdi-power"></i>Đăng
+						xuất
 					</a>
 				</div>
 			</div>

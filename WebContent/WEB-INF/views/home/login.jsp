@@ -58,70 +58,86 @@
 
 <body class="animsition">
 	<div class="page-content--bge5">
-		<div class="container">
-			<div class="login-wrap">
-				<div class="login-content">
-					<%@include file="/WEB-INF/views/include/language.jsp"%>
-					<div class="login-logo mt-3">
-						<a href="#"> <img
-							src="${root}/resources/images/icon/admin.png" alt="CoolAdmin">
-						</a>
-					</div>
-					<c:if test="${not empty message}">
-						<div class="alert alert-danger" role="alert">${message}</div>
-					</c:if>
-					
-					<div class="login-form">
-						<form class="needs-validation" action="${root}/home/login.htm" method="post">
-							<div class="form-group">
-								<s:message code="general.Username" var="username"/>
-								<s:message code="info.Username" var="i_username"/>
-								<label>${username}</label> <input
-									class="au-input au-input--full form-control" type="text"
-									name="username_lg" placeholder="${username}"
-									oninvalid="this.setCustomValidity('${i_username}')"
-									oninput="setCustomValidity('')" required>
-							</div>
-							<div class="form-group">
-								<s:message code="general.Password" var="password"/>
-								<s:message code="info.Password" var="i_password"/>
-								<label>${password}</label> <input
-									class="au-input au-input--full form-control" type="password"
-									name="password_lg" placeholder="${password}"
-									oninvalid="this.setCustomValidity('${i_password}')"
-									oninput="setCustomValidity('')" required>
-							</div>
+		<div style="background-color: lightgray;">
+			<div class="container">
+				<div class="login-wrap">
+					<div class="login-content">
+						<%@include file="/WEB-INF/views/include/language.jsp"%>
+						<div class="login-logo mt-3">
+							<a href="#"> <img
+								src="${root}/resources/images/icon/admin.png" alt="CoolAdmin">
+							</a>
+						</div>
+						<c:if test="${not empty message}">
+							<div class="alert alert-danger" role="alert">${message}</div>
+						</c:if>
+
+						<div class="login-form">
+							<form class="needs-validation" action="${root}/home/login.htm"
+								method="post">
+								<div class="form-group">
+									<s:message code="general.Username" var="username" />
+									<s:message code="info.Username" var="i_username" />
+									<label>${username}</label> <input
+										class="au-input au-input--full form-control" type="text"
+										name="username_lg" placeholder="${username}"
+										oninvalid="this.setCustomValidity('${i_username}')"
+										oninput="setCustomValidity('')" required>
+								</div>
+								<div class="form-group">
+									<s:message code="general.Password" var="password" />
+									<s:message code="info.Password" var="i_password" />
+									<label>${password}</label> <input
+										class="au-input au-input--full form-control" type="password"
+										name="password_lg" placeholder="${password}"
+										oninvalid="this.setCustomValidity('${i_password}')"
+										oninput="setCustomValidity('')" required>
+								</div>
+								<div>
+									<s:message code="info.Captcha" var="i_captcha" />
+									<img src="${root}/captcha/"> <input
+										style="width: 200px; height: 40px; border: 2px solid #231fe7; border-radius: 7px;"
+										name="captcha" type="text" id="captcha"
+										oninvalid="this.setCustomValidity('${i_captcha}')"
+										oninput="setCustomValidity('')" required /> <label
+										class="mb-1">
+										<h6 class="mb-0 text-sm">${recaptcha}</h6>
+									</label>
+								</div>
+								<br>
+								<div class="login-checkbox">
+									<label> <a href="${root}/home/forgot.htm"><s:message
+												code="general.Forgot" /></a>
+									</label>
+								</div>
+								<div>
+									<button class="au-btn au-btn--block au-btn--blue m-b-20"
+										type="submit">
+										<s:message code="general.SignIn" />
+									</button>
+								</div>
+							</form>
 							<div>
-								<s:message code="info.Captcha" var="i_captcha"/>
-								<img src="${root}/captcha/"> <input
-									style="width: 200px; height: 40px; border: 2px solid #231fe7; border-radius: 7px;"
-									name="captcha" type="text" id="captcha" 
-									
-								 oninvalid="this.setCustomValidity('${i_captcha}')"
- 							oninput="setCustomValidity('')"
-									required /> <label
-									class="mb-1">
-									<h6 class="mb-0 text-sm">${recaptcha}</h6>
-								</label>
+								<button class="au-btn au-btn--block au-btn--green m-b-20"
+									onclick="location.href='${root}/home/signup.htm';">
+									<s:message code="general.SignUp" />
+								</button>
 							</div>
-							<br>
-							<button class="au-btn au-btn--block au-btn--green m-b-20"
-								type="submit"><s:message code="general.SignIn"/></button>
-							<div class="login-checkbox">
-								<label> <a href="${root}/home/forgot.htm"><s:message code="general.Forgot"/></a>
-								</label>
-								<label> <a href="${root}/home/index.htm" style="color: blue;"><s:message code="general.BackToHomePage"/></a>
-								</label>
+							<div align="center">
+								<button class="btn btn-danger"
+									onclick="location.href='${root}/home/index.htm';">
+									<i class="zmdi zmdi-home"></i>
+									<s:message code="general.BackToHomePage" />
+								</button>
 							</div>
-						</form>
-						<div class="register-link">
-							<a href="#">Copyright &copy; ${company.name}</a>
+							<div class="register-link">
+								<a href="#">Copyright &copy; Nhóm 16 Dịu - Nhất - Phúc</a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<!-- Jquery JS-->

@@ -22,7 +22,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -34,7 +33,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ptithcm.bean.Company;
 import ptithcm.entity.Order;
 import ptithcm.entity.Product;
 import ptithcm.entity.Slide;
@@ -48,14 +46,10 @@ public class HomeController {
 	SessionFactory factory;
 	@Autowired
 	JavaMailSender mailer;
-	@Autowired
-	@Qualifier("ptithcm")
-	Company company;
 
 	// Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login_user(ModelMap model) {
-		model.addAttribute("company", company);
+	public String login_user() {
 		return "/home/login";
 	}
 

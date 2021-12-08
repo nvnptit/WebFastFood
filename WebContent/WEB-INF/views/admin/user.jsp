@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -54,26 +55,8 @@
 </head>
 
 <body class="animsition">
-	<%
-	Cookie[] cks = request.getCookies();
-	if (cks != null) {
-		for (int i = 0; i < cks.length; i++) {
-			String name = cks[i].getName();
-			String value = cks[i].getValue();
-			if (name.equals("authadmin")) {
-		break; // exit the loop and continue the page
-			}
-			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-			{
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-			}
-		}
-	} else {
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-	}
-	%>
+	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
+
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -91,14 +74,24 @@
 									<i class="zmdi zmdi-search"></i>
 								</button>
 							</div>
-							
+
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
-							
+
 						</div>
 					</div>
 				</div>
 			</header>
 			<!-- END HEADER DESKTOP-->
+
+			<!-- Phân trang -->
+			<div class="bg-light p-5 rounded">
+				<jsp:useBean id="pagedListHolder" scope="request"
+					type="org.springframework.beans.support.PagedListHolder" />
+				<c:url value="user.htm" var="pagedLink">
+					<c:param name="p" value="~" />
+				</c:url>
+			</div>
+
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content section__content--p30">
@@ -124,14 +117,14 @@
 													<th>Tên đăng nhập</th>
 													<th>Họ và tên</th>
 													<th>Email</th>
-													<th>Chức vụ</th>
+													<th>Vai trò</th>
 													<th>Số điện thoại</th>
 													<th>Cập nhật</th>
 													<th>Xoá</th>
 												</tr>
 											</thead>
 											<tbody id="myTable">
-												<c:forEach var="u" items="${users}">
+												<c:forEach var="u" items="${pagedListHolder.pageList}">
 													<tr>
 														<td>${u.username}</td>
 														<td>
@@ -170,6 +163,13 @@
 								<!-- END DATA TABLE-->
 							</div>
 						</div>
+
+						<!-- Phân trang -->
+						<div>
+							<tg:paging pagedListHolder="${pagedListHolder}"
+								pagedLink="${pagedLink}" />
+						</div>
+
 						<div class="row">
 							<div class="col-md-12">
 								<div class="copyright">
@@ -186,94 +186,92 @@
 		</div>
 	</div>
 
-			<!-- modal XOÁ USER -->
-			<div class="modal fade" id="staticModal" tabindex="-1" role="dialog"
-				aria-labelledby="staticModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="staticModalLabel">Confirm</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Bạn có chắc chắn muốn xoá không?.</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Thoát</button>
-							<button id="buttonDeleteConfirm" type="button"
-								class="btn btn-primary">Xác nhận</button>
-						</div>
-					</div>
+	<!-- modal XOÁ USER -->
+	<div class="modal fade" id="staticModal" tabindex="-1" role="dialog"
+		aria-labelledby="staticModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticModalLabel">Confirm</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Bạn có chắc chắn muốn xoá không?.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Thoát</button>
+					<button id="buttonDeleteConfirm" type="button"
+						class="btn btn-primary">Xác nhận</button>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<!-- end modal static -->
-			<!-- Jquery JS-->
-			<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
-			<!-- Bootstrap JS-->
-			<script src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
-			<script src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
-			<!-- Vendor JS       -->
-			<script src="${root}/resources/vendor/slick/slick.min.js"></script>
-			<script src="${root}/resources/vendor/wow/wow.min.js"></script>
-			<script src="${root}/resources/vendor/animsition/animsition.min.js"></script>
-			<script
-				src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-			<script
-				src="${root}/resources/vendor/counter-up/jquery.waypoints.min.js"></script>
-			<script
-				src="${root}/resources/vendor/counter-up/jquery.counterup.min.js"></script>
-			<script
-				src="${root}/resources/vendor/circle-progress/circle-progress.min.js"></script>
-			<script
-				src="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-			<script src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
-			<script src="${root}/resources/vendor/select2/select2.min.js"></script>
+	<!-- end modal static -->
+	<!-- Jquery JS-->
+	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
+	<!-- Bootstrap JS-->
+	<script src="${root}/resources/vendor/bootstrap-4.1/popper.min.js"></script>
+	<script src="${root}/resources/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+	<!-- Vendor JS       -->
+	<script src="${root}/resources/vendor/slick/slick.min.js"></script>
+	<script src="${root}/resources/vendor/wow/wow.min.js"></script>
+	<script src="${root}/resources/vendor/animsition/animsition.min.js"></script>
+	<script
+		src="${root}/resources/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<script
+		src="${root}/resources/vendor/counter-up/jquery.waypoints.min.js"></script>
+	<script
+		src="${root}/resources/vendor/counter-up/jquery.counterup.min.js"></script>
+	<script
+		src="${root}/resources/vendor/circle-progress/circle-progress.min.js"></script>
+	<script
+		src="${root}/resources/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+	<script src="${root}/resources/vendor/chartjs/Chart.bundle.min.js"></script>
+	<script src="${root}/resources/vendor/select2/select2.min.js"></script>
 
-			<!-- Main JS-->
-			<script src="${root}/resources/js/main_admin.js"></script>
+	<!-- Main JS-->
+	<script src="${root}/resources/js/main_admin.js"></script>
 
-			<script type="text/javascript">
-				function openModalForUser(username) {
-					$("#staticModal").modal("show");
-					$("#buttonDeleteConfirm").click(
-							function() {
-								window.location.href = "${root}/admin/delete/user/"
-										+ username + ".htm";
-							});
-				}
-			</script>
-			<script>
-				$(document)
-						.ready(
-								function() {
-									$("#myInput")
-											.on(
-													"keyup",
-													function() {
-														var value = $(this)
-																.val()
-																.toLowerCase();
-														$("#myTable tr")
-																.filter(
-																		function() {
-																			$(
-																					this)
-																					.toggle(
-																							$(
-																									this)
-																									.text()
-																									.toLowerCase()
-																									.indexOf(
-																											value) > -1)
-																		});
-													});
-								});
-			</script>
+	<script type="text/javascript">
+		function openModalForUser(username) {
+			$("#staticModal").modal("show");
+			$("#buttonDeleteConfirm").click(
+					function() {
+						window.location.href = "${root}/admin/delete/user/"
+								+ username + ".htm";
+					});
+		}
+	</script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myTable tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+	</script>
 </body>
 
 </html>

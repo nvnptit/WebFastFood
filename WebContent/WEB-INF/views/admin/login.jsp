@@ -102,6 +102,8 @@
 								<div class="login-checkbox">
 									<label> <a href="${root}/admin/forgot.htm">Quên mật
 											khẩu?</a>
+									</label> <label> <a href="${root}/home/index.htm"
+										style="color: blue;">Quay về trang người dùng</a>
 									</label>
 								</div>
 							</form>

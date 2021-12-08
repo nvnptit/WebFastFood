@@ -1,9 +1,10 @@
 <%@ page pageEncoding="utf-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
+
 <head>
 <!-- Required meta tags-->
 <meta charset="UTF-8" />
@@ -11,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 <!-- Title Page-->
-<title>Cập nhật người dùng</title>
+<title>Hóa đơn</title>
 
 <!-- Fontfaces CSS-->
 <link href="${root}/resources/css/font-face.css" rel="stylesheet"
@@ -55,7 +56,7 @@
 
 <body class="animsition">
 	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
-	
+
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -66,16 +67,16 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap">
-							<form class="form-header" action="" method="POST">
+							<div class="form-header">
 								<input class="au-input au-input--xl" type="text" name="search"
 									placeholder="Tìm kiếm dữ liệu và báo cáo" />
 								<button class="au-btn--submit" type="submit">
 									<i class="zmdi zmdi-search"></i>
 								</button>
-							</form>
-							
+							</div>
+
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
-							
+
 						</div>
 					</div>
 				</div>
@@ -87,95 +88,46 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header">
-										<strong>Mở rộng</strong> Người dùng
-									</div>
-									<c:if test="${not empty message}">
-										<div class="alert alert-danger" role="alert">
-											<h3>${message}</h3>
-										</div>
-									</c:if>
-
-									<form class="needs-validation"
-										action="${root}/admin/form_user/update.htm" method="post"
-										modelAttribute="user">
-										<div class="card-body card-block">
-											<div class="form-group">
-												<label>Tên đăng nhập</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="username" placeholder="Tên đăng nhập"
-													value="${user.username }" readonly>
-											</div>
-											<div class="form-group">
-												<label>Họ và tên</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="fullname" placeholder="Họ và tên"
-													value="${user.fullname }"
-													oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Email</label> <input
-													class="au-input au-input--full form-control" type="email"
-													name="email" placeholder="Email" value="${user.email }"
-													oninvalid="this.setCustomValidity('Hãy nhập Email')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Số điện thoại</label> <input
-													class="au-input au-input--full form-control" type="text"
-													name="phone" placeholder="Số điện thoại" maxlength="10"
-													value="${user.phone }"
-													oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
-													oninput="setCustomValidity('')" required>
-											</div>
-											<div class="form-group">
-												<label>Vai trò</label><br> <select id="role"
-													name="role"">
-													<option value="${user.role}" selected hidden>${user.role}</option>
-													<option value="ADMIN"
-														class="au-input au-input--full form-control">Quản
-														trị</option>
-													<option value="USER"
-														class="au-input au-input--full form-control">Người
-														dùng</option>
-												</select> <br> <label>Trạng thái</label><br> <select
-													id="status" name="status">
-													<option value="${user.status}" selected hidden>${user.status}</option>
-													<option value="true"
-														class="au-input au-input--full form-control">Hoạt
-														động</option>
-													<option value="false"
-														class="au-input au-input--full form-control">Ngừng
-														hoạt động</option>
-												</select>
-											</div>
-											<button class="btn btn-primary btn-sm" type="submit">Thay
-												đổi</button>
-
-											<button type="button" class="btn btn-danger btn-sm"
-												onclick="location.href='${root}/admin/user.htm'">
-												<i class="fa fa-dot-circle-o"></i> Quay trở lại
-											</button>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="copyright">
-									<p>
-										Copyright © 2021 Colorlib. All rights reserved. Template by <a
-											href="https://colorlib.com">Colorlib</a>.
-									</p>
+							<div class="col-lg-14">
+								<h2 class="title-1 m-b-25">
+									<i class="fa fa-sticky-note" aria-hidden="true"></i> Danh sách hóa đơn
+								</h2>
+								<div class="table-responsive table--no-card m-b-40">
+									<table
+										class="table table-borderless table-striped table-earning">
+										<thead>
+											<tr>
+												<th>Ngày tháng</th>
+												<th>ID hoá đơn</th>
+												<th>Người mua</th>
+												<th>Tên sản phẩm</th>
+												<th>Số lượng mua</th>
+												<th class="text-right">Tổng tiền</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="o" items="${orders}">
+												<tr>
+													<td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyyy" /></td>
+													<td>${o.id}</td>
+													<td>${o.usernameid.fullname}</td>
+													<td>${o.id_product.name}</td>
+													<td class="text-right">${o.amount}</td>
+													<td class="text-right">
+														<fmt:formatNumber value="${o.total}" pattern="###,### đ" type="currency"/>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- END MAIN CONTENT-->
+			<!-- END PAGE CONTAINER-->
 		</div>
 	</div>
 
@@ -204,5 +156,6 @@
 	<!-- Main JS-->
 	<script src="${root}/resources/js/main_admin.js"></script>
 </body>
+
 </html>
 <!-- end document-->

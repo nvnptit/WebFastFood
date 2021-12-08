@@ -59,26 +59,8 @@
 </head>
 
 <body class="animsition">
-	<%
-	Cookie[] cks = request.getCookies();
-	if (cks != null) {
-		for (int i = 0; i < cks.length; i++) {
-			String name = cks[i].getName();
-			String value = cks[i].getValue();
-			if (name.equals("authadmin")) {
-		break; // exit the loop and continue the page
-			}
-			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-			{
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-			}
-		}
-	} else {
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-	}
-	%>
+	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
+	
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -136,15 +118,14 @@
 										<table class="table table-borderless table-data3">
 											<thead>
 												<tr>
-													<th>
-														&#160;&#160;&#160;&#160;&#160;Tên&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-													</th>
+													<th>Tên</th>
 													<th>Loại</th>
 													<th>Số lượng</th>
 													<th>Giá</th>
+													<th>Giảm giá (%)</th>
 													<th>Thông tin</th>
 													<th>Hình ảnh</th>
-													<th>Mở rộng</th>
+													<th></th>
 													<th></th>
 												</tr>
 											</thead>
@@ -152,9 +133,13 @@
 												<c:forEach var="p" items="${pagedListHolder.pageList}">
 													<tr>
 														<td>${p.name}</td>
-														<td>${p.type}</td>
-														<td>${p.quantity}</td>
-														<td>${p.price}</td>
+														<td>
+														<c:if test="${p.type == 'Food'}" >Thức ăn</c:if>
+														<c:if test="${p.type == 'Drink'}" >Nước uống</c:if>
+														</td>
+														<td class="text-right"><fmt:formatNumber value="${p.quantity}" pattern="###,###" type="number"/></td>
+														<td class="text-right"><fmt:formatNumber value="${p.price}" pattern="###,### đ" type="currency"/></td>
+														<td class="text-right"><fmt:formatNumber value="${p.discount}" pattern="###,###" type="percent"/></td>
 														<td>${p.description}</td>
 														<td><img src="../resources/images/products/${p.img}"
 															border="3" height="150" width="150"></td>

@@ -15,12 +15,6 @@
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  
-  <bean id="ptithcm" class="ptithcm.bean.Company" >
- 	<property name="name" value="Nhóm 16 Dịu - Nhất - Phúc" />
- 	<property name="slogan" value="Học để thay đổi tương lai" />
- 	<property name="logo" value="resources/images/logo.jpg"></property>
- </bean>
- 
   <bean id="uploadfile" class="ptithcm.bean.UploadFile" >
  	<property name="basePath" value="E:\\PTIT\\WebFastFood\\WebContent\\resources\\images\\slides\\" />
  </bean>

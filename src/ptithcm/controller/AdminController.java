@@ -211,25 +211,6 @@ public class AdminController {
 		return "admin/forgotpassword";
 	}
 
-	@RequestMapping(value = "user", method = RequestMethod.GET)
-	public String table_user(ModelMap model) {
-		model.addAttribute("users", getUsers());
-		return "admin/user";
-	}
-
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "product", method = RequestMethod.GET)
-	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
-		List<Product> products = this.getProducts();
-		PagedListHolder pagedListHolder = new PagedListHolder(products);
-		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-		pagedListHolder.setPage(page);
-		pagedListHolder.setMaxLinkedPages(50);
-		pagedListHolder.setPageSize(5);
-		model.addAttribute("pagedListHolder", pagedListHolder);
-		return "admin/product";
-	}
-
 	@RequestMapping(value = "delete/user/{username}", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, HttpServletResponse response, ModelMap model,
 			@PathVariable("username") String username) throws IOException {
@@ -656,20 +637,58 @@ public class AdminController {
 		kq = kq.trim();
 		return kq;
 	}
-	
-	// -------------------------------------------- Sản phẩm --------------------------------------------
+
+	// ==================== Tổng quan ====================
+
 	@SuppressWarnings("unchecked")
 	@ModelAttribute("product_orders")
 	public List<Object[]> getProduts() {
 		Session session = factory.getCurrentSession();
-		String hql = "SELECT p.id, p.name, p.type, p.quantity, p.img, SUM(o.amount), SUM(o.total) "
+		String hql = "SELECT p.id, p.name, p.type, p.img, SUM(o.amount), p.quantity, SUM(o.total) "
 				+ "FROM Product p, Order o WHERE p.id= o.id_product GROUP BY p.id, p.name, p.type, p.quantity, p.img";
 		Query query = session.createQuery(hql);
 		List<Object[]> list = query.list();
 		return list;
 	}
 
-	// -------------------------------------------- Trình chiếu --------------------------------------------
+	// ==================== Người dùng ====================
+	
+	@RequestMapping(value = "user", method = RequestMethod.GET)
+	public String table_user(HttpServletRequest request, ModelMap model) {
+		List<User> products = this.getUsers();
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(50);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		return "admin/user";
+	}
+	
+	// ==================== Sản phẩm ====================
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "product", method = RequestMethod.GET)
+	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
+		List<Product> products = this.getProducts();
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(50);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		return "admin/product";
+	}
+	
+	// ==================== Hóa đơn ====================
+	
+	@RequestMapping(value = "order", method = RequestMethod.GET)
+	public String page_order(ModelMap model) {
+		model.addAttribute("orders", getOrders());
+		return "admin/order";
+	}
+
+	// ==================== Trình chiếu ====================
 
 	@SuppressWarnings("unchecked")
 	@ModelAttribute("slides")
@@ -742,7 +761,7 @@ public class AdminController {
 			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
-		
+
 		if (file.isEmpty()) {
 			model.addAttribute("message", "Hãy chọn file ảnh để trình chiếu!");
 		} else {
@@ -762,7 +781,7 @@ public class AdminController {
 				session.close();
 			}
 		}
-		
+
 		return "admin/slide_update";
 	}
 
@@ -771,7 +790,7 @@ public class AdminController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 		Slide slide = (Slide) session.get(Slide.class, id);
-		
+
 		boolean isSuccess;
 		try {
 			session.delete(slide);
@@ -786,7 +805,7 @@ public class AdminController {
 			model.addAttribute("slides", getSlides());
 			session.close();
 		}
-		
+
 		if (isSuccess) {
 			try {
 				String photoPath = baseUploadFile.getBasePath() + slide.getImg();
@@ -794,7 +813,7 @@ public class AdminController {
 			} catch (Exception e) {
 			}
 		}
-		
+
 		return "redirect:/admin/slide.htm";
 	}
 

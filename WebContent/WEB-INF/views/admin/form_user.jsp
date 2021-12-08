@@ -54,26 +54,8 @@
 </head>
 
 <body class="animsition">
-	<%
-	Cookie[] cks = request.getCookies();
-	if (cks != null) {
-		for (int i = 0; i < cks.length; i++) {
-			String name = cks[i].getName();
-			String value = cks[i].getValue();
-			if (name.equals("authadmin")) {
-		break; // exit the loop and continue the page
-			}
-			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-			{
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-			}
-		}
-	} else {
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-	}
-	%>
+	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
+	
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -108,7 +90,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Mở rộng</strong> Người dùng
+										<strong>Thêm mới</strong> Người dùng
 									</div>
 									<c:if test="${not empty message}">
 										<div class="alert alert-danger" role="alert">
@@ -154,7 +136,7 @@
 													oninput="setCustomValidity('')" required="required" />
 											</div>
 											<div class="form-group">
-												<label class="form-control-label">Chức vụ</label>
+												<label class="form-control-label">Vai trò</label>
 												<form:select path="role" class="form-control"
 													items="${roles}" required="required" />
 											</div>

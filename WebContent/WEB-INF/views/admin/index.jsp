@@ -1,5 +1,6 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -54,26 +55,7 @@
 </head>
 
 <body class="animsition">
-	<%
-		Cookie[] cks = request.getCookies();
-	if (cks != null) {
-		for (int i = 0; i < cks.length; i++) {
-			String name = cks[i].getName();
-			String value = cks[i].getValue();
-			if (name.equals("authadmin")) {
-		break; // exit the loop and continue the page
-			}
-			if (i == (cks.length - 1)) // if all cookie are not valid redirect to error page
-			{
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-			}
-		}
-	} else {
-		response.sendRedirect("login.htm");
-		return; // to stop further execution
-	}
-	%>
+	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
 
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
@@ -247,38 +229,6 @@
 								</div>
 							</div>
 						</div>
-						<%-- <div class="row">
-							<div class="col-lg-14">
-								<h2 class="title-1 m-b-25">Thu nhập theo mặt hàng</h2>
-								<div class="table-responsive table--no-card m-b-40">
-									<table
-										class="table table-borderless table-striped table-earning">
-										<thead>
-											<tr>
-												<th>Ngày tháng</th>
-												<th>ID hoá đơn</th>
-												<th>Người mua</th>
-												<th>Tên sản phẩm</th>
-												<th>Số lượng</th>
-												<th class="text-right">Tổng tiền</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="o" items="${orders}">
-												<tr>
-													<td>${o.date}</td>
-													<td>${o.id}</td>
-													<td>${o.usernameid.fullname}</td>
-													<td>${o.id_product.name}</td>
-													<td>${o.amount}</td>
-													<td class="text-right">${o.total}</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div> --%>
 						<div class="row">
 							<div class="col-lg-14">
 								<h2 class="title-1 m-b-25">Thu nhập theo mặt hàng</h2>
@@ -290,8 +240,9 @@
 												<th>ID</th>
 												<th>Tên sản phẩm</th>
 												<th>Loại sản phẩm</th>
-												<th>Số lượng còn lại</th>
-												<th>Số lượng đã bán</th>
+												<th>Hình ảnh</th>
+												<th class="text-right">Đã bán</th>
+												<th class="text-right">Còn lại</th>
 												<th class="text-right">Tổng doanh thu</th>
 											</tr>
 										</thead>
@@ -300,10 +251,15 @@
 												<tr>
 													<td>${l[0]}</td>
 													<td>${l[1]}</td>
-													<td>${l[2]}</td>
-													<td>${l[3]}</td>
-													<td>${l[5]}</td>
-													<td class="text-right">${l[6]}</td>
+													<td>
+														<c:if test="${l[2] == 'Food'}" >Thức ăn</c:if>
+														<c:if test="${l[2] == 'Drink'}" >Nước uống</c:if>
+													</td>
+													<td><img src="../resources/images/products/${l[3]}"
+														border="3" height="150" width="150"></td>
+													<td class="text-right">${l[4]}</td>
+													<td class="text-right">${l[5]}</td>
+													<td class="text-right"><fmt:formatNumber value="${l[6]}" pattern="###,### đ" type="currency"/></td>
 												</tr>
 											</c:forEach>
 										</tbody>

@@ -10,19 +10,24 @@
 	<div class="menu-sidebar__content js-scrollbar1">
 		<nav class="navbar-sidebar">
 			<ul class="list-unstyled navbar__list">
-				<li><a class="js-arrow" href="index.htm"> <i class="fa fa-pie-chart" aria-hidden="true"></i>Tổng quan
+				<li><a class="js-arrow" href="${root}/admin/index.htm"><i
+						class="fa fa-pie-chart" aria-hidden="true"></i>Tổng quan
 				</a></li>
-				<!-- <li class="has-sub"><a class="js-arrow" href="#"> <i
+				<!-- <li class="has-sub"><a class="js-arrow" href="#"><i
 						class="fas fa-table active"></i>Dữ liệu
 				</a>
 					<ul class="list-unstyled navbar__sub-list js-sub-list">
 						<li><a href="user.htm">Dữ liệu người dùng</a></li>
 						<li><a href="product.htm">Dữ liệu sản phẩm</a></li>
 					</ul></li> -->
-				<li><a class="js-arrow" href="${root}/admin/user.htm"> <i class="fa fa-user" aria-hidden="true"></i>Người dùng
+				<li><a class="js-arrow" href="${root}/admin/user.htm"><i
+						class="fa fa-user" aria-hidden="true"></i>Người dùng
 				</a></li>
-				<li><a class="js-arrow" href="${root}/admin/product.htm"> <i class="fa fa-shopping-basket" aria-hidden="true"></i></i>Sản phẩm
+				<li><a class="js-arrow" href="${root}/admin/product.htm"><i
+						class="fa fa-shopping-basket" aria-hidden="true"></i>Sản phẩm
 				</a></li>
+				<li><a class="js-arrow" href="${root}/admin/order.htm"><i
+						class="fa fa-sticky-note" aria-hidden="true"></i>Hóa đơn</a></li>
 				<li><a class="js-arrow" href="${root}/admin/slide.htm"> <i
 						class="fa fa-television" aria-hidden="true"></i>Trình chiếu
 				</a></li>

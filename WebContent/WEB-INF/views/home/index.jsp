@@ -68,7 +68,7 @@
 								<h1 class="mb-2">${item.caption}</h1>
 								<h2 class="subheading mb-4">${item.content}</h2>
 								<p>
-									<a href="#" class="btn btn-primary"><s:message
+									<a href="${root}/home/food.htm" class="btn btn-primary"><s:message
 											code="home.SeeMoreHere" /></a>
 								</p>
 							</div>
