@@ -135,7 +135,7 @@ public class AdminController {
 			User currentUser = list.get(0);
 			if (password.equals(currentUser.getPassword().trim())) {
 				if (!currentUser.isStatus()) {
-					model.addAttribute("message", "TÃ i khoáº£n cá»§a báº¡n Ä‘Ã£ bá»‹ vÃ´ hiá»‡u hoÃ¡!");
+					model.addAttribute("message", "Tài khoản của bạn đã bị vô hiệu hoá!");
 					return "admin/login";
 				}
 
@@ -147,11 +147,11 @@ public class AdminController {
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
-				model.addAttribute("message", "TÃªn Ä‘Äƒng nháº­p hoáº·c máº­t kháº©u khÃ´ng Ä‘Ãºng!");
+				model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
 				return "admin/login";
 			}
 		} else {
-			model.addAttribute("message", "TÃªn Ä‘Äƒng nháº­p hoáº·c máº­t kháº©u khÃ´ng Ä‘Ãºng!");
+			model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
 			return "admin/login";
 		}
 		return "admin/login";
@@ -182,8 +182,8 @@ public class AdminController {
 				String mahoa = md5(randomPass);
 				String from = "codervn77@gmail.com";
 				String to = email;
-				String subject = "[KHÃ”I PHá»¤C Máº¬T KHáº¨U FASTFOOD]";
-				String body = "Máº­t kháº©u cá»§a báº¡n : " + randomPass;
+				String subject = "[KHÔI PHỤC MẬT KHẨU FASTFOOD]";
+				String body = "Mật khẩu mới của bạn là : " + randomPass;
 				currentUser.setPassword(mahoa);
 				session2.update(currentUser);
 
@@ -198,15 +198,15 @@ public class AdminController {
 				mailer.send(mail);
 
 				t.commit();
-				model.addAttribute("message", "Máº­t kháº©u Ä‘Æ°á»£c gá»­i tá»›i mail cá»§a báº¡n!");
+				model.addAttribute("message", "Mật khẩu được gửi tới mail của bạn!");
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "Gá»­i mail tháº¥t báº¡i, hÃ£y gá»­i láº¡i!");
+				model.addAttribute("message", "Gửi mail thất bại, hãy gửi lại!");
 			} finally {
 				session2.close();
 			}
 		} else {
-			model.addAttribute("message", "TÃ i khoáº£n khÃ´ng tá»“n táº¡i!");
+			model.addAttribute("message",  "Tài khoản không tồn tại!");
 		}
 		return "admin/forgotpassword";
 	}
@@ -228,23 +228,23 @@ public class AdminController {
 			HttpSession httpSession = request.getSession();
 			User user1 = (User) httpSession.getAttribute("user1");
 			if (user1.getUsername().equals(user.getUsername())) {
-				model.addAttribute("message", "Báº¡n khÃ´ng thá»ƒ tá»± xoÃ¡ chÃ­nh mÃ¬nh");
+				model.addAttribute("message", "Bạn không thể tự xoá chính mình");
 				return "admin/user";
 			} else if (list.size() > 0) {
 				user.setStatus(false);
 				System.out.println(user.getFullname() + " | " + user.isStatus());
 				session.update(user);
-				model.addAttribute("message", "Ä�Ã£ huá»· kÃ­ch hoáº¡t vÃ¬ Ä‘Ã£ tá»“n táº¡i trong hoÃ¡ Ä‘Æ¡n!");
+				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
 				t.commit();
 				return "admin/user";
 			} else {
 				session.delete(user);
 				t.commit();
-				model.addAttribute("message", "XoÃ¡ thÃ nh cÃ´ng");
+				model.addAttribute("message","Xoá thành công");
 			}
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "XoÃ¡ tháº¥t báº¡i");
+			model.addAttribute("message", "Xoá thất bại");
 		} finally {
 			model.addAttribute("users", getUsers());
 			session.close();
@@ -269,18 +269,18 @@ public class AdminController {
 			if (list.size() > 0) {
 				product.setStatus(false);
 				session.update(product);
-				model.addAttribute("message", "Ä�Ã£ huá»· kÃ­ch hoáº¡t vÃ¬ Ä‘Ã£ tá»“n táº¡i trong hoÃ¡ Ä‘Æ¡n!");
+				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
 				t.commit();
 				// return "admin/product";
 				return "redirect:/admin/product.htm";
 			} else {
 				session.delete(product);
-				model.addAttribute("message", "XoÃ¡ sáº£n pháº©m thÃ nh cÃ´ng! ");
+				model.addAttribute("message", "Xoá sản phẩm thành công! ");
 			}
 			t.commit();
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "XoÃ¡ sáº£n pháº©m tháº¥t báº¡i! ");
+			model.addAttribute("message", "Xoá sản phẩm thất bại! ");
 		} finally {
 
 			model.addAttribute("products", getProducts());
@@ -322,16 +322,16 @@ public class AdminController {
 	@ModelAttribute("roles")
 	public Map<String, String> getRoles() {
 		Map<String, String> mj = new HashMap<>();
-		mj.put("USER", "NgÆ°á»�i dÃ¹ng");
-		mj.put("ADMIN", "Quáº£n trá»‹");
+		mj.put("USER", "Người dùng");
+		mj.put("ADMIN", "Quản trị");
 		return mj;
 	}
 
 	@ModelAttribute("typeProducts")
 	public Map<String, String> getTypeProducts() {
 		Map<String, String> mj = new HashMap<>();
-		mj.put("Food", "Thá»©c Äƒn");
-		mj.put("Drink", "Thá»©c uá»‘ng");
+		mj.put("Food", "Thức ăn");
+		mj.put("Drink", "Thức uống");
 		return mj;
 	}
 
@@ -351,10 +351,10 @@ public class AdminController {
 		User user = (User) httpSession.getAttribute("user1");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
-			model.addAttribute("message", "Máº­t kháº©u cÅ© khÃ´ng Ä‘Ãºng!");
+			model.addAttribute("message",  "Mật khẩu cũ không đúng!");
 		} else {
 			if (!newpass.equals(confirmpass)) {
-				model.addAttribute("message", "Máº­t kháº©u xÃ¡c nháº­n khÃ´ng trÃ¹ng vá»›i máº­t kháº©u má»›i!");
+				model.addAttribute("message",  "Mật khẩu xác nhận không trùng với mật khẩu mới!");
 			} else {
 				Session session2 = factory.openSession();
 				Transaction t = session2.beginTransaction();
@@ -362,10 +362,10 @@ public class AdminController {
 				try {
 					session2.update(user);
 					t.commit();
-					model.addAttribute("message", "Thay máº­t kháº©u thÃ nh cÃ´ng!");
+					model.addAttribute("message", "Thay mật khẩu thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message", "Thay máº­t kháº©u tháº¥t báº¡i!");
+					model.addAttribute("message",  "Thay mật khẩu thất bại!");
 				} finally {
 					session2.close();
 				}
@@ -418,7 +418,7 @@ public class AdminController {
 		user.setEmail(email);
 		if (!phone.matches("\\d{10}")) {
 			model.addAttribute("user", user);
-			model.addAttribute("message", "Sá»‘ Ä‘iá»‡n thoáº¡i pháº£i gá»“m 10 sá»‘");
+			model.addAttribute("message", "Số điện thoại phải gồm 10 số");
 			return "admin/user_update";
 		} else {
 			user.setPhone(phone);
@@ -431,17 +431,17 @@ public class AdminController {
 			User current = (User) ss.getAttribute("user1");
 			if (user.getUsername().equals(current.getUsername())) {
 				if (!user.isStatus()) {
-					model.addAttribute("message", "KhÃ´ng thá»ƒ tá»± khoÃ¡ tÃ i khoáº£n");
+					model.addAttribute("message",  "Không thể tự khoá tài khoản");
 					return "admin/user";
 				}
 				ss.setAttribute("user1", user);
 			}
 			session.update(user);
 			t.commit();
-			model.addAttribute("message", "Cáº­p nháº­t ngÆ°á»�i dÃ¹ng thÃ nh cÃ´ng");
+			model.addAttribute("message", "Cập nhật người dùng thành công");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cáº­p nháº­t ngÆ°á»�i dÃ¹ng tháº¥t báº¡i");
+			model.addAttribute("message", "Cập nhật người dùng thất bại");
 		} finally {
 			model.addAttribute("users", getUsers());
 			session.close();
@@ -452,18 +452,18 @@ public class AdminController {
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
 	public String insert_admin(ModelMap model, @ModelAttribute("user") User user) {
 
-		Session session1 = factory.getCurrentSession(); // Get session hiá»‡n táº¡i
+		Session session1 = factory.getCurrentSession(); // Get session hiện tại
 		String hql = "FROM User WHERE username = :username";
 		Query query = session1.createQuery(hql).setParameter("username", user.getUsername());
 		@SuppressWarnings("unchecked")
 		List<User> list = query.list();
 
 		if (list.size() > 0) {
-			model.addAttribute("message", "Username Ä‘Ã£ tá»“n táº¡i, má»�i báº¡n Ä‘Äƒng kÃ­ tÃ i khoáº£n khÃ¡c!");
+			model.addAttribute("message", "Username đã tồn tại, mời bạn đăng kí tài khoản khác!");
 			return "admin/form_user";
 		}
 		if (!user.getPhone().matches("\\d{10}")) {
-			model.addAttribute("message", "Sá»‘ Ä‘iá»‡n thoáº¡i pháº£i gá»“m 10 sá»‘");
+			model.addAttribute("message", "Số điện thoại phải gồm 10 số");
 			return "admin/form_user";
 		}
 		Session session = factory.openSession();
@@ -474,8 +474,8 @@ public class AdminController {
 			String mahoa = md5(randomPass);
 			String from = "codervn77@gmail.com";
 			String to = user.getEmail();
-			String subject = "YOUR PASSWORD";
-			String body = "Máº­t kháº©u cá»§a báº¡n : " + randomPass;
+			String subject = "[MẬT KHẨU FAST FOOD]";
+			String body = "Mật khẩu của bạn : " + randomPass;
 
 			MimeMessage mail = mailer.createMimeMessage();
 
@@ -490,10 +490,10 @@ public class AdminController {
 			user.setPassword(mahoa);
 			session.save(user);
 			t.commit();
-			model.addAttribute("message", "ThÃªm má»›i thÃ nh cÃ´ng, máº­t kháº©u cá»§a báº¡n Ä‘Ã£ gá»­i Ä‘áº¿n mail!");
+			model.addAttribute("message", "Thêm mới thành công, mật khẩu của bạn đã gửi đến mail!");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "ThÃªm má»›i tháº¥t báº¡i!");
+			model.addAttribute("message", "Thêm mới thất bại!");
 		} finally {
 			session.close();
 		}
@@ -518,12 +518,12 @@ public class AdminController {
 		if (list.size() > 0) {
 			Product pro = (Product) list.get(0);
 			model.addAttribute("product", pro);
-			model.addAttribute("message", "Ä�Ã£ tá»“n táº¡i tÃªn sáº£n pháº©m nÃ y trong há»‡ thá»‘ng!");
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm này trong hệ thống!");
 			return "admin/product_update";
 		}
 
 		if (file.isEmpty()) {
-			model.addAttribute("message", "Vui lÃ²ng chá»�n file!");
+			model.addAttribute("message",  "Vui lòng chọn file!");
 		} else {
 			try {
 				String name = System.currentTimeMillis() + "-" + file.getOriginalFilename();
@@ -532,10 +532,10 @@ public class AdminController {
 				product.setImg(name);
 				session.save(product);
 				t.commit();
-				model.addAttribute("message", "ThÃªm má»›i thÃ nh cÃ´ng!");
+				model.addAttribute("message",  "Thêm mới thành công!");
 			} catch (Exception e) {
 				t.rollback();
-				model.addAttribute("message", "ThÃªm má»›i tháº¥t báº¡i!");
+				model.addAttribute("message", "Thêm mới thất bại!");
 			} finally {
 				session.close();
 			}
@@ -548,7 +548,7 @@ public class AdminController {
 			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
 		Session session1 = factory.getCurrentSession();
 		Product product1 = (Product) session1.get(Product.class, id);
-		// láº¥y ra Ä‘á»ƒ tráº£ vá»� hÃ¬nh áº£nh cÅ© náº¿u khÃ´ng thay Ä‘á»•i
+		// lấy ra để trả về hình ảnh cũ nếu không thay đổi
 
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
@@ -560,8 +560,7 @@ public class AdminController {
 		List<Product> list = query.list();
 
 		if (list.size() > 0) {
-			model.addAttribute("message",
-					"Ä�Ã£ tá»“n táº¡i tÃªn sáº£n pháº©m " + product.getName() + " nÃ y trong há»‡ thá»‘ng!");
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() +  " này trong hệ thống!");
 			model.addAttribute("product", product1);
 			return "admin/product_update";
 		}
@@ -578,10 +577,10 @@ public class AdminController {
 			}
 			session.update(product);
 			t.commit();
-			model.addAttribute("message", "Cáº­p nháº­t sáº£n pháº©m thÃ nh cÃ´ng!");
+			model.addAttribute("message",  "Cập nhật sản phẩm thành công!");
 		} catch (Exception e) {
 			t.rollback();
-			model.addAttribute("message", "Cáº­p nháº­t sáº£n pháº©m tháº¥t báº¡i!");
+			model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
 		} finally {
 			session.close();
 		}
