@@ -47,7 +47,6 @@ public class HomeController {
 	@Autowired
 	JavaMailSender mailer;
 
-	// Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login_user() {
 		return "/home/login";
