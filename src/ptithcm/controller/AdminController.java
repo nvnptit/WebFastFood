@@ -1,4 +1,4 @@
-package ptithcm.controller;
+﻿package ptithcm.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -120,7 +120,7 @@ public class AdminController {
 		String verifyC = request.getParameter("captcha");
 
 		if (!captcha.equals(verifyC)) {
-			model.addAttribute("recaptcha", "Vui lÃ²ng nháº­p Ä‘Ãºng captcha");
+			model.addAttribute("recaptcha", "Vui lòng nhập đúng captcha");
 			return "admin/login";
 		}
 
