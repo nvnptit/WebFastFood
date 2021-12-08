@@ -72,7 +72,7 @@
 					</c:if>
 					
 					<div class="login-form">
-						<form class="needs-validation" action="index.htm" method="post">
+						<form class="needs-validation" action="${root}/home/login.htm" method="post">
 							<div class="form-group">
 								<s:message code="general.Username" var="username"/>
 								<s:message code="info.Username" var="i_username"/>
@@ -110,10 +110,12 @@
 							<div class="login-checkbox">
 								<label> <a href="${root}/home/forgot.htm"><s:message code="general.Forgot"/></a>
 								</label>
+								<label> <a href="${root}/home/index.htm" style="color: blue;"><s:message code="general.BackToHomePage"/></a>
+								</label>
 							</div>
 						</form>
 						<div class="register-link">
-							<a href="#">Copyright &copy; 2021 NVN</a>
+							<a href="#">Copyright &copy; ${company.name}</a>
 						</div>
 					</div>
 				</div>

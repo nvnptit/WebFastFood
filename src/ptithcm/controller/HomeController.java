@@ -22,6 +22,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import ptithcm.bean.Company;
 import ptithcm.entity.Order;
 import ptithcm.entity.Product;
 import ptithcm.entity.Slide;
@@ -46,10 +48,14 @@ public class HomeController {
 	SessionFactory factory;
 	@Autowired
 	JavaMailSender mailer;
+	@Autowired
+	@Qualifier("ptithcm")
+	Company company;
 
 	// Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String login_user() {
+	public String login_user(ModelMap model) {
+		model.addAttribute("company", company);
 		return "/home/login";
 	}
 
@@ -98,6 +104,7 @@ public class HomeController {
 				} catch (Exception e) {
 					t.rollback();
 					model.addAttribute("message", "Đăng Ký Thất Bại!");
+					return "home/signup";
 				} finally {
 					session.close();
 				}
@@ -263,7 +270,7 @@ public class HomeController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "index", method = RequestMethod.POST)
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String index_login(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 
@@ -381,11 +388,27 @@ public class HomeController {
 		return "home/record";
 	}
 
-	@RequestMapping(value = "record", method = RequestMethod.POST)
-	public String record(HttpServletRequest request, ModelMap model, HttpSession session) {
-		Session session1 = factory.openSession();
-		Transaction t = session1.beginTransaction();
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "record", params = "deleteItem" ,method = RequestMethod.POST)
+	public String cart_delete(HttpServletRequest request, ModelMap model) {
+		HttpSession session = request.getSession();
+		Map<Integer, Product> orders = new HashMap<>();
+		if (session.getAttribute("Orders") != null) {
+			orders = (Map<Integer, Product>) session.getAttribute("Orders");
+		}
+		int id = Integer.valueOf(request.getParameter("deleteItem"));
+		orders.remove(id);
 
+		session.setAttribute("Orders", orders);
+		ArrayList<Product> orders_list = new ArrayList<Product>(orders.values());
+		session.setAttribute("Orders_list", orders_list);
+		model.addAttribute("Orders_list", orders_list);
+		return "redirect:/home/cart.htm";
+	}
+
+	
+	@RequestMapping(value = "record", params = "payCart" , method = RequestMethod.POST)
+	public String record(HttpServletRequest request, ModelMap model, HttpSession session) {
 		String[] id = request.getParameterValues("id");
 		if (id == null) {
 			model.addAttribute("message", "Bạn chưa có sản phẩm nào trong giỏ hàng!");
@@ -416,6 +439,9 @@ public class HomeController {
 			model.addAttribute("message", "Số điện thoại không hợp lệ, phải gồm 10 số!");
 			return "home/cart";
 		}
+		
+		Session session1 = factory.openSession();
+		Transaction t = session1.beginTransaction();
 
 		User currentUser = (User) session.getAttribute("user");
 		String from = "codervn77@gmail.com";
@@ -500,24 +526,7 @@ public class HomeController {
 		return "home/cart";
 	}
 
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "deleteCart", method = RequestMethod.POST)
-	public String cart_delete(HttpServletRequest request, ModelMap model) {
-		HttpSession session = request.getSession();
-		Map<Integer, Product> orders = new HashMap<>();
-		if (session.getAttribute("Orders") != null) {
-			orders = (Map<Integer, Product>) session.getAttribute("Orders");
-		}
-		int id = Integer.valueOf(request.getParameter("deleteItem"));
-		orders.remove(id);
-
-		session.setAttribute("Orders", orders);
-		ArrayList<Product> orders_list = new ArrayList<Product>(orders.values());
-		session.setAttribute("Orders_list", orders_list);
-		model.addAttribute("Orders_list", orders_list);
-		return "redirect:/home/cart.htm";
-	}
-
+	
 	// Ma hoa Md5
 	private String md5(String str) {
 		String result = "";

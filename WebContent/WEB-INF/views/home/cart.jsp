@@ -10,7 +10,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
-<link rel="shortcut icon" type="image/x-icon" href="${root}/resources/images/hamburger.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="${root}/resources/images/hamburger.png" />
 
 <head>
 <title>Giỏ hàng</title>
@@ -55,6 +56,10 @@
 <body class="goto-here">
 
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
+	
+	<c:if test="${not empty message}">
+		<div class="alert alert-success" role="alert">${message}</div>
+	</c:if>
 
 	<div class="hero-wrap hero-bread"
 		style="background-image: url('${root}/resources/images/bg_1.jpg');">
@@ -62,7 +67,9 @@
 			<div
 				class="row no-gutters slider-text align-items-center justify-content-center">
 				<div class="col-md-9 ftco-animate text-center">
-					<h1 class="mb-0 bread"><s:message code="cart.Header"/></h1>
+					<h1 class="mb-0 bread">
+						<s:message code="cart.Header" />
+					</h1>
 				</div>
 			</div>
 		</div>
@@ -71,7 +78,7 @@
 	<section class="ftco-section ftco-cart">
 
 		<div class="container">
-			<form method=POST action="deleteCart.htm" id="formCart">
+			<form method=POST action="record.htm" >
 				<div class="row">
 					<div class="col-md-12 ftco-animate">
 
@@ -80,21 +87,20 @@
 							<thead class="thead-primary">
 								<tr class="text-center">
 									<th>&nbsp;</th>
-									<th><s:message code="general.ProductName"/></th>
-									<th><s:message code="general.Image"/></th>
-									<th><s:message code="general.Price"/></th>
-									<th><s:message code="general.Quantity"/></th>
-									<th><s:message code="general.Discount"/> (%)</th>
-									<th><s:message code="general.Total"/></th>
+									<th><s:message code="general.ProductName" /></th>
+									<th><s:message code="general.Image" /></th>
+									<th><s:message code="general.Price" /></th>
+									<th><s:message code="general.Quantity" /></th>
+									<th><s:message code="general.Discount" /> (%)</th>
+									<th><s:message code="general.Total" /></th>
 								</tr>
 
 							</thead>
 							<tbody>
 								<c:forEach var="p" items="${sessionScope['Orders_list']}">
 									<tr class="text-center">
-										<td class="product-remove"><button
-												class="btn btn-primary py-3 px-4"
-												style="background-color: #f23939" type="submit"
+										<td class="product-remove">
+										<button class="btn btn-primary py-3 px-4" style="background-color: #f23939" type="submit"
 												value="${p.id}" name="deleteItem">X</button> <input
 											type="hidden" name="id" class="form-control" value="${p.id}">
 										</td>
@@ -121,8 +127,8 @@
 												<input type="number" name="quantity" id="${p.id}"
 													class="form-control input-number quantity" value="1"
 													min="1"
-													oninput="var qty = document.getElementById('${p.id}').value; 
-											if (${p.quantity}<qty) document.getElementById('${p.id}').value=${p.quantity};">
+													oninput="var qty = document.getElementById(${p.id}).value; 
+				if (qty > ${p.quantity}) document.getElementById(id).value=${p.quantity}; if (qty < 1) document.getElementById(id).value=1;">
 											</div>
 										</td>
 										<td>
@@ -146,55 +152,56 @@
 						</table>
 					</div>
 				</div>
+				
+					<c:if test="${sessionScope['user'] != null}">
 				<div class="col-lg-4 mt-5 cart-wrap ftco-animate  ">
-					<form class="form needs-validation" role="form" autocomplete="off"
-					id="formAddress">
-					<h2><s:message code="cart.Receiver"/></h2>
-					<div class="form-group">
-						<br> <label class="form-control-label"><s:message code="general.FullName"/></label> <input
-							type="text" class="form-control is-valid" name="receiver"
-							id="receiver"  oninvalid="this.setCustomValidity('Hãy nhập họ tên')"
- 							oninput="setCustomValidity('')" required>
-					</div>
-					<div class="form-group">
-						<label for="uname1"><s:message code="general.Address"/></label> <input type="text"
-							class="form-control is-valid" name="address" id="address" 
-							 oninvalid="this.setCustomValidity('Hãy nhập địa chỉ')"
- 							oninput="setCustomValidity('')"
-							required
-							>
-					</div>
-					<div class="form-group">
-						<label for="uname1"><s:message code="general.Phone"/></label> <input type="text"
-							class="form-control is-valid" name="sdt" id="sdt" maxlength="10" 
-							 oninvalid="this.setCustomValidity('Hãy nhập số điện thoại')"
- 							oninput="setCustomValidity('')"
-							required >
-					</div>
-				</form>
-					
+						<h2>
+							<s:message code="cart.Receiver" />
+						</h2>
+						<div class="form-group">
+							<br> <label class="form-control-label"><s:message
+									code="general.FullName" /></label> <input type="text"
+								class="form-control is-valid" name="receiver" id="receiver" >
+						</div>
+						<div class="form-group">
+							<label for="uname1"><s:message code="general.Address" /></label>
+							<input type="text" class="form-control is-valid" name="address"
+								id="address">
+						</div>
+						<div class="form-group">
+							<label for="uname1"><s:message code="general.Phone" /></label> <input
+								type="text" class="form-control is-valid" name="sdt" id="sdt"
+								maxlength="10">
+						</div>
+
 					<div class="cart-total mb-3">
-						<h3><s:message code="cart.Head"/></h3>
+						<h3>
+							<s:message code="cart.Head" />
+						</h3>
 
 						<p class="d-flex total-price">
-							<span><s:message code="cart.Body"/></span> <input type="number" name='total_amount'
-								id="total_amount" placeholder='0.00' class="form-control"
-								readonly />
+							<span><s:message code="cart.Body" /></span> <input type="number"
+								name='total_amount' id="total_amount" placeholder='0.00'
+								class="form-control" readonly />
 						</p>
 					</div>
+					
+						<p>
+							<button  class="btn btn-primary py-3 px-4"
+								id="btnCart" name="payCart" >
+								<s:message code="cart.Pay" />
+							</button>
+						</p>
+
+				</div>
+					</c:if>
+			</form>
+			
 					<c:if test="${sessionScope['user'] == null}">
 						<p>
-						<a href="${root }/home/login.htm" role="button" class="btn btn-primary py-3 px-4"><s:message code="cart.Pay"/></a>
+							<a href="${root }/home/login.htm" role="button"
+								class="btn btn-primary py-3 px-4"><s:message code="cart.Pay" /></a>
 					</c:if>
-					<c:if test="${sessionScope['user'] != null}">
-						<p>
-							<button formaction="record.htm" class="btn btn-primary py-3 px-4"
-								id="btnCart"><s:message code="cart.Pay"/></button>
-						</p>
-					</c:if>
-					
-				</div>
-			</form>
 		</div>
 
 	</section>
@@ -220,7 +227,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 	<script src="${root}/resources/js/jquery.min.js"></script>

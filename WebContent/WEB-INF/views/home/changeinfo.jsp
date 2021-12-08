@@ -54,7 +54,7 @@
 </head>
 
 <body class="goto-here">
-
+	<%@include file="/WEB-INF/views/include/home/cookie.jsp"%>
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 	<c:if test="${not empty message}">

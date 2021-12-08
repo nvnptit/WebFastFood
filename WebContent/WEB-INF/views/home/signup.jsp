@@ -131,7 +131,7 @@
 									name="confirmPassword"
 									oninvalid="this.setCustomValidity('${i_cpassword }')"
 									oninput="setCustomValidity('')" required> <span
-									class="show-btn"><i class="fas fa-eye"></i></span>
+									class="show-btn"><i class="fas fa-eye"></i> Hiển thị mật khẩu</span>
 							</div>
 							
 							<div>
@@ -154,6 +154,8 @@
 								type="submit"><s:message code="general.SignUp" /></button>
 							<div class="login-checkbox">
 								<label> <a href="${root}/home/login.htm"><s:message code="general.Already" /></a>
+								</label>
+								<label> <a href="${root}/home/index.htm" style="color: blue;"><s:message code="general.BackToHomePage"/></a>
 								</label>
 							</div>
 						</form:form>

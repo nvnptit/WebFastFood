@@ -1,4 +1,4 @@
-package ptit.bean;
+package ptithcm.bean;
 
 public class UploadFile {
 	private String basePath;

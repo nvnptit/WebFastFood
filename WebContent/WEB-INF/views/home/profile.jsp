@@ -53,7 +53,7 @@
 </head>
 
 <body class="goto-here">
-
+	<%@include file="/WEB-INF/views/include/home/cookie.jsp"%>
 	<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 	<div class="hero-wrap hero-bread"

@@ -49,10 +49,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
-import ptit.bean.UploadFile;
 import ptithcm.entity.User;
 import ptithcm.entity.Product;
 import ptithcm.entity.Slide;
+import ptithcm.bean.UploadFile;
 import ptithcm.entity.Order;
 
 @Transactional
@@ -655,6 +655,18 @@ public class AdminController {
 		}
 		kq = kq.trim();
 		return kq;
+	}
+	
+	// -------------------------------------------- Sản phẩm --------------------------------------------
+	@SuppressWarnings("unchecked")
+	@ModelAttribute("product_orders")
+	public List<Object[]> getProduts() {
+		Session session = factory.getCurrentSession();
+		String hql = "SELECT p.id, p.name, p.type, p.quantity, p.img, SUM(o.amount), SUM(o.total) "
+				+ "FROM Product p, Order o WHERE p.id= o.id_product GROUP BY p.id, p.name, p.type, p.quantity, p.img";
+		Query query = session.createQuery(hql);
+		List<Object[]> list = query.list();
+		return list;
 	}
 
 	// -------------------------------------------- Trình chiếu --------------------------------------------
