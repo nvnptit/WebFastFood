@@ -15,7 +15,10 @@
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
  
-  <bean id="uploadfile" class="ptithcm.bean.UploadFile" >
+  <bean id="uploadfile-product" class="ptithcm.bean.UploadFile" >
+ 	<property name="basePath" value="E:\\PTIT\\WebFastFood\\WebContent\\resources\\images\\products\\" />
+ </bean>
+  <bean id="uploadfile-slide" class="ptithcm.bean.UploadFile" >
  	<property name="basePath" value="E:\\PTIT\\WebFastFood\\WebContent\\resources\\images\\slides\\" />
  </bean>
  

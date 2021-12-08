@@ -65,9 +65,14 @@ public class AdminController {
 	ServletContext context;
 	@Autowired
 	JavaMailSender mailer;
+	
 	@Autowired
-	@Qualifier("uploadfile")
-	UploadFile baseUploadFile;
+	@Qualifier("uploadfile-product")
+	UploadFile baseUploadFileProduct;
+	
+	@Autowired
+	@Qualifier("uploadfile-slide")
+	UploadFile baseUploadFileSlide;
 
 	// Login
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -500,92 +505,7 @@ public class AdminController {
 		return "admin/form_user";
 	}
 
-	@RequestMapping(value = "form_product/insert", method = RequestMethod.POST)
-	public String insert_product(ModelMap model, @ModelAttribute("product") Product product,
-			@RequestParam("file") MultipartFile file) {
-
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-		product.setName(chuanHoa(product.getName()));
-
-		Session session1 = factory.getCurrentSession();
-		String hql = "FROM Product WHERE name = :name AND type = :type";
-		Query query = session1.createQuery(hql);
-		query.setParameter("name", product.getName());
-		query.setParameter("type", product.getType());
-		List<Product> list = query.list();
-
-		if (list.size() > 0) {
-			Product pro = (Product) list.get(0);
-			model.addAttribute("product", pro);
-			model.addAttribute("message", "Đã tồn tại tên sản phẩm này trong hệ thống!");
-			return "admin/product_update";
-		}
-
-		if (file.isEmpty()) {
-			model.addAttribute("message",  "Vui lòng chọn file!");
-		} else {
-			try {
-				String name = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\" + name;
-				file.transferTo(new File(photoPath));
-				product.setImg(name);
-				session.save(product);
-				t.commit();
-				model.addAttribute("message",  "Thêm mới thành công!");
-			} catch (Exception e) {
-				t.rollback();
-				model.addAttribute("message", "Thêm mới thất bại!");
-			} finally {
-				session.close();
-			}
-		}
-		return "admin/product_update";
-	}
-
-	@RequestMapping(value = "product_update/{id}", method = RequestMethod.POST)
-	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
-			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
-		Session session1 = factory.getCurrentSession();
-		Product product1 = (Product) session1.get(Product.class, id);
-		// lấy ra để trả về hình ảnh cũ nếu không thay đổi
-
-		Session session = factory.openSession();
-		Transaction t = session.beginTransaction();
-
-		String hql = "FROM Product WHERE name = :name AND type = :type";
-		Query query = session1.createQuery(hql);
-		query.setParameter("name", product.getName());
-		query.setParameter("type", product.getType());
-		List<Product> list = query.list();
-
-		if (list.size() > 0) {
-			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() +  " này trong hệ thống!");
-			model.addAttribute("product", product1);
-			return "admin/product_update";
-		}
-
-		try {
-			product.setName(chuanHoa(product.getName()));
-			if (!file.isEmpty()) {
-				String name = System.currentTimeMillis() + "-" + file.getOriginalFilename();
-				String photoPath = "D:\\workspace\\WebFastFood\\WebContent\\resources\\images\\products\\" + name;
-				file.transferTo(new File(photoPath));
-				product.setImg(name);
-			} else {
-				product.setImg(product1.getImg());
-			}
-			session.update(product);
-			t.commit();
-			model.addAttribute("message",  "Cập nhật sản phẩm thành công!");
-		} catch (Exception e) {
-			t.rollback();
-			model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
-		} finally {
-			session.close();
-		}
-		return "admin/product_update";
-	}
+	
 
 	private String md5(String str) {
 		// TODO Auto-generated method stub
@@ -679,6 +599,97 @@ public class AdminController {
 		return "admin/product";
 	}
 	
+	@RequestMapping(value = "form_product/insert", method = RequestMethod.POST)
+	public String insert_product(ModelMap model, @ModelAttribute("product") Product product,
+			@RequestParam("file") MultipartFile file) {
+
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+		product.setName(chuanHoa(product.getName()));
+
+		Session session1 = factory.getCurrentSession();
+		String hql = "FROM Product WHERE name = :name AND type = :type";
+		Query query = session1.createQuery(hql);
+		query.setParameter("name", product.getName());
+		query.setParameter("type", product.getType());
+		List<Product> list = query.list();
+
+		if (list.size() > 0) {
+			Product pro = (Product) list.get(0);
+			model.addAttribute("product", pro);
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm này trong hệ thống!");
+			return "admin/product_update";
+		}
+
+		if (file.isEmpty()) {
+			model.addAttribute("message",  "Vui lòng chọn file!");
+		} else {
+			try {
+				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
+				String fileName = date + file.getOriginalFilename();
+				String photoPath = baseUploadFileProduct.getBasePath() + fileName;
+				file.transferTo(new File(photoPath));
+				product.setImg(fileName);
+				session.save(product);
+				t.commit();
+				model.addAttribute("message",  "Thêm mới thành công!");
+				Thread.sleep(5000);
+			} catch (Exception e) {
+				t.rollback();
+				model.addAttribute("message", "Thêm mới thất bại!");
+			} finally {
+				session.close();
+			}
+		}
+		return "admin/product_update";
+	}
+
+	@RequestMapping(value = "product_update/{id}", method = RequestMethod.POST)
+	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
+			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
+		Session session1 = factory.getCurrentSession();
+		Product product1 = (Product) session1.get(Product.class, id);
+		// lấy ra để trả về hình ảnh cũ nếu không thay đổi
+
+		Session session = factory.openSession();
+		Transaction t = session.beginTransaction();
+
+		String hql = "FROM Product WHERE name = :name AND type = :type";
+		Query query = session1.createQuery(hql);
+		query.setParameter("name", product.getName());
+		query.setParameter("type", product.getType());
+		List<Product> list = query.list();
+
+		if (list.size() > 0) {
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() +  " này trong hệ thống!");
+			model.addAttribute("product", product1);
+			return "admin/product_update";
+		}
+
+		try {
+			product.setName(chuanHoa(product.getName()));
+			if (!file.isEmpty()) {
+				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
+				String fileName = date + file.getOriginalFilename();
+				String photoPath = baseUploadFileProduct.getBasePath() + fileName;
+				file.transferTo(new File(photoPath));
+				product.setImg(fileName);
+			} else {
+				product.setImg(product1.getImg());
+			}
+			session.update(product);
+			t.commit();
+			model.addAttribute("message",  "Cập nhật sản phẩm thành công!");
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
+		} finally {
+			session.close();
+		}
+		return "admin/product_update";
+	}
+	
 	// ==================== Hóa đơn ====================
 	
 	@RequestMapping(value = "order", method = RequestMethod.GET)
@@ -730,12 +741,13 @@ public class AdminController {
 			try {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
 				String fileName = date + file.getOriginalFilename();
-				String photoPath = baseUploadFile.getBasePath() + fileName;
+				String photoPath = baseUploadFileSlide.getBasePath() + fileName;
 				file.transferTo(new File(photoPath));
 				slide.setImg(fileName);
 				session.save(slide);
 				t.commit();
 				model.addAttribute("message", "Thêm trình chiếu mới thành công!");
+				Thread.sleep(5000);
 			} catch (Exception e) {
 				t.rollback();
 				e.printStackTrace();
@@ -767,12 +779,13 @@ public class AdminController {
 			try {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
 				String fileName = date + file.getOriginalFilename();
-				String photoPath = baseUploadFile.getBasePath() + fileName;
+				String photoPath = baseUploadFileSlide.getBasePath() + fileName;
 				file.transferTo(new File(photoPath));
 				slide.setImg(fileName);
 				session.update(slide);
 				t.commit();
 				model.addAttribute("message", "Cập nhật trình chiếu thành công!");
+				Thread.sleep(5000);
 			} catch (Exception e) {
 				t.rollback();
 				model.addAttribute("message", "Cập nhật trình chiếu thất bại!");
@@ -780,7 +793,6 @@ public class AdminController {
 				session.close();
 			}
 		}
-
 		return "admin/slide_update";
 	}
 
@@ -807,7 +819,7 @@ public class AdminController {
 
 		if (isSuccess) {
 			try {
-				String photoPath = baseUploadFile.getBasePath() + slide.getImg();
+				String photoPath = baseUploadFileSlide.getBasePath() + slide.getImg();
 				new File(photoPath).delete();
 			} catch (Exception e) {
 			}

@@ -57,7 +57,7 @@
 
 <body class="animsition">
 	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
-	
+
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -75,9 +75,9 @@
 									<i class="zmdi zmdi-search"></i>
 								</button>
 							</form>
-							
+
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
-							
+
 						</div>
 					</div>
 				</div>
@@ -107,10 +107,14 @@
 												<form:input path="id" type="hidden" class="form-control" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Hình ảnh</label> <input
-													name="file" type="file" class="form-control"
+												<label class=" form-control-label">Hình ảnh</label> <br>
+												<input name="file" type="file" accept="image/*" id="imgInp"
 													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
 													oninput="setCustomValidity('')" required="required" />
+												<div>
+													<img width="200" height="150" id="blah" src="#"
+														alt="your image" />
+												</div>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tiêu đề</label>
@@ -120,15 +124,17 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Nội dung</label>
-												<form:textarea path="content" rows="5" cols="20" class="form-control"
+												<form:textarea path="content" rows="5" cols="20"
+													class="form-control"
 													oninvalid="this.setCustomValidity('Hãy nhập nội dung')"
 													oninput="setCustomValidity('')" required="required" />
 											</div>
 											<div class="form-group">
 												<label class="form-control-label">Trạng thái</label>
-												<form:select path="active" class="form-control" required="required" >
-													<form:option value="true" label="Hiển thị"/>
-													<form:option value="false" label="Tạm ẩn"/>
+												<form:select path="active" class="form-control"
+													required="required">
+													<form:option value="true" label="Hiển thị" />
+													<form:option value="false" label="Tạm ẩn" />
 												</form:select>
 											</div>
 											<div class="card-footer">
@@ -162,6 +168,16 @@
 		</div>
 
 	</div>
+
+	<!-- Hiển thị hình ảnh trước khi upload -->
+	<script type="text/javascript">
+	imgInp.onchange = evt => {
+		  const [file] = imgInp.files
+		  if (file) {
+		    blah.src = URL.createObjectURL(file)
+		  }
+		}
+	</script>
 
 	<!-- Jquery JS-->
 	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>

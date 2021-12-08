@@ -110,10 +110,14 @@
 													readonly="true" />
 											</div>
 											<div class="form-group">
-												<label class=" form-control-label">Hình ảnh</label> <input
-													name="file" type="file" class="form-control"
+												<label class=" form-control-label">Hình ảnh</label> <br>
+												<input name="file" type="file" accept="image/*" id="imgInp"
 													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
 													oninput="setCustomValidity('')" required="required" />
+												<div>
+													<img width="200" height="150" id="blah" src="${root}/resources/images/slides/${slide.img}"
+														alt="your image"  />
+												</div>
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Tiêu đề</label>
@@ -166,6 +170,16 @@
 		</div>
 
 	</div>
+	
+	<!-- Hiển thị hình ảnh trước khi upload -->
+	<script type="text/javascript">
+	imgInp.onchange = evt => {
+		  const [file] = imgInp.files
+		  if (file) {
+		    blah.src = URL.createObjectURL(file)
+		  }
+		}
+	</script>
 
 	<!-- Jquery JS-->
 	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
