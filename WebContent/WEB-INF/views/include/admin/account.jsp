@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <button class="au-btn au-btn-icon au-btn--blue" onclick="location.href='${root}/home/index.htm';">
-	<i class="zmdi zmdi-home"></i>Đi đến trang người dùng
+	<i class="zmdi zmdi-home"></i>Đến trang người dùng
 </button>
 <div class="header-button">
 

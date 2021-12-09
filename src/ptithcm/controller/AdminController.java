@@ -236,14 +236,14 @@ public class AdminController {
 			User user1 = (User) httpSession.getAttribute("user1");
 			if (user1.getUsername().equals(user.getUsername())) {
 				model.addAttribute("message", "Bạn không thể tự xoá chính mình");
-				return "admin/user";
+				return "redirect:/admin/user.htm";
 			} else if (list.size() > 0) {
 				user.setStatus(false);
 				System.out.println(user.getFullname() + " | " + user.isStatus());
 				session.update(user);
 				model.addAttribute("message", "Đã huỷ kích hoạt vì đã tồn tại trong hoá đơn!");
 				t.commit();
-				return "admin/user";
+				return "redirect:/admin/user.htm";
 			} else {
 				session.delete(user);
 				t.commit();
@@ -251,12 +251,13 @@ public class AdminController {
 			}
 		} catch (Exception e) {
 			t.rollback();
+			e.printStackTrace();
 			model.addAttribute("message", "Xoá thất bại");
 		} finally {
 			model.addAttribute("users", getUsers());
 			session.close();
 		}
-		return "admin/user";
+		return "redirect:/admin/user.htm";
 	}
 
 	@RequestMapping(value = "delete/product/{id}", method = RequestMethod.GET)
@@ -659,10 +660,8 @@ public class AdminController {
 		List<Product> list = query.list();
 
 		if (list.size() > 0) {
-			Product pro = (Product) list.get(0);
-			model.addAttribute("product", pro);
 			model.addAttribute("message", "Đã tồn tại tên sản phẩm này trong hệ thống!");
-			return "admin/product_update";
+			return "admin/form_product";
 		}
 
 		if (file.isEmpty()) {
@@ -678,6 +677,8 @@ public class AdminController {
 				t.commit();
 				model.addAttribute("message", "Thêm mới thành công!");
 				Thread.sleep(5000);
+				model.addAttribute("product", product);
+				return "admin/product_update";
 			} catch (Exception e) {
 				t.rollback();
 				model.addAttribute("message", "Thêm mới thất bại!");
@@ -685,7 +686,8 @@ public class AdminController {
 				session.close();
 			}
 		}
-		return "admin/product_update";
+		
+		return "admin/form_product";
 	}
 
 	@RequestMapping(value = "product_update/{id}", method = RequestMethod.POST)

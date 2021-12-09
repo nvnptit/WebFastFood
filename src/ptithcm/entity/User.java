@@ -31,7 +31,6 @@ public class User {
 		this.fullname = fullname;
 		this.email = email;
 		this.phone = phone;
-		this.orders = orders;
 		this.status = status;
 	}
 
