@@ -160,6 +160,10 @@
 														alt="your image" />
 												</div>
 											</div>
+												<div class="form-group">
+												<form:input path="status" class="form-control"
+													value="true" type="hidden" />
+											</div>
 											<div class="card-footer">
 												<button type="submit" class="btn btn-primary btn-sm">
 													<i class="fa fa-dot-circle-o"></i> Thêm
