@@ -71,14 +71,16 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap">
-							<div class="form-header">
-								<input class="au-input au-input--xl" type="text" id="myInput"
-									name="search" placeholder="Tìm kiếm sản phẩm..." />
-								<button class="au-btn--submit" type="submit">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-							</div>
-							
+							<form action="${root}/admin/product.htm" method="post">
+								<div class="form-header">
+									<input class="au-input au-input--xl" type="text" id="myInput"
+										name="searchInput" placeholder="Tìm kiếm sản phẩm theo tên..." />
+									<button class="au-btn--submit" name="btnSearch" type="submit">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form>
+
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
 							
 						</div>
@@ -252,7 +254,7 @@
 			});
 		}
 	</script>
-	<script>
+	<!-- <script>
 		$(document)
 				.ready(
 						function() {
@@ -276,7 +278,7 @@
 																});
 											});
 						});
-	</script>
+	</script> -->
 </body>
 
 </html>

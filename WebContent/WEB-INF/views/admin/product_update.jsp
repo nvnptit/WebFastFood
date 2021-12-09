@@ -57,7 +57,7 @@
 
 <body class="animsition">
 	<%@include file="/WEB-INF/views/include/admin/cookie.jsp"%>
-	
+
 	<div class="page-wrapper">
 		<%@include file="/WEB-INF/views/include/admin/menu.jsp"%>
 
@@ -75,9 +75,9 @@
 									<i class="zmdi zmdi-search"></i>
 								</button>
 							</form>
-							
+
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
-							
+
 						</div>
 					</div>
 				</div>
@@ -92,7 +92,7 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header">
-										<strong>Mở rộng</strong> Sản phẩm
+										<strong>Cập nhật</strong> Sản phẩm
 									</div>
 									<c:if test="${not empty message}">
 										<div class="alert alert-danger" role="alert">
@@ -123,26 +123,29 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Giá</label>
-												<form:input path="price" type="text" placeholder="Giá"
-													class="form-control"
-													oninvalid="this.setCustomValidity('Hãy nhập giá')"
-													oninput="setCustomValidity('')" required="required" />
+												<form:input path="price" type="number" placeholder="Giá"
+													class="form-control input-number quantity" min="0"
+													oninvalid="this.setCustomValidity('Giá phải là số nguyên dương!')"
+													oninput="this.setCustomValidity('')"
+													required="required" />
 											</div>
-
 											<div class="form-group">
 												<label class=" form-control-label">Giảm giá</label>
 												<form:input path="discount" type="number"
-													placeholder=" % Giảm giá" class="form-control"
-													oninvalid="this.setCustomValidity('Hãy nhập % giảm giá')"
-													oninput="setCustomValidity('')" required="required" />
+													placeholder=" % Giảm giá" class="form-control input-number quantity"
+													 min="0" max="100"
+													oninvalid="this.setCustomValidity('% giảm giá phải có giá trị từ 0 đến 100')"
+													oninput="this.setCustomValidity('')"
+													required="required" />
 											</div>
 
 											<div class="form-group">
 												<label class=" form-control-label">Số lượng</label>
-												<form:input path="quantity" type="text"
+												<form:input path="quantity" type="number" min="0"
 													placeholder="Số lượng" class="form-control"
-													oninvalid="this.setCustomValidity('Hãy nhập số lượng')"
-													oninput="setCustomValidity('')" required="required" />
+													oninvalid="this.setCustomValidity('Số lượng phải là số nguyên dương!')"
+													oninput="this.setCustomValidity('')"
+													 required="required" />
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Thông tin</label>
@@ -153,18 +156,23 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Hình ảnh</label> <br>
+												<form:input path="img" value="${product.img}" type="hidden" />
 												<input name="file" type="file" accept="image/*" id="imgInp"
 													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
-													oninput="setCustomValidity('')" required="required" />
+													oninput="setCustomValidity('')" />
 												<div>
-													<img width="200" height="150" id="blah" src="${root}/resources/images/products/${product.img}"
+													<img width="200" height="150" id="blah"
+														src="${root}/resources/images/products/${product.img}"
 														alt="your image" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label>Trạng thái</label><br> <select id="status"
-													name="status"">
-													<option value="${product.status}" selected hidden>${product.status}</option>
+													name="status">
+													<option value="${product.status}" selected hidden>
+														<c:if test="${product.status == true}">Hoạt động</c:if>
+														<c:if test="${product.status == false}">Ngưng hoạt động</c:if>
+													</option>
 													<option value="true"
 														class="au-input au-input--full form-control">Hoạt
 														động</option>
@@ -206,7 +214,7 @@
 		</div>
 
 	</div>
-	
+
 	<!-- Hiển thị hình ảnh trước khi upload -->
 	<script type="text/javascript">
 	imgInp.onchange = evt => {
@@ -216,7 +224,7 @@
 		  }
 		}
 	</script>
-
+	
 	<!-- Jquery JS-->
 	<script src="${root}/resources/vendor/jquery-3.2.1.min.js"></script>
 	<!-- Bootstrap JS-->

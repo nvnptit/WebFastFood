@@ -59,17 +59,19 @@ import ptithcm.entity.Order;
 @Controller
 @RequestMapping("/admin/")
 public class AdminController {
+	private static int cookieTime = 3600;
+
 	@Autowired
 	SessionFactory factory;
 	@Autowired
 	ServletContext context;
 	@Autowired
 	JavaMailSender mailer;
-	
+
 	@Autowired
 	@Qualifier("uploadfile-product")
 	UploadFile baseUploadFileProduct;
-	
+
 	@Autowired
 	@Qualifier("uploadfile-slide")
 	UploadFile baseUploadFileSlide;
@@ -111,7 +113,7 @@ public class AdminController {
 	}
 
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "index", method = RequestMethod.POST)
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login_admin(HttpServletRequest request, HttpServletResponse response, ModelMap model)
 			throws IOException {
 
@@ -148,7 +150,7 @@ public class AdminController {
 				session.setAttribute("role1", currentUser.getRole());
 
 				Cookie ck = new Cookie("authadmin", md5(username));
-				ck.setMaxAge(600);
+				ck.setMaxAge(cookieTime);
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
@@ -211,7 +213,7 @@ public class AdminController {
 				session2.close();
 			}
 		} else {
-			model.addAttribute("message",  "Tài khoản không tồn tại!");
+			model.addAttribute("message", "Tài khoản không tồn tại!");
 		}
 		return "admin/forgotpassword";
 	}
@@ -245,7 +247,7 @@ public class AdminController {
 			} else {
 				session.delete(user);
 				t.commit();
-				model.addAttribute("message","Xoá thành công");
+				model.addAttribute("message", "Xoá thành công");
 			}
 		} catch (Exception e) {
 			t.rollback();
@@ -356,10 +358,10 @@ public class AdminController {
 		User user = (User) httpSession.getAttribute("user1");
 		String pass_md5 = md5(oldpass);
 		if (!pass_md5.equals(user.getPassword())) {
-			model.addAttribute("message",  "Mật khẩu cũ không đúng!");
+			model.addAttribute("message", "Mật khẩu cũ không đúng!");
 		} else {
 			if (!newpass.equals(confirmpass)) {
-				model.addAttribute("message",  "Mật khẩu xác nhận không trùng với mật khẩu mới!");
+				model.addAttribute("message", "Mật khẩu xác nhận không trùng với mật khẩu mới!");
 			} else {
 				Session session2 = factory.openSession();
 				Transaction t = session2.beginTransaction();
@@ -370,7 +372,7 @@ public class AdminController {
 					model.addAttribute("message", "Thay mật khẩu thành công!");
 				} catch (Exception e) {
 					t.rollback();
-					model.addAttribute("message",  "Thay mật khẩu thất bại!");
+					model.addAttribute("message", "Thay mật khẩu thất bại!");
 				} finally {
 					session2.close();
 				}
@@ -436,8 +438,8 @@ public class AdminController {
 			User current = (User) ss.getAttribute("user1");
 			if (user.getUsername().equals(current.getUsername())) {
 				if (!user.isStatus()) {
-					model.addAttribute("message",  "Không thể tự khoá tài khoản");
-					return "admin/user";
+					model.addAttribute("message", "Không thể tự khoá tài khoản");
+					return "admin/user_update";
 				}
 				ss.setAttribute("user1", user);
 			}
@@ -448,10 +450,10 @@ public class AdminController {
 			t.rollback();
 			model.addAttribute("message", "Cập nhật người dùng thất bại");
 		} finally {
-			model.addAttribute("users", getUsers());
+			model.addAttribute("user", user);
 			session.close();
 		}
-		return "admin/user";
+		return "admin/user_update";
 	}
 
 	@RequestMapping(value = "form_user/insert", method = RequestMethod.POST)
@@ -504,8 +506,6 @@ public class AdminController {
 		}
 		return "admin/form_user";
 	}
-
-	
 
 	private String md5(String str) {
 		// TODO Auto-generated method stub
@@ -571,11 +571,11 @@ public class AdminController {
 	}
 
 	// ==================== Người dùng ====================
-	
+
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public String table_user(HttpServletRequest request, ModelMap model) {
-		List<User> products = this.getUsers();
-		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		List<User> users = this.getUsers();
+		PagedListHolder pagedListHolder = new PagedListHolder(users);
 		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
 		pagedListHolder.setPage(page);
 		pagedListHolder.setMaxLinkedPages(50);
@@ -584,8 +584,30 @@ public class AdminController {
 		return "admin/user";
 	}
 	
-	// ==================== Sản phẩm ====================
+	public List<User> searchUsers(String user_fullname) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM User where fullname LIKE :user_fullname";
+		Query query = session.createQuery(hql);
+		query.setParameter("user_fullname", "%" + user_fullname + "%");
+		List<User> list = query.list();
+		return list;
+	}
 	
+	@RequestMapping(value = "user", params = "btnSearch")
+	public String page_searchUsers(HttpServletRequest request, ModelMap model) {
+		List<User> users = this.searchUsers(request.getParameter("searchInput"));
+		PagedListHolder pagedListHolder = new PagedListHolder(users);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		
+		return "admin/user";
+	}
+
+	// ==================== Sản phẩm ====================
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "product", method = RequestMethod.GET)
 	public String page_product(HttpServletRequest request, ModelMap model, @ModelAttribute("product") Product product) {
@@ -599,6 +621,28 @@ public class AdminController {
 		return "admin/product";
 	}
 	
+	public List<Product> searchProducts(String product_name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product where name LIKE :product_name";
+		Query query = session.createQuery(hql);
+		query.setParameter("product_name", "%" + product_name + "%");
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@RequestMapping(value = "product", params = "btnSearch")
+	public String page_searchProducts(HttpServletRequest request, ModelMap model) {
+		List<Product> products = this.searchProducts(request.getParameter("searchInput"));
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		
+		return "admin/product";
+	}
+
 	@RequestMapping(value = "form_product/insert", method = RequestMethod.POST)
 	public String insert_product(ModelMap model, @ModelAttribute("product") Product product,
 			@RequestParam("file") MultipartFile file) {
@@ -622,7 +666,7 @@ public class AdminController {
 		}
 
 		if (file.isEmpty()) {
-			model.addAttribute("message",  "Vui lòng chọn file!");
+			model.addAttribute("message", "Vui lòng chọn file!");
 		} else {
 			try {
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
@@ -632,7 +676,7 @@ public class AdminController {
 				product.setImg(fileName);
 				session.save(product);
 				t.commit();
-				model.addAttribute("message",  "Thêm mới thành công!");
+				model.addAttribute("message", "Thêm mới thành công!");
 				Thread.sleep(5000);
 			} catch (Exception e) {
 				t.rollback();
@@ -648,39 +692,41 @@ public class AdminController {
 	public String update_product(ModelMap model, @ModelAttribute("product") Product product,
 			@RequestParam("file") MultipartFile file, @PathVariable("id") int id) {
 		Session session1 = factory.getCurrentSession();
-		Product product1 = (Product) session1.get(Product.class, id);
-		// lấy ra để trả về hình ảnh cũ nếu không thay đổi
 
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 
-		String hql = "FROM Product WHERE name = :name AND type = :type";
+		String hql = "FROM Product WHERE name = :name AND type = :type and id != :id";
 		Query query = session1.createQuery(hql);
 		query.setParameter("name", product.getName());
 		query.setParameter("type", product.getType());
+		query.setParameter("id", product.getId());
 		List<Product> list = query.list();
 
 		if (list.size() > 0) {
-			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() +  " này trong hệ thống!");
-			model.addAttribute("product", product1);
+			model.addAttribute("message", "Đã tồn tại tên sản phẩm " + product.getName() + " này trong hệ thống!");
+			model.addAttribute("product", product);
 			return "admin/product_update";
 		}
 
 		try {
 			product.setName(chuanHoa(product.getName()));
+			String oldPhotoPath = null;
 			if (!file.isEmpty()) {
+				oldPhotoPath = baseUploadFileProduct.getBasePath() + product.getImg();
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
 				String fileName = date + file.getOriginalFilename();
 				String photoPath = baseUploadFileProduct.getBasePath() + fileName;
 				file.transferTo(new File(photoPath));
 				product.setImg(fileName);
-			} else {
-				product.setImg(product1.getImg());
-			}
+			} 
 			session.update(product);
 			t.commit();
-			model.addAttribute("message",  "Cập nhật sản phẩm thành công!");
+			model.addAttribute("message", "Cập nhật sản phẩm thành công!");
 			Thread.sleep(5000);
+			if (oldPhotoPath != null) {
+				new File(oldPhotoPath).delete();
+			}
 		} catch (Exception e) {
 			t.rollback();
 			model.addAttribute("message", "Cập nhật sản phẩm thất bại!");
@@ -689,12 +735,40 @@ public class AdminController {
 		}
 		return "admin/product_update";
 	}
-	
+
 	// ==================== Hóa đơn ====================
-	
+
 	@RequestMapping(value = "order", method = RequestMethod.GET)
-	public String page_order(ModelMap model) {
-		model.addAttribute("orders", getOrders());
+	public String page_order(HttpServletRequest request, ModelMap model, @ModelAttribute("order") Order order) {
+		List<Order> orders = this.getOrders();
+		PagedListHolder pagedListHolder = new PagedListHolder(orders);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		return "admin/order";
+	}
+	
+	public List<Order> searchOrders(String name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Order o WHERE CAST(o.date AS string) LIKE :name OR o.usernameid.fullname LIKE :name OR o.id_product.name LIKE :name";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", "%" + name + "%");
+		List<Order> list = query.list();
+		return list;
+	}
+	
+	@RequestMapping(value = "order", params = "btnSearch")
+	public String page_searchOrders(HttpServletRequest request, ModelMap model) {
+		List<Order> orders = this.searchOrders(request.getParameter("searchInput"));
+		PagedListHolder pagedListHolder = new PagedListHolder(orders);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		
 		return "admin/order";
 	}
 
@@ -773,25 +847,29 @@ public class AdminController {
 		Session session = factory.openSession();
 		Transaction t = session.beginTransaction();
 
-		if (file.isEmpty()) {
-			model.addAttribute("message", "Hãy chọn file ảnh để trình chiếu!");
-		} else {
-			try {
+		try {
+			String oldPhotoPath = null;
+			if (!file.isEmpty()) {
+				oldPhotoPath = baseUploadFileSlide.getBasePath() + slide.getImg();
 				String date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss-"));
 				String fileName = date + file.getOriginalFilename();
 				String photoPath = baseUploadFileSlide.getBasePath() + fileName;
 				file.transferTo(new File(photoPath));
 				slide.setImg(fileName);
-				session.update(slide);
-				t.commit();
-				model.addAttribute("message", "Cập nhật trình chiếu thành công!");
-				Thread.sleep(5000);
-			} catch (Exception e) {
-				t.rollback();
-				model.addAttribute("message", "Cập nhật trình chiếu thất bại!");
-			} finally {
-				session.close();
+			} 
+			session.update(slide);
+			t.commit();
+			model.addAttribute("message", "Cập nhật trình chiếu thành công!");
+			Thread.sleep(5000);
+			System.out.println(oldPhotoPath);
+			if (oldPhotoPath != null) {
+				new File(oldPhotoPath).delete();
 			}
+		} catch (Exception e) {
+			t.rollback();
+			model.addAttribute("message", "Cập nhật trình chiếu thất bại!");
+		} finally {
+			session.close();
 		}
 		return "admin/slide_update";
 	}

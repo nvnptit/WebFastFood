@@ -71,7 +71,7 @@
 						</c:if>
 
 						<div class="login-form">
-							<form class="needs-validation" action="index.htm" method="post">
+							<form class="needs-validation" action="${root}/admin/login.htm" method="post">
 								<div class="form-group">
 									<label>Tên đăng nhập</label> <input
 										class="au-input au-input--full form-control" type="text"

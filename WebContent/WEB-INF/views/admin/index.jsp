@@ -69,7 +69,7 @@
 						<div class="header-wrap">
 							<div class="form-header">
 								<input class="au-input au-input--xl" type="text" name="search"
-									placeholder="Tìm kiếm dữ liệu và báo cáo" />
+									placeholder="Tìm kiếm dữ liệu và báo cáo" readonly="readonly"/>
 								<button class="au-btn--submit" type="submit">
 									<i class="zmdi zmdi-search"></i>
 								</button>
@@ -160,7 +160,7 @@
 												<i class="zmdi zmdi-money"></i>
 											</div>
 											<div class="text">
-												<h2>${money}<br>VNĐ</h2>
+												<h2><fmt:formatNumber value="${money}" pattern="###,### đ" type="currency"/><br>VNĐ</h2>
 												<span>Tổng thu nhập</span>
 											</div>
 										</div>

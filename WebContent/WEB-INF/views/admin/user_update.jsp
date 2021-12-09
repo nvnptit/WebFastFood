@@ -134,7 +134,10 @@
 											<div class="form-group">
 												<label>Vai trò</label><br> <select id="role"
 													name="role"">
-													<option value="${user.role}" selected hidden>${user.role}</option>
+													<option value="${user.role}" selected hidden>
+														<c:if test="${user.role == 'ADMIN'}">Quản trị</c:if>
+														<c:if test="${user.role == 'USER'}">Người dùng</c:if>
+													</option>
 													<option value="ADMIN"
 														class="au-input au-input--full form-control">Quản
 														trị</option>
@@ -143,7 +146,10 @@
 														dùng</option>
 												</select> <br> <label>Trạng thái</label><br> <select
 													id="status" name="status">
-													<option value="${user.status}" selected hidden>${user.status}</option>
+													<option value="${user.status}" selected hidden>
+														<c:if test="${user.status == true}">Hoạt động</c:if>
+														<c:if test="${user.status == false}">Ngưng hoạt động</c:if>
+													</option>
 													<option value="true"
 														class="au-input au-input--full form-control">Hoạt
 														động</option>

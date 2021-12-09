@@ -67,14 +67,15 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap">
-							<div class="form-header">
-								<input class="au-input au-input--xl" type="text" id="myInput"
-									name="search" placeholder="Tìm kiếm người dùng tại đây..." />
-								<button class="au-btn--submit" type="submit">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-							</div>
-
+							<form action="${root}/admin/user.htm" method="post">
+								<div class="form-header">
+									<input class="au-input au-input--xl" type="text" id="myInput"
+										name="searchInput" placeholder="Tìm kiếm người dùng theo họ tên..." />
+									<button class="au-btn--submit" type="submit" name="btnSearch">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form>
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
 
 						</div>
@@ -87,7 +88,7 @@
 			<div class="bg-light p-5 rounded">
 				<jsp:useBean id="pagedListHolder" scope="request"
 					type="org.springframework.beans.support.PagedListHolder" />
-				<c:url value="user.htm" var="pagedLink">
+				<c:url value="${root}/admin/user.htm" var="pagedLink">
 					<c:param name="p" value="~" />
 				</c:url>
 			</div>
@@ -247,7 +248,7 @@
 					});
 		}
 	</script>
-	<script>
+	<!-- <script>
 		$(document)
 				.ready(
 						function() {
@@ -271,7 +272,7 @@
 																});
 											});
 						});
-	</script>
+	</script> -->
 </body>
 
 </html>

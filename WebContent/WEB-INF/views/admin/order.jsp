@@ -1,6 +1,7 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html lang="en">
 <c:set var="root" value="${pageContext.servletContext.contextPath}" />
@@ -67,13 +68,15 @@
 				<div class="section__content section__content--p30">
 					<div class="container-fluid">
 						<div class="header-wrap">
-							<div class="form-header">
-								<input class="au-input au-input--xl" type="text" name="search"
-									placeholder="Tìm kiếm dữ liệu và báo cáo" />
-								<button class="au-btn--submit" type="submit">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-							</div>
+							<form action="${root}/admin/order.htm" method="post">
+								<div class="form-header">
+									<input class="au-input au-input--xl" type="text"
+										name="searchInput" placeholder="Tìm kiếm hoá đơn..." />
+									<button class="au-btn--submit" type="submit" name="btnSearch">
+										<i class="zmdi zmdi-search"></i>
+									</button>
+								</div>
+							</form>
 
 							<%@include file="/WEB-INF/views/include/admin/account.jsp"%>
 
@@ -83,6 +86,15 @@
 			</header>
 			<!-- HEADER DESKTOP-->
 
+			<!-- Phân trang -->
+			<div class="bg-light p-5 rounded">
+				<jsp:useBean id="pagedListHolder" scope="request"
+					type="org.springframework.beans.support.PagedListHolder" />
+				<c:url value="order.htm" var="pagedLink">
+					<c:param name="p" value="~" />
+				</c:url>
+			</div>
+
 			<!-- MAIN CONTENT-->
 			<div class="main-content">
 				<div class="section__content section__content--p30">
@@ -90,7 +102,8 @@
 						<div class="row">
 							<div class="col-lg-14">
 								<h2 class="title-1 m-b-25">
-									<i class="fa fa-sticky-note" aria-hidden="true"></i> Danh sách hóa đơn
+									<i class="fa fa-sticky-note" aria-hidden="true"></i> Danh sách
+									hóa đơn
 								</h2>
 								<div class="table-responsive table--no-card m-b-40">
 									<table
@@ -106,23 +119,32 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="o" items="${orders}">
+											<c:forEach var="o" items="${pagedListHolder.pageList}">
 												<tr>
-													<td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyyy" /></td>
+													<td><fmt:formatDate value="${o.date}"
+															pattern="dd-MM-yyyy" /></td>
 													<td>${o.id}</td>
 													<td>${o.usernameid.fullname}</td>
 													<td>${o.id_product.name}</td>
 													<td class="text-right">${o.amount}</td>
-													<td class="text-right">
-														<fmt:formatNumber value="${o.total}" pattern="###,### đ" type="currency"/>
+													<td class="text-right"><fmt:formatNumber
+															value="${o.total}" pattern="###,### đ" type="currency" />
 													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
+
+
+
 								</div>
 							</div>
 						</div>
+					</div>
+					<!-- Phân trang -->
+					<div>
+						<tg:paging pagedListHolder="${pagedListHolder}"
+							pagedLink="${pagedLink}" />
 					</div>
 				</div>
 			</div>

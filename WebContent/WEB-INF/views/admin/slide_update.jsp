@@ -111,9 +111,10 @@
 											</div>
 											<div class="form-group">
 												<label class=" form-control-label">Hình ảnh</label> <br>
+												<form:input path="img" value="${slide.img}" type="hidden"/>
 												<input name="file" type="file" accept="image/*" id="imgInp"
 													oninvalid="this.setCustomValidity('Hãy thêm hình ảnh')"
-													oninput="setCustomValidity('')" required="required" />
+													oninput="setCustomValidity('')" />
 												<div>
 													<img width="200" height="150" id="blah" src="${root}/resources/images/slides/${slide.img}"
 														alt="your image"  />

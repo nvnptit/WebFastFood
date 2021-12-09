@@ -42,6 +42,8 @@ import ptithcm.entity.User;
 @Controller
 @RequestMapping("/home/")
 public class HomeController {
+	private static int cookieTime = 3600;
+	
 	@Autowired
 	SessionFactory factory;
 	@Autowired
@@ -300,7 +302,7 @@ public class HomeController {
 				session.setAttribute("role", currentUser.getRole());
 
 				Cookie ck = new Cookie("auth", md5(username));
-				ck.setMaxAge(600);
+				ck.setMaxAge(cookieTime);
 				response.addCookie(ck);
 				response.sendRedirect("index.htm");
 			} else {
@@ -559,9 +561,10 @@ public class HomeController {
 	@ModelAttribute("foods")
 	public List<Product> getFoods() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product P WHERE P.type= :type ";
+		String hql = "FROM Product P WHERE P.type= :type  AND P.status= :status";
 		Query query = session.createQuery(hql);
 		query.setParameter("type", "FOOD");
+		query.setParameter("status", true);
 		List<Product> list = query.list();
 		return list;
 	}
@@ -570,9 +573,10 @@ public class HomeController {
 	@ModelAttribute("drinks")
 	public List<Product> getDrinks() {
 		Session session = factory.getCurrentSession();
-		String hql = "FROM Product P WHERE P.type= :type ";
+		String hql = "FROM Product P WHERE P.type= :type  AND P.status= :status";
 		Query query = session.createQuery(hql);
 		query.setParameter("type", "DRINK");
+		query.setParameter("status", true);
 		List<Product> list = query.list();
 		return list;
 	}
@@ -602,5 +606,54 @@ public class HomeController {
 		kq = kq.trim();
 		return kq;
 	}
+	
+	public List<Product> searchFoods(String product_name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product WHERE name LIKE :product_name AND type = :type AND status = :status";
+		Query query = session.createQuery(hql);
+		query.setParameter("product_name", "%" + product_name + "%");
+		query.setParameter("type", "Food");
+		query.setParameter("status", true);
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@RequestMapping(value = "food", params = "btnSearch")
+	public String page_searchProducts(HttpServletRequest request, ModelMap model) {
+		List<Product> products = this.searchFoods(request.getParameter("searchInput"));
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		
+		return "home/food";
+	}
+	
+	public List<Product> searchDrinks(String product_name) {
+		Session session = factory.getCurrentSession();
+		String hql = "FROM Product WHERE name LIKE :product_name AND type = :type AND status = :status";
+		Query query = session.createQuery(hql);
+		query.setParameter("product_name", "%" + product_name + "%");
+		query.setParameter("type", "Drink");
+		query.setParameter("status", true);
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@RequestMapping(value = "drink", params = "btnSearch")
+	public String page_searchDrinks(HttpServletRequest request, ModelMap model) {
+		List<Product> products = this.searchDrinks(request.getParameter("searchInput"));
+		PagedListHolder pagedListHolder = new PagedListHolder(products);
+		int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+		pagedListHolder.setPage(page);
+		pagedListHolder.setMaxLinkedPages(5);
+		pagedListHolder.setPageSize(10);
+		model.addAttribute("pagedListHolder", pagedListHolder);
+		
+		return "home/drink";
+	}
+
 
 }

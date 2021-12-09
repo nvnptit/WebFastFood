@@ -73,7 +73,7 @@
 						<div class="header-wrap">
 							<div class="form-header">
 								<input class="au-input au-input--xl" type="text" id="myInput"
-									name="search" placeholder="Tìm kiếm sản phẩm..." />
+									name="search" placeholder="Tìm kiếm..." readonly="readonly" />
 								<button class="au-btn--submit" type="submit">
 									<i class="zmdi zmdi-search"></i>
 								</button>
